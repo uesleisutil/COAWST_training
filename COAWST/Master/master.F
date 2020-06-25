@@ -1,0 +1,35 @@
+#include "cppdefs.h"
+/*
+<<<<<<< HEAD
+** svn $Id: master.F 889 2018-02-10 03:32:52Z arango $
+*************************************************** Hernan G. Arango ***
+** Copyright (c) 2002-2019 The ROMS/TOMS Group                        **
+=======
+** svn $Id: master.F 995 2020-01-10 04:01:28Z arango $
+*************************************************** Hernan G. Arango ***
+** Copyright (c) 2002-2020 The ROMS/TOMS Group                        **
+>>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
+**   Licensed under a MIT/X style license                             **
+**   See License_ROMS.txt                                             **
+************************************************************************
+**                                                                    **
+**  Master program to run ROMS/TOMS as single ocean model or coupled  **
+**  to other models using the MCT or ESMF libraries.                  **
+**                                                                    **
+************************************************************************
+*/
+
+#if defined COAWST_COUPLING
+# if defined MCT_LIB
+#  include "mct_driver.h"
+# elif defined ESMF_LIB
+#  include "esmf_driver.h"
+# else
+      PROGRAM master         !  ROMS is coupled with other external
+      END PROGRAM master     !  software and drivers not written by us
+# endif
+#elif defined ROMS_MODEL
+# include "ocean.h"
+#elif (defined SWAN_MODEL || defined WW3_MODEL)
+# include "waves.h"
+#endif
