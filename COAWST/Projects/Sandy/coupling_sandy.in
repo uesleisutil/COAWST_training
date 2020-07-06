@@ -38,7 +38,7 @@
 ! Their sum must be equal to the total number of processors.
 
    NnodesATM =  1                   ! atmospheric model
-   NnodesWAV =  1                   ! wave model
+   NnodesWAV =  0                  ! wave model
    NnodesOCN =  1                   ! ocean model
    NnodesHYD =  0                   ! hydrology model
 
