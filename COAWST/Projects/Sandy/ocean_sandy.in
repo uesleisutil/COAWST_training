@@ -73,7 +73,7 @@
 ! Input variable information file name.  This file needs to be processed
 ! first so all information arrays can be initialized properly.
 
-     VARNAME = ROMS/External/varinfo.dat
+     VARNAME = /home/ueslei/Documents/INPE/COAWST_training/COAWST/ROMS/External/varinfo.dat
 
 ! Number of nested grids.
 
@@ -1040,10 +1040,10 @@ Dout(iTvdif) == F F     ! temp_vdiff, ...    vertical diffusion
 
 ! Input NetCDF file names, [1:Ngrids].
 
-     GRDNAME == Projects/Sandy/Sandy_roms_grid.nc \
-                Projects/Sandy/Sandy_roms_grid_ref3.nc
-     ININAME == Projects/Sandy/Sandy_ini.nc \
-                Projects/Sandy/Sandy_ini_ref3.nc
+     GRDNAME == Sandy_roms_grid.nc \
+                Sandy_roms_grid_ref3.nc
+     ININAME == Sandy_ini.nc \
+                Sandy_ini_ref3.nc
      ITLNAME == ocean_itl.nc
      IRPNAME == ocean_irp.nc
      IADNAME == ocean_iad.nc
@@ -1074,7 +1074,7 @@ Dout(iTvdif) == F F     ! temp_vdiff, ...    vertical diffusion
 ! NetCDF file is special and complex. It is currently generated using
 ! the script "matlab/grid/contact.m" from the Matlab repository.
 
-     NGCNAME =  Projects/Sandy/Sandy_roms_contact.nc
+     NGCNAME =  Sandy_roms_contact.nc
 
 ! Input lateral boundary conditions and climatology file names.  The
 ! USER has the option to split input data time records into several
@@ -1083,16 +1083,16 @@ Dout(iTvdif) == F F     ! temp_vdiff, ...    vertical diffusion
 ! except the last one.
 
      NCLMFILES == 1                         ! number of climate files
-     CLMNAME == Projects/Sandy/Sandy_clm.nc \
-                Projects/Sandy/Sandy_clm_ref3.nc
+     CLMNAME == Sandy_clm.nc \
+                Sandy_clm_ref3.nc
 
      NBCFILES == 1                          ! number of boundary files
-!    BRYNAME == Projects/Sandy/Sandy_bdy.nc
-     BRYNAME == Projects/Sandy/coawst_bdy_20121028.nc |
-                Projects/Sandy/coawst_bdy_20121029.nc |
-                Projects/Sandy/coawst_bdy_20121030.nc |
-                Projects/Sandy/coawst_bdy_20121031.nc |
-                Projects/Sandy/coawst_bdy_20121101.nc
+!    BRYNAME == Sandy_bdy.nc
+     BRYNAME == coawst_bdy_20121028.nc |
+                coawst_bdy_20121029.nc |
+                coawst_bdy_20121030.nc |
+                coawst_bdy_20121031.nc |
+                coawst_bdy_20121101.nc
 
 ! Input climatology nudging coefficients file name.
 
@@ -1104,7 +1104,7 @@ Dout(iTvdif) == F F     ! temp_vdiff, ...    vertical diffusion
 
 ! Input tidal forcing file name.
 
-    TIDENAME == Projects/Sandy/tide_forc_Sandy.nc
+    TIDENAME == tide_forc_Sandy.nc
 
 ! Input forcing NetCDF file name(s).
 !
@@ -1125,8 +1125,8 @@ Dout(iTvdif) == F F     ! temp_vdiff, ...    vertical diffusion
 ! the last one.
 
      NFFILES == 1
-     FRCNAME == Projects/Sandy/romsforc_NARR_Sandy2012.nc \
-                Projects/Sandy/romsforc_NARR_Sandy2012.nc
+     FRCNAME == romsforc_NARR_Sandy2012.nc \
+                romsforc_NARR_Sandy2012.nc
 
 ! Output NetCDF file names, [1:Ngrids].
 
@@ -1149,12 +1149,12 @@ Dout(iTvdif) == F F     ! temp_vdiff, ...    vertical diffusion
 
 ! Input ASCII parameter filenames.
 
-     APARNAM =  ROMS/External/s4dvar.in
-     SPOSNAM =  ROMS/External/stations.in
-     FPOSNAM =  ROMS/External/floats.in
-     BPARNAM =  ROMS/External/bioFasham.in
-     SPARNAM =  ROMS/External/sediment.in 
-     USRNAME =  ROMS/External/MyFile.dat
+     APARNAM =  /home/ueslei/Documents/INPE/COAWST_training/COAWST/ROMS/External/s4dvar.in
+     SPOSNAM =  /home/ueslei/Documents/INPE/COAWST_training/COAWST/ROMS/External/stations.in
+     FPOSNAM =  /home/ueslei/Documents/INPE/COAWST_training/COAWST/ROMS/External/floats.in
+     BPARNAM =  /home/ueslei/Documents/INPE/COAWST_training/COAWST/ROMS/External/bioFasham.in
+     SPARNAM =  /home/ueslei/Documents/INPE/COAWST_training/COAWST/ROMS/External/sediment.in 
+     USRNAME =  /home/ueslei/Documents/INPE/COAWST_training/COAWST/ROMS/External/MyFile.dat
      VEGNAM  =  vegetation.in
 
 !

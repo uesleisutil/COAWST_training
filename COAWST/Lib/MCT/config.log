@@ -27,7 +27,7 @@ hostinfo               = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/ueslei/anaconda3/bin
+PATH: /home/ueslei/anaconda3/envs/vpn/bin
 PATH: /home/ueslei/anaconda3/condabin
 PATH: /usr/local/include
 PATH: /usr/bin
