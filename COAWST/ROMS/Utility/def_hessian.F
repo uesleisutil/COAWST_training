@@ -5,15 +5,9 @@
       defined POSTERIOR_ERROR_F)) ||  defined LCZ_FINAL
       SUBROUTINE def_hessian (ng)
 !
-<<<<<<< HEAD
 !svn $Id: def_hessian.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: def_hessian.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -66,19 +60,11 @@
 # if defined POSTERIOR_EOFS && defined WEAK_CONSTRAINT
       integer :: NpostDim
 # endif
-<<<<<<< HEAD
       integer :: DimIDs(32), t2dgrd(3), u2dgrd(3), v2dgrd(3)
 # ifdef ADJUST_BOUNDARY
       integer :: t2dobc(4)
 # endif
       integer :: Vsize(4)
-=======
-      integer :: DimIDs(nDimID)
-      integer :: t2dgrd(3), u2dgrd(3), v2dgrd(3)
-# ifdef ADJUST_BOUNDARY
-      integer :: t2dobc(4)
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       integer :: def_dim
 
@@ -287,14 +273,6 @@
 #  endif
 
 #  ifdef ECOSIM
-<<<<<<< HEAD
-=======
-        status=def_dim(ng, iNLM, HSS(ng)%ncid, ncname, 'Nbands',        &
-     &                 NBands, DimIDs(33))
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         status=def_dim(ng, iADM, HSS(ng)%ncid, ncname, 'Nphy',          &
      &                 Nphy, DimIDs(25))
         IF (FoundError(exit_flag, NoError, __LINE__,                    &

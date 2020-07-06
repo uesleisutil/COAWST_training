@@ -48,11 +48,7 @@ foreach $file (@files)
   if ($unx=~/TRUE/)
   {
     ($tempf)=split(/.ftn/, $file);
-<<<<<<< HEAD
     $ext = ($file =~ m/ftn90/) ? "F" : "F";
-=======
-    $ext = ($file =~ m/ftn90/) ? "f90" : "f";
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     $outfile = join(".",$tempf,$ext);
   }
   else

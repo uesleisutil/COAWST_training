@@ -30,40 +30,14 @@
 **                                                                    **
 **        vegetation_stream.F                                         **
 **                                                                    **
-<<<<<<< HEAD
 **   *  Wave Thrust on Marsh calculation:                             **
 **                                                                    **
 **        marsh_wave_thrust.F                                         ** 
 **                                                                    **
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   *  Vegetation biomass calculation:                               **
 **                                                                    **
 **        vegetation_biomass.F                                        **
 **                                                                    **
-<<<<<<< HEAD
-=======
-**   *  Marsh dynamics (main calling routine) calculation:            **
-**                                                                    **
-**        marsh_dynamics.F                                            **
-**                                                                    **
-**   *  Marsh wave thrust calculation:                                **
-**                                                                    **
-**        marsh_wave_thrust.F                                         **
-**                                                                    **
-**   *  Marsh sediment erosion calculations:                          **
-**                                                                    **
-**        marsh_sed_erosion.F                                         **
-**                                                                    **
-**   *  Marsh growth mean high water/tidal calculations:              **
-**                                                                    **
-**        marsh_tidal_range.F                                         **
-**                                                                    **
-**   *  Marsh vertical growth calculations:                           **
-**                                                                    **
-**        marsh_vert_growth.F                                         **
-**                                                                    **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   *  Internal model parameters declarations:                       **
 **                                                                    **
 **        vegetation_mod.h                                            **

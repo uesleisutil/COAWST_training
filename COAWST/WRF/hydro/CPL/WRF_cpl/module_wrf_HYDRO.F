@@ -24,11 +24,7 @@ module module_WRF_HYDRO
 #ifdef MPP_LAND
     use module_mpp_land, only: global_nx, global_ny, decompose_data_real, &
                  write_io_real, my_id, mpp_land_bcast_real1, IO_id, &
-<<<<<<< HEAD
                 mpp_land_bcast_real, mpp_land_bcast_int1
-=======
-                mpp_land_bcast_real, mpp_land_bcast_int1, mpp_land_init
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     use module_CPL_LAND, only: CPL_LAND_INIT, cpl_outdate
 #endif
     use module_HYDRO_drv, only: HYDRO_ini, HYDRO_exe
@@ -101,12 +97,7 @@ CONTAINS
 
   
         if(.not. RT_DOMAIN(did)%initialized) then
-<<<<<<< HEAD
 
-=======
-           
-           call MPP_LAND_INIT()
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
            !yw nlst_rt(did)%nsoil = config_flags%num_soil_layers
            !nlst_rt(did)%nsoil = model_config_rec%num_metgrid_soil_levels

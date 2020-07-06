@@ -4,13 +4,9 @@ subroutine dffti1 ( n, wa, fac )
 !
 !! DFFTI1 is an FFTPACK5 auxiliary routine.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Modified:
 !

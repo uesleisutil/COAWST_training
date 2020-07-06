@@ -217,12 +217,7 @@ CONTAINS
         ENDDO
         ENDDO
      ELSE IF (oml_hml0 .eq. 0.) THEN
-<<<<<<< HEAD
 ! initializing with climatological mixed layer depth only
-=======
-        WRITE(message,*)'Initializing OML with climatological mixed layer depth'
-        CALL wrf_debug (0, TRIM(message))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         DO J=jts,jtf
         DO I=its,itf
           HML(I,J)=H0ML(I,J)
@@ -232,11 +227,7 @@ CONTAINS
         ENDDO
         ENDDO
      ELSE
-<<<<<<< HEAD
         WRITE(message,*)'Initializing OML with real HML0, h(1,1) = ', h0ml(1,1)
-=======
-        WRITE(message,*)'Initializing OML with 2d HML0'
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         CALL wrf_debug (0, TRIM(message))
         DO J=jts,jtf
         DO I=its,itf

@@ -2,15 +2,9 @@
 #ifdef FLOATS
       SUBROUTINE wrt_floats (ng)
 !
-<<<<<<< HEAD
 !svn $Id: wrt_floats.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: wrt_floats.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -144,12 +138,7 @@
      &                        (/1,tFLTindx(ng)/), (/Nfloats(ng),1/),    &
      &                        ncid = ncFLTid(ng),                       &
      &                        varid = fltVid(idglon,ng))
-<<<<<<< HEAD
       IF (exit_flag.ne.NoError) RETURN
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       DO l=1,Nfloats(ng)
         IF (FLT(ng)%bounded(l)) THEN
@@ -165,10 +154,6 @@
      &                        varid = fltVid(idxspc,ng))
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       DO l=1,Nfloats(ng)
         IF (FLT(ng)%bounded(l)) THEN
           Tout(l)=FLT(ng)%track(iflat,nf(ng),l)
@@ -183,10 +168,6 @@
      &                        varid = fltVid(idglat,ng))
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       DO l=1,Nfloats(ng)
         IF (FLT(ng)%bounded(l)) THEN
           Tout(l)=FLT(ng)%track(iyspc,nf(ng),l)
@@ -201,10 +182,6 @@
      &                        varid = fltVid(idyspc,ng))
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      DO l=1,Nfloats(ng)
         IF (FLT(ng)%bounded(l)) THEN
           Tout(l)=FLT(ng)%track(iwdph,nf(ng),l)

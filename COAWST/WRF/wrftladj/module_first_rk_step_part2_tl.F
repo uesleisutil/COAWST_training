@@ -157,10 +157,6 @@ CONTAINS
                           grid%num_stoch_levels,grid%num_stoch_levels,        &
                           grid%num_stoch_levels,grid%num_stoch_levels,        &
                           config_flags%restart, grid%iseedarr_skebs,          &
-<<<<<<< HEAD
-=======
-                          config_flags%seed_dim,                              &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                           grid%DX,grid%DY,grid%skebs_vertstruc,               &
                           grid%rt_tendf_stoch,                                &
                           grid%stddev_cutoff_sppt,grid%gridpt_stddev_sppt,    &
@@ -180,10 +176,6 @@ CONTAINS
                            grid% num_stoch_levels,grid% num_stoch_levels,     &
                            grid% num_stoch_levels,grid% num_stoch_levels,     &
                            config_flags%restart, grid%iseedarr_skebs,         &
-<<<<<<< HEAD
-=======
-                           config_flags%seed_dim,                             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                            grid%DX,grid%DY,grid%skebs_vertstruc,              &
                            grid%ru_tendf_stoch,                               &
                            grid%stddev_cutoff_sppt,grid%gridpt_stddev_sppt,   &
@@ -203,10 +195,6 @@ CONTAINS
                            grid% num_stoch_levels,grid% num_stoch_levels,     &
                            grid% num_stoch_levels,grid% num_stoch_levels,     &
                            config_flags%restart, grid%iseedarr_skebs,         &
-<<<<<<< HEAD
-=======
-                           config_flags%seed_dim,                             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                            grid%DX,grid%DY,grid%skebs_vertstruc,              &
                            grid%rv_tendf_stoch,                               &
                            grid%stddev_cutoff_sppt,grid%gridpt_stddev_sppt,   &
@@ -228,10 +216,6 @@ CONTAINS
                           grid%num_stoch_levels,grid%num_stoch_levels,        &
                           grid%num_stoch_levels,grid%num_stoch_levels,        &
                           config_flags%restart, grid%iseedarr_sppt,           &
-<<<<<<< HEAD
-=======
-                          config_flags%seed_dim,                              &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                           grid%DX,grid%DY,grid%sppt_vertstruc,                &
                           grid%rstoch,                                        &
                           grid%stddev_cutoff_sppt,grid%gridpt_stddev_sppt,    &
@@ -253,10 +237,6 @@ CONTAINS
                            grid%num_stoch_levels,grid%num_stoch_levels,        &
                            grid%num_stoch_levels,grid%num_stoch_levels,        &
                            config_flags%restart, grid%iseedarr_rand_pert,      &
-<<<<<<< HEAD
-=======
-                           config_flags%seed_dim,                              &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                            grid%DX,grid%DY,grid%rand_pert_vertstruc,           &
                            grid%RAND_PERT,                                     &
                            grid%stddev_cutoff_sppt,grid%gridpt_stddev_sppt,    &

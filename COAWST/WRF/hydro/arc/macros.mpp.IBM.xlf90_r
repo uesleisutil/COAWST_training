@@ -37,11 +37,7 @@ MODFLAG	=	-I./ -I ../MPP -I../../MPP -I ../mod
 LDFLAGS	=	
 CPP	=       cpp
 LIBS 	=	
-<<<<<<< HEAD
 CPPFLAGS	= -P -traditional -DMPP_LAND -I../Data_Rec $(HYDRO_D) $(WRFIO_NCD_LARGE_FILE_SUPPORT)
-=======
-CPPFLAGS	=	-C -P -traditional -DMPP_LAND -I../Data_Rec $(HYDRO_D) $(WRFIO_NCD_LARGE_FILE_SUPPORT)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 NETCDFINC	=	$(NETCDF_INC) 
 NETCDFLIB	=	-L$(NETCDF_LIB) -lnetcdff -lnetcdf
 

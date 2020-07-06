@@ -51,15 +51,9 @@ function [Jday]=julian(varargin)
 % Calls:         hms2h
 %
 
-<<<<<<< HEAD
 % svn $Id: julian.m 916 2018-07-14 01:28:47Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: julian.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license               Hernan G. arango  %
 %    See License_ROMS.txt                               Rich Signell      %
 %=========================================================================%

@@ -49,24 +49,14 @@ function ncid = nc_create(ncfile,mode,S)
 %                 given, the file is closed after it is created.
 %
 
-<<<<<<< HEAD
 % svn $Id: nc_create.m 895 2018-02-11 23:15:37Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: nc_create.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%
 
-<<<<<<< HEAD
 if (nargin > 2),
-=======
-if (nargin > 2)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   define = true;
 else
   define = false;
@@ -82,19 +72,11 @@ ncid = netcdf.create(ncfile,mode);
 % Define dimensions and variables available in dimension structure.
 %--------------------------------------------------------------------------
 
-<<<<<<< HEAD
 if (define),
 
 % Define dimensions.
 
   if (isfield(S,'Dimensions')),
-=======
-if (define)
-
-% Define dimensions.
-
-  if (isfield(S,'Dimensions'))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     ndims = length(S.Dimensions);
   else
     disp(S);
@@ -102,15 +84,9 @@ if (define)
            ' in input structure, S.']);
   end
 
-<<<<<<< HEAD
   for n=1:ndims,
     dname = char(S.Dimensions(n).Name);
     if (S.Dimensions(n).Unlimited),
-=======
-  for n=1:ndims
-    dname = char(S.Dimensions(n).Name);
-    if (S.Dimensions(n).Unlimited)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       dlen = netcdf.getConstant('UNLIMITED');
     else
       dlen = S.Dimensions(n).Length;
@@ -120,11 +96,7 @@ if (define)
 
 % Define global attributes.
 
-<<<<<<< HEAD
   if (isfield(S,'Attributes')),
-=======
-  if (isfield(S,'Attributes'))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     natts = length(S.Attributes);
   else
     disp(S);
@@ -133,11 +105,7 @@ if (define)
   end
 
   if (natts > 0)
-<<<<<<< HEAD
     for n=1:natts,
-=======
-    for n=1:natts
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       aname  = char(S.Attributes(n).Name);
       avalue = S.Attributes(n).Value;
       varid  = netcdf.getConstant('nc_global');
@@ -147,11 +115,7 @@ if (define)
 
 % Define variables and their attributes.
 
-<<<<<<< HEAD
   if (isfield(S,'Variables')),
-=======
-  if (isfield(S,'Variables'))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     nvars = length(S.Variables);
   else
     disp(S);
@@ -161,17 +125,10 @@ if (define)
   
   got_nctype = isfield(S.Variables,'ncType');
 
-<<<<<<< HEAD
   for n=1:nvars,
     nvdims = length(S.Variables(n).Dimensions);
     if (nvdims > 0)
       for i=1:nvdims,
-=======
-  for n=1:nvars
-    nvdims = length(S.Variables(n).Dimensions);
-    if (nvdims > 0)
-      for i=1:nvdims
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         dname = char(S.Variables(n).Dimensions(i).Name);
         dimids(i) = Did.(dname);
       end
@@ -179,11 +136,7 @@ if (define)
       dimids=[];
     end
         
-<<<<<<< HEAD
     if (~got_nctype),
-=======
-    if (~got_nctype)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       xtype = char(S.Variables(n).Datatype);
       switch (xtype)
         case 'int8'
@@ -220,11 +173,7 @@ if (define)
 
     nvatts = length(S.Variables(n).Attributes);
     if (nvatts > 0)
-<<<<<<< HEAD
       for i=1:nvatts,
-=======
-      for i=1:nvatts
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         aname  = char(S.Variables(n).Attributes(i).Name);
         avalue = S.Variables(n).Attributes(i).Value;
         netcdf.putAtt(ncid,varid,aname,avalue);  
@@ -243,11 +192,7 @@ end
 % Close NetCDF file.
 %--------------------------------------------------------------------------
 
-<<<<<<< HEAD
 if (nargout < 1),
-=======
-if (nargout < 1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   netcdf.close(ncid);
 end
 

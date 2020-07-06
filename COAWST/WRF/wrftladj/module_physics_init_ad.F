@@ -57,13 +57,7 @@ CONTAINS
 &    , f_rimef_phy, mp_restart_state, tbpvs_state, tbpvs0_state, &
 &    allowed_to_read, moved, start_of_simulation, lagday, ids, ide, jds, &
 &    jde, kds, kde, ims, ime, jms, jme, kms, kme, its, ite, jts, jte, kts&
-<<<<<<< HEAD
 &    , kte, num_urban_layers, NUM_URBAN_HI, raincv_a, raincv_b, gd_cloud, gd_cloud2, &
-=======
-&    , kte, num_urban_ndm,urban_map_zrd,urban_map_zwd,urban_map_gd,urban_map_zd,&
-&    urban_map_zdf,urban_map_bd,urban_map_wd,urban_map_gbd,urban_map_fbd, &
-&    NUM_URBAN_HI, raincv_a, raincv_b, gd_cloud, gd_cloud2, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 &    gd_cloud_a, gd_cloud2_a, gd_cloud_b, gd_cloud2_b, ozmixm, pin, &
 &    m_ps_1, m_ps_2, m_hybi, aerosolc_1, aerosolc_2, rundgdten, rvndgdten&
 &    , rthndgdten, rphndgdten, rqvndgdten, rmundgdten, fgdt, stepfg, &
@@ -312,7 +306,6 @@ CONTAINS
 !urban
     INTEGER, DIMENSION(ims:ime, jms:jme), OPTIONAL, INTENT(INOUT) :: &
 &    utype_urb2d
-<<<<<<< HEAD
     INTEGER, INTENT(IN) :: num_urban_layers
     INTEGER , INTENT(IN)        :: num_urban_hi
 ! multi-layer UCM
@@ -344,48 +337,6 @@ CONTAINS
 &    INTENT(INOUT) :: tglev_urb3d
 ! multi-layer UCM
     REAL, DIMENSION(ims:ime, num_urban_layers, jms:jme), OPTIONAL, &
-=======
-    INTEGER , INTENT(IN)        :: num_urban_ndm
-    INTEGER , INTENT(IN)        :: urban_map_zrd
-    INTEGER , INTENT(IN)        :: urban_map_zwd
-    INTEGER , INTENT(IN)        :: urban_map_gd
-    INTEGER , INTENT(IN)        :: urban_map_zd
-    INTEGER , INTENT(IN)        :: urban_map_zdf
-    INTEGER , INTENT(IN)        :: urban_map_bd
-    INTEGER , INTENT(IN)        :: urban_map_wd
-    INTEGER , INTENT(IN)        :: urban_map_gbd
-    INTEGER , INTENT(IN)        :: urban_map_fbd
-    INTEGER , INTENT(IN)        :: num_urban_hi
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_zrd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: trb_urb4d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_zwd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw1_urb4d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_zwd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw2_urb4d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_gd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tgb_urb4d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_bd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tlev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_bd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: qlev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw1lev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw2lev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_gbd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tglev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_fbd, jms:jme), OPTIONAL, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 &    INTENT(INOUT) :: tflev_urb3d
 !multi-layer UCM
     REAL, DIMENSION(ims:ime, jms:jme), OPTIONAL, INTENT(INOUT) :: &
@@ -403,7 +354,6 @@ CONTAINS
     REAL, DIMENSION(ims:ime, jms:jme), OPTIONAL, INTENT(INOUT) :: &
 &    lfvent_urb3d
 ! multi-layer UCM
-<<<<<<< HEAD
     REAL, DIMENSION(ims:ime, num_urban_layers, jms:jme), OPTIONAL, &
 &    INTENT(INOUT) :: sfwin1_urb3d
 ! multi-layer UCM
@@ -420,24 +370,6 @@ CONTAINS
 &    INTENT(INOUT) :: sfw1_urb3d
 ! multi-layer UCM
     REAL, DIMENSION(ims:ime, num_urban_layers, jms:jme), OPTIONAL, &
-=======
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfwin1_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfwin2_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, num_urban_ndm, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfg_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_zdf, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfr_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_zd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfw1_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_zd, jms:jme), OPTIONAL, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 &    INTENT(INOUT) :: sfw2_urb3d
     REAL, DIMENSION(ims:ime, kms:kme, jms:jme), OPTIONAL, INTENT(INOUT) &
 &    :: a_u_bep
@@ -558,13 +490,7 @@ CONTAINS
 &             xxxr_urb2d, xxxb_urb2d, xxxg_urb2d, xxxc_urb2d, trl_urb3d, &
 &             tbl_urb3d, tgl_urb3d, sh_urb2d, lh_urb2d, g_urb2d, rn_urb2d&
 &             , ts_urb2d, frc_urb2d, utype_urb2d, sf_urban_physics, &
-<<<<<<< HEAD
 &             num_urban_layers, trb_urb4d, tw1_urb4d, tw2_urb4d, &
-=======
-&             num_urban_ndm, urban_map_zrd, urban_map_zwd, urban_map_gd, &
-&             urban_map_zd, urban_map_zdf, urban_map_bd, urban_map_wd, &
-&             urban_map_gbd, urban_map_fbd, trb_urb4d, tw1_urb4d, tw2_urb4d, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 &             tgb_urb4d, tlev_urb3d, qlev_urb3d, tw1lev_urb3d, &
 &             tw2lev_urb3d, tglev_urb3d, tflev_urb3d, sf_ac_urb3d, &
 &             lf_ac_urb3d, cm_ac_urb3d, sfvent_urb3d, lfvent_urb3d, &
@@ -627,13 +553,7 @@ CONTAINS
 &    tr_urb2d, tb_urb2d, tg_urb2d, tc_urb2d, qc_urb2d, xxxr_urb2d, &
 &    xxxb_urb2d, xxxg_urb2d, xxxc_urb2d, trl_urb3d, tbl_urb3d, tgl_urb3d&
 &    , sh_urb2d, lh_urb2d, g_urb2d, rn_urb2d, ts_urb2d, frc_urb2d, &
-<<<<<<< HEAD
 &    utype_urb2d, sf_urban_physics, num_urban_layers, trb_urb4d, &
-=======
-&    utype_urb2d, sf_urban_physics, num_urban_ndm, urban_map_zrd,&
-&    urban_map_zwd, urban_map_gd, urban_map_zd, urban_map_zdf,urban_map_bd,&
-&    urban_map_wd, urban_map_gbd, urban_map_fbd, trb_urb4d, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 &    tw1_urb4d, tw2_urb4d, tgb_urb4d, tlev_urb3d, qlev_urb3d, &
 &    tw1lev_urb3d, tw2lev_urb3d, tglev_urb3d, tflev_urb3d, sf_ac_urb3d, &
 &    lf_ac_urb3d, cm_ac_urb3d, sfvent_urb3d, lfvent_urb3d, sfwin1_urb3d, &
@@ -793,7 +713,6 @@ CONTAINS
 !Optional urban
     REAL, DIMENSION(ims:ime, num_soil_layers, jms:jme), OPTIONAL, &
 &    INTENT(INOUT) :: tgl_urb3d
-<<<<<<< HEAD
     INTEGER, INTENT(IN) :: num_urban_layers
 !Optional UCM
     REAL, DIMENSION(ims:ime, num_urban_layers, jms:jme), OPTIONAL, &
@@ -824,47 +743,6 @@ CONTAINS
 &    INTENT(INOUT) :: tglev_urb3d
 ! multi-layer UCM
     REAL, DIMENSION(ims:ime, num_urban_layers, jms:jme), OPTIONAL, &
-=======
-    INTEGER, INTENT(IN) :: num_urban_ndm
-    INTEGER, INTENT(IN) :: urban_map_zrd
-    INTEGER, INTENT(IN) :: urban_map_zwd
-    INTEGER, INTENT(IN) :: urban_map_gd
-    INTEGER, INTENT(IN) :: urban_map_zd
-    INTEGER, INTENT(IN) :: urban_map_zdf
-    INTEGER, INTENT(IN) :: urban_map_bd
-    INTEGER, INTENT(IN) :: urban_map_wd
-    INTEGER, INTENT(IN) :: urban_map_gbd
-    INTEGER, INTENT(IN) :: urban_map_fbd
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_zrd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: trb_urb4d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_zwd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw1_urb4d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_zwd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw2_urb4d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_gd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tgb_urb4d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_bd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tlev_urb3d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_bd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: qlev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw1lev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tw2lev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_gbd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: tglev_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_fbd, jms:jme), OPTIONAL, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 &    INTENT(INOUT) :: tflev_urb3d
 !multi-layer UCM
     REAL, DIMENSION(ims:ime, jms:jme), OPTIONAL, INTENT(INOUT) :: &
@@ -882,7 +760,6 @@ CONTAINS
     REAL, DIMENSION(ims:ime, jms:jme), OPTIONAL, INTENT(INOUT) :: &
 &    lfvent_urb3d
 ! multi-layer UCM
-<<<<<<< HEAD
     REAL, DIMENSION(ims:ime, num_urban_layers, jms:jme), OPTIONAL, &
 &    INTENT(INOUT) :: sfwin1_urb3d
 ! multi-layer UCM
@@ -899,24 +776,6 @@ CONTAINS
 &    INTENT(INOUT) :: sfr_urb3d
 !Optional UCM
     REAL, DIMENSION(ims:ime, num_urban_layers, jms:jme), OPTIONAL, &
-=======
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfwin1_urb3d
-! multi-layer UCM
-    REAL, DIMENSION(ims:ime, urban_map_wd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfwin2_urb3d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_zd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfw1_urb3d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_zd, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfw2_urb3d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, urban_map_zdf, jms:jme), OPTIONAL, &
-&    INTENT(INOUT) :: sfr_urb3d
-!Optional UCM
-    REAL, DIMENSION(ims:ime, num_urban_ndm, jms:jme), OPTIONAL, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 &    INTENT(INOUT) :: sfg_urb3d
     REAL, DIMENSION(ims:ime, kms:kme, jms:jme), OPTIONAL, INTENT(INOUT) &
 &    :: a_u_bep

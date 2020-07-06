@@ -1004,10 +1004,6 @@ contains
         NITERB = 5
         MPE    = 1E-6
         DTG    = 0.
-<<<<<<< HEAD
-=======
-        MOZ    = 0.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         MOZSGN = 0
         MOZOLD = 0.
         H      = 0.

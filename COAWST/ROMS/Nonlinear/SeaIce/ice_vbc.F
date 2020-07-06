@@ -3,11 +3,7 @@
 #ifdef ICE_MODEL
 !
 !=======================================================================
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group                         !
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !================================================== Hernan G. Arango ===
 !                                                                      !
 !  This module sets the ice-water and ice-air stresses for the
@@ -44,11 +40,7 @@
 # include "tile.h"
 !
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_on (ng, iNLM, 6)
-=======
-      CALL wclock_on (ng, iNLM, 6, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       CALL ice_vbc_tile (ng, tile,                                      &
      &                   LBi, UBi, LBj, UBj,                            &
@@ -95,11 +87,7 @@
      &                   ICE(ng) % spd_iw                               &
      &                   )
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_off (ng, iNLM, 6)
-=======
-      CALL wclock_off (ng, iNLM, 6, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       RETURN
       END SUBROUTINE ice_vbc
@@ -302,21 +290,13 @@
           utauiw(i,j) = sqrt(chu_iw(i,j)*spd)
           utauiw(i,j) = max(utauiw(i,j),1.E-04_r8)
           chuiw(i,j) = kappa*utauiw(i,j)/log(zdz0)
-<<<<<<< HEAD
 #   ifdef ICE_SHOREFAST
-=======
-#  endif
-#  ifdef ICE_SHOREFAST
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           hh = h(i,j)+MIN(Zt_avg1(i,j),0.0_r8)
           clear = hh-0.9_r8*hi(i,j,liold)
           clear = MAX(clear,0.0_r8)
           IF (clear.lt.5.0_r8) chuiw(i,j) =                             &
      &       (MAX(clear-1.0_r8,0.0_r8)/4.0_r8)*chuiw(i,j)
-<<<<<<< HEAD
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
         END DO
       END DO

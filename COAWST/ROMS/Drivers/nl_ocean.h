@@ -1,14 +1,8 @@
       MODULE ocean_control_mod
 !
-<<<<<<< HEAD
 !svn $Id: nl_ocean.h 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: nl_ocean.h 1007 2020-02-25 22:29:41Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -59,13 +53,6 @@
       USE ocean_coupler_mod, ONLY : initialize_ocn2wav_coupling
       USE ocean_coupler_mod, ONLY : initialize_ocn2wav_routers
 #endif
-<<<<<<< HEAD
-=======
-#ifdef HYDRO_OCEAN
-      USE ocean_coupler_mod, ONLY : initialize_ocn2hyd_coupling
-      USE ocean_coupler_mod, ONLY : initialize_ocn2hyd_routers
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef INWAVE_MODEL
       USE driver_inwave_mod, ONLY : inwave_init
 #endif
@@ -177,12 +164,7 @@
 #endif
       END IF
 
-<<<<<<< HEAD
 #if defined MCT_LIB && (defined AIR_OCEAN || defined WAVES_OCEAN)
-=======
-#if defined MCT_LIB && (defined AIR_OCEAN || defined WAVES_OCEAN || \
-    defined HYDRO_OCEAN)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Initialize coupling streams between model(s).
@@ -200,15 +182,6 @@
         END DO
         CALL initialize_ocn2atm_routers (MyRank)
 # endif
-<<<<<<< HEAD
-=======
-# ifdef HYDRO_OCEAN
-        DO ng=1,Ngrids
-          CALL initialize_ocn2hyd_coupling (ng, MyRank)
-        END DO
-        CALL initialize_ocn2hyd_routers (MyRank)
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #ifdef INWAVE_MODEL
         DO ng=1,Ngrids
@@ -292,7 +265,6 @@
 !
 !  Local variable declarations.
 !
-<<<<<<< HEAD
 #if defined MODEL_COUPLING && !defined MCT_LIB
       logical, save :: FirstPass = .TRUE.
 #endif
@@ -307,22 +279,6 @@
 #if defined MODEL_COUPLING && !defined MCT_LIB
 !  On first pass, add a timestep to the coupling interval to account
 !  for ROMS kernel delayed delayed output until next timestep.
-=======
-      integer :: ng
-#if defined MODEL_COUPLING && !defined MCT_LIB
-      integer :: NstrStep, NendStep, extra
-!
-      real(dp) :: ENDtime, NEXTtime
-#endif
-!
-!-----------------------------------------------------------------------
-!  Time-step nonlinear model over nested grids, if applicable.
-#if defined MODEL_COUPLING && !defined MCT_LIB
-!  Since the ROMS kernel has a delayed output and line diagnostics by
-!  one timestep, subtact an extra value to the report of starting and
-!  ending timestep for clarity. Usually, the model coupling interval
-!  is of the same size as ROMS timestep.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 !-----------------------------------------------------------------------
 !
@@ -330,7 +286,6 @@
       IF (Master) WRITE (stdout,'(1x)')
       DO ng=1,Ngrids
 #if defined MODEL_COUPLING && !defined MCT_LIB
-<<<<<<< HEAD
         step_counter(ng)=0
         NstrStep=iic(ng)
         IF (FirstPass) THEN
@@ -340,18 +295,6 @@
         ELSE
           NendStep=NstrStep+INT(MyRunInterval/dt(ng))
         END IF
-=======
-        NEXTtime=time(ng)+RunInterval
-        ENDtime=INItime(ng)+(ntimes(ng)-1)*dt(ng)
-        IF ((NEXTtime.eq.ENDtime).and.(ng.eq.1)) THEN
-          extra=0                                   ! last time interval
-        ELSE
-          extra=1
-        END IF
-        step_counter(ng)=0
-        NstrStep=iic(ng)
-        NendStep=NstrStep+INT((MyRunInterval)/dt(ng))-extra
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (Master) WRITE (stdout,10) 'NL', ng, NstrStep, NendStep
 #else
         IF (Master) WRITE (stdout,10) 'NL', ng, ntstart(ng), ntend(ng)
@@ -448,17 +391,10 @@
       IF (exit_flag==1 .or. exit_flag==9) THEN
         DO ng=1,Ngrids
           IF (LwrtRST(ng)) THEN
-<<<<<<< HEAD
             IF (Master) WRITE (stdout,10)
  10         FORMAT (/,' Blowing-up: Saving latest model state into ',   &
      &                ' RESTART file',/)
             Fcount=RST(ng)%Fcount
-=======
-            IF (Master) WRITE (stdout,10) TRIM(blowup_string)
- 10         FORMAT (/,' Blowing-up: Saving latest model state into ',   &
-     &                ' RESTART file',/,'     REASON: ',a,/)
-            Fcount=RST(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (LcycleRST(ng).and.(RST(ng)%Nrec(Fcount).ge.2)) THEN
               RST(ng)%Rindex=2
               LcycleRST(ng)=.FALSE.
@@ -498,12 +434,6 @@
 !
 !  Close IO files.
 !
-<<<<<<< HEAD
-=======
-      DO ng=1,Ngrids
-        CALL close_inp (ng, iNLM)
-      END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL close_out
 
 #ifdef CICE_MODEL

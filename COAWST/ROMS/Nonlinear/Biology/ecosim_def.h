@@ -1,13 +1,7 @@
 /*
-<<<<<<< HEAD
 ** svn $Id: ecosim_def.h 889 2018-02-10 03:32:52Z arango $
 *************************************************** Hernan G. Arango ***
 ** Copyright (c) 2002-2019 The ROMS/TOMS Group                        **
-=======
-** svn $Id: ecosim_def.h 995 2020-01-10 04:01:28Z arango $
-*************************************************** Hernan G. Arango ***
-** Copyright (c) 2002-2020 The ROMS/TOMS Group                        **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                             **
 **   See License_ROMS.txt                                             **
 ************************************************************************
@@ -59,18 +53,6 @@
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
 
-<<<<<<< HEAD
-=======
-      Vinfo( 1)='light'
-      Vinfo( 2)='center wavelength of spectral irradiance bands'
-      Vinfo( 3)='nanometer'
-      status=def_var(ng, model, ncid, varid, NF_TYPE,                   &
-     &               1, (/lightdim/), Aval, Vinfo, ncname,              &
-     &               SetParAccess = .FALSE.)
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       Vinfo( 1)='HsNO3'
       Vinfo( 2)='half-saturation for phytoplankton NO3 uptake'
       Vinfo( 3)='micromole_NO3 liter-1'

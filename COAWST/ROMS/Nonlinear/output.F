@@ -3,15 +3,9 @@
 #ifdef NONLINEAR
       SUBROUTINE output (ng)
 !
-<<<<<<< HEAD
 !svn $Id: output.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: output.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -120,15 +114,7 @@
             Ldefine=.FALSE.
           END IF
           IF (Ldefine) THEN                     ! create new file or
-<<<<<<< HEAD
             Fcount=HIS(ng)%Fcount               ! inquire existing file
-=======
-            IF (iic(ng).eq.ntstart(ng)) THEN    ! inquire existing file
-              HIS(ng)%load=0                    ! reset filename counter
-            END IF
-            HIS(ng)%load=HIS(ng)%load+1
-            Fcount=HIS(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             HIS(ng)%Nrec(Fcount)=0
             ifile=(iic(ng)-1)/ndefHIS(ng)+1
             IF (Master) THEN
@@ -142,10 +128,6 @@
 #  ifdef DISTRIBUTE
             CALL mp_bcasts (ng, iNLM, HIS(ng)%name)
 #  endif
-<<<<<<< HEAD
-=======
-            HIS(ng)%files(Fcount)=TRIM(HIS(ng)%name)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (HIS(ng)%ncid.ne.-1) THEN
               CALL netcdf_close (ng, iNLM, HIS(ng)%ncid)
             END IF
@@ -191,10 +173,6 @@
         END IF
       END IF
 # endif
-<<<<<<< HEAD
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !-----------------------------------------------------------------------
 !  If appropriate, process nonlinear quicksave NetCDF file.
 !-----------------------------------------------------------------------
@@ -230,7 +208,6 @@
             Ldefine=.FALSE.
           END IF
           IF (Ldefine) THEN                     ! create new file or
-<<<<<<< HEAD
             Fcount=QCK(ng)%Fcount               ! inquire existing file
             QCK(ng)%Nrec(Fcount)=0
             ifile=(iic(ng)-1)/ndefQCK(ng)+1
@@ -240,27 +217,6 @@
 # ifdef DISTRIBUTE
             CALL mp_bcasts (ng, iNLM, QCK(ng)%name)
 # endif
-=======
-            IF (iic(ng).eq.ntstart(ng)) THEN    ! inquire existing file
-              QCK(ng)%load=0                    ! reset filename counter
-            END IF
-            QCK(ng)%load=QCK(ng)%load+1
-            Fcount=QCK(ng)%load
-            QCK(ng)%Nrec(Fcount)=0
-            ifile=(iic(ng)-1)/ndefQCK(ng)+1
-            IF (Master) THEN
-              WRITE (QCK(ng)%name,12) TRIM(QCK(ng)%base), ifile
-            END IF
-#ifdef LONG_NUMS
-  12          FORMAT (a,'_',i5.5,'.nc')
-#else
-  12          FORMAT (a,'_',i4.4,'.nc')
-#endif
-# ifdef DISTRIBUTE
-            CALL mp_bcasts (ng, iNLM, QCK(ng)%name)
-# endif
-            QCK(ng)%files(Fcount)=TRIM(QCK(ng)%name)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (QCK(ng)%ncid.ne.-1) THEN
               CALL netcdf_close (ng, iNLM, QCK(ng)%ncid)
             END IF
@@ -432,15 +388,7 @@
             Ldefine=.FALSE.
           END IF
           IF (Ldefine) THEN
-<<<<<<< HEAD
             Fcount=AVG(ng)%Fcount
-=======
-            IF (iic(ng).eq.ntstart(ng)) THEN
-              AVG(ng)%load=0                  ! reset filename counter
-            END IF
-            AVG(ng)%load=AVG(ng)%load+1
-            Fcount=AVG(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             AVG(ng)%Nrec(Fcount)=0
             IF (ndefAVG(ng).eq.nAVG(ng)) THEN
               ifile=(iic(ng)-1)/ndefAVG(ng)
@@ -458,18 +406,10 @@
 #  ifdef DISTRIBUTE
             CALL mp_bcasts (ng, iNLM, AVG(ng)%name)
 #  endif
-<<<<<<< HEAD
             IF (AVG(ng)%ncid.ne.-1) THEN
               CALL netcdf_close (ng, iNLM, AVG(ng)%ncid)
             END IF
             IF (ifile .ne. 0) CALL def_avg (ng, Newfile)
-=======
-            AVG(ng)%files(Fcount)=TRIM(AVG(ng)%name)
-            IF (AVG(ng)%ncid.ne.-1) THEN
-              CALL netcdf_close (ng, iNLM, AVG(ng)%ncid)
-            END IF
-            CALL def_avg (ng, Newfile)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (FoundError(exit_flag, NoError, __LINE__,                &
      &                     __FILE__)) RETURN
             LwrtAVG(ng)=.TRUE.
@@ -564,23 +504,13 @@
               CALL netcdf_close(ng, iNLM, AVG2(ng)%ncid)
             END IF
             CALL def_avg2 (ng, Newfile)
-<<<<<<< HEAD
             IF (exit_flag.ne.NoError) RETURN
-=======
-            IF (FoundError(exit_flag, NoError, __LINE__,                &
-     &                     __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             LwrtAVG2(ng)=.TRUE.
           END IF
         ELSE
           IF (iic(ng).eq.ntstart(ng)) THEN
             CALL def_avg2 (ng, ldefout(ng))
-<<<<<<< HEAD
             IF (exit_flag.ne.NoError) RETURN
-=======
-            IF (FoundError(exit_flag, NoError, __LINE__,                &
-     &                     __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             LwrtAVG2(ng)=.TRUE.
             LdefAVG2(ng)=.FALSE.
           END IF
@@ -590,14 +520,8 @@
 !  Write out data into time-averaged NetCDF file.
 !
       IF (LwrtAVG2(ng)) THEN
-<<<<<<< HEAD
         IF ((iic(ng).gt.ntstart(ng)).and.                               &
      &      (MOD(iic(ng)-1,nAVG2(ng)).eq.0)) THEN
-=======
-        IF (((iic(ng).gt.ntstart(ng)).and.                              &
-     &       (MOD(iic(ng)-1,nAVG2(ng)).eq.0)).or.                       &
-     &      ((iic(ng).ge.ntsAVG2(ng)).and.(nAVG2(ng).eq.1))) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           CALL wrt_avg2 (ng)
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                     __FILE__)) RETURN
@@ -644,15 +568,7 @@
             Ldefine=.FALSE.
           END IF
           IF (Ldefine) THEN
-<<<<<<< HEAD
             Fcount=DIA(ng)%Fcount
-=======
-            IF (iic(ng).eq.ntstart(ng)) THEN
-              DIA(ng)%load=0                  ! reset filename counter
-            END IF
-            DIA(ng)%load=DIA(ng)%load+1
-            Fcount=DIA(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             DIA(ng)%Nrec(Fcount)=0
             IF (ndefDIA(ng).eq.nDIA(ng)) THEN
               ifile=(iic(ng)-1)/ndefDIA(ng)
@@ -670,10 +586,6 @@
 #  ifdef DISTRIBUTE
             CALL mp_bcasts (ng, iNLM, DIA(ng)%name)
 #  endif
-<<<<<<< HEAD
-=======
-            DIA(ng)%files(Fcount)=TRIM(DIA(ng)%name)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (DIA(ng)%ncid.ne.-1) THEN
               CALL netcdf_close (ng, iNLM, DIA(ng)%ncid)
             END IF
@@ -726,13 +638,8 @@
 #else
           CALL def_station (ng, ldefout(ng))
 #endif
-<<<<<<< HEAD
           IF (FoundError(exit_flag, NoError, __LINE__,                 &
      &                     __FILE__)) RETURN
-=======
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           LdefSTA(ng)=.FALSE.
         END IF
 !
@@ -807,20 +714,11 @@
      &      (MOD(iic(ng)-1,nRST(ng)).eq.0)) THEN
           CALL wrt_rst (ng)
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
-<<<<<<< HEAD
      &                     __FILE__)) RETURN
 # ifdef FILTERED_RST
           DO i=1,FILN
             CALL wrt_filt (ng, i)
             IF (exit_flag.ne.NoError) RETURN
-=======
-     &                   __FILE__)) RETURN
-# ifdef FILTERED_RST
-          DO i=1,FILN
-            CALL wrt_filt (ng, i)
-            IF (FoundError(exit_flag, NoError, __LINE__,                &
-     &                     __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           END DO
 # endif
         END IF

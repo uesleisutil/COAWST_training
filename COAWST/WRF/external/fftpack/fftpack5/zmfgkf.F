@@ -5,13 +5,9 @@ subroutine zmfgkf ( lot, ido, ip, l1, lid, na, cc, cc1, im1, in1, &
 !
 !! ZMFGKF is an FFTPACK5 auxiliary routine.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Modified:
 !

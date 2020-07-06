@@ -1,13 +1,7 @@
 /*
-<<<<<<< HEAD
 ** svn $Id: set_bounds.h 814 2008-10-29 01:42:17Z jcwarner $
 ************************************************************************
 ** Copyright (c) 2002-2016 The ROMS/TOMS Group                        **
-=======
-** svn $Id: set_bounds.h 995 2020-01-10 04:01:28Z arango $
-************************************************************************
-** Copyright (c) 2002-2020 The ROMS/TOMS Group                        **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                             **
 **   See License_ROMS.txt                                             **
 ************************************************************************
@@ -32,10 +26,7 @@
       integer :: Iendp1, Iendp2, Iendp2i, Iendp3
       integer :: Jstrm3, Jstrm2, Jstrm1, JstrVm2, JstrVm1
       integer :: Jendp1, Jendp2, Jendp2i, Jendp3
-<<<<<<< HEAD
       integer :: IminR, ImaxR, JminR, JmaxR
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       Istr   =BOUNDS(ng) % Istr   (tile)
       IstrB  =BOUNDS(ng) % IstrB  (tile)
@@ -49,11 +40,8 @@
       IendP  =BOUNDS(ng) % IendP  (tile)
       IendR  =BOUNDS(ng) % IendR  (tile)
       IendT  =BOUNDS(ng) % IendT  (tile)
-<<<<<<< HEAD
       IminR  =BOUNDS(ng) % IstrR  (-1)
       ImaxR  =BOUNDS(ng) % IendR  (-1)
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       Jstr   =BOUNDS(ng) % Jstr   (tile)
       JstrB  =BOUNDS(ng) % JstrB  (tile)
@@ -67,11 +55,8 @@
       JendP  =BOUNDS(ng) % JendP  (tile)
       JendR  =BOUNDS(ng) % JendR  (tile)
       JendT  =BOUNDS(ng) % JendT  (tile)
-<<<<<<< HEAD
       JminR  =BOUNDS(ng) % JstrR  (-1)
       JmaxR  =BOUNDS(ng) % JendR  (-1)
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       Istrm3 =BOUNDS(ng) % Istrm3 (tile)            ! Istr-3
       Istrm2 =BOUNDS(ng) % Istrm2 (tile)            ! Istr-2

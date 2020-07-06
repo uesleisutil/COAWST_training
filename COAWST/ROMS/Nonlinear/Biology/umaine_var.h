@@ -1,11 +1,7 @@
 /*
 ** svn $Id$
 *************************************************** Hernan G. Arango ***
-<<<<<<< HEAD
 ** Copyright (c) 2002-2016 The ROMS/TOMS Group                        **
-=======
-** Copyright (c) 2002-2019 The ROMS/TOMS Group                        **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                             **
 **   See License_ROMS.txt                                             **
 ************************************************************************
@@ -398,11 +394,8 @@
                 idTbry(inorth,iFeD_)=varid
 # endif
 
-<<<<<<< HEAD
 #ifdef TS_PSOURCE
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Biological tracers point Source/Sinks (river runoff).
 !
@@ -463,41 +456,18 @@
                 idRtrc(iCSDC)=varid
               CASE ('idRtrc(iDDCA)')
                 idRtrc(iDDCA)=varid
-<<<<<<< HEAD
 
 # ifdef OXYGEN
               CASE ('idRtrc(iOxyg)')
                 idRtrc(iOxyg)=varid
 # endif
 # ifdef CARBON
-=======
-#ifdef OXYGEN
-              CASE ('idRtrc(iOxyg)')
-                idRtrc(iOxyg)=varid
-#endif
-#ifdef CARBON
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               CASE ('idRtrc(iTIC_)')
                 idRtrc(iTIC_)=varid
               CASE ('idRtrc(iTAlk)')
                 idRtrc(iTAlk)=varid
-<<<<<<< HEAD
 # endif
 #endif
-=======
-#endif
-#ifdef IRON_LIMIT
-              CASE ('idRtrc(iS1_Fe)')
-                idRtrc(iS1_Fe)=varid
-              CASE ('idRtrc(iS2_Fe)')
-                idRtrc(iS2_Fe)=varid
-              CASE ('idRtrc(iS3_Fe)')
-                idRtrc(iS3_Fe)=varid
-              CASE ('idRtrc(iFeD_)')
-                idRtrc(iFeD_)=varid
-#endif
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef DIAGNOSTICS_BIO
 /*
 **  Biological tracers term diagnostics.
@@ -521,7 +491,4 @@
               CASE ('iDbio3(iNO3u)')
                 iDbio3(iNO3u)=varid
 #endif
-<<<<<<< HEAD
  
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

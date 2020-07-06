@@ -18,11 +18,7 @@ all:	$(OBJS)
 .F.o:
 	@echo ""
 	$(CPP) $(CPPFLAGS) -I$(NETCDFINC) $(*).F > $(*).f
-<<<<<<< HEAD
 	$(COMPILER90) -o $(@) $(F90FLAGS) $(MODFLAG) -I$(WRF_ROOT)/frame -I$(WRF_ROOT)/main -I$(WRF_ROOT)/external/esmf_time_f90 $(*).f
-=======
-	$(COMPILER90) -o $(@) $(F90FLAGS) $(MODFLAG) -I$(WRF_ROOT)/frame -I$(WRF_ROOT)/main -I$(WRF_ROOT)/external/esmf_time_f90 -I$(NETCDFINC) $(*).f
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 	$(RMD) $(*).f
 	@echo ""
 	ar -r ../../lib/libHYDRO.a $(@)

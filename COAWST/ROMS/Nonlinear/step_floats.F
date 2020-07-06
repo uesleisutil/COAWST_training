@@ -2,15 +2,9 @@
       MODULE step_floats_mod
 #if defined NONLINEAR && defined FLOATS
 !
-<<<<<<< HEAD
 !svn $Id: step_floats.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group        John M. Klinck   !
-=======
-!svn $Id: step_floats.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group        John M. Klinck   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -95,10 +89,7 @@
       USE mod_ncparam
       USE mod_ocean
       USE mod_scalars
-<<<<<<< HEAD
       USE interp_floats_mod
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef DIAPAUSE
       USE interp_floats_diapW_mod
 # endif
@@ -109,10 +100,6 @@
 # ifdef DISTRIBUTE
       USE distribute_mod, ONLY : mp_collect
 # endif
-<<<<<<< HEAD
-=======
-      USE interp_floats_mod
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # if defined SOLVE3D && defined FLOAT_VWALK
       USE vwalk_floats_mod, ONLY : vwalk_floats
 # endif
@@ -167,13 +154,8 @@
 !      logical :: downward , upward
       real(r8) :: RiseStart,RiseEnd,SinkStart,SinkEnd
       real(r8) :: wNCsink,wNCrise
-<<<<<<< HEAD
       integer :: iday, month, year
       real(r8) :: yday, hour, dtdays,cff,diapW
-=======
-      real(dp) :: yday, dtdays
-      real(r8) :: cff,diapW
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer :: FloatPhase
 # endif
 
@@ -184,11 +166,7 @@
       real(r8), dimension(Nfloats(ng)*NFV(ng)*(NFT+1)) :: Fwrk
 # endif
 # ifdef DIAPAUSE
-<<<<<<< HEAD
       CALL caldate (r_date, tdays(ng), year, yday, month, iday, hour)
-=======
-      CALL caldate (tdays(ng), yd_dp=yday)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 !
 !  Set tile array bounds.
@@ -253,25 +231,14 @@
 # endif
 
 # ifdef DIAPAUSE
-<<<<<<< HEAD
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            RiseStart=   1.0d0  ! Date NC begin to move upward (Day of Year)
            RiseEnd  =  90.00d0 ! 90 Date NC stop moving upward (Day of Year)
            SinkStart= 166.0d0  !166 Date NC begin to move downward (Day of Year)
            SinkEnd  = 365.0d0  ! 365.Date NC stop moving downward (Day of Year)
            wNCrise  =  10.0d0
            wNCsink  =  -10.0d0
-<<<<<<< HEAD
            diapW=0.0
            dtdays = dt(ng)*sec2day
-=======
-
-           diapW=0.0
-           dtdays = dt(ng)*sec2day
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # if defined SOLVE3D && defined FLOAT_VWALK
 !

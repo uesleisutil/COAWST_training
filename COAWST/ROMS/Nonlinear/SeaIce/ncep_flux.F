@@ -4,11 +4,7 @@
 
 !
 !=====================================================================
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !================================================ Hernan G. Arango ===
 !                                                                    !
 !  This routine computes the bulk parameterization of surface wind   !
@@ -61,11 +57,7 @@
 # include "tile.h"
 !
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_on (ng, iNLM, 17)
-=======
-      CALL wclock_on (ng, iNLM, 17, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       CALL ncep_flux_tile (ng, tile,                                    &
      &                     LBi, UBi, LBj, UBj,                          &
@@ -107,12 +99,9 @@
      &                     FORCES(ng) % qai_n,                          &
      &                     FORCES(ng) % p_e_n,                          &
      &                     ICE(ng) % hsn,   ICE(ng) % tis,              &
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
      &                     ICE(ng) % apond,                             &
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                     ICE(ng) % coef_ice_heat,                     &
      &                     ICE(ng) % rhs_ice_heat,                      &
      &                     FORCES(ng) % snow_n,                         &
@@ -131,11 +120,7 @@
      &                     OCEAN(ng) % rho                              &
      &                     )
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_off (ng, iNLM, 17)
-=======
-      CALL wclock_off (ng, iNLM, 17, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       RETURN
       END SUBROUTINE ncep_flux
@@ -175,12 +160,9 @@
      &                           qai_n,                                 &
      &                           p_e_n,                                 &
      &                           hsn, tis,                              &
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
      &                           apond,                                 &
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                           coef_ice_heat, rhs_ice_heat, snow_n,   &
 # endif
      &                           tau_aix_n, tau_aiy_n,                  &
@@ -258,12 +240,9 @@
       real(r8), intent(out) :: p_e_n(LBi:,LBj:)
       real(r8), intent(in) :: hsn(LBi:,LBj:,:)
       real(r8), intent(in) :: tis(LBi:,LBj:)
-<<<<<<< HEAD
 #    ifdef MELT_PONDS
       real(r8), intent(in) :: apond(LBi:,LBj:,:)
 #    endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), intent(out) :: coef_ice_heat(LBi:,LBj:)
       real(r8), intent(out) :: rhs_ice_heat(LBi:,LBj:)
       real(r8), intent(out) :: snow_n(LBi:,LBj:)
@@ -325,12 +304,9 @@
       real(r8), intent(out) :: p_e_n(LBi:UBi,LBj:UBj)
       real(r8), intent(in) :: hsn(LBi:UBi,LBj:UBj,2)
       real(r8), intent(in) :: tis(LBi:UBi,LBj:UBj)
-<<<<<<< HEAD
 #    ifdef MELT_PONDS
       real(r8), intent(in) :: apond(LBi:UBi,LBj:UBj,2)
 #    endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), intent(out) :: coef_ice_heat(LBi:UBi,LBj:UBj)
       real(r8), intent(out) :: rhs_ice_heat(LBi:UBi,LBj:UBj)
       real(r8), intent(out) :: snow_n(LBi:UBi,LBj:UBj)
@@ -432,7 +408,6 @@
 #if defined ICE_MODEL && defined ICE_THERMO
           hice_n = hi(i,j,liold)
           hsn_n = hsn(i,j,liold)
-<<<<<<< HEAD
 # ifdef MELT_PONDS
           apond_n = apond(i,j,liold)
 # else
@@ -442,11 +417,6 @@
           hice_n = 3._r8*fice
           hsn_n = 0.2_r8*fice
           apond_n = 0._r8
-=======
-#else
-          hice_n = 3._r8*fice
-          hsn_n = 0.2_r8*fice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
           thki_n = hice_n/(MAX(fice,0.01_r8))
           thksn_n = hsn_n/(MAX(fice,0.01_r8))

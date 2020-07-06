@@ -1,14 +1,8 @@
 #!/bin/bash
 #
-<<<<<<< HEAD
 # svn $Id: copyright.bash 895 2018-02-11 23:15:37Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # Copyright (c) 2002-2018 The ROMS/TOMS Group                           :::
-=======
-# svn $Id: copyright.bash 996 2020-01-10 04:28:56Z arango $
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::: David Robertson :::
@@ -33,13 +27,8 @@
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-<<<<<<< HEAD
 search="2002-2017 The ROMS/TOMS"
 replace="2002-2018 The ROMS/TOMS"
-=======
-search="2002-2019 The ROMS/TOMS"
-replace="2002-2020 The ROMS/TOMS"
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 # Directories to search for replacements.
 
@@ -49,10 +38,6 @@ c_dirs="$c_dirs bin"
 c_dirs="$c_dirs boundary"
 c_dirs="$c_dirs coastlines"
 c_dirs="$c_dirs colormaps"
-<<<<<<< HEAD
-=======
-c_dirs="$c_dirs coupling"
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 c_dirs="$c_dirs forcing"
 c_dirs="$c_dirs grid"
 c_dirs="$c_dirs initial"
@@ -118,7 +103,6 @@ done
 echo -e "\nDone.\n"
 
 if [ $setsvn -eq 1 ]; then
-<<<<<<< HEAD
   svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' 4dvar
   svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' bathymetry
   svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' bin
@@ -147,37 +131,6 @@ if [ $setsvn -eq 1 ]; then
   svn propset copyright '(c) 2002-2018 The ROMS/TOMS Group' seawater
   svn propset copyright '(c) 2002-2018 The ROMS/TOMS Group' t_tide
   svn propset copyright '(c) 2002-2018 The ROMS/TOMS Group' . startup.m
-=======
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' 4dvar
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' bathymetry
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' bin
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' boundary
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' coastlines
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' colormaps
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' coupling
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' forcing
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' grid
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' initial
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' landmask
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' netcdf
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' utility
-
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' mex
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' mex/Contents.m
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' mex/mexinside
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' mex/mexrect
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' mex/mexsepeli
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seagrid
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seagrid/presto
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seagrid/presto/@presto
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seagrid/presto/@ps
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seagrid/presto/@pst
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seagrid/@seagrid
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seagrid/test_data
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' seawater
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' t_tide
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' . startup.m
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 else
   echo -e "Not updating svn properties.\n"
 fi

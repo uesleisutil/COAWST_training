@@ -3,15 +3,9 @@
 
 #ifdef WEAK_CONSTRAINT
 !
-<<<<<<< HEAD
 !svn $Id: frc_weak.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: frc_weak.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -177,15 +171,7 @@
 !
 !  Set time records and interpolation factor, if any.
 !
-<<<<<<< HEAD
       it1=MAX(0,(iic(ng)-1)/nADJ(ng))+1
-=======
-# ifdef GENERIC_DSTART
-      it1=MAX(0,(iic(ng)-ntstart(ng))/nADJ(ng))+1
-# else
-      it1=MAX(0,(iic(ng)-1)/nADJ(ng))+1
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       it2=it1+1
       time1=dstart*day2sec+(it1-1)*nADJ(ng)*dt(ng)
       time2=dstart*day2sec+(it2-1)*nADJ(ng)*dt(ng)

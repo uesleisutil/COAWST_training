@@ -30,7 +30,6 @@ function [out_files]=obs_extract(time_interval, obs_inp, obs_out, report)
 %    out_files = obs_extract(1, 'obs_37623.nc', 'obs_new', true);
 %
   
-<<<<<<< HEAD
 % svn $Id: obs_extract.m 895 2018-02-11 23:15:37Z arango $
 %===========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                              %
@@ -39,16 +38,6 @@ function [out_files]=obs_extract(time_interval, obs_inp, obs_out, report)
 %===========================================================================%
 
 if (nargin < 4),
-=======
-% svn $Id: obs_extract.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2017 The ROMS/TOMS Group                            %
-%    Licensed under a MIT/X style license                                 %
-%    See License_ROMS.txt                           Hernan G. Arango      %
-%=========================================================================%
-
-if (nargin < 4)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   report = false;
 end
   
@@ -74,27 +63,12 @@ survey_min = min(S.survey_time);
 survey_max = max(S.survey_time);
 
 survey_samples = floor(survey_min):time_interval:ceil(survey_max);
-<<<<<<< HEAD
 Nsamples = length(survey_samples) - 1;
 
 for n=1:Nsamples,
   ind = find(S.survey_time >  survey_samples(n)     &                   ...
              S.survey_time <= survey_samples(n+1));
   E.sample(n).ncfile = strcat(obs_out,'_',num2str(survey_samples(n)),'.nc');
-=======
-if (survey_samples(end) < survey_max)
-  survey_samples = [survey_samples survey_samples(end)+time_interval];
-end
-Nsamples = length(survey_samples) - 1;
-
-for n=1:Nsamples
-  ind = find(S.survey_time >  survey_samples(n)     &                   ...
-             S.survey_time <= survey_samples(n+1));
-
-  ncfile = strcat(obs_out,'_',num2str(survey_samples(n)),'.nc');
-
-  E.sample(n).ncfile = ncfile;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   E.sample(n).survey_time = S.survey_time(ind);
   E.sample(n).Nobs = S.Nobs(ind);
   E.sample(n).datum = sum(S.Nobs(ind));
@@ -106,21 +80,12 @@ out_files = {E.sample.ncfile};
 % Report extraction parameters.
 %--------------------------------------------------------------------------
 
-<<<<<<< HEAD
 if (report),
   for n=1:Nsamples,
     disp(' ');
     disp(['Time Interval: ', num2str(n),                                ...
           '   Time Range: ', num2str(survey_samples(n)), ' - '          ...
 		             num2str(survey_samples(n+1))]);
-=======
-if (report)
-  for n=1:Nsamples
-    disp(' ');
-    disp(['Time Interval: ', num2str(n),                                ...
-          '   Time Range: ', num2str(survey_samples(n)), ' - '          ...
-                             num2str(survey_samples(n+1))]);
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     disp(['  Output File: ', E.sample(n).ncfile]); 
     disp([' Survey Times: ', num2str(E.sample(n).survey_time)]); 
     disp(['         Nobs: ', num2str(E.sample(n).Nobs)]);
@@ -132,11 +97,7 @@ end
 % Create new NetCDF files and write out extracted data.
 %--------------------------------------------------------------------------
 
-<<<<<<< HEAD
 for n=1:Nsamples,
-=======
-for n=1:Nsamples
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
   survey=length(E.sample(n).survey_time);
   datum=E.sample(n).datum;
@@ -149,10 +110,7 @@ for n=1:Nsamples
 % Edit NetCDF information structure and change the value of the "datum"
 % dimension.
 
-<<<<<<< HEAD
  
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     I.Dimensions(strcmp({I.Dimensions.Name},'survey' )).Length=survey;
     I.Dimensions(strcmp({I.Dimensions.Name},'datum' )).Length=datum;
 
@@ -170,31 +128,19 @@ for n=1:Nsamples
 
     notwritten=[];
   
-<<<<<<< HEAD
     for m=1:nvars,
-=======
-    for m=1:nvars
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       vname=char(I.Variables(m).Name);
     
       switch vname
         case 'spherical'
-<<<<<<< HEAD
           if (isfield(S,'spherical')),
             status=nc_write(ncfile,'spherical',S.spherical);
           else
             disp(['   field ''spherical''   not found in input structure']);
-=======
-          if (isfield(S,'spherical'))
-            nc_write(ncfile,'spherical',S.spherical);
-          else
-            disp('   field ''spherical''   not found in input structure');
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             notwritten=[notwritten 'spherical '];
           end
         case 'Nobs'
           var=E.sample(n).Nobs;
-<<<<<<< HEAD
           status=nc_write(ncfile,vname,var);
         case 'survey_time'
           var=E.sample(n).survey_time;
@@ -300,119 +246,11 @@ for n=1:Nsamples
 	    status=nc_write(ncfile,vname,var);
           else
             disp(['   field ''value''       not found in input structure']);
-=======
-          nc_write(ncfile,vname,var);
-        case 'survey_time'
-          var=E.sample(n).survey_time;
-          nc_write(ncfile,vname,var);
-        case 'obs_variance'
-          if (isfield(S,'variance'))
-            nc_write(ncfile,vname,S.variance);
-          else
-            disp('   field ''variance''    not found in input structure');
-            notwritten=[notwritten 'obs_variance '];
-          end
-        case 'obs_type'
-          if (isfield(S,'type'))
-            var=S.type(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''type''        not found in input structure');
-            notwritten=[notwritten 'obs_type '];
-          end
-        case 'obs_provenance'
-          if (isfield(S,'provenance'))
-            var=S.provenance(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''provenance''  not found in input structure');
-            notwritten=[notwritten 'obs_provenance '];
-          end
-        case 'obs_label'
-          if (isfield(S,'label'))
-            var=S.label(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''label''  not found in input structure');
-            notwritten=[notwritten 'obs_label '];
-          end
-        case 'obs_time'
-          if (isfield(S,'time'))
-            var=S.time(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''time''        not found in input structure');
-            notwritten=[notwritten 'obs_time '];
-          end
-        case 'obs_lon'
-          if (isfield(S,'lon'))
-            var=S.lon(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''lon''         not found in input structure');
-            notwritten=[notwritten 'obs_lon '];
-          end
-        case 'obs_lat'
-          if (isfield(S,'lat'))
-            var=S.lat(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''lat''         not found in input structure');
-            notwritten=[notwritten 'obs_lat '];
-          end
-        case 'obs_depth'
-          if (isfield(S,'depth'))
-            var=S.depth(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''depth''       not found in input structure');
-            notwritten=[notwritten 'obs_depth '];
-          end
-        case 'obs_Xgrid'
-          if (isfield(S,'Xgrid'))
-            var=S.Xgrid(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''Xgrid''       not found in input structure');
-            notwritten=[notwritten 'obs_Xgrid '];
-          end
-        case 'obs_Ygrid'
-          if (isfield(S,'Ygrid'))
-            var=S.Ygrid(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''Ygrid''       not found in input structure');
-            notwritten=[notwritten 'obs_Ygrid '];
-          end
-        case 'obs_Zgrid'
-          if (isfield(S,'Zgrid'))
-            var=S.Zgrid(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''Zgrid''       not found in input structure');
-            notwritten=[notwritten 'obs_Zgrid '];
-          end
-        case 'obs_error'
-          if (isfield(S,'error'))
-            var=S.error(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''error''       not found in input structure');
-            notwritten=[notwritten 'obs_error '];
-          end
-        case 'obs_value'
-          if (isfield(S,'value'))
-            var=S.value(ind);
-            nc_write(ncfile,vname,var);
-          else
-            disp('   field ''value''       not found in input structure');
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             notwritten=[notwritten 'obs_value '];
           end
       end
     end
 
-<<<<<<< HEAD
     if (~isempty(notwritten)),
       disp(' ');
       disp(['   Following variables were not written:  ', notwritten]);
@@ -425,27 +263,6 @@ for n=1:Nsamples
 
   history=['Extracted from Matlab script:  ',mfilename,'  on ',date_stamp];
   status=nc_attadd(ncfile, 'history', history);
-=======
-    if (~isempty(notwritten))
-      disp(' ');
-      disp(['   Following variables were not written:  ', notwritten]);
-    end
-
-% Add extract attribute.
-
-    nc_attadd(ncfile, 'obs_source', obs_inp);
-
-    history=['Extracted from Matlab script:  ',mfilename,               ...
-             '  on ',date_stamp];
-    nc_attadd(ncfile, 'history', history);
-  else
-    disp(' ');
-    disp(['WARNING: No observations found for the period: ',            ...
-          num2str(survey_samples(n)), ' to ',                           ...
-          num2str(survey_samples(n+1)),                                 ...
-          '  (', E.sample(n).ncfile, ')']);
-  end
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 end
 

@@ -1,15 +1,9 @@
 !
 !  Export/Import Coupling Variables
 !
-<<<<<<< HEAD
 !svn $Id: coupling_esmf.dat 937 2019-01-28 06:13:04Z arango $
 !========================================================= Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                                !
-=======
-!svn $Id: coupling_esmf.dat 1007 2020-02-25 22:29:41Z arango $
-!========================================================= Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                                !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                                     !
 !    See License_ROMS.txt                                                     !
 !==============================================================================
@@ -42,25 +36,12 @@
 !                       'conservative1' => first-order conservative           !
 !                       'conservative2' => second-order conservative          !
 !                       'nearest'       => nearest neighbor interpolation     !
-<<<<<<< HEAD
 !       extrapolate   Field regridding with extrapolation support (logical):  !
 !                       .FALSE.         => none, normal regridding            !
 !                       .TRUE.          => 2 step extrapolation regridding    !
 !       connected     Field connected to coupler (logical):                   !
 !                       .FALSE.         => derived from exchanged field       !
 !                       .TRUE.          => interpolated (regridded, exchanged)!
-=======
-!       Cinfo(12)     Field extrapolation method for unmapped points:         !
-!                       'none'          => no extrapolation                   !
-!                       'nearest'       => nearest source to destination      !
-!                       'idavg'         => nearest inverse distance average   !
-!                       'creep'         => creep fill at specified level      !
-!                       '2steps'        => Turuncoglu's 2 steps extrapolation !
-!       connected     Field connected to coupler (logical):                   !
-!                       .FALSE.         => derived from exchanged field       !
-!                       .TRUE.          => interpolated (regridded, exchanged)!
-!       debug_write   Write out (TRUE/FALSE) exchanged field if DebugLevel>2  !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !       add_offset    Value added to imported data (real)                     !
 !       scale         Scale to convert imported data to model units (real)    !
 !                                                                             !
@@ -105,14 +86,8 @@
   'Center'                                         ! destination grid-cell
   'Pair'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -127,14 +102,8 @@
   'Center'                                         ! destination grid-cell
   'Tair'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   -273.15d0                                        ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -149,14 +118,8 @@
   'Center'                                         ! destination grid-cell
   'Qair'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -171,14 +134,8 @@
   'Center'                                         ! destination grid-cell
   'Hair'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -193,14 +150,8 @@
   'Center'                                         ! destination grid-cell
   'lwrad'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -215,14 +166,8 @@
   'Center'                                         ! destination grid-cell
   'lwrad_down'                                     ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -237,14 +182,8 @@
   'Center'                                         ! destination grid-cell
   'swrad'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -259,14 +198,8 @@
   'Center'                                         ! destination grid-cell
   'swrad_daily'                                    ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -281,14 +214,8 @@
   'Center'                                         ! destination grid-cell
   'shflux'                                         ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -303,14 +230,8 @@
   'Center'                                         ! destination grid-cell
   'cloud'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -325,14 +246,8 @@
   'Center'                                         ! destination grid-cell
   'rain'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -347,14 +262,8 @@
   'Center'                                         ! destination grid-cell
   'Uwind'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -369,14 +278,8 @@
   'Center'                                         ! destination grid-cell
   'Vwind'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -391,14 +294,8 @@
   'U'                                              ! destination grid-cell
   'sustr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -413,14 +310,8 @@
   'V'                                              ! destination grid-cell
   'svstr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -437,14 +328,8 @@
   'Center'                                         ! destination grid-cell
   'SST'                                            ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   273.15d0                                         ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -468,14 +353,8 @@
   'Center'                                         ! destination grid-cell
   'zlvl'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -490,14 +369,8 @@
   'Center'                                         ! destination grid-cell
   'rhoa'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -512,14 +385,8 @@
   'Center'                                         ! destination grid-cell
   'Pair'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -534,14 +401,8 @@
   'Center'                                         ! destination grid-cell
   'Tair'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   -273.15d0                                        ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -556,14 +417,8 @@
   'Center'                                         ! destination grid-cell
   'potT'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   -273.15d0                                        ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -578,14 +433,8 @@
   'Center'                                         ! destination grid-cell
   'Hair'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -600,14 +449,8 @@
   'Center'                                         ! destination grid-cell
   'flw'                                            ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -622,14 +465,8 @@
   'Center'                                         ! destination grid-cell
   'swvdr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -644,14 +481,8 @@
   'Center'                                         ! destination grid-cell
   'swvdf'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -666,14 +497,8 @@
   'Center'                                         ! destination grid-cell
   'swidr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -688,14 +513,8 @@
   'Center'                                         ! destination grid-cell
   'swidf'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -710,14 +529,8 @@
   'Corner'                                         ! destination grid-cell
   'Uwind'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -732,14 +545,8 @@
   'Corner'                                         ! destination grid-cell
   'Vwind'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -754,14 +561,8 @@
   'Corner'                                         ! destination grid-cell
   'sustr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -776,14 +577,8 @@
   'Corner'                                         ! destination grid-cell
   'svstr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -798,14 +593,8 @@
   'Center'                                         ! destination grid-cell
   'rain'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -820,14 +609,8 @@
   'Center'                                         ! destination grid-cell
   'snow'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -842,14 +625,8 @@
   'Center'                                         ! destination grid-cell
   'faero_atm'                                      ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -868,14 +645,8 @@
   'Center'                                         ! destination grid-cell
   'SSH'                                            ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -890,14 +661,8 @@
   'Corner'                                         ! destination grid-cell
   'ss_tltx'                                        ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -912,14 +677,8 @@
   'Corner'                                         ! destination grid-cell
   'ss_tlty'                                        ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -934,14 +693,8 @@
   'Center'                                         ! destination grid-cell
   'hbl'                                            ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -956,14 +709,8 @@
   'Center'                                         ! destination grid-cell
   'frzmlt'                                         ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -978,14 +725,8 @@
   'Center'                                         ! destination grid-cell
   'Tf'                                             ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1000,14 +741,8 @@
   'Center'                                         ! destination grid-cell
   'SST'                                            ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1022,14 +757,8 @@
   'Center'                                         ! destination grid-cell
   'SSS'                                            ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1044,14 +773,8 @@
   'Corner'                                         ! destination grid-cell
   'Usur'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1066,14 +789,8 @@
   'Corner'                                         ! destination grid-cell
   'Vsur'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1093,14 +810,8 @@
   'Center'                                         ! destination grid-cell
   'ifrac'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1115,14 +826,8 @@
   'Center'                                         ! destination grid-cell
   'vice'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1137,14 +842,8 @@
   'Center'                                         ! destination grid-cell
   'vsno'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1159,14 +858,8 @@
   'Center'                                         ! destination grid-cell
   'sit'                                            ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1181,14 +874,8 @@
   'Center'                                         ! destination grid-cell
   'alvdr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1203,14 +890,8 @@
   'Center'                                         ! destination grid-cell
   'alvdf'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1225,14 +906,8 @@
   'Center'                                         ! destination grid-cell
   'alidr'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1247,14 +922,8 @@
   'Center'                                         ! destination grid-cell
   'alidf'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1269,14 +938,8 @@
   'U'                                              ! destination grid-cell
   'strairxT'                                       ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1291,14 +954,8 @@
   'V'                                              ! destination grid-cell
   'strairyT'                                       ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1313,14 +970,8 @@
   'Center'                                         ! destination grid-cell
   'fsens'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1335,14 +986,8 @@
   'Center'                                         ! destination grid-cell
   'flat'                                           ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1357,14 +1002,8 @@
   'Center'                                         ! destination grid-cell
   'evaporation'                                    ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1379,14 +1018,8 @@
   'Center'                                         ! destination grid-cell
   'flwout'                                         ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1405,14 +1038,8 @@
   'Center'                                         ! destination grid-cell
   'fhocn'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1427,14 +1054,8 @@
   'Center'                                         ! destination grid-cell
   'fresh'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1449,14 +1070,8 @@
   'Center'                                         ! destination grid-cell
   'fpond'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .FALSE.                                          ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .FALSE.                                          ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1471,14 +1086,8 @@
   'Center'                                         ! destination grid-cell
   'fsalt'                                          ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1493,14 +1102,8 @@
   'U'                                              ! destination grid-cell
   'strocnxT'                                       ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1515,14 +1118,8 @@
   'V'                                              ! destination grid-cell
   'strocnyT'                                       ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1537,14 +1134,8 @@
   'Center'                                         ! destination grid-cell
   'fswthru'                                        ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1559,14 +1150,8 @@
   'Center'                                         ! destination grid-cell
   'fswthruvdr'                                     ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1581,14 +1166,8 @@
   'Center'                                         ! destination grid-cell
   'fswthruvdf'                                     ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1603,14 +1182,8 @@
   'Center'                                         ! destination grid-cell
   'fswthruidr'                                     ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale
 
@@ -1625,13 +1198,7 @@
   'Center'                                         ! destination grid-cell
   'fswthruidf'                                     ! DATA Model file variable
   'bilinear'                                       ! regridding method
-<<<<<<< HEAD
   .FALSE.                                          ! extrapolation support
   .TRUE.                                           ! connected to coupler
-=======
-  'none'                                           ! unmapped extrapolation method
-  .TRUE.                                           ! connected to coupler
-  .FALSE.                                          ! debug write into a NetCDF file
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   0.0d0                                            ! importing add offset
   1.0d0                                            ! importing scale

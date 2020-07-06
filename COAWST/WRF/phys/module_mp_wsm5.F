@@ -12,11 +12,8 @@
 !Including inline expansion statistical function 
 MODULE module_mp_wsm5
 !
-<<<<<<< HEAD
    USE module_utility, ONLY: WRFU_Clock, WRFU_Alarm
    USE module_domain, ONLY : HISTORY_ALARM, Is_alarm_tstep
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    USE module_mp_radar
 !
    REAL, PARAMETER, PRIVATE :: dtcldcr     = 120. ! maximum time step for minor loops

@@ -20,15 +20,9 @@ function add_wetdry(ncfile, mask_rho)
 %    mask_rho    Wet/dry mask at RHO-points (2D array; OPTIONAL)
 %
 
-<<<<<<< HEAD
 % svn $Id: add_wetdry.m 926 2018-10-09 21:53:45Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2015 The ROMS/TOMS Group                            %
-=======
-% svn $Id: add_wetdry.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%

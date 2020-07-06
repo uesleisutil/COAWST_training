@@ -4,11 +4,7 @@
 !
 !svn $Id$
 !=======================================================================
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group                         !
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                           Hernan G. Arango   !
 !========================================== Alexander F. Shchepetkin ===
@@ -43,11 +39,7 @@
 !
       CALL pt3dbc_tile (ng, tile, itrc,                                 &
      &                  LBi, UBi, LBj, UBj, N(ng), NT(ng),              &
-<<<<<<< HEAD
      &                  IminS, ImaxS, JminS, JmaxS,                      &
-=======
-     &                  IminS, ImaxS, JminS, JmaxS,                     &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                  nstp(ng), nout,                                 &
      &                  OCEAN(ng)% t)
       RETURN
@@ -57,11 +49,7 @@
 !***********************************************************************
       SUBROUTINE pt3dbc_tile (ng, tile, itrc,                           &
      &                        LBi, UBi, LBj, UBj, UBk, UBt,             &
-<<<<<<< HEAD
      &                        IminS, ImaxS, JminS, JmaxS,                &
-=======
-     &                        IminS, ImaxS, JminS, JmaxS,               &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                        nstp, nout,                               &
      &                       t)
 !***********************************************************************
@@ -131,20 +119,13 @@
               IF ((dTdt*dTdx).lt.0.0_r8) tau=Tobc_in(itrc,ng,iwest)
               tau=tau*dt(ng)
 #   endif
-<<<<<<< HEAD
               IF ((dTdt*dTdx).lt.0.0_r8) dTdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF ((dTdt*(grad(Istr,j)+grad(Istr,j+1))).gt.0.0_r8) THEN
                 dTde=grad(Istr,j  )
               ELSE
                 dTde=grad(Istr,j+1)
               END IF
               cff=MAX(dTdx*dTdx+dTde*dTde,eps)
-<<<<<<< HEAD
-=======
-              IF ((dTdt*dTdx).lt.0.0_r8) dTdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               Cx=dTdt*dTdx
 #   ifdef RADIATION_2D
               Ce=MIN(cff,MAX(dTdt*dTde,-cff))
@@ -252,20 +233,13 @@
               IF ((dTdt*dTdx).lt.0.0_r8) tau=Tobc_in(itrc,ng,ieast)
               tau=tau*dt(ng)
 #   endif
-<<<<<<< HEAD
               IF ((dTdt*dTdx).lt.0.0_r8) dTdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF ((dTdt*(grad(Iend,j)+grad(Iend,j+1))).gt.0.0_r8) THEN
                 dTde=grad(Iend,j  )
               ELSE
                 dTde=grad(Iend,j+1)
               END IF
               cff=MAX(dTdx*dTdx+dTde*dTde,eps)
-<<<<<<< HEAD
-=======
-              IF ((dTdt*dTdx).lt.0.0_r8) dTdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               Cx=dTdt*dTdx
 #   ifdef RADIATION_2D
               Ce=MIN(cff,MAX(dTdt*dTde,-cff))
@@ -376,20 +350,13 @@
               IF ((dTdt*dTde).lt.0.0_r8) tau=Tobc_in(itrc,ng,isouth)
               tau=tau*dt(ng)
 #   endif
-<<<<<<< HEAD
               IF ((dTdt*dTde).lt.0.0_r8) dTdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF ((dTdt*(grad(i,Jstr)+grad(i+1,Jstr))).gt.0.0_r8) THEN
                 dTdx=grad(i  ,Jstr)
               ELSE
                 dTdx=grad(i+1,Jstr)
               END IF
               cff=MAX(dTdx*dTdx+dTde*dTde,eps)
-<<<<<<< HEAD
-=======
-              IF ((dTdt*dTde).lt.0.0_r8) dTdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   ifdef RADIATION_2D
               Cx=MIN(cff,MAX(dTdt*dTdx,-cff))
 #   else
@@ -497,20 +464,13 @@
               IF ((dTdt*dTde).lt.0.0_r8) tau=Tobc_in(itrc,ng,inorth)
               tau=tau*dt(ng)
 #   endif
-<<<<<<< HEAD
               IF ((dTdt*dTde).lt.0.0_r8) dTdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF ((dTdt*(grad(i,Jend)+grad(i+1,Jend))).gt.0.0_r8) THEN
                 dTdx=grad(i  ,Jend)
               ELSE
                 dTdx=grad(i+1,Jend)
               END IF
               cff=MAX(dTdx*dTdx+dTde*dTde,eps)
-<<<<<<< HEAD
-=======
-              IF ((dTdt*dTde).lt.0.0_r8) dTdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   ifdef RADIATION_2D
               Cx=MIN(cff,MAX(dTdt*dTdx,-cff))
 #   else

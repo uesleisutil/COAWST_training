@@ -2,15 +2,9 @@
       MODULE ad_u2dbc_mod
 #ifdef ADJOINT
 !
-<<<<<<< HEAD
 !svn $Id: ad_u2dbc_im.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: ad_u2dbc_im.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -112,12 +106,6 @@
       real(r8) :: bry_pgr, bry_cor, bry_str, bry_val
       real(r8) :: cff, cff1, cff2, cff3, dt2d
       real(r8) :: obc_in, obc_out, tau
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-      real(r8) :: OneAtm, fac
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8) :: ad_Ce, ad_Cx
       real(r8) :: ad_bry_pgr, ad_bry_cor, ad_bry_str, ad_bry_val, ad_Zx
@@ -160,13 +148,6 @@
         know=kstp
         dt2d=dtfast(ng)
       END IF
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-      OneAtm=1013.25_r8                  ! 1 atm = 1013.25 mb
-      fac=100.0_r8/(g*rho0)
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 # if defined WET_DRY_NOT_YET
 !
@@ -870,36 +851,6 @@
      &                                       Cx*ad_ubar(Iend+1,j,kout)
               END IF
 # endif
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-!>            tl_ubar(Iend+1,j,kout)=tl_bry_val+                        &
-!>   &                               tl_Cx*                             &
-!>   &                               (0.5_r8*                           &
-!>   &                                (zeta(Iend  ,j,know)+             &
-!>   &                                 zeta(Iend+1,j,know)+             &
-!>   &                                 fac*(FORCES(ng)%Pair(Iend  ,j)+  &
-!>   &                                      FORCES(ng)%Pair(Iend+1,j)-  &
-!>   &                                      2.0_r8*OneAtm))-            &
-!>   &                                BOUNDARY(ng)%zeta_east(j))+       &
-!>   &                               Cx*                                &
-!>   &                               (0.5_r8*(tl_zeta(Iend  ,j,know)+   &
-!>   &                                        tl_zeta(Iend+1,j,know)))
-!>
-              adfac=Cx*0.5_r8*ad_ubar(Iend+1,j,kout)
-              ad_zeta(Iend  ,j,know)=ad_zeta(Iend  ,j,know)+adfac
-              ad_zeta(Iend+1,j,know)=ad_zeta(Iend+1,j,know)+adfac
-              ad_Cx=ad_Cx+                                              &
-     &              (0.5_r8*(zeta(Iend  ,j,know)+                       &
-     &                       zeta(Iend+1,j,know)+                       &
-     &                       fac*(FORCES(ng)%Pair(Iend  ,j)+            &
-     &                            FORCES(ng)%Pair(Iend+1,j)-            &
-     &                            2.0_r8*OneAtm))-                      &
-     &               BOUNDARY(ng)%zeta_east(j))*ad_ubar(Iend+1,j,kout)
-              ad_bry_val=ad_bry_val+ad_ubar(Iend+1,j,kout)
-              ad_ubar(Iend+1,j,kout)=0.0_r8
-# else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            tl_ubar(Iend+1,j,kout)=tl_bry_val+                        &
 !>   &                               tl_Cx*                             &
 !>   &                               (0.5_r8*(zeta(Iend  ,j,know)+      &
@@ -918,10 +869,6 @@
      &               BOUNDARY(ng)%zeta_east(j))*ad_ubar(Iend+1,j,kout)
               ad_bry_val=ad_bry_val+ad_ubar(Iend+1,j,kout)
               ad_ubar(Iend+1,j,kout)=0.0_r8
-<<<<<<< HEAD
-=======
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            tl_Cx=0.5_r8*g*tl_cff/Cx
 !>
               ad_cff=ad_cff+0.5_r8*g*ad_Cx/Cx
@@ -1658,37 +1605,6 @@
      &                                       Cx*ad_ubar(Istr,j,kout)
               END IF
 # endif
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-!>            tl_ubar(Istr,j,kout)=tl_bry_val-                          &
-!>   &                             tl_Cx*                               &
-!>   &                             (0.5_r8*                             &
-!>   &                              (zeta(Istr-1,j,know)+               &
-!>   &                               zeta(Istr  ,j,know)+               &
-!>   &                               fac*(FORCES(ng)%Pair(Istr-1,j)+    &
-!>   &                                    FORCES(ng)%Pair(Istr  ,j)-    &
-!>   &                                    2.0_r8*OneAtm))-              &
-!>   &                              BOUNDARY(ng)%zeta_west(j))-         &
-!>   &                             Cx*                                  &
-!>   &                             (0.5_r8*                             &
-!>   &                              (tl_zeta(Istr-1,j,know)+            &
-!>   &                               tl_zeta(Istr  ,j,know)))
-!>
-              adfac=Cx*0.5_r8*ad_ubar(Istr,j,kout)
-              ad_zeta(Istr-1,j,know)=ad_zeta(Istr-1,j,know)-adfac
-              ad_zeta(Istr  ,j,know)=ad_zeta(Istr  ,j,know)-adfac
-              ad_Cx=ad_Cx-                                              &
-     &              (0.5_r8*(zeta(Istr-1,j,know)+                       &
-     &                       zeta(Istr  ,j,know)+                       &
-     &                       fac*(FORCES(ng)%Pair(Istr-1,j)+            &
-     &                            FORCES(ng)%Pair(Istr  ,j)-            &
-     &                            2.0_r8*OneAtm))-                      &
-     &               BOUNDARY(ng)%zeta_west(j))*ad_ubar(Istr,j,kout)
-              ad_bry_val=ad_bry_val+ad_ubar(Istr,j,kout)
-              ad_ubar(Istr,j,kout)=0.0_r8
-# else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            tl_ubar(Istr,j,kout)=tl_bry_val-                          &
 !>   &                             tl_Cx*                               &
 !>   &                             (0.5_r8*(zeta(Istr-1,j,know)+        &
@@ -1707,10 +1623,6 @@
      &               BOUNDARY(ng)%zeta_west(j))*ad_ubar(Istr,j,kout)
               ad_bry_val=ad_bry_val+ad_ubar(Istr,j,kout)
               ad_ubar(Istr,j,kout)=0.0_r8
-<<<<<<< HEAD
-=======
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            tl_Cx=0.5_r8*g*tl_cff/Cx
 !>
               ad_cff=ad_cff+0.5_r8*g*ad_Cx/Cx

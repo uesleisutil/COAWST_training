@@ -2,15 +2,9 @@
       MODULE rp_v2dbc_mod
 #ifdef TL_IOMS
 !
-<<<<<<< HEAD
 !svn $Id: rp_v2dbc_im.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: rp_v2dbc_im.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -111,12 +105,6 @@
       real(r8) :: bry_pgr, bry_cor, bry_str
       real(r8) :: cff, cff1, cff2, cff3, dt2d
       real(r8) :: obc_in, obc_out, tau
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-      real(r8) :: OneAtm, fac
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8) :: tl_Ce, tl_Cx, tl_Ze
       real(r8) :: tl_bry_pgr, tl_bry_cor, tl_bry_str, tl_bry_val
@@ -140,13 +128,6 @@
         know=kstp
         dt2d=dtfast(ng)
       END IF
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-      OneAtm=1013.25_r8                  ! 1 atm = 1013.25 mb
-      fac=100.0_r8/(g*rho0)
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Lateral boundary conditions at the southern edge.
@@ -337,42 +318,6 @@
 # ifdef TL_IOMS
      &              0.5_r8*Ce
 # endif
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-!>            vbar(i,Jstr,kout)=bry_val-                                &
-!>   &                          Ce*(0.5_r8*                             &
-!>   &                              (zeta(i,Jstr-1,know)+               &
-!>   &                               zeta(i,Jstr  ,know)+               &
-!>   &                               fac*(FORCES(ng)%Pair(i,Jstr-1)+    &
-!>   &                                    FORCES(ng)%Pair(i,Jstr  )-    &
-!>   &                                    2.0_r8*OneAtm))-              &
-!>   &                              BOUNDARY(ng)%zeta_south(i))
-!>
-              tl_vbar(i,Jstr,kout)=tl_bry_val-                          &
-     &                             tl_Ce*                               &
-     &                             (0.5_r8*                             &
-     &                              (zeta(i,Jstr-1,know)+               &
-     &                               zeta(i,Jstr  ,know)+               &
-     &                               fac*(FORCES(ng)%Pair(i,Jstr-1)+    &
-     &                                    FORCES(ng)%Pair(i,Jstr  )-    &
-     &                                    2.0_r8*OneAtm))-              &
-     &                              BOUNDARY(ng)%zeta_south(i))-        &
-     &                             Ce*                                  &
-     &                             (0.5_r8*(tl_zeta(i,Jstr-1,know)+     &
-     &                                      tl_zeta(i,Jstr  ,know)))+   &
-#  ifdef TL_IOMS
-     &                             Ce*                                  &
-     &                             (0.5_r8*                             &
-     &                              (zeta(i,Jstr-1,know)+               &
-     &                               zeta(i,Jstr  ,know)+               &
-     &                               fac*(FORCES(ng)%Pair(i,Jstr-1)+    &
-     &                                    FORCES(ng)%Pair(i,Jstr  )-    &
-     &                                    2.0_r8*OneAtm))-              &
-     &                              BOUNDARY(ng)%zeta_south(i))
-#  endif
-# else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            vbar(i,Jstr,kout)=bry_val-                                &
 !>   &                          Ce*(0.5_r8*(zeta(i,Jstr-1,know)+        &
 !>   &                                      zeta(i,Jstr  ,know))-       &
@@ -387,19 +332,11 @@
      &                             (0.5_r8*(tl_zeta(i,Jstr-1,know)+     &
      &                                      tl_zeta(i,Jstr  ,know))-    &
      &                              BOUNDARY(ng)%tl_zeta_south(i))+     &
-<<<<<<< HEAD
 # ifdef TL_IOMS
-=======
-#  ifdef TL_IOMS
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                             Ce*                                  &
      &                             (0.5_r8*(zeta(i,Jstr-1,know)+        &
      &                                      zeta(i,Jstr  ,know))-       &
      &                              BOUNDARY(ng)%zeta_south(i))
-<<<<<<< HEAD
-=======
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # ifdef MASKING
 !>            vbar(i,Jstr,kout)=vbar(i,Jstr,kout)*                      &
@@ -922,42 +859,6 @@
 # ifdef TL_IOMS
      &              0.5_r8*Ce
 # endif
-<<<<<<< HEAD
-=======
-# if defined ATM_PRESS && defined PRESS_COMPENSATE
-!>            vbar(i,Jend+1,kout)=bry_val+                              &
-!>   &                            Ce*(0.5_r8*                           &
-!>   &                                (zeta(i,Jend  ,know)+             &
-!>   &                                 zeta(i,Jend+1,know)+             &
-!>   &                                 fac*(FORCES(ng)%Pair(i,Jend  )+  &
-!>   &                                      FORCES(ng)%Pair(i,Jend+1)-  &
-!>   &                                      2.0_r8*OneAtm))-            &
-!>   &                                BOUNDARY(ng)%zeta_north(i))
-!>
-              tl_vbar(i,Jend+1,kout)=tl_bry_val+                        &
-     &                               tl_Ce*                             &
-     &                               (0.5_r8*                           &
-     &                                (zeta(i,Jend  ,know)+             &
-     &                                 zeta(i,Jend+1,know)+             &
-     &                                 fac*(FORCES(ng)%Pair(i,Jend  )+  &
-     &                                      FORCES(ng)%Pair(i,Jend+1)-  &
-     &                                      2.0_r8*OneAtm))-            &
-     &                                BOUNDARY(ng)%zeta_north(i))+      &
-     &                               Ce*                                &
-     &                               (0.5_r8*(tl_zeta(i,Jend  ,know)+   &
-     &                                        tl_zeta(i,Jend+1,know)))- &
-#  ifdef TL_IOMS
-     &                               Ce*                                &
-     &                               (0.5_r8*                           &
-     &                                (zeta(i,Jend  ,know)+             &
-     &                                 zeta(i,Jend+1,know)+             &
-     &                                 fac*(FORCES(ng)%Pair(i,Jend  )+  &
-     &                                      FORCES(ng)%Pair(i,Jend+1)-  &
-     &                                      2.0_r8*OneAtm))-            &
-     &                                BOUNDARY(ng)%zeta_north(i))
-#  endif
-# else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            vbar(i,Jend+1,kout)=bry_val+                              &
 !>   &                            Ce*(0.5_r8*(zeta(i,Jend  ,know)+      &
 !>   &                                        zeta(i,Jend+1,know))-     &
@@ -972,19 +873,11 @@
      &                               (0.5_r8*(tl_zeta(i,Jend  ,know)+   &
      &                                        tl_zeta(i,Jend+1,know))-  &
      &                                BOUNDARY(ng)%tl_zeta_north(i))-   &
-<<<<<<< HEAD
 # ifdef TL_IOMS
-=======
-#  ifdef TL_IOMS
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                               Ce*                                &
      &                               (0.5_r8*(zeta(i,Jend  ,know)+      &
      &                                        zeta(i,Jend+1,know))-     &
      &                                BOUNDARY(ng)%zeta_north(i))
-<<<<<<< HEAD
-=======
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # ifdef MASKING
 !>            vbar(i,Jend+1,kout)=vbar(i,Jend+1,kout)*                  &

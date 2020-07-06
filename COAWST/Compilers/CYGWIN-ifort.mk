@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 # svn $Id: CYGWIN-ifort.mk 889 2018-02-10 03:32:52Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
-=======
-# svn $Id: CYGWIN-ifort.mk 995 2020-01-10 04:01:28Z arango $
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -25,10 +19,6 @@
 # CXX            Name of the C++ compiler
 # CXXFLAGS       Flags to the C++ compiler
 # CLEAN          Name of cleaning executable after C-preprocessing
-<<<<<<< HEAD
-=======
-# LIBS           Required libraries during linking
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # NETCDF_INCDIR  NetCDF include directory
 # NETCDF_LIBDIR  NetCDF libary directory
 # LD             Program to load the objects into an executable
@@ -49,13 +39,6 @@
               CXX := g++
            CFLAGS :=
          CXXFLAGS :=
-<<<<<<< HEAD
-=======
-             LIBS :=
-ifdef USE_ROMS
-             LIBS += $(SCRATCH_DIR)/libNLM.a         # cyclic dependencies
-endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           LDFLAGS := /link /stack:67108864
                AR := ar
           ARFLAGS := r
@@ -78,7 +61,6 @@ endif
 ifdef USE_NETCDF4
         NF_CONFIG ?= nf-config
     NETCDF_INCDIR ?= $(shell $(NF_CONFIG) --prefix)/include
-<<<<<<< HEAD
              LIBS := $(shell $(NF_CONFIG) --flibs)
 #    NETCDF_INCDIR ?= /usr/local/netcdf4/include
 #    NETCDF_LIBDIR ?= /usr/local/netcdf4/lib
@@ -86,13 +68,6 @@ ifdef USE_NETCDF4
 else
     NETCDF_INCDIR ?= /netcdf-win32/include
     NETCDF_LIBDIR ?= /netcdf-win32/lib
-=======
-             LIBS += $(shell $(NF_CONFIG) --flibs)
-else
-    NETCDF_INCDIR ?= /netcdf-win32/include
-    NETCDF_LIBDIR ?= /netcdf-win32/lib
-             LIBS += -L$(NETCDF_LIBDIR) -lnetcdf
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
        NETCDF_LIB := $(NETCDF_LIBDIR)/libnetcdf.a
 ifdef USE_NETCDF4
@@ -131,12 +106,6 @@ ifdef USE_MPI
            FFLAGS += -I$(MPI_INCDIR)
 endif
 
-<<<<<<< HEAD
-=======
-ifndef USE_SCRIP
-       LIBS_WIN32 += "$(MCT_PARAMS_DIR)\mct_coupler_params.o"
-endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ifdef USE_MCT
        MCT_LIBDIR ?= c:\\work\\models\\MCT_v2.2\\lib
        MCT_INCDIR ?= c:\\work\\models\\MCT_v2.2\\include
@@ -154,7 +123,6 @@ ifdef USE_ESMF
        LIBS_WIN32 += $(ESMF_F90LINKPATHS) $(ESMF_F90ESMFLINKLIBS)
 endif
 
-<<<<<<< HEAD
 ifdef USE_REFDIF
 #         CPPFLAGS += -traditional-cpp
            FFLAGS += -I$(MCT_LIBDIR) -I$(MPEU_LIBDIR) 
@@ -170,8 +138,6 @@ ifdef USE_MCT
        LIBS_WIN32 += "$(MCT_LIBDIR)\libmct.a" "$(MCT_LIBDIR)\libmpeu.a"
 endif
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ifdef USE_WRF
              FFLAGS += -I$(WRF_DIR)/main -I$(WRF_DIR)/external/esmf_time_f90 -I$(WRF_DIR)/frame -I$(WRF_DIR)/share
              LIBS += WRF/main/module_wrf_top.o
@@ -189,13 +155,8 @@ ifdef USE_WRF
 endif
 
 ifdef USE_WW3
-<<<<<<< HEAD
              FFLAGS += -I${COAWST_WW3_DIR}/mod_DIST/
              LIBS += WW3/obj/libWW3.a
-=======
-             FFLAGS += -I${COAWST_WW3_DIR}/mod_MPI
-             LIBS += WW3/model/obj_MPI/libWW3.a
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
 
 #
@@ -203,10 +164,7 @@ endif
 # file names needed when linking. Use of the "=" sign means that
 # variables will be evaluated only when needed.
 #
-<<<<<<< HEAD
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          BIN_WIN32 = "$$(cygpath --windows $(BIN))"
         LIBS_WIN32 += "$$(cygpath --windows $(NETCDF_LIB))"
         LIBS_WIN32 += "c:\cygwin\lib\gcc\i686-pc-cygwin\4.9.2\libgcc.a"

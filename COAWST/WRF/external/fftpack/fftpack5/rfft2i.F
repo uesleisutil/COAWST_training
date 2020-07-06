@@ -14,13 +14,9 @@ subroutine rfft2i ( l, m, wsave, lensav, ier )
 !    or RFFT2B.  Separate WSAVE arrays are required for different values of
 !    L or M.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Copyright (C) 1995-2004, Scientific Computing Division,
 !    University Corporation for Atmospheric Research
 !

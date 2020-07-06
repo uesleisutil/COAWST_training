@@ -97,22 +97,8 @@ subroutine da_wrfvar_init2
    if ( use_cv_w ) then
       model_config_rec%cv_w_used = 1
    end if
-<<<<<<< HEAD
    if ( ensdim_alpha > 0 ) then
       model_config_rec%ens_used = 1
-=======
-   model_config_rec%alloc_ep = 0
-   ! ep will be allocated in da_solve_init (not hybrid_dual_res) or
-   ! reallocate_analysis_grid (hybrid_dual_res)
-   if ( ensdim_alpha > 0 ) then
-      model_config_rec%ens_used = 1
-      if ( anal_type_hybrid_dual_res ) then
-         ! vp%alpha and vv%alpha will be allocated in reallocate_analysis_grid
-         model_config_rec%alloc_alphacv = 0
-      else
-         model_config_rec%alloc_alphacv = 1
-      end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    end if
    if ( alpha_hydrometeors ) then
       model_config_rec%cloud_ens_used = 1

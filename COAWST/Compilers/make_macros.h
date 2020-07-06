@@ -1,13 +1,7 @@
 /*
-<<<<<<< HEAD
 ** svn $Id: make_macros.h 889 2018-02-10 03:32:52Z arango $
 ********************************************************** Hernan G. Arango ***
 ** Copyright (c) 2002-2019 The ROMS/TOMS Group                               **
-=======
-** svn $Id: make_macros.h 995 2020-01-10 04:01:28Z arango $
-********************************************************** Hernan G. Arango ***
-** Copyright (c) 2002-2020 The ROMS/TOMS Group                               **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                                    **
 **   See License_ROMS.txt                                                    **
 *******************************************************************************
@@ -61,15 +55,6 @@
   USE_SEAICE :=
 #endif
 
-<<<<<<< HEAD
-=======
-#ifdef CICE_MODEL
-  USE_CICE := on
-#else
-  USE_CICE :=
-#endif
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 /*
 ** Process CICE seaice model for coupling.
 */
@@ -120,19 +105,6 @@
 #endif
 
 /*
-<<<<<<< HEAD
-=======
-** Process WRF_hydro hydrologic model.
-*/
-
-#ifdef WRFHYDRO_MODEL
-  USE_WRFHYDRO := on
-#else
-  USE_WRFHYDRO :=
-#endif
-
-/*
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ** Process SWAN wave model.
 */
 

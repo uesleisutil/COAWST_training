@@ -56,18 +56,9 @@
 %                      interface (default), 'java' SNCTOOLS interface for
 %                      OpenDAP files (Matlab version < 2012a), or 'mexnc'
 %                      interface (Matlab Verison < 2008b).
-<<<<<<< HEAD
 %   nc_test        - Creates a NetCDF using data from the peaks(40)
 %                      function. Several datatype variables are created
 %                      to test the NetCDF interface in Matlab.
-=======
-%   nc_stats       - Computes the statistics of NetCDF variable.
-%   nc_test        - Creates a NetCDF using data from the peaks(40)
-%                      function. Several datatype variables are created
-%                      to test the NetCDF interface in Matlab.
-%   nc_time        - Computes the elapsed time since the specified reference
-%                      date.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %   nc_vdef        - Creates a ROMS variable in a NetCDF file.
 %   nc_vinfo       -  Inquires information about requested NetCDF variable.
 %   nc_vname       - Gets the names of all variables in a NetCDF file. This
@@ -101,15 +92,9 @@
 %   remove_record  - Removes specified record in a NetCDF file.
 %
 
-<<<<<<< HEAD
 % svn $Id: Contents.m 899 2018-03-20 22:25:24Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: Contents.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%

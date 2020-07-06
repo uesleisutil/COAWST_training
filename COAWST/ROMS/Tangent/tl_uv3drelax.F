@@ -4,15 +4,9 @@
 #if defined TL_IOMS && defined RPM_RELAXATION && defined SOLVE3D && \
     defined W4DVAR_SENSITIVITY
 !
-<<<<<<< HEAD
 !svn $Id: tl_uv3drelax.F 889 2018-02-10 03:32:52Z arango $
 !=================================================== Andrew M. Moore ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group      Hernan G. Arango   !
-=======
-!svn $Id: tl_uv3drelax.F 995 2020-01-10 04:01:28Z arango $
-!=================================================== Andrew M. Moore ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group      Hernan G. Arango   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================

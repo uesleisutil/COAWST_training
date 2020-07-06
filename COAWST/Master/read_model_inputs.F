@@ -21,11 +21,7 @@
 # ifdef WW3_MODEL
       USE ww3_iounits
 # endif
-<<<<<<< HEAD
 # ifdef WRF_MODEL
-=======
-# if defined WRF_MODEL || defined WRFHYDRO_MODEL
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE mod_coupler_iounits
 # endif
 
@@ -41,11 +37,7 @@
       integer :: Npts, Nval, i, iw, ia, inp, out, status
       integer :: MyRank, MyError, MyMaster, DT, num, den
       integer :: cdecode_line, cload_i, cload_r, indx, test
-<<<<<<< HEAD
       integer :: Ivalue(1)
-=======
-      integer :: Ivalue
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # if defined WRF_COUPLING
       integer :: sstupdate
       integer, allocatable :: parentid(:)
@@ -90,11 +82,7 @@
           SELECT CASE (TRIM(KeyWord))
             CASE ('Ngrids')
               Npts=cload_i(Nval, Rval, 1, Ivalue)
-<<<<<<< HEAD
               Nocn_grids=Ivalue(1)
-=======
-              Nocn_grids=Ivalue
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF (Nocn_grids.le.0) THEN
                 IF (MyRank.eq.MyMaster) WRITE (out,290)'Ngrids', Ngrids,&
      &            'Ngrids must be greater than zero.'
@@ -322,10 +310,6 @@
           read(aline(1:indx-1),'(i5)') Natm_grids
           allocate (dtatm(Natm_grids))
           allocate (parentid(Natm_grids))
-<<<<<<< HEAD
-=======
-          allocate (wrf_e_we(Natm_grids))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! Process the time steps
 !
@@ -381,18 +365,6 @@
           indx=MAX(INDEX(aline,','),LEN(aline))
           read(aline(1:indx-1),'(i1)') sstupdate
         END IF
-<<<<<<< HEAD
-=======
-        IF(aline(1:4).eq.'e_we') THEN
-          indx=INDEX(aline,'=')
-          DO ia=1,Natm_grids
-            aline=aline(indx+1:LEN(aline))
-            indx=INDEX(aline,',')
-            saveline1=TRIM(ADJUSTL(aline(1:indx-1)))
-            read(saveline1,'(i5)') wrf_e_we(ia)
-          END DO
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       END DO
 !
  215  IF (MyRank.eq.MyMaster) WRITE (out,60) line
@@ -408,54 +380,7 @@
       END IF
 #  endif
 # endif
-<<<<<<< HEAD
 
-=======
-# ifdef HYDRO_COUPLING
-!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!     Read WRF_HYDRO input file
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-      OPEN (inp, FILE=TRIM(Hname), FORM='formatted', STATUS='old',      &
-     &      ERR=310)
-      GO TO 330
- 310  WRITE (out,320) Hname
-      IF (MyRank.eq.MyMaster) WRITE(out,*) 'MyRank = ', MyRank,         &
-     &                        TRIM(Hname)
-!     exit_flag=4
-      RETURN
- 320  FORMAT (/,' READ MODEL INPUTS - Unable to open hyd input file.',  &
-     &        /,a80)
- 330  CONTINUE
-!
-!     For now hard code number of hyd grids at 1.
-!
-      Nhyd_grids=1
-      allocate (dthyd(Nhyd_grids))
-!
-      DO WHILE (.TRUE.)
-        READ (inp,'(a)',ERR=315,END=340) line
-        aline=ADJUSTL(line)
-!
-! Process the time steps
-!
-        IF(aline(1:4).eq.'DTRT') THEN
-          indx=INDEX(aline,'=')
-          aline=aline(indx+1:LEN(aline))
-          aline=ADJUSTL(aline)
-          read(aline(1:5),'(i5)') DT
-          dthyd(1)=REAL(DT,m8)
-        END IF
-      END DO
-!
- 315  IF (MyRank.eq.MyMaster) WRITE (out,60) line
-!     exit_flag=4
-      RETURN
- 340  CLOSE (inp)
-# endif
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   60  FORMAT (/,'read model inputs - Error while processing line: ',/,a)
 
       RETURN

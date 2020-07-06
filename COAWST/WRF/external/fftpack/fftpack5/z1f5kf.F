@@ -4,13 +4,9 @@ subroutine z1f5kf ( ido, l1, na, cc, in1, ch, in2, wa )
 !
 !! Z1F5KF is an FFTPACK5 auxiliary routine.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Modified:
 !

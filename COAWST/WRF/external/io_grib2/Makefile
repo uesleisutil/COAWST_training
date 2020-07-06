@@ -65,21 +65,12 @@ OBJS =  \
 #  Clean up old build files
 #
 superclean:
-<<<<<<< HEAD
 	/bin/rm -f *.o > /dev/null 2>&1
 	/bin/rm -f *.f90 > /dev/null 2>&1
 	/bin/rm -f *.mod > /dev/null 2>&1
 	/bin/rm -f *.a > /dev/null 2>&1
 	( cd bacio-1.3 ; make clean )
 	( cd g2lib ; make clean )
-=======
-	@/bin/rm -f *.o > /dev/null 2>&1
-	@/bin/rm -f *.f90 > /dev/null 2>&1
-	@/bin/rm -f *.mod > /dev/null 2>&1
-	@/bin/rm -f *.a > /dev/null 2>&1
-	@( cd bacio-1.3 ; make clean )
-	@( cd g2lib ; make clean )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 
 #

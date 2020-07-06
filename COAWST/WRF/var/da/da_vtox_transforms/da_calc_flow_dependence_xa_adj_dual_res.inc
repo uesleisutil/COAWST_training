@@ -24,14 +24,7 @@ subroutine da_calc_flow_dependence_xa_adj_dual_res (ne, ep, grid, xa, vp, nobwin
 
    integer  :: cims, cime, ckms, ckme, cjms, cjme, &
                nims, nime, nkms, nkme, njms, njme
-<<<<<<< HEAD
    integer  :: nvar
-=======
-   integer  :: cids, cide, ckds, ckde, cjds, cjde, &
-               cips, cipe, ckps, ckpe, cjps, cjpe, &
-               nids, nide, nkds, nkde, njds, njde, &
-               nips, nipe, nkps, nkpe, njps, njpe
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    if (trace_use) call da_trace_entry("da_calc_flow_dependence_xa_adj_dual_res")
 
@@ -41,7 +34,6 @@ subroutine da_calc_flow_dependence_xa_adj_dual_res (ne, ep, grid, xa, vp, nobwin
    end if
 
    ! Get coarse (ensemble) grid dimensions ( grid%intermediate_grid)
-<<<<<<< HEAD
    cims = ims_int; cime = ime_int
    cjms = jms_int; cjme = jme_int
    ckms = kms_int; ckme = kme_int
@@ -50,18 +42,6 @@ subroutine da_calc_flow_dependence_xa_adj_dual_res (ne, ep, grid, xa, vp, nobwin
    nims = ims;     nime = ime
    njms = jms;     njme = jme
    nkms = kms;     nkme = kme
-=======
-   CALL get_ijk_from_grid (  grid%intermediate_grid ,               &
-                             cids, cide, cjds, cjde, ckds, ckde,    &
-                             cims, cime, cjms, cjme, ckms, ckme,    &
-                             cips, cipe, cjps, cjpe, ckps, ckpe    )
-
-   ! Get fine (analysis) grid dimensions ( grid)
-   CALL get_ijk_from_grid (  grid,                                  &
-                             nids, nide, njds, njde, nkds, nkde,    &
-                             nims, nime, njms, njme, nkms, nkme,    &
-                             nips, nipe, njps, njpe, nkps, nkpe )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    !
    ! Allocate and initialize arrays
@@ -148,7 +128,6 @@ subroutine da_calc_flow_dependence_xa_adj_dual_res (ne, ep, grid, xa, vp, nobwin
    !call da_message(message(1:3))
 
    !
-<<<<<<< HEAD
    ! Now interpolate grid%xa from hi-res to low-res
    !
       !call da_message((/'Using adjoint of bilinear interpolation'/))
@@ -219,72 +198,6 @@ subroutine da_calc_flow_dependence_xa_adj_dual_res (ne, ep, grid, xa, vp, nobwin
             end do
          end do
       end do
-=======
-   ! Now getting low-res xa from high-res xa using adjoint of bilinear interpolation
-   !
-   call da_dual_res_c2n_ad( input_u, output_u,  &
-           nims, nime, njms, njme, nkms, nkme,  &
-            its,  ite,  jts,  jte,  kts,  kte,  &
-           cids, cide, cjds, cjde, ckds, ckde,  &
-           cims, cime, cjms, cjme, ckms, ckme,  &
-           its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-   call da_dual_res_c2n_ad( input_v, output_v,  &
-           nims, nime, njms, njme, nkms, nkme,  &
-            its,  ite,  jts,  jte,  kts,  kte,  &
-           cids, cide, cjds, cjde, ckds, ckde,  &
-           cims, cime, cjms, cjme, ckms, ckme,  &
-           its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-   call da_dual_res_c2n_ad( input_t, output_t,  &
-           nims, nime, njms, njme, nkms, nkme,  &
-            its,  ite,  jts,  jte,  kts,  kte,  &
-           cids, cide, cjds, cjde, ckds, ckde,  &
-           cims, cime, cjms, cjme, ckms, ckme,  &
-           its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-   call da_dual_res_c2n_ad( input_q, output_q,  &
-           nims, nime, njms, njme, nkms, nkme,  &
-            its,  ite,  jts,  jte,  kts,  kte,  &
-           cids, cide, cjds, cjde, ckds, ckde,  &
-           cims, cime, cjms, cjme, ckms, ckme,  &
-           its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-   call da_dual_res_c2n_ad( input_p(:,:,1:1), output_p(:,:,1:1), &
-           nims, nime, njms, njme, 1, 1,        &
-            its,  ite,  jts,  jte, 1, 1,        &
-           cids, cide, cjds, cjde, 1, 1,        &
-           cims, cime, cjms, cjme, 1, 1,        &
-           its_int, ite_int, jts_int, jte_int, 1, 1)
-
-   if ( alpha_hydrometeors ) then
-      call da_dual_res_c2n_ad( input_qcw, output_qcw, &
-              nims, nime, njms, njme, nkms, nkme,     &
-               its,  ite,  jts,  jte,  kts,  kte,     &
-              cids, cide, cjds, cjde, ckds, ckde,     &
-              cims, cime, cjms, cjme, ckms, ckme,     &
-              its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-      call da_dual_res_c2n_ad( input_qrn, output_qrn, &
-              nims, nime, njms, njme, nkms, nkme,     &
-               its,  ite,  jts,  jte,  kts,  kte,     &
-              cids, cide, cjds, cjde, ckds, ckde,     &
-              cims, cime, cjms, cjme, ckms, ckme,     &
-              its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-      call da_dual_res_c2n_ad( input_qci, output_qci, &
-              nims, nime, njms, njme, nkms, nkme,     &
-               its,  ite,  jts,  jte,  kts,  kte,     &
-              cids, cide, cjds, cjde, ckds, ckde,     &
-              cims, cime, cjms, cjme, ckms, ckme,     &
-              its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-      call da_dual_res_c2n_ad( input_qsn, output_qsn, &
-              nims, nime, njms, njme, nkms, nkme,     &
-               its,  ite,  jts,  jte,  kts,  kte,     &
-              cids, cide, cjds, cjde, ckds, ckde,     &
-              cims, cime, cjms, cjme, ckms, ckme,     &
-              its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
-      call da_dual_res_c2n_ad( input_qgr, output_qgr, &
-              nims, nime, njms, njme, nkms, nkme,     &
-               its,  ite,  jts,  jte,  kts,  kte,     &
-              cids, cide, cjds, cjde, ckds, ckde,     &
-              cims, cime, cjms, cjme, ckms, ckme,     &
-              its_int, ite_int, jts_int, jte_int, kts_int, kte_int)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    end if ! alpha_hydrometeors
 
    write (unit=message(1), fmt='(A,2F12.5)') ' min/max U  Input = ',minval(input_u),maxval(input_u)

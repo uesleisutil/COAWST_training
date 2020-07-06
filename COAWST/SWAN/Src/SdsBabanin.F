@@ -25,11 +25,7 @@ CONTAINS
     !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -331,11 +327,7 @@ CONTAINS
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -788,11 +780,7 @@ CONTAINS
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1278,11 +1266,7 @@ CONTAINS
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1426,11 +1410,7 @@ CONTAINS
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1611,11 +1591,7 @@ CONTAINS
 !     end of subroutine SWIND0_NRL
       END SUBROUTINE SWIND0_NRL
 !
-<<<<<<< HEAD
 subroutine filsin ( memsin, idcmin, idcmax, imatra, anywnd, plwnds, isstop, genc0 )
-=======
-subroutine filsin ( memsin, idcmin, idcmax, imatra, anywnd, plwnds, isstop, genc0, aiceloc )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !   --|-----------------------------------------------------------|--
 !     | Delft University of Technology                            |
@@ -1628,11 +1604,7 @@ subroutine filsin ( memsin, idcmin, idcmax, imatra, anywnd, plwnds, isstop, genc
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1654,20 +1626,12 @@ subroutine filsin ( memsin, idcmin, idcmax, imatra, anywnd, plwnds, isstop, genc
 !
 !   40.88: Marcel Zijlema
 !   40.88: Erick Rogers
-<<<<<<< HEAD
-=======
-!   41.75: Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !   Updates
 !
 !   40.88, May 2017: New subroutine
 !   40.88, Jun 2017: Check for ZIEGER to allow case of negative wind input,
 !                    wave direction opposing wind direction
-<<<<<<< HEAD
-=======
-!   41.75, Jan 2019: adding sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !   Purpose
 !
@@ -1688,11 +1652,6 @@ subroutine filsin ( memsin, idcmin, idcmax, imatra, anywnd, plwnds, isstop, genc
     integer, dimension(MSC), intent(in)         :: idcmax ! maximum frequency-dependent counter in directional space
     integer, dimension(MSC), intent(in)         :: idcmin ! minimum frequency-dependent counter in directional space
     !
-<<<<<<< HEAD
-=======
-    real, intent(in)                            :: aiceloc ! local ice fraction, at current time
-    !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     real, dimension(MDC,MSC)      , intent(out) :: imatra ! coefficients of right hand side of action balance equation
     real, dimension(MDC,MSC,MGENR), intent(out) :: genc0  ! explicit part of generation in present vertex for output purposes
     real, dimension(MDC,MSC,MCGRD), intent(in)  :: memsin ! wind input stored in all active grid points
@@ -1707,59 +1666,22 @@ subroutine filsin ( memsin, idcmin, idcmax, imatra, anywnd, plwnds, isstop, genc
     integer, save :: ient = 0 ! number of entries in this subroutine
     integer       :: is       ! loop counter over frequency bins
 !
-<<<<<<< HEAD
-=======
-    real          :: memsins  ! temp variable for memsin value
-    real          :: factor_on_Sin ! exactly what it sounds like
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !   Structure
 !
 !   Description of the pseudo code
 !
-<<<<<<< HEAD
-=======
-!   Remarks
-!
-!   On ICEWIND :
-!     factor_on_Sin=(1-aice*(1-icewind))    (1)
-!     This can be re-written as :
-!     factor_on_Sin=awater+aice*icewind     (2)
-!     where a_water is open water fraction and a_water+aice==1.0 by definition
-!     The factor is applied as:
-!     memsins=memsins*factor_on_Sin         (3)
-!     Eq. (3) is within an if-check for ice.
-!     This if-check does not actually change the outcome,
-!     but is intended to reduce the math operations.
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !   Source text
 !
     if (ltrace) call strace (ient,'filsin')
     !
-<<<<<<< HEAD
-=======
-    factor_on_Sin = (1.-aiceloc*(1.-icewind))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     do is = 1, isstop
        do iddum = idcmin(is), idcmax(is)
           id = mod ( iddum - 1 + MDC , MDC ) + 1
           if ( anywnd(id).or.ZIEGER ) then
-<<<<<<< HEAD
              if(TESTFL) plwnds(id,is,IPTST) = plwnds(id,is,IPTST) +  &
                                               memsin(id,is,KCGRD(1))
              imatra(id,is) = imatra(id,is)  + memsin(id,is,KCGRD(1))
              genc0(id,is,1)= genc0(id,is,1) + memsin(id,is,KCGRD(1))
-=======
-             memsins = memsin(id,is,KCGRD(1))
-             if ( aiceloc > 0. ) then
-                memsins = memsins * factor_on_Sin
-             endif
-             if(TESTFL) plwnds(id,is,IPTST) = plwnds(id,is,IPTST) +  &
-                                              memsins
-             imatra(id,is) = imatra(id,is)  + memsins
-             genc0(id,is,1)= genc0(id,is,1) + memsins
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           endif
        enddo
     enddo
@@ -1770,16 +1692,7 @@ subroutine filsin ( memsin, idcmin, idcmax, imatra, anywnd, plwnds, isstop, genc
           do is = 1, isstop
              do iddum = idcmin(is), idcmax(is)
                 id = mod ( iddum - 1 + MDC , MDC ) + 1
-<<<<<<< HEAD
                 write (PRINTF,102) is, id, memsin(id,is,KCGRD(1))
-=======
-                memsins = memsin(id,is,KCGRD(1))
-                if ( aiceloc > 0. ) then
-                   factor_on_Sin = (1.-aiceloc*(1.-icewind))
-                   memsins = memsins * factor_on_Sin
-                endif
-                write (PRINTF,102) is, id, memsins
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
              enddo
           enddo
        endif
@@ -1806,11 +1719,7 @@ end subroutine filsin
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1989,11 +1898,7 @@ end subroutine filsin
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -2151,11 +2056,7 @@ end subroutine filsin
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -2312,11 +2213,7 @@ end subroutine filsin
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -2712,11 +2609,7 @@ end subroutine filsin
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as

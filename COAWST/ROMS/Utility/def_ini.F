@@ -2,15 +2,9 @@
 #ifdef FOUR_DVAR
       SUBROUTINE def_ini (ng)
 !
-<<<<<<< HEAD
 !svn $Id: def_ini.F 901 2018-03-29 03:32:57Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: def_ini.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -57,11 +51,7 @@
 # if defined ADJUST_STFLUX || defined ADJUST_WSTRESS
       integer :: frecdim
 # endif
-<<<<<<< HEAD
       integer :: DimIDs(32), Vsize(4)
-=======
-      integer :: DimIDs(nDimID)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef ADJUST_BOUNDARY
       integer :: t2dobc(4)
 #  ifdef SOLVE3D
@@ -357,11 +347,7 @@
 !  in addition to initialization time.
 !-----------------------------------------------------------------------
 
-<<<<<<< HEAD
 #  ifdef ADJUST_BOUNDARY
-=======
-#  if defined ADJUST_BOUNDARY && !defined W4DPSAS_FCT_SENSITIVITY
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Define free-surface open boundaries.
 !
@@ -557,21 +543,11 @@
 !
 !  Open initialization file for read/write.
 !
-<<<<<<< HEAD
         CALL netcdf_open (ng, iNLM, ncname, 1, INI(ng)%ncid)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) THEN
           WRITE (stdout,10) TRIM(ncname)
           RETURN
-=======
-        IF (INI(ng)%ncid.eq.-1) THEN
-          CALL netcdf_open (ng, iNLM, ncname, 1, INI(ng)%ncid)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) THEN
-            WRITE (stdout,10) TRIM(ncname)
-            RETURN
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END IF
 !
 !  Inquire about the dimensions and check for consistency.

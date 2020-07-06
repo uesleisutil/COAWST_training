@@ -61,15 +61,9 @@ function editmask(grid_file, varargin)
 %           BUTTON, RADIOBOX, TEXTBOX, AXISSCROLL,
 %
 
-<<<<<<< HEAD
 % svn $Id: editmask.m 926 2018-10-09 21:53:45Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: editmask.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                            A. Shcherbina        %
 %=========================================================================%
@@ -315,7 +309,6 @@ switch lower(grid_file)
     got_matfile=false;                 % coastline from provided .mat file
 
     Cfile=which('gshhs_h.b','-ALL');   % select first directory found
-<<<<<<< HEAD
 %jcw DIR=fileparts(Cfile{1});           % others are shadowed
 
     switch numel(varargin)
@@ -323,13 +316,6 @@ switch lower(grid_file)
 %       if (~isempty(DIR))
         if (~isempty(Cfile))
           DIR=fileparts(Cfile{1});           % others are shadowed
-=======
-
-    switch numel(varargin)
-      case 0
-        if (~isempty(Cfile))
-          DIR=fileparts(Cfile{1});            % others are shadowed
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           database='h';
           Cname=fullfile(DIR, 'gshhs_h.b');   % high resolution GSHHS
           extract_coast=true;                 % (default)
@@ -340,10 +326,7 @@ switch lower(grid_file)
         if (ischar(varargin{1}))
           if (strfind(varargin{1}, '.mat'))
             coast_file=varargin{1};
-<<<<<<< HEAD
 %jcw
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             Cname=coast_file;
             if (~exist(coast_file,'file'))
               error(['Cannot file: ', coast_file]);
@@ -420,11 +403,7 @@ switch lower(grid_file)
           if (dx == 0)
             dx=1.5;
           end
-<<<<<<< HEAD
           if (dy == 0)
-=======
-	  if (dy == 0)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             dy=1.5;
           end
 

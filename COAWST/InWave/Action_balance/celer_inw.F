@@ -6,11 +6,7 @@
 !======================================================================!
 !                                                                      !
 !  This routine computes the group celerities needed to solve the      !
-<<<<<<< HEAD
 !  action density equations.                                           !
-=======
-!  wave action density equations.                                      !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !                                                                      !
 !======================================================================!
 !
@@ -71,10 +67,7 @@
      &                    WAVEP(ng) % Ta,                               &
      &                    WAVEP(ng) % Tr,                               &
      &                    WAVEP(ng) % kwc,                              &
-<<<<<<< HEAD
      &                    WAVEP(ng) % cwc,                              &
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                    WAVEG(ng) % Inwavecircle,                     &
      &                    WAVEG(ng) % wd)
 !# ifdef PROFILE
@@ -97,11 +90,7 @@
      &                          angler, pm, pn,                         &
      &                          h_tot,u_rho,v_rho,                      &
      &                          cx, cy, ct, Ta, Tr,                     &
-<<<<<<< HEAD
      &                          kwc, cwc, Inwavecircle, wd)
-=======
-     &                          kwc, Inwavecircle, wd)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !***********************************************************************
 !
       USE mod_param
@@ -145,10 +134,7 @@
       real(r8), intent(inout) :: cy(LBi:,LBj:,:)
       real(r8), intent(inout) :: ct(LBi:,LBj:,:)
       real(r8), intent(in) :: kwc(LBi:,LBj:,:)
-<<<<<<< HEAD
       real(r8), intent(in) :: cwc(LBi:,LBj:,:)
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), intent(in) :: Tr(LBi:,LBj:,:)
       real(r8), intent(inout) :: Ta(LBi:,LBj:,:)
       real(r8), intent(in) :: h_tot(LBi:,LBj:)
@@ -173,10 +159,7 @@
       real(r8), intent(inout) :: cy(LBi:UBi,LBj:UBj,ND)
       real(r8), intent(inout) :: ct(LBi:UBi,LBj:UBj,ND+1)
       real(r8), intent(in) :: kwc(LBi:UBi,LBj:UBj,ND)
-<<<<<<< HEAD
       real(r8), intent(in) :: cwc(LBi:UBi,LBj:UBj,ND)
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), intent(in) :: Tr(LBi:UBi,LBj:UBj,ND)
       real(r8), intent(inout) :: Ta(LBi:UBi,LBj:UBj,ND)
       real(r8), intent(in) :: h_tot(LBi:UBi,LBj:UBj)
@@ -186,7 +169,6 @@
 # endif
 !
 !  Local variable declarations.
-<<<<<<< HEAD
 
       integer :: i, j, k, d
       real(r8) :: twopi, otwopi, halfpi
@@ -199,34 +181,12 @@
       real(r8) :: cff, cosde, sinde
       real(r8), dimension(IminS:ImaxS,JminS:JmaxS) :: u_dir
       real(r8), dimension(IminS:ImaxS,JminS:JmaxS) :: u_block
-=======
-!
-      integer :: i, j, k, d
-      real(r8) :: twopi, otwopi, halfpi
-      real(r8) :: wa, wr
-      real(r8) :: theta_cur
-      real(r8) :: cff1
-      real(r8) :: wdl, wdg 
-      real(r8) :: G1, cgr, cgrx, cgry
-      real(r8) :: ux, uy, vx, vy, hx, hy
-      real(r8) :: dudx, dudy, dvdx, dvdy, dhdx, dhdy
-      real(r8) :: cff, coswdg, sinwdg
-      real(r8), dimension(IminS:ImaxS,JminS:JmaxS) :: kh
-      real(r8), dimension(IminS:ImaxS,JminS:JmaxS) :: u_dir
-      real(r8), dimension(IminS:ImaxS,JminS:JmaxS) :: cwc
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), dimension(IminS:ImaxS,JminS:JmaxS,ND) :: cx_rho
       real(r8), dimension(IminS:ImaxS,JminS:JmaxS,ND) :: cy_rho
       real(r8), dimension(IminS:ImaxS,JminS:JmaxS,ND) :: ct_r
       real(r8), parameter :: Tamin=1.0_r8
       real(r8), parameter :: Tamax=5000.0_r8
-<<<<<<< HEAD
       real(r8), parameter :: kDmax = 100.0_r8
-=======
-      real(r8), parameter :: khmax=100.0_r8
-      real(r8), parameter :: ct_rmin=0.000000001_r8
-      real(r8), parameter :: eps = 1.0e-10_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 # include "set_bounds.h"
 !
@@ -237,38 +197,16 @@
       DO d=1,ND
         DO j=Jstr-1,Jend+1
           DO i=Istr-1,Iend+1
-<<<<<<< HEAD
-=======
-!=======================================================================
-! Compute kh and cwc (phase celerity)  
-!=======================================================================
-!
-! These are inside the i,j loops, but we exit them and they are still needed
-!
-            kh(i,j)=MIN(kwc(i,j,d)*h_tot(i,j),khmax)
-            cwc(i,j)=SQRT(g/(kwc(i,j,d)+eps)*TANH(kh(i,j)))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !=======================================================================
 ! Compute xi and etai components of the wave number
 !=======================================================================
 !
-<<<<<<< HEAD
             alfa_wave =(1.5_r8*pi-wd(d))-angler(i,j)
 # ifdef DOPPLER
 !
 !=======================================================================
 ! Compute current component in the direction of waves u_dir
-=======
-! Reference wave direction to the local grid 
-! 
-            wdl=(1.5_r8*pi-wd(d))-angler(i,j)
-!
-# ifdef DOPPLER
-!
-!=======================================================================
-! Compute u_dir (current component in the direction of waves)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !=======================================================================
 !
             IF (u_rho(i,j).eq.0.0_r8) THEN
@@ -277,7 +215,6 @@
               theta_cur=ATAN2(v_rho(i,j),u_rho(i,j))
             ENDIF
             u_dir(i,j)=SQRT(u_rho(i,j)**2+v_rho(i,j)**2)*               &
-<<<<<<< HEAD
      &                 COS(alfa_wave-theta_cur)
             u_block(i,j) = -(twopi/MAX(Tamin,Tr(i,j,d)))/(kwc(i,j,d))
 # endif
@@ -292,26 +229,12 @@
 !======================================================================!
 !          If dry or waves are blocked set celerities to zero          !
 !======================================================================!
-=======
-     &                 COS(wdl-theta_cur)
-!
-# endif
-# ifdef DOPPLER
-            IF ((h_tot(i,j).LE.Dcrit(ng))                                &
-               .OR.((cwc(i,j)+u_dir(i,j)).LE.0.0_r8)) THEN
-# else
-            IF (h_tot(i,j).LE.Dcrit(ng)) THEN
-# endif
-!
-! If dry or waves are blocked set celerities to zero
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
               cx_rho(i,j,d)=0.0_r8
               cy_rho(i,j,d)=0.0_r8
             ELSE
 !
 !=======================================================================!
-<<<<<<< HEAD
 !          Compute the relative group velocities                        !
 !=======================================================================!
 !
@@ -324,19 +247,6 @@
 !
               cgrx=cgr*cos(alfa_wave)
               cgry=cgr*sin(alfa_wave)
-=======
-! Compute the relative group velocities                        
-!=======================================================================!
-!
-              G1=2.0_r8*kh(i,j)/(SINH(2.0_r8*kh(i,j))+eps)
-              cgr=0.5_r8*cwc(i,j)*(1.0_r8+G1)
-!
-! Reference wave group velocity to the local grid
-! Compute xi and etai components of the wave group velocity
-!
-              cgrx=cgr*cos(wdl)
-              cgry=cgr*sin(wdl)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !========================================================================
 !  Compute the absolute group velocities in space direction (Xi and ETAi)
@@ -356,7 +266,6 @@
 # ifdef ACT_ADVECTION
         DO j=Jstr,Jend
           DO i=Istr,Iend
-<<<<<<< HEAD
 
 #  ifdef DOPPLER
             IF((h_tot(i,j).le.Dcrit(ng))                                &
@@ -403,69 +312,12 @@
      &            sinde*                                                &
      &            (sinde*pm(i,j)*dvdx-                                  &
      &             cosde*pn(i,j)*dvdy)
-=======
-# ifdef DOPPLER
-            IF ((h_tot(i,j).LE.Dcrit(ng))                                &
-     &         .OR.((cwc(i,j)+u_dir(i,j)).LE.0.0_r8)) THEN
-# else
-            IF (h_tot(i,j).LE.Dcrit(ng)) THEN
-# endif
-!
-! If dry or waves are blocked set celerities to zero          
-!
-              ct_r(i,j,d)=0.0_r8
-            ELSE
-!
-! Reference wave direction to the global grid
-!
-              wdg=0.5_r8*pi-wd(d)
-              coswdg = cos(wdg)
-              sinwdg = sin(wdg)
-!
-! Reference bathymetric gradients to the global grid
-!
-              hx=(h_tot(i+1,j)-h_tot(i-1,j))*(pm(i,j)+pm(i-1,j))
-              hy=(h_tot(i,j+1)-h_tot(i,j-1))*(pn(i,j)+pn(i,j-1))
-              dhdx=hx*cos(angler(i,j))-hy*sin(angler(i,j))
-              dhdy=hx*sin(angler(i,j))+hy*cos(angler(i,j))
-
-              ct_r(i,j,d)=twopi/(MAX(Tamin,Tr(i,j,d))*                   &
-     &                   SINH(2.0_r8*kh(i,j)))*(sinwdg*dhdx-coswdg*dhdy)
-
-# ifdef DOPPLER
-!
-! Reference current gradients to the global grid
-!
-              ux=(u_rho(i+1,j)-u_rho(i-1,j))*(pm(i,j)+pm(i-1,j))
-              vy=(v_rho(i,j+1)-v_rho(i,j-1))*(pn(i,j)+pn(i,j-1))
-!
-              dudx=-vy*sin(angler(i,j))+ux*cos(angler(i,j))
-              dvdy=ux*sin(angler(i,j))+vy*cos(angler(i,j))
-        
-              uy=(u_rho(i,j+1)-u_rho(i,j-1))*(pn(i,j)+pn(i,j-1))
-              vx=(v_rho(i+1,j)-v_rho(i-1,j))*(pm(i,j)+pm(i-1,j))
-
-              dudy=-vx*sin(angler(i,j))+vy*cos(angler(i,j)) 
-              dvdx=uy*sin(angler(i,j))+vx*cos(angler(i,j))
-
-              cff=coswdg*(sinwdg*dudx-coswdg*dudy)+                      &
-      &           sinwdg*(sinwdg*dvdx-coswdg*dvdy)
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               ct_r(i,j,d)=ct_r(i,j,d)+cff
 #  endif
             ENDIF
           ENDDO
         ENDDO
 # endif
-<<<<<<< HEAD
-=======
-!
-!======================================================================!
-! Calculate the absolute radial frequency
-!======================================================================!
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         DO j=Jstr,Jend
           DO i=Istr,Iend
             wr=twopi/MAX(Tamin,Tr(i,j,d))
@@ -473,12 +325,8 @@
 #  ifdef DOPPLER
             wa=wa+kwc(i,j,d)*u_dir(i,j)
 #  endif
-<<<<<<< HEAD
             Ta(i,j,d)=MAX(Tamin,twopi/wa)
             Ta(i,j,d)=MIN(Ta(i,j,d),Tamax)
-=======
-            Ta(i,j,d)=MAX(Tamin,MIN(twopi/wa,Tamax))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ENDDO
         ENDDO
       ENDDO
@@ -533,37 +381,12 @@
 # endif
 
 # ifdef ACT_ADVECTION
-<<<<<<< HEAD
       DO d=2,ND
         DO j=Jstr,Jend
           DO i=Istr,Iend
             ct(i,j,d)=0.5_r8*(ct_r(i,j,d-1)+ ct_r(i,j,d))
 #  ifdef MASKING
 !  Apply Land/Sea mask
-=======
-!      DO d=1,ND
-!        DO j=Jstr,Jend
-!          DO i=Istr,Iend
-!            IF (ABS(ct_r(i,j,d)).LE.ct_rmin) THEN
-!              ct_r(i,j,d)=0.0_r8
-!            ENDIF
-!           ct_r(i,j,d)=SIGN(MAX(ABS(ct_r(i,j,d)),ct_rmin),ct_r(i,j,d))
-!          END DO
-!        END DO
-!      ENDDO
-
-      DO d=2,ND
-        DO j=Jstr,Jend
-          DO i=Istr,Iend
-!            IF (ct_r(i,j,d).LT.0.0_r8.AND.ct_r(i,j,d-1).LT.0.0_r8) THEN
-!              ct(i,j,d)=ct_r(i,j,d)
-!            ELSE IF (ct_r(i,j,d).GE.0.0_r8.AND.ct_r(i,j,d-1).GE.0.0_r8) THEN
-!              ct(i,j,d)=ct_r(i,j,d-1)
-!            ELSE 
-              ct(i,j,d)=0.5_r8*(ct_r(i,j,d-1)+ct_r(i,j,d))
-!            ENDIF
-#  ifdef MASKING
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             ct(i,j,d)=ct(i,j,d)*rmask(i,j)
 #  endif
 #  ifdef WET_DRY
@@ -571,43 +394,26 @@
 #  endif
           END DO
         END DO
-<<<<<<< HEAD
       ENDDO
 !
       DO j=Jstr,Jend
         DO i=Istr,Iend
           IF (Inwavecircle.eq.1) THEN
             ct(i,j,1)=0.5_r8*(ct_r(i,j,ND)+ ct_r(i,j,1))
-=======
-      END DO
-
-      DO j=Jstr,Jend
-        DO i=Istr,Iend
-          IF (Inwavecircle.eq.1) THEN
-            ct(i,j,1)=0.5_r8*(ct_r(i,j,ND)+ct_r(i,j,1))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ELSE
             ct(i,j,1)=0.0_r8
           END IF
 #  ifdef MASKING
-<<<<<<< HEAD
 !  Apply Land/Sea mask
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ct(i,j,1)=ct(i,j,1)*rmask(i,j)
 #  endif
 #  ifdef WET_DRY
           ct(i,j,1)=ct(i,j,1)*rmask_wet(i,j)
 #  endif
-<<<<<<< HEAD
 !
           ct(i,j,ND+1)=ct(i,j,1)
 #  ifdef MASKING
 !  Apply Land/Sea mask
-=======
-          ct(i,j,ND+1)=ct(i,j,1)
-#  ifdef MASKING
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ct(i,j,ND+1)=ct(i,j,ND+1)*rmask(i,j)
 #  endif 
 #  ifdef WET_DRY

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 subroutine SwanComputeForce ( fx, fy, ac2, dep2, spcsig, spcdir )
-=======
-subroutine SwanComputeForce ( fx, fy, ac2, dep2, hs, spcsig, spcdir )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !ADCsubroutine SwanComputeForce
 !
 !   --|-----------------------------------------------------------|--
@@ -16,11 +12,7 @@ subroutine SwanComputeForce ( fx, fy, ac2, dep2, hs, spcsig, spcdir )
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -78,10 +70,6 @@ subroutine SwanComputeForce ( fx, fy, ac2, dep2, hs, spcsig, spcdir )
     real, dimension(nverts), intent(in)         :: dep2   ! water depth at current time level
     real, dimension(nverts), intent(out)        :: fx     ! wave-induced force in x-direction
     real, dimension(nverts), intent(out)        :: fy     ! wave-induced force in y-direction
-<<<<<<< HEAD
-=======
-    real, dimension(nverts), intent(in)         :: hs     ! significant wave height
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     real, dimension(MDC,6), intent(in)          :: spcdir ! (*,1): spectral direction bins (radians)
                                                           ! (*,2): cosine of spectral directions
                                                           ! (*,3): sine of spectral directions
@@ -135,10 +123,6 @@ subroutine SwanComputeForce ( fx, fy, ac2, dep2, hs, spcsig, spcdir )
 !ADC    real, dimension(nverts)               :: dep2     ! help array to store water depth
 !ADC    real, dimension(nverts)               :: fx       ! help array to store wave-induced force in x-direction
 !ADC    real, dimension(nverts)               :: fy       ! help array to store wave-induced force in y-direction
-<<<<<<< HEAD
-=======
-!ADC    real, dimension(nverts)               :: hs       ! help array to store significant wave height
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     !
     real, dimension(:), allocatable       :: sxx      ! x-component of radiation stress in x-direction
     real, dimension(:), allocatable       :: sxy      ! cross component of radiation stress in x/y-direction
@@ -172,16 +156,9 @@ subroutine SwanComputeForce ( fx, fy, ac2, dep2, hs, spcsig, spcdir )
     sxy = 0.
     syy = 0.
 !ADC    !
-<<<<<<< HEAD
 !ADC    ! move the depths to their own array
 !ADC    do ivert = 1, nverts
 !ADC       dep2(ivert) = compda(ivert,jdp2)
-=======
-!ADC    ! move the depths and heights to their own arrays
-!ADC    do ivert = 1, nverts
-!ADC       dep2(ivert) = compda(ivert,jdp2)
-!ADC       hs  (ivert) = compda(ivert,jhs)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !ADC    enddo
     !
     ! compute radiation stresses in vertices
@@ -190,11 +167,7 @@ subroutine SwanComputeForce ( fx, fy, ac2, dep2, hs, spcsig, spcdir )
        !
        deploc = dep2(ivert)
        !
-<<<<<<< HEAD
        if ( deploc <= DEPMIN ) cycle
-=======
-       if ( deploc <= DEPMIN .or. .not. hs(ivert) /= 0. ) cycle              ! zero wave height due to non-transmissive obstacle
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        !
        sxxsums = 0.
        sxysums = 0.

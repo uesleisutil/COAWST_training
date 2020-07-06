@@ -1,14 +1,8 @@
 #!/bin/csh -f
 #
-<<<<<<< HEAD
 # svn $Id: build_roms.sh 943 2019-01-31 23:21:29Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
-=======
-# svn $Id: build_roms.sh 995 2020-01-10 04:01:28Z arango $
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -168,10 +162,6 @@ setenv MY_PROJECT_DIR        ${PWD}
  setenv USE_MPIF90          on          # compile with mpif90 script
 #setenv which_MPI           mpich       # compile with MPICH library
 #setenv which_MPI           mpich2      # compile with MPICH2 library
-<<<<<<< HEAD
-=======
-#setenv which_MPI           mvapich2    # compile with MVAPICH2 library
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
  setenv which_MPI           openmpi     # compile with OpenMPI library
 
 #setenv USE_OpenMP          on          # shared-memory parallelism

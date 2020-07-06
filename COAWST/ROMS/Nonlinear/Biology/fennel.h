@@ -1,14 +1,8 @@
       SUBROUTINE biology (ng,tile)
 !
-<<<<<<< HEAD
 !svn $Id: fennel.h 927 2018-10-16 03:51:56Z arango $
 !***********************************************************************
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: fennel.h 995 2020-01-10 04:01:28Z arango $
-!***********************************************************************
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license           Hernan G. Arango   !
 !    See License_ROMS.txt                               Katja Fennel   !
 !****************************************** Alexander F. Shchepetkin ***

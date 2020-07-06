@@ -1,15 +1,9 @@
 /*
 ** Include file "cppdefs.h"
 **
-<<<<<<< HEAD
 ** svn $Id: cppdefs.h 927 2018-10-16 03:51:56Z arango $
 ********************************************************** Hernan G. Arango ***
 ** Copyright (c) 2002-2019 The ROMS/TOMS Group                               **
-=======
-** svn $Id: cppdefs.h 1001 2020-01-10 22:41:16Z arango $
-********************************************************** Hernan G. Arango ***
-** Copyright (c) 2002-2020 The ROMS/TOMS Group                               **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                                    **
 **   See License_ROMS.txt                                                    **
 *******************************************************************************
@@ -54,7 +48,6 @@
 **                                                                           **
 ** OPTIONS associated with tracers equations:                                **
 **                                                                           **
-<<<<<<< HEAD
 **   The default horizontal and vertical advection is 4th-order centered.    **
 **                                                                           **
 **   The 3rd-order upstream split advection (TS_U3ADV_SPLIT) can be used     **
@@ -81,10 +74,6 @@
 ** TS_C2VADVECTION     use if 2nd-order centered vertical advection          **
 ** TS_C4VADVECTION     use if 4th-order centered vertical advection          **
 ** TS_SVADVECTION      use if splines vertical advection                     **
-=======
-** OPTIONS associated with tracers equations:                                **
-**                                                                           **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ** TS_DIF2             use to turn ON or OFF harmonic horizontal mixing      **
 ** TS_DIF4             use to turn ON or OFF biharmonic horizontal mixing    **
 ** TS_SMAGORINSKY      use to turn ON or OFF Smagorinsky-like diffusion      **
@@ -109,7 +98,6 @@
 **                                                                           **
 ** LIMIT_STFLX_COOLING use to suppress SST cooling below freezing point      **
 **                                                                           **
-<<<<<<< HEAD
 ** OPTIONS for MPDATA 3D Advection:                                          **
 **                                                                           **
 ** TS_MPDATA_LIMIT     use to limit upwind corrector fluxes for stability    **
@@ -143,13 +131,6 @@
 ** TS_C4VADVECTION_TL  use if 4th-order centered vertical advection          **
 ** TS_SVADVECTION_TL   use if splines vertical advection                     **
 **                                                                           **
-=======
-** OPTIONS for MPDATA 3D Advection: Hadvection(itrc,ng)%MPDATA and           **
-**                                  Vadvection(itrc,ng)%MPDATA switches      **
-**                                                                           **
-** TS_MPDATA_LIMIT     use to limit upwind corrector fluxes for stability    **
-**                                                                           **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ** Pressure gradient algorithm OPTIONS:                                      **
 **                                                                           **
 **   If no option is selected, the pressure gradient term is computed using  **
@@ -164,10 +145,6 @@
 ** WJ_GRADP            use if weighted density Jacobian (Song,1998)          **
 **                                                                           **
 ** ATM_PRESS           use to impose atmospheric pressure onto sea surface   **
-<<<<<<< HEAD
-=======
-** PRESS_COMPENSATE    use to compensate for boundary without ATM pressure   **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **                                                                           **
 ** OPTIONS for surface fluxes formulation using atmospheric boundary layer   **
 ** (Fairall et al, 1996):                                                    **
@@ -577,10 +554,6 @@
 ** Bio-optical EcoSim model OPTIONS:                                         **
 **                                                                           **
 ** ECOSIM              use if bio-optical EcoSim model                       **
-<<<<<<< HEAD
-=======
-** BIO_OPTICAL         use to compute underwater spectral light properties   **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **                                                                           **
 ** Nemuro lower trophic level ecosystem model OPTIONS:                       **
 **                                                                           **

@@ -427,19 +427,9 @@ module input_module
 #endif
      
          call ext_get_dom_ti_char          ('TITLE', title)
-<<<<<<< HEAD
          if (index(title,'GEOGRID V4.0.2') /= 0) then
             wps_version = 4.02
          else if (index(title,'GEOGRID V4.0.2') /= 0) then
-=======
-         if (index(title,'GEOGRID V4.1') /= 0) then
-            wps_version = 4.1
-         else if (index(title,'GEOGRID V4.0.3') /= 0) then
-            wps_version = 4.03
-         else if (index(title,'GEOGRID V4.0.2') /= 0) then
-            wps_version = 4.02
-         else if (index(title,'GEOGRID V4.0.1') /= 0) then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             wps_version = 4.01
          else if (index(title,'GEOGRID V4.0') /= 0) then
             wps_version = 4.0

@@ -2,15 +2,9 @@
 #ifdef ADJOINT
       SUBROUTINE ad_initial (ng)
 !
-<<<<<<< HEAD
 !svn $Id: ad_initial.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: ad_initial.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -91,11 +85,6 @@
       integer :: LBi, UBi, LBj, UBj
       integer :: Fcount, IniRec, Tindex
       integer :: thread, tile
-<<<<<<< HEAD
-=======
-
-      real(dp) :: my_dstart
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !=======================================================================
 !   Initialize model variables.
@@ -146,35 +135,6 @@
       synchro_flag(ng)=.TRUE.
       first_time(ng)=0
       ad_ubar_xs=0.0_r8
-<<<<<<< HEAD
-=======
-
-# ifdef GENERIC_DSTART
-!
-!  Rarely, the adjoint model is initialized from a NetCDF file, so we do
-!  not know its actual initialization time. Usually, it is computed from
-!  DSTART, implying that its value is correct in the ROMS input script.
-!  Therefore, the user needs to check and update its value to every time
-!  that ROMS is executed. Alternatively, if available, we can use the
-!  initialization time from the nonlinear model, INItime. This variable
-!  is assigned when computing or processing the basic state trajectory
-!  needed to linearize the adjoint model.
-!
-      IF (INItime(ng).lt.0.0_dp) THEN
-        my_dstart=dstart                    ! ROMS input script
-      ELSE
-        my_dstart=INItime(ng)/86400.0_dp    ! NLM IC time is known
-      END IF
-      tdays(ng)=my_dstart+dt(ng)*REAL(ntimes(ng),r8)*sec2day
-      time(ng)=tdays(ng)*day2sec
-!$OMP MASTER
-      ntstart(ng)=INT((time(ng)-dstart*day2sec)/dt(ng))+1
-      ntend(ng)=ntstart(ng)-ntimes(ng)-1
-      ntfirst(ng)=ntend(ng)
-!$OMP END MASTER
-!$OMP BARRIER
-#else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       tdays(ng)=dstart+dt(ng)*REAL(ntimes(ng)-ntfirst(ng)+1,r8)*sec2day
       time(ng)=tdays(ng)*day2sec
 !$OMP MASTER
@@ -183,10 +143,6 @@
       ntfirst(ng)=ntend(ng)
 !$OMP END MASTER
 !$OMP BARRIER
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       CALL time_string (time(ng), time_code(ng))
 
@@ -230,7 +186,6 @@
 !
       LwrtADJ(ng)=.TRUE.
 
-<<<<<<< HEAD
 #  ifndef WEAK_CONSTRAINT
 !
 !  Insure that forward and history file names are the same. In 4DVar,
@@ -245,8 +200,6 @@
       FWD(ng)%ncid=HIS(ng)%ncid
 #   endif
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  ifdef ADJUST_BOUNDARY
 !
 !  Initialize open boundary counter for storage arrays.
@@ -584,23 +537,7 @@
 !-----------------------------------------------------------------------
 !
 !$OMP MASTER
-<<<<<<< HEAD
       CALL obs_initial (ng, iADM, .TRUE.)
-=======
-# ifdef W4DPSAS_FCT_SENSITIVITY
-      IF (.not.LsenPSAS(ng).and.LsenFCT(ng)) THEN
-#  ifdef OBS_SPACE
-        IF (Lobspace(ng)) THEN
-#  endif
-# endif
-          CALL obs_initial (ng, iADM, .TRUE.)
-# ifdef OBS_SPACE
-        END IF
-# endif
-# ifdef W4DPSAS_FCT_SENSITIVITY
-      END IF
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !$OMP END MASTER
 !$OMP BARRIER
       IF (FoundError(exit_flag, NoError, __LINE__,                      &

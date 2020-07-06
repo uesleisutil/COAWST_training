@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       SUBROUTINE def_his (ng, ldef)
 !
-<<<<<<< HEAD
 !svn $Id: def_his.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: def_his.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -64,15 +58,10 @@
 #ifdef ADJUST_BOUNDARY
       integer :: IorJdim, brecdim
 #endif
-<<<<<<< HEAD
-=======
-      integer :: DimIDs(nDimID)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer :: t2dgrd(3), u2dgrd(3), v2dgrd(3)
 #ifdef ADJUST_BOUNDARY
       integer :: t2dobc(4)
 #endif
-<<<<<<< HEAD
 
 #if defined VEGETATION && (defined VEG_DRAG || defined VEG_BIOMASS)
       integer :: DimIDs(35)
@@ -85,9 +74,6 @@
 #endif
       integer :: Vsize(4)
 
-=======
-      integer :: Vsize(4)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer :: def_dim
 
 #ifdef INWAVE_MODEL
@@ -220,17 +206,10 @@
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
 #endif
-<<<<<<< HEAD
         
 #ifdef INWAVE_MODEL
         status=def_dim(ng, iNLM, HIS(ng)%ncid, ncname,'ND',             &
                        ND, DimIDs(33))
-=======
-
-#ifdef INWAVE_MODEL
-        status=def_dim(ng, iNLM, HIS(ng)%ncid, ncname,'ND',             &
-                       ND, DimIDs(34))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 
 #ifdef SOLVE3D
@@ -297,11 +276,7 @@
 
 # if defined ESTUARYBGC && defined SPECTRAL_LIGHT
         status=def_dim(ng, iNLM, HIS(ng)%ncid, ncname, 'NBAND',         &
-<<<<<<< HEAD
      &                 NBAND, DimIDs(34))
-=======
-     &                 NBAND, DimIDs(33))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
 # endif
@@ -314,14 +289,6 @@
 # endif
 
 # ifdef ECOSIM
-<<<<<<< HEAD
-=======
-        status=def_dim(ng, iNLM, HIS(ng)%ncid, ncname, 'Nbands',        &
-     &                 NBands, DimIDs(33))
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         status=def_dim(ng, iNLM, HIS(ng)%ncid, ncname, 'Nphy',          &
      &                 Nphy, DimIDs(25))
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
@@ -456,20 +423,6 @@
 # endif
 #endif
 !
-<<<<<<< HEAD
-=======
-!  Define dimensions for the plant array variables
-!
-#ifdef VEGETATION 
-# if defined VEG_DRAG || defined VEG_BIOMASS
-        v3pgrd(1)=DimIDs( 1)
-        v3pgrd(2)=DimIDs( 5)
-        v3pgrd(3)=DimIDs(35)
-        v3pgrd(4)=DimIDs(12)
-# endif 
-#endif 
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Define dimension vectors for staggered v-momentum type variables.
 !
 #if defined WRITE_WATER && defined MASKING
@@ -490,7 +443,6 @@
         v3dgrd(4)=DimIDs(12)
 # endif
 #endif
-<<<<<<< HEAD
 !
 !  Define dimensions for the plant array variables
 !
@@ -502,46 +454,28 @@
         v3pgrd(4)=DimIDs(12)
 # endif
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef INWAVE_MODEL
 !
 !  Define dimension vector for energy wave layer type variables.
 !
         r3degrd(1)=DimIDs( 1)
         r3degrd(2)=DimIDs( 5)
-<<<<<<< HEAD
         r3degrd(3)=DimIDs(33)
-=======
-        r3degrd(3)=DimIDs(34)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         r3degrd(4)=DimIDs(12)
 
         u3degrd(1)=DimIDs( 2)
         u3degrd(2)=DimIDs( 6)
-<<<<<<< HEAD
         u3degrd(3)=DimIDs(33)
-=======
-        u3degrd(3)=DimIDs(34)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         u3degrd(4)=DimIDs(12)
 
         v3degrd(1)=DimIDs( 3)
         v3degrd(2)=DimIDs( 7)
-<<<<<<< HEAD
         v3degrd(3)=DimIDs(33)
-=======
-        v3degrd(3)=DimIDs(34)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         v3degrd(4)=DimIDs(12)
 
         t3degrd(1)=DimIDs( 1)
         t3degrd(2)=DimIDs( 5)
-<<<<<<< HEAD
         t3degrd(3)=DimIDs(33)
-=======
-        t3degrd(3)=DimIDs(34)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         t3degrd(4)=DimIDs(12)
 #endif
 #ifdef SOLVE3D
@@ -577,11 +511,7 @@
 !
         s3dgrd(1)=DimIDs( 1)
         s3dgrd(2)=DimIDs( 5)
-<<<<<<< HEAD
         s3dgrd(3)=DimIDs(34)
-=======
-        s3dgrd(3)=DimIDs(33)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         s3dgrd(4)=DimIDs(12)
 # endif
 #endif
@@ -2065,12 +1995,7 @@
 #endif
 !
 # if defined ESTUARYBGC && defined SPECTRAL_LIGHT
-<<<<<<< HEAD
 !  Define Photosynthetically Available Radiation (PAR)
-=======
-!
-!  Define Photosynthetically Available Radiation (PAR).
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idPARo,ng)) THEN
           Vinfo( 1)=Vname(1,idPARo)
@@ -2088,12 +2013,7 @@
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
-<<<<<<< HEAD
 !  Define Spectral Photosynthetically Available Radiation (PARs)
-=======
-!
-!  Define Spectral Photosynthetically Available Radiation (PARs).
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idPARs,ng)) THEN
           Vinfo( 1)=Vname(1,idPARs)
@@ -2172,11 +2092,7 @@
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  Define Dissolved Oxygen in water column
-=======
-!  Define Dissolved Oxygen in water column.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(iddowc,ng)) THEN 
           Vinfo( 1)=Vname(1,iddowc)
@@ -2190,20 +2106,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,iddowc,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(iddowc),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  Define Dissolved Inorganic Nitrogen in water column due to SAV 
-=======
-!  Define Dissolved Inorganic Nitrogen in water column due to SAV.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idwsvl,ng)) THEN 
           Vinfo( 1)=Vname(1,idwsvl)
@@ -2217,20 +2125,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idwsvl,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idwsvl),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  Above ground biomass
-=======
-!  Define Above ground biomass.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idsagb,ng)) THEN
           Vinfo( 1)=Vname(1,idsagb)
@@ -2249,11 +2149,7 @@
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  Below ground biomass.
-=======
-! Define Below ground biomass.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idsbgb,ng)) THEN
           Vinfo( 1)=Vname(1,idsbgb)
@@ -2272,30 +2168,7 @@
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  PP
-=======
-! Define Epiphyte biomass.
-!
-        IF (Hout(idsepb,ng)) THEN
-          Vinfo( 1)=Vname(1,idsepb)
-          Vinfo( 2)=Vname(2,idsepb)
-          Vinfo( 3)=Vname(3,idsepb)
-          Vinfo(14)=Vname(4,idsepb)
-          Vinfo(16)=Vname(1,idsepb)
-#  if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#  endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idsepb,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsepb),   &
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-! Define Primary production.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idsvpp,ng)) THEN
           Vinfo( 1)=Vname(1,idsvpp)
@@ -2309,20 +2182,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsvpp,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvpp),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  AGM
-=======
-!  Define above ground mortality. 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idsvam,ng)) THEN
           Vinfo( 1)=Vname(1,idsvam)
@@ -2336,20 +2201,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsvam,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvam),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  AGAR
-=======
-!  Define active respiration.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idsgar,ng)) THEN
           Vinfo( 1)=Vname(1,idsgar)
@@ -2363,20 +2220,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsgar,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsgar),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  AGBR
-=======
-!  Define above ground basal respiration.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idsvbr,ng)) THEN
           Vinfo( 1)=Vname(1,idsvbr)
@@ -2390,20 +2239,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsvbr,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvbr),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  SEARS
-=======
-!  Define seasonal root storage of Carbon (SEARS).
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
         IF (Hout(idsvrs,ng)) THEN
           Vinfo( 1)=Vname(1,idsvrs)
@@ -2417,20 +2258,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsvrs,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvrs),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 ! AGBG
-=======
-! Define translocation of above ground biomass to below ground (AGBG).
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! 
         IF (Hout(idsvbg,ng)) THEN
           Vinfo( 1)=Vname(1,idsvbg)
@@ -2444,20 +2277,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsvbg,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvbg),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 ! BGAG
-=======
-! Define translocation of below ground biomass to above ground (BGAG).
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! 
         IF (Hout(idsvag,ng)) THEN
           Vinfo( 1)=Vname(1,idsvag)
@@ -2471,20 +2296,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsvag,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvag),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 ! BGR 
-=======
-! Define below ground biomass respiration. 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! 
         IF (Hout(idsbgr,ng)) THEN
           Vinfo( 1)=Vname(1,idsbgr)
@@ -2498,20 +2315,12 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsbgr,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsbgr),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 ! BGM
-=======
-! Define below ground mortality. 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! 
         IF (Hout(idsbgm,ng)) THEN
           Vinfo( 1)=Vname(1,idsbgm)
@@ -2525,11 +2334,7 @@
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idsbgm,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsbgm),   &
-<<<<<<< HEAD
      &                   NF_FOUT, nvd4, t3dgrd, Aval, Vinfo, ncname)
-=======
-     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
@@ -2711,51 +2516,6 @@
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
-<<<<<<< HEAD
-=======
-!
-!  Define wave number.
-!
-!        IF (Hout(idACkc,ng)) THEN
-        IF (Hout(idACtp,ng)) THEN
-          Vinfo( 1)=Vname(1,idACkc)
-          Vinfo( 2)=Vname(2,idACkc)
-          Vinfo( 3)=Vname(3,idACkc)
-          Vinfo(14)=Vname(4,idACkc)
-          Vinfo(16)=Vname(1,idtime)
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(r3dvar,r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idACkc),   &
-     &                   NF_FOUT, nvd4, t3degrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define bound wave.
-!
-!        IF (Hout(idACbz,ng)) THEN
-!          Vinfo( 1)=Vname(1,idACbz)
-!          Vinfo( 2)=Vname(2,idACbz)
-!          Vinfo( 3)=Vname(3,idACbz)
-!          Vinfo(14)=Vname(4,idACbz)
-!          Vinfo(16)=Vname(1,idtime)
-!# if defined WRITE_WATER && defined MASKING
-!          Vinfo(20)='mask_rho'
-!# endif
-!          Vinfo(22)='coordinates'
-!          Aval(5)=REAL(r3dvar,r8)
-!          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idACbz),   &
-!     &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-!          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-!     &                   __FILE__)) RETURN
-!        END IF
-
-
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #ifdef SOLVE3D
 # ifdef UV_KIRBY
@@ -3432,26 +3192,15 @@
           Vinfo( 3)=Vname(3,idUice)
           Vinfo(14)=Vname(4,idUice)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_u'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_u'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idUice,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idUice),   &
      &                     NF_FOUT, nvd3, u2dgrd, Aval, Vinfo, ncname)
-<<<<<<< HEAD
             IF (FoundError(exit_flag, NoError, __LINE__,                &
      &                     __FILE__)) RETURN
-=======
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END IF
 !
 !  Define 2D ice momentum in the ETA-direction.
@@ -3462,15 +3211,9 @@
           Vinfo( 3)=Vname(3,idVice)
           Vinfo(14)=Vname(4,idVice)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_v'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_v'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idVice,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idVice),   &
@@ -3487,15 +3230,9 @@
           Vinfo( 3)=Vname(3,idUiceE)
           Vinfo(14)=Vname(4,idUiceE)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idUiceE,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idUiceE),  &
@@ -3512,15 +3249,9 @@
           Vinfo( 3)=Vname(3,idViceN)
           Vinfo(14)=Vname(4,idViceN)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idViceN,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idViceN),  &
@@ -3537,15 +3268,9 @@
           Vinfo( 3)=Vname(3,idAice)
           Vinfo(14)=Vname(4,idAice)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idAice,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idAice),   &
@@ -3562,15 +3287,9 @@
           Vinfo( 3)=Vname(3,idHice)
           Vinfo(14)=Vname(4,idHice)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idHice,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idHice),   &
@@ -3587,15 +3306,9 @@
           Vinfo( 3)=Vname(3,idTice)
           Vinfo(14)=Vname(4,idTice)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idTice,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idTice),   &
@@ -3612,15 +3325,9 @@
           Vinfo( 3)=Vname(3,idHsno)
           Vinfo(14)=Vname(4,idHsno)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idHsno,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idHsno),   &
@@ -3628,7 +3335,6 @@
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
-<<<<<<< HEAD
 #ifdef MELT_PONDS
 !
 !  Define surface water fraction (on ice).
@@ -3669,8 +3375,6 @@
      &                   __FILE__)) RETURN
         END IF
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Define ice age.
 !
@@ -3680,15 +3384,9 @@
           Vinfo( 3)=Vname(3,idAgeice)
           Vinfo(14)=Vname(4,idAgeice)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idAgeice,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idAgeice), &
@@ -3705,15 +3403,9 @@
           Vinfo( 3)=Vname(3,idIomflx)
           Vinfo(14)=Vname(4,idIomflx)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idIomflx,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idIomflx), &
@@ -3730,15 +3422,9 @@
           Vinfo( 3)=Vname(3,idTimid)
           Vinfo(14)=Vname(4,idTimid)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idTimid,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idTimid),  &
@@ -3747,28 +3433,6 @@
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
-=======
-!  Define ice top temperature.
-!
-        IF (Hout(idT2ice,ng)) THEN
-          Vinfo( 1)=Vname(1,idT2ice)
-          Vinfo( 2)=Vname(2,idT2ice)
-          Vinfo( 3)=Vname(3,idT2ice)
-          Vinfo(14)=Vname(4,idT2ice)
-          Vinfo(16)=Vname(1,idtime)
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idT2ice,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idT2ice),  &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Define internal ice stress component 11.
 !
         IF (Hout(idSig11,ng)) THEN
@@ -3777,15 +3441,9 @@
           Vinfo( 3)=Vname(3,idSig11)
           Vinfo(14)=Vname(4,idSig11)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idSig11,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSig11),  &
@@ -3802,15 +3460,9 @@
           Vinfo( 3)=Vname(3,idSig22)
           Vinfo(14)=Vname(4,idSig22)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idSig22,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSig22),  &
@@ -3827,15 +3479,9 @@
           Vinfo( 3)=Vname(3,idSig12)
           Vinfo(14)=Vname(4,idSig12)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idSig12,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSig12),  &
@@ -3852,15 +3498,9 @@
           Vinfo( 3)=Vname(3,idTauiw)
           Vinfo(14)=Vname(4,idTauiw)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idTauiw,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idTauiw),  &
@@ -3877,15 +3517,9 @@
           Vinfo( 3)=Vname(3,idChuiw)
           Vinfo(14)=Vname(4,idChuiw)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idChuiw,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idChuiw),  &
@@ -3902,15 +3536,9 @@
           Vinfo( 3)=Vname(3,idS0mk)
           Vinfo(14)=Vname(4,idS0mk)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idS0mk,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idS0mk), &
@@ -3927,15 +3555,9 @@
           Vinfo( 3)=Vname(3,idT0mk)
           Vinfo(14)=Vname(4,idT0mk)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idT0mk,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idT0mk), &
@@ -3952,15 +3574,9 @@
           Vinfo( 3)=Vname(3,idWfr)
           Vinfo(14)=Vname(4,idWfr)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idWfr,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idWfr),    &
@@ -3977,15 +3593,9 @@
           Vinfo( 3)=Vname(3,idWai)
           Vinfo(14)=Vname(4,idWai)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idWai,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idWai),    &
@@ -4002,15 +3612,9 @@
           Vinfo( 3)=Vname(3,idWao)
           Vinfo(14)=Vname(4,idWao)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idWao,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idWao),    &
@@ -4027,15 +3631,9 @@
           Vinfo( 3)=Vname(3,idWio)
           Vinfo(14)=Vname(4,idWio)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idWio,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idWio),    &
@@ -4052,15 +3650,9 @@
           Vinfo( 3)=Vname(3,idWro)
           Vinfo(14)=Vname(4,idWro)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idWro,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idWro),    &
@@ -4077,15 +3669,9 @@
           Vinfo( 3)=Vname(3,idWdiv)
           Vinfo(14)=Vname(4,idWdiv)
           Vinfo(16)=Vname(1,idtime)
-<<<<<<< HEAD
 #if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 #endif
-=======
-# if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idWdiv,ng),r8)
           status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idWdiv),   &
@@ -4094,336 +3680,7 @@
      &                   __FILE__)) RETURN
         END IF
 #endif
-<<<<<<< HEAD
 #ifdef WEC_MELLOR
-=======
-#ifdef ICE_DIAGS
-!
-!  Define ocean albedo
-!
-        IF (Hout(idAlbe,ng)) THEN
-          Vinfo( 1)=Vname(1,idAlbe)
-          Vinfo( 2)=Vname(2,idAlbe)
-          Vinfo( 3)=Vname(3,idAlbe)
-          Vinfo(14)=Vname(4,idAlbe)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idAlbe,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idAlbe),   &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice albedo
-!
-        IF (Hout(idAlbI,ng)) THEN
-          Vinfo( 1)=Vname(1,idAlbI)
-          Vinfo( 2)=Vname(2,idAlbI)
-          Vinfo( 3)=Vname(3,idAlbI)
-          Vinfo(14)=Vname(4,idAlbI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idAlbI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idAlbI),   &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define downward longwave radiation
-!
-        IF (Hout(idLWdn,ng)) THEN
-          Vinfo( 1)=Vname(1,idLWdn)
-          Vinfo( 2)=Vname(2,idLWdn)
-          Vinfo( 3)=Vname(3,idLWdn)
-          Vinfo(14)=Vname(4,idLWdn)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idLWdn,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idLWdn),   &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define downward shortwave radiation
-!
-        IF (Hout(idSWdn,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWdn)
-          Vinfo( 2)=Vname(2,idSWdn)
-          Vinfo( 3)=Vname(3,idSWdn)
-          Vinfo(14)=Vname(4,idSWdn)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSWdn,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSWdn),   &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define latent heat over ice
-!
-        IF (Hout(idLatI,ng)) THEN
-          Vinfo( 1)=Vname(1,idLatI)
-          Vinfo( 2)=Vname(2,idLatI)
-          Vinfo( 3)=Vname(3,idLatI)
-          Vinfo(14)=Vname(4,idLatI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idLatI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idLatI),   &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define sensible heat over ice
-!
-        IF (Hout(idSenI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSenI)
-          Vinfo( 2)=Vname(2,idSenI)
-          Vinfo( 3)=Vname(3,idSenI)
-          Vinfo(14)=Vname(4,idSenI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSenI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSenI),   &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define upward longwave over ice
-!
-        IF (Hout(idLWupI,ng)) THEN
-          Vinfo( 1)=Vname(1,idLWupI)
-          Vinfo( 2)=Vname(2,idLWupI)
-          Vinfo( 3)=Vname(3,idLWupI)
-          Vinfo(14)=Vname(4,idLWupI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idLWupI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idLWupI),  &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define upward shortwave over ice
-!
-        IF (Hout(idSWupI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWupI)
-          Vinfo( 2)=Vname(2,idSWupI)
-          Vinfo( 3)=Vname(3,idSWupI)
-          Vinfo(14)=Vname(4,idSWupI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSWupI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSWupI),  &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define shortwave into ice
-!
-        IF (Hout(idSWinI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWinI)
-          Vinfo( 2)=Vname(2,idSWinI)
-          Vinfo( 3)=Vname(3,idSWinI)
-          Vinfo(14)=Vname(4,idSWinI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSWinI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSWinI),  &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define shortwave through ice
-!
-        IF (Hout(idSWthruI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWthruI)
-          Vinfo( 2)=Vname(2,idSWthruI)
-          Vinfo( 3)=Vname(3,idSWthruI)
-          Vinfo(14)=Vname(4,idSWthruI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSWthruI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSWthruI),&
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define salt flux under ice
-!
-        IF (Hout(idSaltI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSaltI)
-          Vinfo( 2)=Vname(2,idSaltI)
-          Vinfo( 3)=Vname(3,idSaltI)
-          Vinfo(14)=Vname(4,idSaltI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSaltI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSaltI),  &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define salt flux through leads
-!
-        IF (Hout(idSaltL,ng)) THEN
-          Vinfo( 1)=Vname(1,idSaltL)
-          Vinfo( 2)=Vname(2,idSaltL)
-          Vinfo( 3)=Vname(3,idSaltL)
-          Vinfo(14)=Vname(4,idSaltL)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSaltL,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSaltL),  &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define heat flux through leads
-!
-        IF (Hout(idQao,ng)) THEN
-          Vinfo( 1)=Vname(1,idQao)
-          Vinfo( 2)=Vname(2,idQao)
-          Vinfo( 3)=Vname(3,idQao)
-          Vinfo(14)=Vname(4,idQao)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idQao,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idQao),    &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice-air heat flux
-!
-        IF (Hout(idQai,ng)) THEN
-          Vinfo( 1)=Vname(1,idQai)
-          Vinfo( 2)=Vname(2,idQai)
-          Vinfo( 3)=Vname(3,idQai)
-          Vinfo(14)=Vname(4,idQai)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idQai,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idQai),    &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice-ocean heat flux
-!
-        IF (Hout(idQio,ng)) THEN
-          Vinfo( 1)=Vname(1,idQio)
-          Vinfo( 2)=Vname(2,idQio)
-          Vinfo( 3)=Vname(3,idQio)
-          Vinfo(14)=Vname(4,idQio)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idQio,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idQio),    &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice heat flux
-!
-        IF (Hout(idQi2,ng)) THEN
-          Vinfo( 1)=Vname(1,idQi2)
-          Vinfo( 2)=Vname(2,idQi2)
-          Vinfo( 3)=Vname(3,idQi2)
-          Vinfo(14)=Vname(4,idQi2)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idQi2,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idQi2),    &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define snow-ice conversion
-!
-        IF (Hout(idSnoI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSnoI)
-          Vinfo( 2)=Vname(2,idSnoI)
-          Vinfo( 3)=Vname(3,idSnoI)
-          Vinfo(14)=Vname(4,idSnoI)
-          Vinfo(16)=Vname(1,idtime)
-#if defined WRITE_WATER && defined MASKING
-          Vinfo(20)='mask_rho'
-#endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idSnoI,ng),r8)
-          status=def_var(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idSnoI),   &
-     &                     NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-#endif
-#ifdef NEARSHORE_MELLOR
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Define 2D radiation stress, Sxx-component.
 !
@@ -5575,7 +4832,6 @@
             got_var(idIceLog)=.true.
             HIS(ng)%Vid(idIceLog)=var_id(i)
 # endif
-<<<<<<< HEAD
 # ifdef MELT_PONDS
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idApond))) THEN
             got_var(idApond)=.true.
@@ -5584,8 +4840,6 @@
             got_var(idHpond)=.true.
             HIS(ng)%Vid(idHpond)=var_id(i)
 # endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idAgeice))) THEN
             got_var(idAgeice)=.true.
             HIS(ng)%Vid(idAgeice)=var_id(i)
@@ -5595,12 +4849,6 @@
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idTimid))) THEN
             got_var(idTimid)=.true.
             HIS(ng)%Vid(idTimid)=var_id(i)
-<<<<<<< HEAD
-=======
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idT2ice))) THEN
-            got_var(idT2ice)=.true.
-            HIS(ng)%Vid(idT2ice)=var_id(i)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSig11))) THEN
             got_var(idSig11)=.true.
             HIS(ng)%Vid(idSig11)=var_id(i)
@@ -5640,62 +4888,6 @@
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idWdiv))) THEN
             got_var(idWdiv)=.true.
             HIS(ng)%Vid(idWdiv)=var_id(i)
-<<<<<<< HEAD
-=======
-# ifdef ICE_DIAGS
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idAlbe))) THEN
-            got_var(idAlbe)=.true.
-            HIS(ng)%Vid(idAlbe)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idAlbI))) THEN
-            got_var(idAlbI)=.true.
-            HIS(ng)%Vid(idAlbI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idLWdn))) THEN
-            got_var(idLWdn)=.true.
-            HIS(ng)%Vid(idLWdn)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWdn))) THEN
-            got_var(idSWdn)=.true.
-            HIS(ng)%Vid(idSWdn)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idLatI))) THEN
-            got_var(idLatI)=.true.
-            HIS(ng)%Vid(idLatI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSenI))) THEN
-            got_var(idSenI)=.true.
-            HIS(ng)%Vid(idSenI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idLWupI))) THEN
-            got_var(idLWupI)=.true.
-            HIS(ng)%Vid(idLWupI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWupI))) THEN
-            got_var(idSWupI)=.true.
-            HIS(ng)%Vid(idSWupI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWinI))) THEN
-            got_var(idSWinI)=.true.
-            HIS(ng)%Vid(idSWinI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWthruI))) THEN
-            got_var(idSWthruI)=.true.
-            HIS(ng)%Vid(idSWthruI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSaltI))) THEN
-            got_var(idSaltI)=.true.
-            HIS(ng)%Vid(idSaltI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSaltL))) THEN
-            got_var(idSaltL)=.true.
-            HIS(ng)%Vid(idSaltL)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQao))) THEN
-            got_var(idQao)=.true.
-            HIS(ng)%Vid(idQao)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQai))) THEN
-            got_var(idQai)=.true.
-            HIS(ng)%Vid(idQai)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQio))) THEN
-            got_var(idQio)=.true.
-            HIS(ng)%Vid(idQio)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQi2))) THEN
-            got_var(idQi2)=.true.
-            HIS(ng)%Vid(idQi2)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSnoI))) THEN
-            got_var(idSnoI)=.true.
-            HIS(ng)%Vid(idSnoI)=var_id(i)
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #if defined WEC_MELLOR
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idW2xx))) THEN
@@ -5882,24 +5074,12 @@
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idACtp))) THEN
             got_var(idACtp)=.TRUE.
             HIS(ng)%Vid(idACtp)=var_id(i)
-<<<<<<< HEAD
-=======
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idACkc))) THEN
-            got_var(idACkc)=.TRUE.
-            HIS(ng)%Vid(idACkc)=var_id(i)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idWdib))) THEN
             got_var(idWdib)=.TRUE.
             HIS(ng)%Vid(idWdib)=var_id(i)
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idWdiw))) THEN
             got_var(idWdiw)=.TRUE.
             HIS(ng)%Vid(idWdiw)=var_id(i)
-<<<<<<< HEAD
-=======
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idACbz))) THEN
-            got_var(idACbz)=.TRUE.
-            HIS(ng)%Vid(idACbz)=var_id(i)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #ifdef BEDLOAD_VANDERA
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idsurs))) THEN
@@ -6552,15 +5732,6 @@
           exit_flag=3
           RETURN
         END IF
-<<<<<<< HEAD
-=======
-        IF (.not.got_var(idACkc).and.Hout(idACkc,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idACkc)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (.not.got_var(idWdib).and.Hout(idWdib,ng)) THEN
           IF (Master) WRITE (stdout,70) TRIM(Vname(1,idWdib)),          &
      &                                  TRIM(ncname)
@@ -6573,15 +5744,6 @@
           exit_flag=3
           RETURN
         END IF
-<<<<<<< HEAD
-=======
-        IF (.not.got_var(idACbz).and.Hout(idACbz,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idACbz)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # ifdef UV_KIRBY
         IF (.not.got_var(idUwav).and.Hout(idUwav,ng)) THEN
@@ -6721,7 +5883,6 @@
      &                                  TRIM(ncname)
           exit_flag=3
           RETURN
-<<<<<<< HEAD
         END IF            
 # endif
 # ifdef MELT_PONDS
@@ -6736,8 +5897,6 @@
      &                                  TRIM(ncname)
           exit_flag=3
           RETURN
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END IF
 # endif
         IF (.not.got_var(idAgeice).and.Hout(idAgeice,ng)) THEN
@@ -6758,15 +5917,6 @@
           exit_flag=3
           RETURN
         END IF
-<<<<<<< HEAD
-=======
-        IF (.not.got_var(idT2ice).and.Hout(idT2ice,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idT2ice)),         &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (.not.got_var(idSig11).and.Hout(idSig11,ng)) THEN
           IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSig11)),         &
      &                                  TRIM(ncname)
@@ -6845,113 +5995,6 @@
           exit_flag=3
           RETURN
         END IF
-<<<<<<< HEAD
-=======
-# ifdef ICE_DIAGS
-        IF (.not.got_var(idAlbe).and.Hout(idAlbe,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idAlbe)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idAlbI).and.Hout(idAlbI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idAlbI)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idLWdn).and.Hout(idLWdn,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idLWdn)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSWdn).and.Hout(idSWdn,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSWdn)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idLatI).and.Hout(idLatI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idLatI)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSenI).and.Hout(idSenI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSenI)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idLWupI).and.Hout(idLWupI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idLWupI)),         &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSWupI).and.Hout(idSWupI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSWupI)),         &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSWinI).and.Hout(idSWinI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSWinI)),         &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSWthruI).and.Hout(idSWthruI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSWthruI)),       &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSaltI).and.Hout(idSaltI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSaltI)),         &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSaltL).and.Hout(idSaltL,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSaltL)),         &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idQao).and.Hout(idQao,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idQao)),           &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idQai).and.Hout(idQai,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idQai)),           &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idQio).and.Hout(idQio,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idQio)),           &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idQi2).and.Hout(idQi2,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idQi2)),           &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-        IF (.not.got_var(idSnoI).and.Hout(idSnoI,ng)) THEN
-          IF (Master) WRITE (stdout,70) TRIM(Vname(1,idSnoI)),          &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #if defined WEC_MELLOR
         IF (.not.got_var(idW2xx).and.Hout(idW2xx,ng)) THEN

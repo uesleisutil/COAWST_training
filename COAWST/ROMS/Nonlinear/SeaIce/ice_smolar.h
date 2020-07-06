@@ -1,11 +1,7 @@
        SUBROUTINE ice_advect (ng, tile)
 !
 !*************************************************** W. Paul Budgell ***
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group                        **
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                        **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !************************************************** Hernan G. Arango ***
 !                                                                      !
 !  This subroutine performs advection of ice scalars using the         !
@@ -23,11 +19,7 @@
 #include "tile.h"
 
 #ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_on (ng, iNLM, 56)
-=======
-      CALL wclock_on (ng, iNLM, 79, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 ! ---------------------------------------------------------------------
 !  Advect the ice concentration.
@@ -37,11 +29,7 @@
      &                      IminS, ImaxS, JminS, JmaxS                  &
      &                      )
 #ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_off (ng, iNLM, 56)
-=======
-      CALL wclock_off (ng, iNLM, 79, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
       RETURN
       END SUBROUTINE ice_advect
@@ -322,7 +310,6 @@
 !
 # endif
 !
-<<<<<<< HEAD
 # ifdef MELT_PONDS
 ! ---------------------------------------------------------------------
 !  Advect the surface melt water.
@@ -443,8 +430,6 @@
      &                  ICE(ng)%hpond, LBC(:,isHpond,ng))
 # endif
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! ---------------------------------------------------------------------
 !  Advect the interior ice temperature.
 ! ---------------------------------------------------------------------
@@ -576,7 +561,6 @@
         CALL exchange_r2d_tile (ng, tile,                               &
      &                          LBi, UBi, LBj, UBj,                     &
      &                          ICE(ng)%hsn(:,:,linew(ng)))
-<<<<<<< HEAD
 # ifdef MELT_PONDS
         CALL exchange_r2d_tile (ng, tile,                               &
      &                          LBi, UBi, LBj, UBj,                     &
@@ -585,8 +569,6 @@
      &                          LBi, UBi, LBj, UBj,                     &
      &                          ICE(ng)%hpond(:,:,linew(ng)))
 # endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         CALL exchange_r2d_tile (ng, tile,                               &
      &                          LBi, UBi, LBj, UBj,                     &
      &                          ICE(ng)%ti(:,:,linew(ng)))
@@ -625,7 +607,6 @@
      &                    ICE(ng)%enthalpi(:,:,linew(ng)),              &
      &                    ICE(ng)%ageice(:,:,linew(ng)),                &
      &                    ICE(ng)%hage(:,:,linew(ng)))
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
       CALL mp_exchange2d (ng, tile, iNLM, 2,                            &
      &                    LBi, UBi, LBj, UBj,                           &
@@ -633,8 +614,6 @@
      &                    ICE(ng)%apond(:,:,linew(ng)),                 &
      &                    ICE(ng)%hpond(:,:,linew(ng)))
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  if defined ICE_BIO && defined BERING_10K
       CALL mp_exchange2d (ng, tile, iNLM, 3,                            &
      &                    LBi, UBi, LBj, UBj,                           &

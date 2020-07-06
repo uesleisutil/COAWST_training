@@ -308,10 +308,6 @@
   DATA NMOVE/0/,NVOLA/61/
   character*140 file_name_on_obs_unit, obs_domain_file_name
   integer :: obs_domain_file_unit
-<<<<<<< HEAD
-=======
-  integer :: ndx
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 ! if(ieof(inest).eq.2.and.fdob%nstat.eq.0)then
 !   IF (iprt) print *,'returning from in4dob'
@@ -949,17 +945,9 @@
 !======================================================================
 !======================================================================
 ! check if ob time is too early (only applies to beginning)
-<<<<<<< HEAD
       IF(RTIMOB.LT.TBACK-TWINDO)then
         IF (iprt) call wrf_message("ob too early")
         n=n-1
-=======
-      IF(RTIMOB.LT.TBACK)then
-        IF (iprt) call wrf_message("ob too early")
-!       Adjust n to omit ALL levels of the current observation
-!       since it is too early
-        n=n-meas_count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         GOTO 110
       ENDIF
 
@@ -1251,24 +1239,6 @@
         TIMEOB(N)=99999.
       ENDDO
     ENDIF
-<<<<<<< HEAD
-=======
-
-    ! Update the indices of the observations to print
-    ! Since the old observations have been removed from the beginning
-    ! of the list, need to update the variable with the list of 
-    ! ob index numbers to be printed 
-    DO ndx = 1,prt_max
-     if (obs_prt(ndx)>ndum) THEN
-      ! If the ob was not one of the removed obs 
-      obs_prt(ndx)=obs_prt(ndx)-ndum
-     else
-      ! If the ob was one of the removed obs then mark it as not to be printed
-      obs_prt(ndx)=-999
-     endif
-    ENDDO
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   ENDIF
 !CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
   NSTA=0

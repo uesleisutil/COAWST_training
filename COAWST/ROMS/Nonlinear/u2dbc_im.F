@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE u2dbc_mod
 !
-<<<<<<< HEAD
 !svn $Id: u2dbc_im.F 925 2018-10-09 17:08:26Z arango $
 !=======================================================================
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: u2dbc_im.F 995 2020-01-10 04:01:28Z arango $
-!=======================================================================
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                           Hernan G. Arango   !
 !========================================== Alexander F. Shchepetkin ===
@@ -104,33 +98,20 @@
 
       real(r8), parameter :: eps = 1.0E-20_r8
 
-<<<<<<< HEAD
       real(r8) :: Ce, Cx, Zx, ramp
       real(r8) :: bry_pgr, bry_cor, bry_str, bry_val
       real(r8) :: cff, cff1, cff2, cff3, dt2d, dUde, dUdt, dUdx
       real(r8) :: obc_in, obc_out, phi, tau
-=======
-      real(r8) :: Ce, Cx, Zx
-      real(r8) :: bry_pgr, bry_cor, bry_str, bry_val
-      real(r8) :: cff, cff1, cff2, cff3, dt2d, dUde, dUdt, dUdx
-      real(r8) :: obc_in, obc_out, phi, tau
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-      real(r8) :: OneAtm, fac
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8), dimension(IminS:ImaxS,JminS:JmaxS) :: grad
 
 #include "set_bounds.h"
-<<<<<<< HEAD
 
 #ifdef SANDY_INWAVE
       ramp=TANH((tdays(ng)-dstart)/0.15_r8)
 #else
       ramp=1.0_r8
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Set time-indices
@@ -146,13 +127,6 @@
         know=kstp
         dt2d=dtfast(ng)
       END IF
-<<<<<<< HEAD
-=======
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-      OneAtm=1013.25_r8                  ! 1 atm = 1013.25 mb
-      fac=100.0_r8/(g*rho0)
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Lateral boundary conditions at the western edge.
@@ -316,27 +290,10 @@
      &                            zeta(Istr  ,j,know)))
 #endif
               Cx=SQRT(g*cff)
-<<<<<<< HEAD
-=======
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-              ubar(Istr,j,kout)=bry_val-                                &
-     &                          Cx*(0.5_r8*                             &
-     &                              (zeta(Istr-1,j,know)+               &
-     &                               zeta(Istr  ,j,know)+               &
-     &                               fac*(FORCES(ng)%Pair(Istr-1,j)+    &
-     &                                    FORCES(ng)%Pair(Istr  ,j)-    &
-     &                                    2.0_r8*OneAtm))-              &
-     &                              BOUNDARY(ng)%zeta_west(j))
-#else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               ubar(Istr,j,kout)=bry_val-                                &
      &                          Cx*(0.5_r8*(zeta(Istr-1,j,know)+        &
      &                                      zeta(Istr  ,j,know))-       &
      &                              BOUNDARY(ng)%zeta_west(j))
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef MASKING
               ubar(Istr,j,kout)=ubar(Istr,j,kout)*                      &
      &                          GRID(ng)%umask(Istr,j)
@@ -709,27 +666,10 @@
      &                            zeta(Iend+1,j,know)))
 #endif
               Cx=SQRT(g*cff)
-<<<<<<< HEAD
-=======
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-              ubar(Iend+1,j,kout)=bry_val+                              &
-     &                            Cx*(0.5_r8*                           &
-     &                                (zeta(Iend  ,j,know)+             &
-     &                                 zeta(Iend+1,j,know)+             &
-     &                                 fac*(FORCES(ng)%Pair(Iend  ,j)+  &
-     &                                      FORCES(ng)%Pair(Iend+1,j)-  &
-     &                                      2.0_r8*OneAtm))-            &
-     &                                BOUNDARY(ng)%zeta_east(j))
-#else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               ubar(Iend+1,j,kout)=bry_val+                              &
      &                            Cx*(0.5_r8*(zeta(Iend  ,j,know)+      &
      &                                        zeta(Iend+1,j,know))-     &
      &                                BOUNDARY(ng)%zeta_east(j))
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef MASKING
               ubar(Iend+1,j,kout)=ubar(Iend+1,j,kout)*                  &
      &                            GRID(ng)%umask(Iend+1,j)

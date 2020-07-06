@@ -22,10 +22,7 @@ subroutine da_get_innov_vector_rttov (it, grid, ob, iv)
    integer  :: i, j, k  ! Index dimension.
    integer  :: nlevels  ! Number of obs levels.
    integer  :: nchanprof, errorstatus
-<<<<<<< HEAD
    integer  :: ir_atlas_version, mw_atlas_version
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    character(len=256) :: atlas_path
    real*8                           :: seap, icep, lndp, snop
@@ -45,11 +42,7 @@ real,allocatable :: temp(:), temp2(:), temp3(:,:)
    type(aux_vars_type),  allocatable :: aux_vars(:)
 
    type(rttov_chanprof), allocatable :: chanprof(:)
-<<<<<<< HEAD
    type(profile_type), allocatable   :: profiles(:)
-=======
-   type(rttov_profile), allocatable   :: profiles(:)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    ! variables for computing clwp
    real, allocatable :: dpf(:,:), clw(:,:), pf(:,:)
@@ -210,12 +203,9 @@ real,allocatable :: temp(:), temp2(:), temp3(:,:)
       if ( rttov_emis_atlas_ir > 0 .or. rttov_emis_atlas_mw > 0 ) then
          ! set up emissivity atlas
          atlas_path = 'emis_data/'
-<<<<<<< HEAD
          ir_atlas_version = 100
          mw_atlas_version = 100   ! TELSEM
          if ( rttov_emis_atlas_mw == 2 ) mw_atlas_version = 200   ! CNRW
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          write(unit=message(1),fmt='(A,A)')  &
             'Setting up emissivity atlas for instrument ', trim(iv%instid(inst)%rttovid_string)
          call da_message(message(1:1))
@@ -223,19 +213,10 @@ real,allocatable :: temp(:), temp2(:), temp3(:,:)
             errorstatus,                                   & ! out
             opts(inst),                                    & ! in
             grid%start_month,                              & ! in
-<<<<<<< HEAD
             coefs(inst),                                   & ! in
             path = trim(atlas_path),                       & ! in, optional
             ir_atlas_ver = ir_atlas_version,               & ! in, optional
             mw_atlas_ver = mw_atlas_version)                 ! in, optional
-=======
-            atlas_type(inst),                              & ! in
-            atlas,                                         & ! inout
-            atlas_id(inst),                                & ! in, optional
-            path = trim(atlas_path),                       & ! in, optional
-            coefs = coefs(inst))                             ! in
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          if ( errorstatus /= errorstatus_success ) then
             call da_error(__FILE__,__LINE__, &
                (/"failure in setting up emissivity atlas"/))
@@ -253,19 +234,11 @@ real,allocatable :: temp(:), temp2(:), temp3(:,:)
             ! latitude, longitude, surftype are used for retreiving emis from atlas
             ! zenangle is used by MW emmisivity atlas
             ! snow_frac is used only by IR emmisivity atlas
-<<<<<<< HEAD
             profiles(n-n1+1)%latitude      = iv%instid(inst)%info%lat(1,n)
             profiles(n-n1+1)%longitude     = iv%instid(inst)%info%lon(1,n)
             profiles(n-n1+1)%zenangle      = iv%instid(inst)%satzen(n)
             profiles(n-n1+1)%skin%surftype = iv%instid(inst)%surftype(n)
             profiles(n-n1+1)%snow_frac     = iv%instid(inst)%snow_frac(n)
-=======
-            profiles(n-n1+1)%latitude           = iv%instid(inst)%info%lat(1,n)
-            profiles(n-n1+1)%longitude          = iv%instid(inst)%info%lon(1,n)
-            profiles(n-n1+1)%zenangle           = iv%instid(inst)%satzen(n)
-            profiles(n-n1+1)%skin%surftype      = iv%instid(inst)%surftype(n)
-            profiles(n-n1+1)%skin%snow_fraction = iv%instid(inst)%snow_frac(n)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          end do
 
          ! Retrieve values from atlas
@@ -275,10 +248,6 @@ real,allocatable :: temp(:), temp2(:), temp3(:,:)
             chanprof,                           & ! in
             profiles,                           & ! in
             coefs(inst),                        & ! in
-<<<<<<< HEAD
-=======
-            atlas,                              &! in
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             emissivity=emissivity(:)%emis_in )    ! out
          if ( errorstatus /= errorstatus_success ) then
             call da_error(__FILE__,__LINE__, &
@@ -408,11 +377,7 @@ real,allocatable :: temp(:), temp2(:), temp3(:,:)
       deallocate (emissivity)
 
       if ( rttov_emis_atlas_ir > 0 .or. rttov_emis_atlas_mw > 0 ) then
-<<<<<<< HEAD
          call rttov_deallocate_emis_atlas(coefs(inst))
-=======
-         call rttov_deallocate_emis_atlas(atlas)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       end if
 
    end do        ! end loop for sensor

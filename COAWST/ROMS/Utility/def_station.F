@@ -2,15 +2,9 @@
 #ifdef STATIONS
       SUBROUTINE def_station (ng, ldef)
 !
-<<<<<<< HEAD
 !svn $Id: def_station.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: def_station.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -56,12 +50,8 @@
       integer :: i, j, recdim, stadim
       integer :: status
 
-<<<<<<< HEAD
       integer :: DimIDs(32), pgrd(2)
       integer :: Vsize(4)
-=======
-      integer :: DimIDs(nDimID), pgrd(2)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       integer :: def_dim
 
@@ -147,14 +137,6 @@
      &                 __FILE__)) RETURN
 #  endif
 #  ifdef ECOSIM
-<<<<<<< HEAD
-=======
-        status=def_dim(ng, iNLM, STA(ng)%ncid, ncname, 'Nbands',        &
-     &                 NBands, DimIDs(33))
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         status=def_dim(ng, iNLM, STA(ng)%ncid, ncname, 'Nphy',          &
      &                 Nphy, DimIDs(25))
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
@@ -2051,7 +2033,6 @@
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
-<<<<<<< HEAD
 #ifdef MELT_PONDS
 !
 !  Define surface water fraction (on ice).
@@ -2086,8 +2067,6 @@
      &                   __FILE__)) RETURN
         END IF
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Define ice age
 !
@@ -2137,25 +2116,6 @@
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
-=======
-!  Define ice top temperature.
-!
-        IF (Sout(idT2ice,ng)) THEN
-          Vinfo( 1)=Vname(1,idT2ice)
-          Vinfo( 2)=Vname(2,idT2ice)
-          Vinfo( 3)=Vname(3,idT2ice)
-          Vinfo(14)=Vname(4,idT2ice)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idT2ice),  &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Define ice-water friction velocity.
 !
         IF (Sout(idTauiw,ng)) THEN
@@ -2301,25 +2261,6 @@
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
-=======
-!  Define ice divergence rate
-!
-        IF (Sout(idWdiv,ng)) THEN
-          Vinfo( 1)=Vname(1,idWdiv)
-          Vinfo( 2)=Vname(2,idWdiv)
-          Vinfo( 3)=Vname(3,idWdiv)
-          Vinfo(14)=Vname(4,idWdiv)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idWdiv),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Define internal ice stress sig11
 !
         IF (Sout(idSig11,ng)) THEN
@@ -2367,283 +2308,6 @@
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
         END IF
-<<<<<<< HEAD
-=======
-# ifdef ICE_DIAGS
-!
-!  Define ocean albedo
-!
-        IF (Sout(idAlbe,ng)) THEN
-          Vinfo( 1)=Vname(1,idAlbe)
-          Vinfo( 2)=Vname(2,idAlbe)
-          Vinfo( 3)=Vname(3,idAlbe)
-          Vinfo(14)=Vname(4,idAlbe)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idAlbe),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice albedo
-!
-        IF (Sout(idAlbI,ng)) THEN
-          Vinfo( 1)=Vname(1,idAlbI)
-          Vinfo( 2)=Vname(2,idAlbI)
-          Vinfo( 3)=Vname(3,idAlbI)
-          Vinfo(14)=Vname(4,idAlbI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idAlbI),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define downward longwave
-!
-        IF (Sout(idLWdn,ng)) THEN
-          Vinfo( 1)=Vname(1,idLWdn)
-          Vinfo( 2)=Vname(2,idLWdn)
-          Vinfo( 3)=Vname(3,idLWdn)
-          Vinfo(14)=Vname(4,idLWdn)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idLWdn),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define downward shortwave
-!
-        IF (Sout(idSWdn,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWdn)
-          Vinfo( 2)=Vname(2,idSWdn)
-          Vinfo( 3)=Vname(3,idSWdn)
-          Vinfo(14)=Vname(4,idSWdn)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSWdn),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice latent heat
-!
-        IF (Sout(idLatI,ng)) THEN
-          Vinfo( 1)=Vname(1,idLatI)
-          Vinfo( 2)=Vname(2,idLatI)
-          Vinfo( 3)=Vname(3,idLatI)
-          Vinfo(14)=Vname(4,idLatI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idLatI),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice sensible heat
-!
-        IF (Sout(idSenI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSenI)
-          Vinfo( 2)=Vname(2,idSenI)
-          Vinfo( 3)=Vname(3,idSenI)
-          Vinfo(14)=Vname(4,idSenI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSenI),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice longwave up
-!
-        IF (Sout(idLWupI,ng)) THEN
-          Vinfo( 1)=Vname(1,idLWupI)
-          Vinfo( 2)=Vname(2,idLWupI)
-          Vinfo( 3)=Vname(3,idLWupI)
-          Vinfo(14)=Vname(4,idLWupI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idLWupI),  &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice shortwave up
-!
-        IF (Sout(idSWupI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWupI)
-          Vinfo( 2)=Vname(2,idSWupI)
-          Vinfo( 3)=Vname(3,idSWupI)
-          Vinfo(14)=Vname(4,idSWupI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSWupI),  &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice shortwave in
-!
-        IF (Sout(idSWinI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWinI)
-          Vinfo( 2)=Vname(2,idSWinI)
-          Vinfo( 3)=Vname(3,idSWinI)
-          Vinfo(14)=Vname(4,idSWinI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSWinI),  &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice shortwave through
-!
-        IF (Sout(idSWthruI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSWthruI)
-          Vinfo( 2)=Vname(2,idSWthruI)
-          Vinfo( 3)=Vname(3,idSWthruI)
-          Vinfo(14)=Vname(4,idSWthruI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSWthruI),&
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define salt flux under ice
-!
-        IF (Sout(idSaltI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSaltI)
-          Vinfo( 2)=Vname(2,idSaltI)
-          Vinfo( 3)=Vname(3,idSaltI)
-          Vinfo(14)=Vname(4,idSaltI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSaltI),  &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define salt flux in leads
-!
-        IF (Sout(idSaltL,ng)) THEN
-          Vinfo( 1)=Vname(1,idSaltL)
-          Vinfo( 2)=Vname(2,idSaltL)
-          Vinfo( 3)=Vname(3,idSaltL)
-          Vinfo(14)=Vname(4,idSaltL)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSaltL),  &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define heat flux in leads
-!
-        IF (Sout(idQao,ng)) THEN
-          Vinfo( 1)=Vname(1,idQao)
-          Vinfo( 2)=Vname(2,idQao)
-          Vinfo( 3)=Vname(3,idQao)
-          Vinfo(14)=Vname(4,idQao)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idQao),    &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice-air heat flux
-!
-        IF (Sout(idQai,ng)) THEN
-          Vinfo( 1)=Vname(1,idQai)
-          Vinfo( 2)=Vname(2,idQai)
-          Vinfo( 3)=Vname(3,idQai)
-          Vinfo(14)=Vname(4,idQai)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idQai),    &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice-ocean heat flux
-!
-        IF (Sout(idQio,ng)) THEN
-          Vinfo( 1)=Vname(1,idQio)
-          Vinfo( 2)=Vname(2,idQio)
-          Vinfo( 3)=Vname(3,idQio)
-          Vinfo(14)=Vname(4,idQio)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idQio),    &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define ice heat flux
-!
-        IF (Sout(idQi2,ng)) THEN
-          Vinfo( 1)=Vname(1,idQi2)
-          Vinfo( 2)=Vname(2,idQi2)
-          Vinfo( 3)=Vname(3,idQi2)
-          Vinfo(14)=Vname(4,idQi2)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idQi2),    &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-!
-!  Define snow-ice conversion rate
-!
-        IF (Sout(idSnoI,ng)) THEN
-          Vinfo( 1)=Vname(1,idSnoI)
-          Vinfo( 2)=Vname(2,idSnoI)
-          Vinfo( 3)=Vname(3,idSnoI)
-          Vinfo(14)=Vname(4,idSnoI)
-          Vinfo(16)=Vname(1,idtime)
-          status=def_var(ng, iNLM, STA(ng)%ncid, STA(ng)%Vid(idSnoI),   &
-     &                   NF_FOUT, 2, pgrd, Aval, Vinfo, ncname,         &
-     &                   SetFillVal = .TRUE.,                           &
-     &                   SetParAccess = .TRUE.)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-        END IF
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 !
 !-----------------------------------------------------------------------
@@ -2930,7 +2594,6 @@
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idHsno))) THEN
             got_var(idHsno)=.TRUE.
             STA(ng)%Vid(idHsno)=var_id(i)
-<<<<<<< HEAD
 #ifdef MELT_PONDS
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idApond))) THEN
             got_var(idApond)=.TRUE.
@@ -2939,8 +2602,6 @@
             got_var(idHpond)=.TRUE.
             STA(ng)%Vid(idHpond)=var_id(i)
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idAgeice))) THEN
             got_var(idAgeice)=.TRUE.
             STA(ng)%Vid(idAgeice)=var_id(i)
@@ -2950,12 +2611,6 @@
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idTimid))) THEN
             got_var(idTimid)=.TRUE.
             STA(ng)%Vid(idTimid)=var_id(i)
-<<<<<<< HEAD
-=======
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idT2ice))) THEN
-            got_var(idT2ice)=.TRUE.
-            STA(ng)%Vid(idT2ice)=var_id(i)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idTauiw))) THEN
             got_var(idTauiw)=.TRUE.
             STA(ng)%Vid(idTauiw)=var_id(i)
@@ -2983,12 +2638,6 @@
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idWro))) THEN
             got_var(idWro)=.TRUE.
             STA(ng)%Vid(idWro)=var_id(i)
-<<<<<<< HEAD
-=======
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idWdiv))) THEN
-            got_var(idWdiv)=.TRUE.
-            STA(ng)%Vid(idWdiv)=var_id(i)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSig11))) THEN
             got_var(idSig11)=.TRUE.
             STA(ng)%Vid(idSig11)=var_id(i)
@@ -2998,62 +2647,6 @@
           ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSig22))) THEN
             got_var(idSig22)=.TRUE.
             STA(ng)%Vid(idSig22)=var_id(i)
-<<<<<<< HEAD
-=======
-#   ifdef ICE_DIAGS
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idAlbe))) THEN
-            got_var(idAlbe)=.TRUE.
-            STA(ng)%Vid(idAlbe)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idAlbI))) THEN
-            got_var(idAlbI)=.TRUE.
-            STA(ng)%Vid(idAlbI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idLWdn))) THEN
-            got_var(idLWdn)=.TRUE.
-            STA(ng)%Vid(idLWdn)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWdn))) THEN
-            got_var(idSWdn)=.TRUE.
-            STA(ng)%Vid(idSWdn)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idLatI))) THEN
-            got_var(idLatI)=.TRUE.
-            STA(ng)%Vid(idLatI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSenI))) THEN
-            got_var(idSenI)=.TRUE.
-            STA(ng)%Vid(idSenI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idLWupI))) THEN
-            got_var(idLWupI)=.TRUE.
-            STA(ng)%Vid(idLWupI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWupI))) THEN
-            got_var(idSWupI)=.TRUE.
-            STA(ng)%Vid(idSWupI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWinI))) THEN
-            got_var(idSWinI)=.TRUE.
-            STA(ng)%Vid(idSWinI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSWthruI))) THEN
-            got_var(idSWthruI)=.TRUE.
-            STA(ng)%Vid(idSWthruI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSaltI))) THEN
-            got_var(idSaltI)=.TRUE.
-            STA(ng)%Vid(idSaltI)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSaltL))) THEN
-            got_var(idSaltL)=.TRUE.
-            STA(ng)%Vid(idSaltL)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQao))) THEN
-            got_var(idQao)=.TRUE.
-            STA(ng)%Vid(idQao)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQai))) THEN
-            got_var(idQai)=.TRUE.
-            STA(ng)%Vid(idQai)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQio))) THEN
-            got_var(idQio)=.TRUE.
-            STA(ng)%Vid(idQio)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idQi2))) THEN
-            got_var(idQi2)=.TRUE.
-            STA(ng)%Vid(idQi2)=var_id(i)
-          ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idSnoI))) THEN
-            got_var(idSnoI)=.TRUE.
-            STA(ng)%Vid(idSnoI)=var_id(i)
-#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 # endif
 # ifdef WEC_MELLOR
@@ -3971,7 +3564,6 @@
           exit_flag=3
           RETURN
         END IF
-<<<<<<< HEAD
 #ifdef MELT_PONDS
         IF (.not.got_var(idApond).and.Sout(idApond,ng)) THEN
           IF (Master) WRITE (stdout,60) TRIM(Vname(1,idApond)),         &
@@ -3986,8 +3578,6 @@
           RETURN
         END IF
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (.not.got_var(idAgeice).and.Sout(idAgeice,ng)) THEN
           IF (Master) WRITE (stdout,60) TRIM(Vname(1,idAgeice)),        &
      &                                  TRIM(ncname)
@@ -4006,15 +3596,6 @@
           exit_flag=3
           RETURN
         END IF
-<<<<<<< HEAD
-=======
-        IF (.not.got_var(idT2ice).and.Sout(idT2ice,ng)) THEN
-          IF (Master) WRITE (stdout,60) TRIM(Vname(1,idT2ice)),         &
-     &                                  TRIM(ncname)
-          exit_flag=3
-          RETURN
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (.not.got_var(idTauiw).and.Sout(idTauiw,ng)) THEN
           IF (Master) WRITE (stdout,60) TRIM(Vname(1,idTauiw)),         &
      &                                  TRIM(ncname)

@@ -894,7 +894,4 @@
 
       RETURN
       END SUBROUTINE initialize_biology
-<<<<<<< HEAD
  
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

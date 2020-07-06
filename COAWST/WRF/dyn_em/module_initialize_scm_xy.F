@@ -287,11 +287,7 @@ CONTAINS
                    grid%landmask , grid%sst , grid%ht, grid%toposoil, &
                    st_input , sm_input , sw_input , &
                    st_levels_input , sm_levels_input , sw_levels_input , &
-<<<<<<< HEAD
                    grid%zs , grid%dzs , grid%tslb , grid%smois , grid%sh2o , &
-=======
-                   grid%zs , grid%dzs , grid%flag_sm_adj , grid%tslb , grid%smois , grid%sh2o , &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                    flag_sst , flag_tavgsfc, flag_soilhgt, flag_soil_layers, flag_soil_levels,  &
                    ids , ide , jds , jde , kds , kde , &
                    ims , ime , jms , jme , kms , kme , &

@@ -2,15 +2,9 @@
 #ifdef NONLINEAR
       SUBROUTINE set_data (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: set_data.F 900 2018-03-21 03:23:08Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: set_data.F 1012 2020-03-04 22:09:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -151,82 +145,42 @@
      &                     FORCES(ng)%cloudG,                           &
      &                     FORCES(ng)%cloud,                            &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idSrad,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%srflxG,                           &
      &                     FORCES(ng)%srflx,                            &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idLrad,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%lrflxG,                           &
      &                     FORCES(ng)%lrflx,                            &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idShea,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%shflxG,                           &
      &                     FORCES(ng)%shflx,                            &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idLhea,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%lhflxG,                           &
      &                     FORCES(ng)%lhflx,                            &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idPair,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%PairG,                            &
      &                     FORCES(ng)%Pair,                             &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idRain,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%rainG,                            &
      &                     FORCES(ng)%rain,                             &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   ifdef SNOWFALL
       CALL set_2dfld_tile (ng, tile, iNLM, idsnow,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%snowG,                            &
      &                     FORCES(ng)%snow,                             &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   endif
 #   ifdef SNOW_FROM_RAIN
 ! Subtract snowfall from total precip
@@ -255,52 +209,27 @@
      &                     FORCES(ng)%runoffG,                          &
      &                     FORCES(ng)%runoff,                           &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   endif
       CALL set_2dfld_tile (ng, tile, iNLM, idSkt,                       &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%sktG,                             &
      &                     FORCES(ng)%skt,                              &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idIcec,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%icecG,                            &
      &                     FORCES(ng)%icec,                             &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idUnms,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%nustrG,                           &
      &                     FORCES(ng)%nustr,                            &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL set_2dfld_tile (ng, tile, iNLM, idVnms,                      &
      &                     LBi, UBi, LBj, UBj,                          &
      &                     FORCES(ng)%nvstrG,                           &
      &                     FORCES(ng)%nvstr,                            &
      &                     update)
-<<<<<<< HEAD
-=======
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   if defined SCORRECTION || defined SRELAXATION
 !
 !-----------------------------------------------------------------------
@@ -1626,7 +1555,6 @@
       END IF
 
       IF (.not.(RefinedGrid(ng).and.RefineScale(ng).gt.0)) THEN
-<<<<<<< HEAD
 # ifdef MELT_PONDS
 #  ifdef ANA_SFWATOBC
         CALL ana_sfwatobc (ng, tile, iNLM)
@@ -1710,8 +1638,6 @@
       END IF
 
       IF (.not.(RefinedGrid(ng).and.RefineScale(ng).gt.0)) THEN
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef ANA_SIG11OBC
         CALL ana_sig11obc (ng, tile, iNLM)
 # else
@@ -2198,10 +2124,6 @@
             END DO
           END DO
         END DO
-<<<<<<< HEAD
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (EWperiodic(ng).or.NSperiodic(ng)) THEN
           DO i=1,2
             CALL exchange_u3d_tile (ng, tile,                           &
@@ -2215,11 +2137,7 @@
 #   ifdef DISTRIBUTE
         DO i=1,2
           CALL mp_exchange3d (ng, tile, iNLM, 2,                        &
-<<<<<<< HEAD
      &                        LBi, UBi, LBj, UBj, 0, N(ng),             &
-=======
-     &                        LBi, UBi, LBj, UBj, 1, N(ng),             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                        NghostPoints,                             &
      &                        EWperiodic(ng), NSperiodic(ng),           &
      &                        OCEAN(ng)%u(:,:,:,i),OCEAN(ng)%v(:,:,:,i))
@@ -2287,12 +2205,7 @@
 #   endif
 #  endif
 
-<<<<<<< HEAD
 #  ifdef AICLIMATOLOGY
-=======
-#  ifdef ICE_MODEL
-      IF (LaiCLM(ng)) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   ifdef ANA_AICLIMA
         CALL ana_aiclima (ng, tile, iNLM)
 #   else
@@ -2302,7 +2215,6 @@
      &                       CLIMA(ng)%aiclm,                           &
      &                       update)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
-<<<<<<< HEAD
      &                 __FILE__)) RETURN
 #   endif
 #  endif
@@ -2310,63 +2222,17 @@
 #   ifdef ANA_HICLIMA
         CALL ana_hiclima (ng, tile, iNLM)
 #   else
-=======
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         CALL set_2dfld_tile (ng, tile, iNLM, idHIclm,                   &
      &                       LBi, UBi, LBj, UBj,                        &
      &                       CLIMA(ng)%hiclmG,                          &
      &                       CLIMA(ng)%hiclm,                           &
      &                       update)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
-<<<<<<< HEAD
      &                 __FILE__)) RETURN
 #   endif
 #  endif
 
 #  ifdef MICLIMATOLOGY
-=======
-     &               __FILE__)) RETURN
-        CALL set_2dfld_tile (ng, tile, iNLM, idHSNclm,                  &
-     &                       LBi, UBi, LBj, UBj,                        &
-     &                       CLIMA(ng)%hsnclmG,                         &
-     &                       CLIMA(ng)%hsnclm,                          &
-     &                       update)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &               __FILE__)) RETURN
-#   endif
-      END IF
-
-      IF (LsiCLM(ng)) THEN
-#   ifdef ANA_SICLIMA
-        CALL ana_siclima (ng, tile, iNLM)
-#   else
-        CALL set_2dfld_tile (ng, tile, iNLM, idS11clm,                  &
-     &                       LBi, UBi, LBj, UBj,                        &
-     &                       CLIMA(ng)%sig11clmG,                       &
-     &                       CLIMA(ng)%sig11clm,                        &
-     &                       update)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &               __FILE__)) RETURN
-        CALL set_2dfld_tile (ng, tile, iNLM, idS12clm,                  &
-     &                       LBi, UBi, LBj, UBj,                        &
-     &                       CLIMA(ng)%sig12clmG,                       &
-     &                       CLIMA(ng)%sig12clm,                        &
-     &                       update)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &               __FILE__)) RETURN
-        CALL set_2dfld_tile (ng, tile, iNLM, idS22clm,                  &
-     &                       LBi, UBi, LBj, UBj,                        &
-     &                       CLIMA(ng)%sig22clmG,                       &
-     &                       CLIMA(ng)%sig22clm,                        &
-     &                       update)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &               __FILE__)) RETURN
-#   endif
-      END IF
-
-      IF (LmiCLM(ng)) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   ifdef ANA_MICLIMA
         CALL ana_miclima (ng, tile, iNLM)
 #   else
@@ -2375,26 +2241,15 @@
      &                       CLIMA(ng)%uiclmG,                          &
      &                       CLIMA(ng)%uiclm,                           &
      &                       update)
-<<<<<<< HEAD
         IF (exit_flag.ne.NoError) RETURN
-=======
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &               __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         CALL set_2dfld_tile (ng, tile, iNLM, idVIclm,                   &
      &                       LBi, UBi, LBj, UBj,                        &
      &                       CLIMA(ng)%viclmG,                          &
      &                       CLIMA(ng)%viclm,                           &
      &                       update)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
-<<<<<<< HEAD
      &                 __FILE__)) RETURN
 #   endif
-=======
-     &               __FILE__)) RETURN
-#   endif
-      END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 # endif
 
@@ -2475,13 +2330,8 @@
 #  endif
 # endif
 
-<<<<<<< HEAD
 # if defined W4DPSAS || defined NLM_OUTER || \
      defined W4DPSAS_SENSITIVITY
-=======
-# if defined NLM_OUTER           || defined W4DPSAS                 ||\
-     defined W4DPSAS_SENSITIVITY || defined W4DPSAS_FCT_SENSITIVITY
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Set weak contraint forcing.
@@ -2498,11 +2348,6 @@
      &                       update)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-
-#  ifndef SOLVE3D
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Set 2D momentum forcing.
 !
@@ -2522,11 +2367,7 @@
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
 
-<<<<<<< HEAD
 #  ifdef SOLVE3D
-=======
-#  else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Set 3D momentum.
 !

@@ -353,14 +353,6 @@ CONTAINS
 !   16-11-01  ji-young han     revised pgcon & bug fix in vshear
 !   17-02-23  ji-young han     revised xlamb
 !   18-03-01  ji-young han     kim sas
-<<<<<<< HEAD
-=======
-!   19-03-01  ji-yeon jang     revised triggering ftn for higher resolution<10km
-!             yong-hee lee
-!             young cheol kwon
-!             eun-jeong lee    bug fix in c0 for overshooting layer
-!             seung-bu park    bug fix in xmb trigger
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! usage:    call phys_cps_sas(delt,delx,del,prsl,prsi,prslk,prsik,zl,          &
 !                             q2,q1,t1,u1,v1,rcs,slimsk,dot,cldwrk,rain,       &
@@ -413,10 +405,6 @@ CONTAINS
 !   lim et al.    (2014, wea. forecasting)
 !   han et al.    (2016, mon wea rev)
 !   kwon and hong (2017, mon wea rev)
-<<<<<<< HEAD
-=======
-!   han and hong  (2018, wea. forecasting)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-------------------------------------------------------------------------------
    implicit none
@@ -588,11 +576,7 @@ CONTAINS
      sigma = min(sigma - 0.01684 * delx/1000. + 0.0842, 1.0)
    endif
 !
-<<<<<<< HEAD
    cinpcr = cinpcrmn + 0.5*(cinpcrmx-cinpcrmn) * (1.-sigma)
-=======
-   cinpcr = (cinpcrmn + 0.5*(cinpcrmx-cinpcrmn)) * (1.-sigma)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  initialize arrays
 !
@@ -1077,23 +1061,6 @@ CONTAINS
 !
    do k = kts1,kmax
      do i = its,ite
-<<<<<<< HEAD
-=======
-       if (cnvflg(i).and.k.gt.kb(i)) then
-         alpha1 = min((-0.7*log(100.)+24.)*0.0001,c0)
-         beta1 = 0.07
-!
-         if (to(i,k).gt.t0c_) then
-           c0fac = alpha1
-         else
-           c0fac = alpha1*exp(beta1*(to(i,k)-t0c_))
-         endif
-!
-         c0fac = max(0.0,c0fac)
-         c0t(i,k) = c0fac
-       endif
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        if(cnvflg(i).and.k.gt.kb(i).and.k.lt.ktcon(i)) then
          dz1 = (zi(i,k+1) - zi(i,k))
          gamma = el2orc * qeso(i,k) / (to(i,k)**2)
@@ -1109,7 +1076,6 @@ CONTAINS
 ! check if there is excess moisture to release latent heat
 !
          if(qcirs(i,k).gt.0. .and. k.ge.kbcon(i)) then
-<<<<<<< HEAD
            alpha1 = min((-0.7*log(100.)+24.)*0.0001,c0)
            beta1 = 0.07
 !
@@ -1121,8 +1087,6 @@ CONTAINS
 !
            c0fac = max(0.0,c0fac)
            c0t(i,k) = c0fac
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            etah = .5 * (eta(i,k) + eta(i,k-1))
            if(ncloud.gt.0..and.k.gt.jmin(i)) then
              dp = 1000. * del(i,k)
@@ -1855,21 +1819,6 @@ CONTAINS
    do k = kts1,kmax1
      do i = its,ite
        if(cnvflg(i).and.k.gt.kb(i).and.k.lt.ktcon(i)) then
-<<<<<<< HEAD
-=======
-         alpha1 = min((-0.7*log(100.)+24.)*0.0001,c0)
-         beta1 = 0.07
-!
-         if (to(i,k).gt.t0c_) then
-           c0fac = alpha1
-         else
-           c0fac = alpha1*exp(beta1*(to(i,k)-t0c_))
-         endif
-!
-         c0fac = max(0.0,c0fac)
-         c0t(i,k) = c0fac
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          dz = zi(i,k+1) - zi(i,k)
          gamma = el2orc * qeso(i,k) / (to(i,k)**2)
          xdby = hcko(i,k) - heso(i,k)
@@ -2075,12 +2024,7 @@ CONTAINS
      endif
      pden(i) = p(i,kbcon(i))/to(i,kbcon(i))/rd_
      pdot(i) = 10.* dot(i,kbcon(i))
-<<<<<<< HEAD
      if (pden(i)*pdot(i).gt.xmb(i)) cnvflg(i) = .false.
-=======
-!    if (pden(i)*pdot(i).gt.xmb(i)) cnvflg(i) = .false.
-     if (xmb(i).lt.pdot(i)/g_) cnvflg(i) = .false.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    enddo
    totflg = .true.
    do i = its,ite

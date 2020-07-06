@@ -33,10 +33,6 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
                    rain_obs, rain_inv, rain_error, rain_inc, zk
    integer     :: u_qc, v_qc, t_qc, p_qc, q_qc, tpw_qc, spd_qc, ref_qc, rain_qc
    integer     :: eph_qc
-<<<<<<< HEAD
-=======
-   integer     :: ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    if (trace_use_dull) call da_trace_entry("da_read_omb_tmp")
 
@@ -56,15 +52,9 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('synop', 'ships', 'buoy', 'metar', 'sonde_sfc', 'tamdar_sfc')
          if (num_obs > 0) then
             do n = 1, num_obs    
-<<<<<<< HEAD
                read(unit_in,'(i8)')levels
                if (if_write) then
                   write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)')levels, ifgat
-               if (if_write) then
-                  write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                num = num + 1
                end if
                do k = 1, levels
@@ -101,15 +91,9 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('pilot', 'profiler', 'geoamv', 'qscat', 'polaramv')
          if (num_obs > 0) then
             do n = 1, num_obs    
-<<<<<<< HEAD
                read(unit_in,'(i8)')levels
                if (if_write) then
                   write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)')levels, ifgat
-               if (if_write) then
-                  write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                num = num + 1
                end if
                do k = 1, levels
@@ -140,15 +124,9 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('gpspw' )
          if (num_obs > 0) then
             do n = 1, num_obs    
-<<<<<<< HEAD
                read(unit_in,'(i8)')levels
                if (if_write) then
                   write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)')levels, ifgat
-               if (if_write) then
-                  write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                num = num + 1
                end if
                do k = 1, levels
@@ -170,15 +148,9 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('sound', 'tamdar', 'airep')
          if (num_obs > 0) then
             do n = 1, num_obs    
-<<<<<<< HEAD
                read(unit_in,'(i8)')levels
                if (if_write) then
                    write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)')levels, ifgat
-               if (if_write) then
-                   write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                    num = num + 1 
                end if
                do k = 1, levels
@@ -369,13 +341,8 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('airsr' )          
          if (num_obs > 0) then
             do n = 1, num_obs    
-<<<<<<< HEAD
                read(unit_in,'(i8)') levels
                if (if_write) write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)') levels, ifgat
-               if (if_write) write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                num = num + 1
                do k = 1, levels
                   read(unit_in,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))', err= 1000)&
@@ -398,13 +365,8 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('gpsref' )          
          if (num_obs > 0) then
             do n = 1, num_obs    
-<<<<<<< HEAD
                read(unit_in,'(i8)') levels
                if (if_write) write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)') levels, ifgat
-               if (if_write) write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                num = num + 1
                do k = 1, levels
                   read(unit_in,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))', err= 1000)&
@@ -425,13 +387,8 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('gpseph' )
          if (num_obs > 0) then
             do n = 1, num_obs
-<<<<<<< HEAD
                read(unit_in,'(i8)') levels
                if (if_write) write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)') levels, ifgat
-               if (if_write) write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                num = num + 1
                do k = 1, levels
                   read(unit_in,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))', err= 1000)&
@@ -452,13 +409,8 @@ subroutine da_read_omb_tmp(filename,unit_in,num,obs_type_in,nc,if_wind_sd)
       case ('rain' )          
          if (num_obs > 0) then
             do n = 1, num_obs    
-<<<<<<< HEAD
                read(unit_in,'(i8)') levels
                if (if_write) write(omb_unit,'(i8)')levels
-=======
-               read(unit_in,'(2i8)') levels, ifgat
-               if (if_write) write(omb_unit,'(2i8)')levels, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                num = num + 1
                do k = 1, levels
                   read(unit_in,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))', err= 1000)&

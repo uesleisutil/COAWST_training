@@ -1,8 +1,5 @@
 #include "cppdefs.h"
-<<<<<<< HEAD
 #undef VARY_ACBC
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #if defined INWAVE_MODEL & defined INWAVE_SWAN_COUPLING
       SUBROUTINE set_inwave_swan_data (ng, tile)
 !
@@ -41,10 +38,6 @@
      &                                      LBi, UBi, LBj, UBj)
 !***********************************************************************
 !
-<<<<<<< HEAD
-=======
-      USE mod_forces
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE mod_param
       USE mod_ncparam
       USE mod_scalars
@@ -79,7 +72,6 @@
 !
       integer :: ILB, IUB, JLB, JUB
       integer :: Imin, Imax, Jmin, Jmax
-<<<<<<< HEAD
       integer :: i, j, d, my_tile, tidx
       integer :: nt1, nt2
 
@@ -89,46 +81,21 @@
 
       logical :: update = .FALSE.
 
-=======
-      integer :: i, j, d, my_tile
-      integer :: tidx1, tidx2, ratio
-
-      real(r8):: twopi, otwopi, cff1, cff2, cff3
-      real(r8):: phiw, cw, dist, toff, alpha
-      real(r8):: fac1, fac2, tidx
-      real(r8), parameter :: eps = 0.0001_r8
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # include "set_bounds.h"
 
       twopi=2.0_r8*pi
       otwopi=1.0_r8/(2.0_r8*pi)
 !
-<<<<<<< HEAD
 !     Compute the time index for the BC data. The Ampzeta array
 !     is Insteps long, but it repeats every 1/df.
 !
       tidx=MOD(iic(ng),WAVES(ng)%Insteps)+1
 !
-=======
-!     To compute the time index for the BC data, the Ampzeta array
-!     is Insteps long (1000sec), but it repeats every 1/df.
-!
-!     tidx=MOD(iic(ng),WAVES(ng)%Insteps)+1
-      ratio=INT(WAVES(ng)%idt/dt(ng))
-      tidx=MOD(iic(ng),(WAVES(ng)%Insteps-1)*ratio)/ratio+1.0_r8
-      tidx1=INT(tidx)
-      tidx2=tidx+1
-      fac1=tidx-REAL(INT(tidx),r8)
-      fac2=1.0_r8-fac1
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       IF (DOMAIN(ng)%Western_Edge(tile)) THEN
         IF (LBC(iwest,isAC3d,ng)%acquire) THEN
           DO d=1,ND
             DO j=Jstr,Jend
 #ifdef VARY_ACBC
-<<<<<<< HEAD
             cff1=0.5_r8*(WAVEP(ng)%cy(Istr-1,j  ,d)+                    &
                          WAVEP(ng)%cy(Istr-1,j+1,d))
             cff2=WAVEP(ng)%cx(Istr-1,j,d)
@@ -151,18 +118,6 @@
             WAVEB(ng)%AC_west(j,d)=WAVES(ng)%Ampzeta(tidx,d)*           &
      &                             WAVEP(ng)%Tr(Istr-1,j,d)*otwopi
 #endif
-=======
-!             cff2=WAVES(ng)%Ampzeta(j,tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(j,tidx1,d)+                   &
-     &             fac2*WAVES(ng)%Ampzeta(j,tidx2,d)
-#else
-!             cff2=WAVES(ng)%Ampzeta(tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(tidx1,d)+                     &
-     &             fac2*WAVES(ng)%Ampzeta(tidx2,d)
-#endif
-              WAVEB(ng)%AC_west(j,d)=cff2*WAVEP(ng)%Tr(Istr-1,j,d)*     &
-     &                               otwopi
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             END DO
           END DO
         END IF
@@ -173,7 +128,6 @@
           DO d=1,ND
             DO j=Jstr,Jend
 #ifdef VARY_ACBC
-<<<<<<< HEAD
             cff1=0.5_r8*(WAVEP(ng)%cy(Iend+1,j  ,d)+                    &
                          WAVEP(ng)%cy(Iend+1,j+1,d))
             cff2=WAVEP(ng)%cx(Iend+1,j,d)
@@ -196,18 +150,6 @@
             WAVEB(ng)%AC_east(j,d)=WAVES(ng)%Ampzeta(tidx,d)*           &
      &                             WAVEP(ng)%Tr(Iend+1,j,d)*otwopi
 #endif
-=======
-!             cff2=WAVES(ng)%Ampzeta(j,tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(j,tidx1,d)+                   &
-     &             fac2*WAVES(ng)%Ampzeta(j,tidx2,d)
-#else
-!             cff2=WAVES(ng)%Ampzeta(tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(tidx1,d)+                     &
-     &             fac2*WAVES(ng)%Ampzeta(tidx2,d)
-#endif
-              WAVEB(ng)%AC_east(j,d)=cff2*WAVEP(ng)%Tr(Iend+1,j,d)*     &
-     &                               otwopi
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             END DO
           END DO
         END IF
@@ -218,7 +160,6 @@
           DO d=1,ND
             DO i=Istr,Iend
 #ifdef VARY_ACBC
-<<<<<<< HEAD
             cff1=0.5_r8*(WAVEP(ng)%cx(i  ,Jend+1,d)+                    &
                          WAVEP(ng)%cx(i+1,Jend+1,d))
             cff2=WAVEP(ng)%cy(i  ,Jend+1,d)
@@ -241,18 +182,6 @@
             WAVEB(ng)%AC_north(i,d)=WAVES(ng)%Ampzeta(tidx,d)*          &
      &                              WAVEP(ng)%Tr(i,Jend+1,d)*otwopi
 #endif
-=======
-!             cff2=WAVES(ng)%Ampzeta(i,tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(i,tidx1,d)+                   &
-     &             fac2*WAVES(ng)%Ampzeta(i,tidx2,d)
-#else
-!             cff2=WAVES(ng)%Ampzeta(tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(tidx1,d)+                     &
-     &             fac2*WAVES(ng)%Ampzeta(tidx2,d)
-#endif
-              WAVEB(ng)%AC_north(i,d)=cff2*WAVEP(ng)%Tr(i,Jend+1,d)*    &
-     &                                otwopi
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             END DO
           END DO
         END IF
@@ -263,7 +192,6 @@
           DO d=1,ND
             DO i=Istr,Iend
 #ifdef VARY_ACBC
-<<<<<<< HEAD
             cff1=0.5_r8*(WAVEP(ng)%cx(i  ,Jstr-1,d)+                    &
                          WAVEP(ng)%cx(i+1,Jstr-1,d))
             cff2=WAVEP(ng)%cy(i  ,Jstr-1,d)
@@ -285,18 +213,6 @@
             WAVEB(ng)%AC_south(i,d)=WAVES(ng)%Ampzeta(tidx,d)*          &
      &                              WAVEP(ng)%Tr(i,Jstr-1,d)*otwopi
 #endif
-=======
-!             cff2=WAVES(ng)%Ampzeta(i,tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(i,tidx1,d)+                   &
-     &             fac2*WAVES(ng)%Ampzeta(i,tidx2,d)
-#else
-!             cff2=WAVES(ng)%Ampzeta(tidx,d)
-              cff2=fac1*WAVES(ng)%Ampzeta(tidx1,d)+                     &
-     &             fac2*WAVES(ng)%Ampzeta(tidx2,d)
-#endif
-              WAVEB(ng)%AC_south(i,d)=cff2*WAVEP(ng)%Tr(i,Jstr-1,d)*    &
-     &                                otwopi
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             END DO
           END DO
         END IF

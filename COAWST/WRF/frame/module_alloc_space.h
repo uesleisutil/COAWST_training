@@ -53,11 +53,6 @@
       INTEGER ierr
 
       INTEGER                              :: loop
-<<<<<<< HEAD
-=======
-      INTEGER(KIND=8)                      :: nba ! number of bytes allocated per variable
-      CHARACTER(LEN=256)                   :: message_string
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    ! Local data
 
@@ -152,10 +147,6 @@
 
       CALL nl_get_spec_bdy_width( 1, spec_bdy_width )
 
-<<<<<<< HEAD
 # include <allocs.inc>
-=======
-# include "allocs.inc"
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    END SUBROUTINE ROUTINENAME

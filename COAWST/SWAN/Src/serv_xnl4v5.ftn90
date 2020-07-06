@@ -54,11 +54,7 @@ subroutine z_cmpcg(sigma,depth,grav,cg)
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -134,11 +130,7 @@ subroutine z_intp1(x1,y1,x2,y2,n1,n2,ierr)                                    !
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -349,11 +341,7 @@ subroutine z_polyarea(xpol,ypol,npol,area)
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -463,11 +451,7 @@ subroutine z_steps(x,dx,nx)
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -536,11 +520,7 @@ real function z_root2(func,x1,x2,xacc,iprint,ierr)
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -758,11 +738,7 @@ subroutine z_upper(str)
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -832,11 +808,7 @@ real function z_wnumb(w,d,grav)
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as

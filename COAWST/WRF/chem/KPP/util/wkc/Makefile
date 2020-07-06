@@ -23,11 +23,7 @@ registry : $(OBJ)
 	$(SCC) -I../../../../inc $(CFLAGS) -c $(DEBUG) $<
 
 clean:
-<<<<<<< HEAD
 	/bin/rm -f $(OBJ) gen_comms.c
-=======
-	@/bin/rm -f $(OBJ) gen_comms.c
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 gen_comms.c : gen_comms.stub
 	/bin/cp gen_comms.stub gen_comms.c

@@ -40,11 +40,7 @@ subroutine da_read_y_unit(filename,unit_out,num,obs_type_in, nc)
         (index(iv_type,'dmsp') > 0) .or. (index(iv_type,'metop') > 0) .or. &
         (index(iv_type,'tiros') > 0) .or. (index(iv_type,'msg') > 0) .or. &
         (index(iv_type,'jpss') > 0)  .or. (index(iv_type,'gcom-w') >0) .or. &
-<<<<<<< HEAD
         (index(iv_type,'goes') > 0) ) then
-=======
-        (index(iv_type,'goes') > 0) .or. (index(iv_type,'himawari') >0) ) then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       do n = 1, num_obs
          if (if_write) num = num + 1

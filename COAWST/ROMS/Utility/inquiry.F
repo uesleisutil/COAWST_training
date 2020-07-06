@@ -2,15 +2,9 @@
       SUBROUTINE inquiry (ng, model, job, Iout, Irec, Mrec, ifield,     &
      &                    ncid, Lmulti, nfiles, S)
 !
-<<<<<<< HEAD
 !svn $Id: inquiry.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: inquiry.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -54,11 +48,7 @@
       USE mod_netcdf
       USE mod_scalars
 !
-<<<<<<< HEAD
       USE strings_mod, ONLY : FoundError
-=======
-      USE strings_mod, ONLY : FoundError, lowercase
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       implicit none
 !
@@ -135,11 +125,8 @@
             END IF
             S(ifile)%Fcount=Fcount
             S(ifile)%name=TRIM(S(ifile)%files(Fcount))
-<<<<<<< HEAD
             lstr=LEN_TRIM(S(ifile)%name)
             S(ifile)%base=S(ifile)%name(1:lstr-3)
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             CALL netcdf_close (ng, model, ncid)
             IF (FoundError(exit_flag, NoError, __LINE__,                &
      &                     __FILE__)) RETURN
@@ -306,11 +293,7 @@
 !
           IF (got_time.and.(Nrec.eq.0)) THEN
             DO i=1,n_vdim
-<<<<<<< HEAD
               IF (INDEX(TRIM(var_Dname(i)),'time').ne.0) THEN
-=======
-              IF (INDEX(TRIM(lowercase(var_Dname(i))),'time').ne.0) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 Nrec=var_Dsize(i)
               END IF
             END DO
@@ -343,20 +326,12 @@
      &                    Tstr, Tend, Tmin, Tmax,  Tscale)
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-          SourceFile=__FILE__
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END IF
 !
 !  Store variable information into global information arrays.  Also
 !  fill some structure values.
 !
         IF (foundit) THEN
-<<<<<<< HEAD
-=======
-          ncid=my_ncid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Linfo( 1,ifield,ng)=Lgridded
           Linfo( 2,ifield,ng)=Liocycle
           Iinfo( 2,ifield,ng)=Vid
@@ -475,10 +450,6 @@
       IF (label(1:3).eq.'FRC') THEN
         DO ifile=1,nfiles
           IF ((TRIM(ncfile).eq.TRIM(S(ifile)%name)).and.                &
-<<<<<<< HEAD
-=======
-     &        (FRCids(ifile,ng).ne.-1).and.                             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &        (ncid.ne.FRCids(ifile,ng))) THEN
             ncid=FRCids(ifile,ng)
             EXIT
@@ -488,10 +459,6 @@
       IF (label(1:3).eq.'BRY') THEN
         DO ifile=1,nfiles
           IF ((TRIM(ncfile).eq.TRIM(S(ifile)%name)).and.                &
-<<<<<<< HEAD
-=======
-     &        (BRYids(ifile,ng).ne.-1).and.                             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &        (ncid.ne.BRYids(ifile,ng))) THEN
             ncid=BRYids(ifile,ng)
             EXIT
@@ -501,10 +468,6 @@
       IF (label(1:3).eq.'CLM') THEN
         DO ifile=1,nfiles
           IF ((TRIM(ncfile).eq.TRIM(S(ifile)%name)).and.                &
-<<<<<<< HEAD
-=======
-     &        (CLMids(ifile,ng).ne.-1).and.                             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &        (ncid.ne.CLMids(ifile,ng))) THEN
             ncid=CLMids(ifile,ng)
             EXIT
@@ -513,11 +476,6 @@
       END IF
 !
 !  If appropriate, open input NetCDF file for reading.
-<<<<<<< HEAD
-=======
-!  (HGA: it is not needed since file was already open and
-!        ncid=my_ncid was assigned above.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       IF (ncid.eq.-1) THEN
         CALL netcdf_open (ng, model, ncfile, 0, ncid)
@@ -526,7 +484,6 @@
            IF (Master) WRITE (stdout,60) TRIM(ncfile)
           RETURN
         END IF
-<<<<<<< HEAD
 !
 !  If processing model forcing, load ID into association table (FRCids).
 !
@@ -557,38 +514,6 @@
         ELSE
           S(1)%ncid=ncid
         END IF
-=======
-      END IF
-!
-!  If processing model forcing, load ID into association table (FRCids).
-!
-      IF (label(1:3).eq.'FRC') THEN
-        DO ifile=1,nfiles
-          IF (TRIM(ncfile).eq.TRIM(S(ifile)%name)) THEN
-            FRCids(ifile,ng)=ncid
-            S(ifile)%ncid=ncid
-            EXIT
-          END IF
-        END DO
-      ELSE IF (label(1:3).eq.'BRY') THEN
-        DO ifile=1,nfiles
-          IF (TRIM(ncfile).eq.TRIM(S(ifile)%name)) THEN
-            BRYids(ifile,ng)=ncid
-            S(ifile)%ncid=ncid
-            EXIT
-          END IF
-        END DO
-      ELSE IF (label(1:3).eq.'CLM') THEN
-        DO ifile=1,nfiles
-          IF (TRIM(ncfile).eq.TRIM(S(ifile)%name)) THEN
-            CLMids(ifile,ng)=ncid
-            S(ifile)%ncid=ncid
-            EXIT
-          END IF
-        END DO
-      ELSE
-        S(1)%ncid=ncid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       END IF
       Cinfo(ifield,ng)=TRIM(ncfile)
 !

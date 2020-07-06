@@ -397,13 +397,6 @@
       WLEVL=> M_GENARR_MOD(ng)%WLEVL_G
       ASTDF=> M_GENARR_MOD(ng)%ASTDF_G
       NPLAF=> M_GENARR_MOD(ng)%NPLAF_G
-<<<<<<< HEAD
-=======
-      TURBF=> M_GENARR_MOD(ng)%TURBF_G
-      MUDLF=> M_GENARR_MOD(ng)%MUDLF_G
-      AICEF=> M_GENARR_MOD(ng)%AICEF_G
-      HICEF=> M_GENARR_MOD(ng)%HICEF_G
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef WRF_COUPLING
       CosAngler=>M_GENARR_MOD(ng)%CosAngler_G
       SinAngler=>M_GENARR_MOD(ng)%SinAngler_G

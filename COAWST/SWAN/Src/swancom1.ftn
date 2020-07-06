@@ -83,11 +83,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -380,10 +376,6 @@
 !                     JPVEGT   vegetation dissipation
 !                     JPTURB   turbulent dissipation
 !                     JPMUD    fluid mud-induced wave dissipation
-<<<<<<< HEAD
-=======
-!                     JPICE    dissipation by sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !                     JPWBRK   surf breaking
 !                     JPSWEL   swell dissipation
 !                     JP4S     quadruplet interactions
@@ -647,11 +639,6 @@
 !      |       |        |
 !      |       |        +-------+ SMUD       fluid mud-induced wave dissipation
 !      |       |        |
-<<<<<<< HEAD
-=======
-!      |       |        +-------+ SICE       dissipation by sea ice
-!      |       |        |
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !      |       |        +-------+ SWCAP      white capping
 !      |       |        |
 !      |       |        +-------+ SSURF      wave breaking
@@ -1287,10 +1274,6 @@
           COMPDA(IP,JDSXW) = 0.                                           40.61
           COMPDA(IP,JDSXM) = 0.                                           40.61
           COMPDA(IP,JDSXV) = 0.                                           40.61
-<<<<<<< HEAD
-=======
-          COMPDA(IP,JDSXI) = 0.                                           41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           COMPDA(IP,JDSXT) = 0.                                           40.35
           COMPDA(IP,JDSXL) = 0.                                           40.88
           COMPDA(IP,JGENR) = 0.                                           40.85
@@ -1418,11 +1401,6 @@
  2003      FORMAT('  ITRIAD  ',I4,' IBOT    ',I4,' ISURF   ',I4)
            WRITE(PRINTF,2005) IVEG, ITURBV, IMUD                          40.59 40.35 40.55
  2005      FORMAT('  IVEG    ',I4,' ITURBV  ',I4,' IMUD    ',I4)          40.59 40.35 40.55
-<<<<<<< HEAD
-=======
-           WRITE(PRINTF,2006) IICE, ICEWIND                               41.75
- 2006      FORMAT('  IICE    ',I4,' ICEWIND   ',F5.2)                     41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            WRITE(PRINTF,*)' -----------------------------------------',
      &                    '----------------------'
         ENDIF
@@ -1985,11 +1963,7 @@
      &                 SWTSDA(1,1,1,JPWBRK)  ,SWTSDA(1,1,1,JP4S)    ,
      &                 SWTSDA(1,1,1,JP4D)    ,SWTSDA(1,1,1,JPTRI)   ,
      &                 SWTSDA(1,1,1,JPVEGT)  ,SWTSDA(1,1,1,JPTURB)  ,     40.35 40.55
-<<<<<<< HEAD
      &                 SWTSDA(1,1,1,JPMUD)   ,                            40.59
-=======
-     &                 SWTSDA(1,1,1,JPMUD)   ,SWTSDA(1,1,1,JPICE)   ,     41.75 40.59
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                 SWTSDA(1,1,1,JPSWEL)  ,                            40.88
      &                 AC2                   ,SPCSIG                ,     40.00
      &                 COMPDA(1,JDP2)        ,XYTST                 ,
@@ -2160,11 +2134,7 @@
      &                SWTSDA(1,1,1,JPWBRK)  ,SWTSDA(1,1,1,JP4S)    ,
      &                SWTSDA(1,1,1,JP4D)    ,SWTSDA(1,1,1,JPTRI)   ,
      &                SWTSDA(1,1,1,JPVEGT)  ,SWTSDA(1,1,1,JPTURB)  ,      40.35 40.55
-<<<<<<< HEAD
      &                SWTSDA(1,1,1,JPMUD)   ,                             40.59
-=======
-     &                SWTSDA(1,1,1,JPMUD)   ,SWTSDA(1,1,1,JPICE)   ,      41.75 40.59
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                SWTSDA(1,1,1,JPSWEL)  ,                             40.88
      &                AC2                   ,SPCSIG                ,      40.00
      &                COMPDA(1,JDP2)        ,XYTST                 ,
@@ -2258,11 +2228,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -2307,10 +2273,6 @@
 !     40.41: Marcel Zijlema
 !     40.59: W. Erick Rogers
 !     40.61: Roop Lalbeharry
-<<<<<<< HEAD
-=======
-!     41.75: W. Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  1. Updates
 !
@@ -2363,10 +2325,6 @@
 !     40.59, Aug. 07: stencil numbering made consistent, so that if used for
 !                     varied purposes (e.g. SPROSD), if-then not required
 !     40.61, Nov. 06: Hersbach and Janssen (1999) limiter option added
-<<<<<<< HEAD
-=======
-!     41.75, Jan. 19: adding sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  2. Purpose
 !
@@ -2626,10 +2584,6 @@
 !                   7. Dissipation due to vegetation
 !                   8. Dissipation due to turbulence
 !                   9. Fluid mud-induced wave dissipation
-<<<<<<< HEAD
-=======
-!                  10. Dissipation by sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !       -----------------------------------------------------------------
 !       Call ACTION  calculate the derivatives in x,y,s,d space and store
 !                    the results in the corresponding arrays
@@ -3120,13 +3074,7 @@
 #ifdef SWAN_MODEL
      &                 COMPDA(1,JUSTAR),COMPDA(1,JCDRAG), 
 #endif
-<<<<<<< HEAD
      &                 SPCSIG ,AC2)                                      41.33 30.70
-=======
-     &                 SPCSIG ,AC2,                                       41.33 30.70
-     &                 SWMATR(1,1,JGEN0), KWAVE                           40.88
-     &                )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !TIMG          CALL SWTSTO(115)                                                40.23
         END IF
 !
@@ -3211,11 +3159,7 @@
      &          SWPDIR,KCGRD(1),LINK(1),LINK(2)
  10          FORMAT(' SWOMPU:  SWPDIR POINT LINK1  LINK2 = ',4(1X,I5))
 !
-<<<<<<< HEAD
              CALL SWTRCF (COMPDA(1,JWLV2),                                40.31 40.09
-=======
-             CALL SWTRCF (COMPDA(1,JDP2),COMPDA(1,JWLV2),                 41.71 40.31 40.09
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                    COMPDA(1,JHS), LINK, OBREDF,                    40.09
      &                    AC2, REFLSO, KGRPNT, XCGRID,                    40.41 40.09
      &                    YCGRID, CAX, CAY, RDX, RDY, LSWMAT(1,1,JABIN),  40.02
@@ -3242,10 +3186,6 @@
      &  SWTSDA(1,1,1,JPSWEL),                                             40.88
      &  SWTSDA(1,1,1,JPWBRK),SWTSDA(1,1,1,JP4S)  ,SWTSDA(1,1,1,JP4D)  ,
      &  SWTSDA(1,1,1,JPVEGT),SWTSDA(1,1,1,JPTURB),SWTSDA(1,1,1,JPMUD) ,   40.59 40.35 40.55
-<<<<<<< HEAD
-=======
-     &  SWTSDA(1,1,1,JPICE) ,                                             41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &  SWTSDA(1,1,1,JPTRI) ,                     HS                  ,   40.22
      &  ETOT                ,QBLOC               ,THETAW              ,
      &  HM                  ,FPM                 ,WIND10              ,
@@ -3266,10 +3206,6 @@
      &  SWMATR(1,1,JRED0)   ,SWMATR(1,1,JRED1)   ,                        40.85
      &  XIS                 ,COMPDA(1,JFRC2)     ,IT                  ,   40.00
      &  COMPDA(1,JNPLA2)    ,COMPDA(1,JTURB2)    ,COMPDA(1,JMUDL2)    ,   40.59 40.35 40.55
-<<<<<<< HEAD
-=======
-     &  COMPDA(1,JAICE2)    ,COMPDA(1,JHICE2)    ,                        41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &  COMPDA(1,JURSEL)    ,LSWMAT(1,1,JABIN)   ,REFLSO              ,   40.41 40.03
      &  COMPDA(1,JTAUW)
      & ,URMSTOP                                                           40.88
@@ -3415,10 +3351,6 @@
      &                  COMPDA(1,JDSXW)    ,                              40.67 40.61
      &                  COMPDA(1,JDSXV)    ,COMPDA(1,JDSXT)    ,          40.35 40.67 40.61
      &                  COMPDA(1,JDSXM)    ,                              40.67 40.61
-<<<<<<< HEAD
-=======
-     &                  COMPDA(1,JDSXI)    ,                              41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                  COMPDA(1,JDSXL)    ,                              40.88
      &                  COMPDA(1,JGSXW)    ,COMPDA(1,JGENR)    ,          40.85
      &                  COMPDA(1,JRSXQ)    ,COMPDA(1,JRSXT)    ,          40.85
@@ -3507,11 +3439,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -3554,10 +3482,6 @@
 !     IS    :     loop counter
 !
       INTEGER ICMX, IS, IENT
-<<<<<<< HEAD
-=======
-      INTEGER II ! dummy variable                                         41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  9. Subroutines calling
 !
@@ -3607,13 +3531,8 @@
  7015 FORMAT('                      : ITRIAD ',I12  ,' IQUAD ',I12)
       WRITE(PRINTF,7016) IVEG, ITURBV                                     40.35 40.55
  7016 FORMAT('                      : IVEG   ',I12  ,' ITURBV',I12)       40.35 40.55
-<<<<<<< HEAD
       WRITE(PRINTF,7017) IMUD                                             40.59
  7017 FORMAT('                      : IMUD   ',I12)                       40.59
-=======
-      WRITE(PRINTF,7017) IMUD, IICE                                       41.75 40.59
- 7017 FORMAT('                      : IMUD   ',I12  ,' IICE  ',I12)       41.75 40.59
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       IF (OPTG.NE.5) WRITE(PRINTF,7004) DX,DY                             40.80
  7004 FORMAT(' Spatial step         : DX     ',E12.4,' DY    ',E12.4)
       WRITE(PRINTF,7104) EXP(ALOG(SHIG/SLOW)/REAL(MSC-1))-1.,             40.41
@@ -3623,10 +3542,6 @@
  7003 FORMAT(' Physical constants   : GRAV   ',E12.4,' RHO   ',E12.4)     40.41
       WRITE(PRINTF,7027) U10 , WDIC/DEGRAD
  7027 FORMAT(' Wind input           : WSPEED ',E12.4,' DIR   ',E12.4)
-<<<<<<< HEAD
-=======
-      WRITE(PRINTF,'(A,F5.2)')'                      : ICEWIND ',ICEWIND  41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       WRITE(PRINTF,7123) PWTAIL(1),PWTAIL(2)
  7123 FORMAT(' Tail parameters      : E(f)   ',E12.4,' E(k)  ',E12.4)
       WRITE(PRINTF,7133) PWTAIL(3),PWTAIL(4)
@@ -3756,22 +3671,6 @@
          WRITE (PRINTF, *) 'Fluid mud is off'                             40.59
       ENDIF                                                               40.59
 !
-<<<<<<< HEAD
-=======
-      IF (IICE.EQ.1) THEN                                                 41.75
-         WRITE(PRINTF,'(A)')'Sea ice: CTGA with CICE'                     41.75
-      ELSEIF (IICE.EQ.2) THEN                                             41.75
-         WRITE(PRINTF,'(A)')'Sea ice: CTGA with CICE ADCICE'              41.75
-      ELSEIF (IICE.EQ.3) THEN                                             41.75
-         WRITE(PRINTF,'(A)')'Sea ice: IC4M2 with parameters:'             41.75
-         DO II=1,8                                                        41.75
-            WRITE(PRINTF,'(A,I2.2,A,E12.4)')'     ',II,' :: ',PIC4M2(II)  41.75
-         END DO                                                           41.75
-      ELSE                                                                41.75
-         WRITE (PRINTF, *) 'Dissipation by sea ice is off'                41.75
-      ENDIF                                                               41.75
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       IF (IWCAP.EQ.1) THEN
          WRITE(PRINTF,'(2A,E12.4)')' W-cap Komen (`84)    : ',
      &                             'EMPCOF (CDS2): ',PWCAP(1)
@@ -3980,11 +3879,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -4451,11 +4346,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -4677,11 +4568,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -5388,11 +5275,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -5897,11 +5780,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -6121,11 +6000,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -6371,11 +6246,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -6688,10 +6559,6 @@
      &                     PLSWEL     ,                                   40.88
      &                     PLWBRK     ,PLNL4S     ,PLNL4D     ,
      &                     PLVEGT     ,PLTURB     ,PLMUD      ,           40.59 40.35 40.55
-<<<<<<< HEAD
-=======
-     &                     PLICE      ,                                   41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                     PLTRI      ,            HS         ,           40.22
      &                     ETOT       ,QBLOC      ,THETAW     ,
      &                     HM         ,FPM        ,WIND10     ,
@@ -6711,10 +6578,6 @@
      &                     GENC1      ,REDC0      ,REDC1      ,           40.85
      &                     XIS        ,FRCOEF     ,IT         ,           30.00
      &                     NPLA2      ,TURBV2     ,MUDL2      ,           40.59 40.35 40.55
-<<<<<<< HEAD
-=======
-     &                     AICE2      ,HICE2      ,                       41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                     URSELL     ,ANYBIN     ,REFLSO     ,           40.41 40.03
      &                     TAUWV
      &                    ,URMSTOP                                        40.88
@@ -6747,11 +6610,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -6787,10 +6646,6 @@
 !     40.59: Erick Rogers
 !     40.61: Marcel Zijlema
 !     40.85: Marcel Zijlema
-<<<<<<< HEAD
-=======
-!     41.75: Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  1. Updates
 !
@@ -6819,10 +6674,6 @@
 !     40.61, Sep. 06: introduction of all separate dissipation coefficients
 !                     for output purposes
 !     40.85, Aug. 08: add generation and redistribition for output purposes
-<<<<<<< HEAD
-=======
-!     41.75, Jan. 19: add dissipation by sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  2. Purpose
 !
@@ -6981,21 +6832,6 @@
 !
 !  7. Common blocks used
 !
-<<<<<<< HEAD
-=======
-!     8. REMARKS
-!
-!   On setting the AICELOC variable:
-!    * PIC4M2(1) should be used for AICELOC *only* if VARAICE is false.
-!    * We check for case of IICE>3 as a reminder to update this subroutine
-!      if/when new S_ice routines are added.
-!
-!   On setting HICELOC variable:
-!      This is not used by any subroutine yet. Therefore it is not set here.
-!      However, it can easily be added later by following example of AICELOC
-!      We are already bringing the HICE2 variable into SOURCE in anticipation
-!      of adding HICELOC later, for future version of SICE subroutine
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     9. STRUCTURE
 !
@@ -7017,13 +6853,6 @@
 !     Call SMUD  to compute the source term due to fluid mud
 !      dissipation according to Ng (2000)
 !   ------------------------------------------------------------
-<<<<<<< HEAD
-=======
-!   If SICE is on (IICE > 2 ) then,
-!     Call SICE to compute the source term due to dissipation by sea ice.
-!     For IICE=3, use method IC4M2 : polynomial parametric function
-!   ------------------------------------------------------------
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !   If SSURF is on (ISURF > 0 ) then,
 !     Call SSURF to compute the source term due to wave breaking
 !   ------------------------------------------------------------
@@ -7077,12 +6906,7 @@
       REAL     ABRBOT  ,ETOT    ,HM      ,QBLOC   ,ETOTW   ,
      &         FPM     ,WIND10  ,THETAW  ,SMESPC  ,KMESPC  ,
      &         SNLC1   ,FACHFR  ,DAL1    ,DAL2    ,DAL3    ,
-<<<<<<< HEAD
      &         UFRIC   ,SMEBRK  ,HS      ,XIS     ,KTETA
-=======
-     &         UFRIC   ,SMEBRK  ,HS      ,XIS     ,KTETA   ,
-     &         AICELOC
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       REAL  :: AC2(MDC,MSC,MCGRD)                                         30.21
       REAL  :: DEP2(MCGRD)
@@ -7119,10 +6943,6 @@
       REAL  :: PLVEGT(MDC,MSC,NPTST)                                      40.55
       REAL  :: PLTURB(MDC,MSC,NPTST)                                      40.35
       REAL  :: PLMUD (MDC,MSC,NPTST)                                      40.59
-<<<<<<< HEAD
-=======
-      REAL  :: PLICE (MDC,MSC,NPTST)                                      41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       REAL  :: PLSWEL(MDC,MSC,NPTST)                                      40.88
       REAL  :: PLTRI(MDC,MSC,NPTST)
       REAL  :: WWAWG(*)
@@ -7142,11 +6962,6 @@
       REAL  :: NPLA2(MCGRD)                                               40.55
       REAL  :: TURBV2(MCGRD)                                              40.35
       REAL  :: MUDL2(MCGRD)                                               40.59
-<<<<<<< HEAD
-=======
-      REAL, INTENT(IN)  :: AICE2(MCGRD)                                   41.75
-      REAL, INTENT(IN)  :: HICE2(MCGRD)                                   41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       REAL  :: REFLSO(MDC,MSC)                                            40.41
       REAL  :: URMSTOP(MCGRD)                                             40.88
 !
@@ -7184,21 +6999,6 @@
       REDC0(1:MDC,1:MSC,1:MREDS) = 0.                                     40.85
       REDC1(1:MDC,1:MSC,1:MREDS) = 0.                                     40.85
 !
-<<<<<<< HEAD
-=======
-!     *** set local ice concentration ***                                 41.75
-!     (see Remarks)                                                       41.75
-
-      AICELOC = 0.                                                        41.75
-      IF ( VARAICE ) THEN                                                 41.75
-         AICELOC = AICE2(KCGRD(1))                                        41.75
-      ELSEIF ( IICE.EQ.3 ) THEN                                           41.75
-         AICELOC = PIC4M2(1)                                              41.75
-      ELSEIF ( IICE.GT.3 ) THEN                                           41.75
-         CALL MSGERR (3,'invalid IICE option')                            41.75
-      ENDIF                                                               41.75
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !TIMG      CALL SWTSTA(130)                                                    40.23
       IF (IBOT .GE. 1) THEN
 !
@@ -7251,22 +7051,6 @@
       END IF                                                              40.35
 !TIMG      CALL SWTSTO(143)                                                    40.35
 !
-<<<<<<< HEAD
-=======
-!TIMG      CALL SWTSTA(144)                                               41.75
-      IF ( IICE.GE.2 ) THEN                                               41.75
-!                                                                         41.75
-!        *** dissipation by sea ice ***                                   41.75
-!                                                                         41.75
-         CALL SICE   (IMATDA , IDCMIN  , IDCMAX , ISSTOP                  41.75
-     &              , DISSC1 , PLICE   , AICELOC                          41.75
-     &              , SPCSIG  , CGO                                       41.75
-     &               )                                                    41.75
-!                                                                         41.75
-      END IF                                                              41.75
-!TIMG      CALL SWTSTO(144)                                               41.75
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !TIMG      CALL SWTSTA(131)                                                    40.23
       IF (ISURF .GE. 1) THEN
 !
@@ -7293,11 +7077,7 @@
      &                  SPCSIG  ,THETAW  ,ANYWND  ,
      &                  UFRIC   ,FPM     ,PLWNDS  ,
      &                  IMATRA  ,SPCDIR  ,GENC0   ,
-<<<<<<< HEAD
      &                  KWAVE   )
-=======
-     &                  KWAVE   ,AICELOC )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            ELSE
              IF ( SWPDIR .EQ. 1 .OR.
      &            (SWPDIR .EQ. 2 .AND. IX .EQ. 1) .OR.
@@ -7311,11 +7091,7 @@
 !       *** falls within a sweep and store in right hand side IMATRA ***
 !
              CALL FILSIN( MEMSINA, IDCMIN, IDCMAX, IMATRA, ANYWND,
-<<<<<<< HEAD
      &                    PLWNDS , ISSTOP, GENC0 )
-=======
-     &                    PLWNDS , ISSTOP, GENC0 , AICELOC )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            ENDIF
         ENDIF
       ENDIF
@@ -7326,11 +7102,7 @@
      &                   DEP2  ,WIND10,GENC0,GENC1,                       40.85 32.06
      &                   THETAW,AC2   ,KWAVE ,IMATRA,IMATDA,              32.06
      &                   SPCSIG,CGO   ,ALIMW ,GROWW ,ETOTW ,              32.06
-<<<<<<< HEAD
      &                   PLWNDS,PLWNDD,SPCDIR,ITER            )           32.06
-=======
-     &                   PLWNDS,PLWNDD,SPCDIR,ITER,AICELOC    )           41.75 32.06
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !
       ELSE IF ( IWIND .EQ. 3 ) THEN
@@ -7340,12 +7112,7 @@
         CALL SWIND3 (SPCSIG  ,THETAW  ,
      &               KWAVE   ,IMATRA  ,GENC0   ,
      &               IDCMIN  ,IDCMAX  ,AC2     ,UFRIC   ,
-<<<<<<< HEAD
      &               FPM     ,PLWNDS  ,ISSTOP  ,SPCDIR  ,ANYWND  )
-=======
-     &               FPM     ,PLWNDS  ,ISSTOP  ,SPCDIR  ,
-     &               ANYWND  ,AICELOC )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       ELSE IF ( IWIND .EQ. 4 ) THEN
 !
@@ -7356,11 +7123,7 @@
      &                DDIR    ,KWAVE   ,IMATRA  ,GENC0   ,
      &                IDCMIN  ,IDCMAX  ,AC2     ,UFRIC   ,
      &                PLWNDS  ,ISSTOP  ,ITER    ,USTAR   ,ZELEN   ,
-<<<<<<< HEAD
      &                SPCDIR  ,ANYWND  ,IT      ,TAUWV   )
-=======
-     &                SPCDIR  ,ANYWND  ,IT      ,TAUWV   ,AICELOC )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       ELSE IF ( IWIND .EQ. 5 ) THEN
 !
@@ -7369,11 +7132,7 @@
         CALL SWIND5 (SPCSIG  ,THETAW  ,ISSTOP  ,
      &               UFRIC   ,KWAVE   ,IMATRA  ,IDCMIN  ,
      &               IDCMAX  ,AC2     ,ANYWND  ,PLWNDS  ,
-<<<<<<< HEAD
      &               SPCDIR  ,GENC0                     )
-=======
-     &               SPCDIR  ,GENC0   ,AICELOC          )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       ELSE IF ( IWIND .EQ. 8 ) THEN
 !
@@ -7392,11 +7151,7 @@
 !       *** falls within a sweep and store in right hand side IMATRA ***
 !
         CALL FILSIN( MEMSINB, IDCMIN, IDCMAX, IMATRA, ANYWND,
-<<<<<<< HEAD
      &               PLWNDS , ISSTOP, GENC0 )
-=======
-     &               PLWNDS , ISSTOP, GENC0 , AICELOC )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       END IF
 !TIMG      CALL SWTSTO(132)                                                    40.23
@@ -7709,11 +7464,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -7864,11 +7615,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -8012,11 +7759,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -8205,11 +7948,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -8820,11 +8559,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -9333,11 +9068,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -9455,11 +9186,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -9820,11 +9547,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -10379,11 +10102,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as

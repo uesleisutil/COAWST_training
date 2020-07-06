@@ -7,10 +7,6 @@
 # the appropriate options for the type of machine, and the OS, and the compiler!
 
 $sw_perl_path   = perl;
-<<<<<<< HEAD
-=======
-$sw_wrf_path   = "<SET ME>";
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 $sw_netcdf_path = "";
 $sw_netcdff_lib = "";
 $sw_phdf5_path  = ""; 
@@ -33,13 +29,6 @@ while(substr( $ARGV[0], 0, 1 ) eq "-")
     {
         $sw_perl_path = substr( $ARGV[0], 6);
     }
-<<<<<<< HEAD
-=======
-    if(substr( $ARGV[0], 1, 7 ) eq "wrfdir=")
-    {
-        $sw_wrf_path = substr( $ARGV[0], 8);
-    }
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     if(substr( $ARGV[0], 1, 7 ) eq "netcdf=")
     {
         $sw_netcdf_path = substr( $ARGV[0], 8);
@@ -307,10 +296,6 @@ open CONFIGURE_WRF, "> configure.wps" || die "cannot Open for writing... configu
         }
 
         $_ =~ s:CONFIGURE_NETCDFF_LIB:$sw_netcdff_lib:g; 
-<<<<<<< HEAD
-=======
-        $_ =~ s:CONFIGURE_WRF_PATH:$sw_wrf_path:g; 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         @preamble = ( @preamble, $_ ) ;
     }
     close ARCH_PREAMBLE;

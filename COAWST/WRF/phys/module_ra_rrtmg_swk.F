@@ -2079,20 +2079,11 @@
        endif
 !
 ! Recompute original s.s.a. to test for conservative solution
-<<<<<<< HEAD
 ! Balwinder.Singh@pnnl.gov: Code added to avoid 'divide by zero' error 
 ! in zwo computation
 !
        denom = max((1._rb-(1._rb-zw)*(zg/(1._rb-zg))**2),1.0e-30_rb)
        zwo = zw/denom
-=======
-!
-       denom = (1._rb - (1._rb - zw) * (zg / (1._rb - zg))**2)
-       if (abs(denom).eq.0.0_rb) then
-           denom = 1.0E-30_rb
-       end if
-       zwo= zw / denom
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
        if (zwo >= zwcrit) then
 !

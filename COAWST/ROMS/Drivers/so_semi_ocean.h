@@ -1,14 +1,8 @@
       MODULE ocean_control_mod
 !
-<<<<<<< HEAD
 !svn $Id: so_semi_ocean.h 937 2019-01-28 06:13:04Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: so_semi_ocean.h 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -192,32 +186,10 @@
 !  routine "wpoints".
 !-----------------------------------------------------------------------
 !
-<<<<<<< HEAD
       DO ng=1,Ngrids
 #if defined BULK_FLUXES && defined NL_BULK_FLUXES
         BLK(ng)%name=FWD(ng)%name
 #endif
-=======
-#if defined BULK_FLUXES && defined NL_BULK_FLUXES
-!  Set structure for the nonlinear surface fluxes to be processed by
-!  by the tangent linear and adjoint models. Also, set switches to
-!  process the BLK structure in routine "check_multifile".  Notice that
-!  it is possible to split solution into multiple NetCDF files to reduce
-!  their size.
-!
-      CALL edit_multifile ('FWD2BLK')
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-      DO ng=1,Ngrids
-        LreadBLK(ng)=.TRUE.
-      END DO
-#endif
-!
-!  Initialize perturbation tangent linear model.
-!
-      DO ng=1,Ngrids
-        LreadFWD(ng)=.TRUE
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !$OMP PARALLEL
         CALL ad_initial (ng)
 !$OMP END PARALLEL
@@ -447,15 +419,9 @@
 !
         IF (ANY(ABS(ido).eq.1)) THEN
           DO ng=1,Ngrids
-<<<<<<< HEAD
             Fcount=ADM(ng)%Fcount
             ADM(ng)%Nrec(Fcount)=0
             Fcount=TLM(ng)%Fcount
-=======
-            Fcount=ADM(ng)%load
-            ADM(ng)%Nrec(Fcount)=0
-            Fcount=TLM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             TLM(ng)%Nrec(Fcount)=0
             ADM(ng)%Rindex=0
             TLM(ng)%Rindex=0
@@ -582,11 +548,7 @@
               DO i=1,MAXVAL(NconvRitz)
                 DO ng=1,Ngrids
                   IF ((i.eq.1).or.LmultiGST) THEN
-<<<<<<< HEAD
                     Fcount=ADM(ng)%Fcount
-=======
-                    Fcount=ADM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                     ADM(ng)%Nrec(Fcount)=0
                     ADM(ng)%Rindex=0
                     LwrtADJ(ng)=.TRUE.
@@ -744,11 +706,7 @@
             IF (Master) WRITE (stdout,10)
  10         FORMAT (/,' Blowing-up: Saving latest model state into ',   &
      &                ' RESTART file',/)
-<<<<<<< HEAD
             Fcount=RST(ng)%Fcount
-=======
-            Fcount=RST(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (LcycleRST(ng).and.(RST(ng)%Nrec(Fcount).ge.2)) THEN
               RST(ng)%Rindex=2
               LcycleRST(ng)=.FALSE.
@@ -788,12 +746,6 @@
 !
 !  Close IO files.
 !
-<<<<<<< HEAD
-=======
-      DO ng=1,Ngrids
-        CALL close_inp (ng, iADM)
-      END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL close_out
 
       RETURN

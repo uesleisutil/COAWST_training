@@ -32,7 +32,6 @@ PERL			=	perl
 
 RANLIB			=	echo
 
-<<<<<<< HEAD
 #
 # Look for compiled WRF code in one of several directories: WRF-4.0.2, WRF-4.0.1, WRF-4.0, WRF, and WRFV3.
 # The need for complicated logic to do this arises from the various names that the WRF code may take
@@ -58,9 +57,6 @@ endif
 endif
 endif
 
-=======
-WRF_DIR = CONFIGURE_WRF_PATH
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 WRF_INCLUDE     =       -I$(WRF_DIR)/external/io_netcdf \
                         -I$(WRF_DIR)/external/io_grib_share \

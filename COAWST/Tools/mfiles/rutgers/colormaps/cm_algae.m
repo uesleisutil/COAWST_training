@@ -26,11 +26,7 @@ function cmap = cm_algae(varargin)
 %   selection, Oceanography, 29(3), 9-13, http://dx.doi.org/10.5670/oceanog.2016.66 
 % 
 
-<<<<<<< HEAD
 % svn $Id: cm_algae.m 895 2018-02-11 23:15:37Z arango $
-=======
-% svn $Id: cm_algae.m 996 2020-01-10 04:28:56Z arango $
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 % Initialize.
 

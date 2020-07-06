@@ -694,12 +694,7 @@
 !                                                                      !
 !  Fields exported to the OCEAN model:                                 !
 !                                                                      !
-<<<<<<< HEAD
 !     * Wave direction (degrees)                                       !
-=======
-!     * Wave direction mean (degrees)                                  !
-!     * Wave direction peak (degrees)                                  !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     * Significant wave height (m)                                    !
 !     * Average wave length (m)                                        !
 !     * Surface wave relative peak period (s)                          !
@@ -1074,12 +1069,7 @@
 !                                                                      !
 !  Fields exported to the OCEAN model:                                 !
 !                                                                      !
-<<<<<<< HEAD
 !     * Wave direction (degrees)                                       !
-=======
-!     * Mean wave direction (degrees)                                  !
-!     * Peak wave direction (degrees)                                  !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     * Significant wave height (m)                                    !
 !     * Average wave length (m)                                        !
 !     * Surface wave relative peak period (s)                          !

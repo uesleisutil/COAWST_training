@@ -12,18 +12,10 @@ module da_rttov
        i_kind,r_kind, r_double, &
        one, zero, three,deg2rad, q2ppmv, &
        coefs, opts,opts_rt_ir, rttov_inst_name
-<<<<<<< HEAD
    use module_radiance, only : rttov_options, rttov_opts_rt_ir, rttov_coefs, profile_type, &
        transmission_type, radiance_type, rttov_chanprof, &
        jpim, jprb, errorstatus_success, errorstatus_fatal, gas_id_watervapour, &
        sensor_id_ir, sensor_id_mw, sensor_id_hi,rttov_emissivity
-=======
-   use module_radiance, only : rttov_options, rttov_opts_rt_ir, rttov_coefs, rttov_profile, &
-       rttov_transmission, rttov_radiance, rttov_chanprof, &
-       jpim, jprb, errorstatus_success, errorstatus_fatal, gas_id_watervapour, &
-       atlas, atlas_type, atlas_id, atlas_type_ir, atlas_type_mw, &
-       sensor_id_ir, sensor_id_mw, sensor_id_hi, sensor_id_po, rttov_emissivity
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    use da_control, only : max_ob_levels,missing_r, &
       v_interp_p, v_interp_h, tovs_batch, gravity, &

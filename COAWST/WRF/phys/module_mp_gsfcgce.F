@@ -4,11 +4,8 @@
 MODULE module_mp_gsfcgce
 
    USE     module_wrf_error
-<<<<<<< HEAD
    USE module_utility, ONLY: WRFU_Clock, WRFU_Alarm
    USE module_domain, ONLY : HISTORY_ALARM, Is_alarm_tstep
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    USE module_mp_radar
 
 !JJS 1/3/2008     vvvvv
@@ -345,10 +342,7 @@ CONTAINS
 !                   qiold, qsold, qgold,                         &
                    rho, pii, p, itimestep,                      & 
                    refl_10cm, diagflag, do_radar_ref,           & ! GT added for reflectivity calcs
-<<<<<<< HEAD
 !                  refl_10cm, grid_clock, grid_alarms,          & ! GT added for reflectivity calcs
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                    ids,ide, jds,jde, kds,kde,                   & ! domain dims
                    ims,ime, jms,jme, kms,kme,                   & ! memory dims
                    its,ite, jts,jte, kts,kte                    & ! tile   dims
@@ -1250,10 +1244,7 @@ CONTAINS
                        qiwrf, qswrf, qgwrf, &
                        rho_mks, pi_mks, p0_mks,itimestep, &
                        refl_10cm, diagflag, do_radar_ref,           & ! GT added for reflectivity calcs
-<<<<<<< HEAD
 !                      refl_10cm, grid_clock, grid_alarms,          & ! GT added for reflectivity calcs
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                        ids,ide, jds,jde, kds,kde, &
                        ims,ime, jms,jme, kms,kme, &
                        its,ite, jts,jte, kts,kte  &
@@ -1514,11 +1505,8 @@ CONTAINS
 
 !+---+-----------------------------------------------------------------+
   REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT):: refl_10cm  ! GT
-<<<<<<< HEAD
 ! TYPE (WRFU_Clock):: grid_clock
 ! TYPE (WRFU_Alarm), POINTER:: grid_alarms(:)
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 
       REAL, DIMENSION(kts:kte):: qv1d, t1d, p1d, qr1d, qs1d, qg1d, dBZ

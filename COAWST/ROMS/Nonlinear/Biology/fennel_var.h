@@ -1,13 +1,7 @@
 /*
-<<<<<<< HEAD
 ** svn $Id: fennel_var.h 889 2018-02-10 03:32:52Z arango $
 *************************************************** Hernan G. Arango ***
 ** Copyright (c) 2002-2019 The ROMS/TOMS Group                        **
-=======
-** svn $Id: fennel_var.h 995 2020-01-10 04:01:28Z arango $
-*************************************************** Hernan G. Arango ***
-** Copyright (c) 2002-2020 The ROMS/TOMS Group                        **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                             **
 **   See License_ROMS.txt                                             **
 ************************************************************************
@@ -53,13 +47,6 @@
               CASE ('idTvar(iOxyg)')
                 idTvar(iOxyg)=varid
 # endif
-<<<<<<< HEAD
-=======
-# ifdef ODU
-              CASE ('idTvar(iODU_)')
-                idTvar(iODU_)=varid
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 /*
 **  Adjoint sensitivity state biological tracers.
@@ -96,13 +83,6 @@
               CASE ('idTads(iOxyg)')
                 idTads(iOxyg)=varid
 # endif
-<<<<<<< HEAD
-=======
-# ifdef ODU
-              CASE ('idTads(iODU_)')
-                idTads(iODU_)=varid
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 
 /*
@@ -219,19 +199,6 @@
               CASE ('idTbry(inorth,iOxyg)')
                 idTbry(inorth,iOxyg)=varid
 #endif
-<<<<<<< HEAD
-=======
-#ifdef ODU
-              CASE ('idTbry(iwest,iODU_)')
-                idTbry(iwest,iODU_)=varid
-              CASE ('idTbry(ieast,iODU_)')
-                idTbry(ieast,iODU_)=varid
-              CASE ('idTbry(isouth,iODU_)')
-                idTbry(isouth,iODU_)=varid
-              CASE ('idTbry(inorth,iODU_)')
-                idTbry(inorth,iODU_)=varid
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 
 /*
@@ -266,13 +233,6 @@
               CASE ('idRtrc(iOxyg)')
                 idRtrc(iOxyg)=varid
 #endif
-<<<<<<< HEAD
-=======
-#ifdef ODU
-              CASE ('idRtrc(iODU_)')
-                idRtrc(iODU_)=varid
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 
 #ifdef DIAGNOSTICS_BIO
@@ -294,27 +254,6 @@
               CASE ('iDbio2(iO2fx)')
                 iDbio2(iO2fx)=varid
 # endif
-<<<<<<< HEAD
-=======
-# ifdef SEDBIO_COUP
-              CASE ('iDbio2(isdO2)')
-                iDbio2(isdO2)=varid
-              CASE ('iDbio2(iseO2)')
-                iDbio2(iseO2)=varid
-              CASE ('iDbio2(isdNO)')
-                iDbio2(isdNO)=varid
-              CASE ('iDbio2(iseNO)')
-                iDbio2(iseNO)=varid
-              CASE ('iDbio2(isdNH)')
-                iDbio2(isdNH)=varid
-              CASE ('iDbio2(iseNH)')
-                iDbio2(iseNH)=varid
-              CASE ('iDbio2(isdOD)')
-                iDbio2(isdOD)=varid
-              CASE ('iDbio2(iseOD)')
-                iDbio2(iseOD)=varid
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               CASE ('iDbio3(iPPro)')
                 iDbio3(iPPro)=varid
               CASE ('iDbio3(iNO3u)')

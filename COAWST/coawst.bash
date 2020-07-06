@@ -121,11 +121,7 @@ done
 # Set the CPP option defining the particular application. This will
 # determine the name of the ".h" header file with the application
 # CPP definitions. Also this will activate the switch file for WW3.
-<<<<<<< HEAD
-export   COAWST_APPLICATION=INLET_TEST
-=======
 export   COAWST_APPLICATION=Sandy
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 # Set the ROMS_APPLICATION to be the same as the COAWST_APP.
 # Do not change this. We use the COAWST APP for other checks.
@@ -133,11 +129,7 @@ export   ROMS_APPLICATION=${COAWST_APPLICATION}
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
-<<<<<<< HEAD
-export   MY_ROOT_DIR==/cygdrive/e/data/models/COAWST
-=======
-export   MY_ROOT_DIR=/home/ueslei/Documents/COAWST_training/COAWST
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
+export   MY_ROOT_DIR=/home/ueslei/Documents/INPE/COAWST_training/COAWST
 export   MY_PROJECT_DIR=${MY_ROOT_DIR}
 
 # The path to the user's local current ROMS source code.
@@ -169,11 +161,7 @@ export   WWATCH_ENV=${COAWST_WW3_DIR}/wwatch.env
 # 4) NETCDF_CONFIG is needed by WW3. You need to set this:
 #export   NETCDF_CONFIG=${NETCDF_LIBDIR}/../bin/nc-config
 #    This may require nf-config, depending on your system.
-<<<<<<< HEAD
 export   NETCDF_CONFIG=/usr/bin/nc-config
-=======
-export   NETCDF_CONFIG=/usr/local/bin/nc-config
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #
 # 5) WW3_SWITCH_FILE is like cpp options for WW3. You need to create it and
 #    list the name here.  You need to have COAWST listed in the switch file.
@@ -223,11 +211,7 @@ export   NETCDF_CONFIG=/usr/local/bin/nc-config
  export              FORT=gfortran
 #export              FORT=pgi
 
-<<<<<<< HEAD
 # export         USE_DEBUG=on              # use Fortran debugging flags
-=======
- export         USE_DEBUG=              # use Fortran debugging flags
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
  export         USE_LARGE=on            # activate 64-bit compilation
  export       USE_NETCDF4=on            # compile with NetCDF-4 library
 #export   USE_PARALLEL_IO=on            # Parallel I/O with Netcdf-4/HDF5
@@ -422,20 +406,12 @@ if [ -n "${USE_MY_LIBS:+1}" ]; then
       export       ARPACK_LIBDIR=/opt/gfortransoft/serial/ARPACK
       if [ -n "${USE_MPI:+1}" ]; then
         if [ "${which_MPI}" = "mpich2" ]; then
-<<<<<<< HEAD
           export        ESMF_DIR=/usr/
-=======
-          export        ESMF_DIR=/usr/local
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           export      MCT_INCDIR=/usr/local/include
           export      MCT_LIBDIR=/usr/local/lib
           export  PARPACK_LIBDIR=/opt/gfortransoft/mpich2/PARPACK
         elif [ "${which_MPI}" = "openmpi" ]; then
-<<<<<<< HEAD
           export        ESMF_DIR=/usr/
-=======
-          export        ESMF_DIR=/usr/local
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           export      MCT_INCDIR=/usr/local/include
           export      MCT_LIBDIR=/usr/local/lib
           export  PARPACK_LIBDIR=/opt/gfortransoft/openmpi/PARPACK
@@ -445,7 +421,6 @@ if [ -n "${USE_MY_LIBS:+1}" ]; then
       if [ -n "${USE_NETCDF4:+1}" ]; then
         if [ -n "${USE_PARALLEL_IO:+1}" ] && [ -n "${USE_MPI:+1}" ]; then
           if [ "${which_MPI}" = "mpich2" ]; then
-<<<<<<< HEAD
             export     NF_CONFIG=/usr/bin/nf-config
             export NETCDF_INCDIR=/usr/include
           elif [ "${which_MPI}" = "openmpi" ]; then
@@ -459,21 +434,6 @@ if [ -n "${USE_MY_LIBS:+1}" ]; then
       else
         export     NETCDF_INCDIR=/usr/include
         export     NETCDF_LIBDIR=/usr/lib
-=======
-            export     NF_CONFIG=/usr/local/bin/nf-config
-            export NETCDF_INCDIR=/usr/local/include
-          elif [ "${which_MPI}" = "openmpi" ]; then
-            export     NF_CONFIG=/usr/local/bin/nf-config
-            export NETCDF_INCDIR=/usr/local/include
-          fi
-        else
-          export       NF_CONFIG=/usr/local/bin/nf-config
-          export   NETCDF_INCDIR=/usr/local/include
-        fi
-      else
-        export     NETCDF_INCDIR=/usr/local/include
-        export     NETCDF_LIBDIR=/usr/local/lib
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       fi
       ;;
 
@@ -492,13 +452,8 @@ fi
 
 #  export     MY_HEADER_DIR=${MY_PROJECT_DIR}/ROMS/Include
 #  export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}/ROMS/Functionals
-<<<<<<< HEAD
-   export     MY_HEADER_DIR=${MY_PROJECT_DIR}/Projects/Inlet_test/Coupled
-   export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}/Projects/Inlet_test/Coupled
-=======
    export     MY_HEADER_DIR=${MY_PROJECT_DIR}/Projects/Sandy
    export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}/Projects/Sandy
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 # Put the binary to execute in the following directory.
 
@@ -508,13 +463,8 @@ fi
 # Put the f90 files in a project specific Build directory to avoid conflict
 # with other projects.
 
-<<<<<<< HEAD
  export       SCRATCH_DIR=${MY_PROJECT_DIR}/Build
 #  export       SCRATCH_DIR=./Build
-=======
-# export       SCRATCH_DIR=${MY_PROJECT_DIR}/Build
-  export       SCRATCH_DIR=./Build
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 # Go to the users source directory to compile. The options set above will
 # pick up the application-specific code from the appropriate place.

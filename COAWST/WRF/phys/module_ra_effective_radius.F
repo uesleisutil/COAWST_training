@@ -140,10 +140,6 @@
 !
 ! minimum microphys values
 !
-<<<<<<< HEAD
-=======
-   real, parameter          :: r0 = 0.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    real, parameter          :: r1 = 1.e-12
    real, parameter          :: r2 = 1.e-6
 !
@@ -183,15 +179,9 @@
 !
      rqc(k) = max(r1,qc(k)*rho(k))
      qcmps(k)  = qc(k)-qccps(k)
-<<<<<<< HEAD
      rqcmps(k) = qcmps(k)*rho(k)
      if(f_qnc) then
        lammps    = 2.*cdm2*(pidnc*nc(k)/rqcmps(k))**obmr
-=======
-     rqcmps(k) = max(r1,qcmps(k)*rho(k))
-     if(f_qnc) then
-       lammps    = 2.*cdm2*(pidnc*MAX(r0,nc(k))/rqcmps(k))**obmr
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      else
        lammps   = (pidnc*nc0/rqcmps(k))**obmr
      endif
@@ -218,11 +208,7 @@
    if (has_qc) then
      do k = kts,kte_in
        if (rqc(k).le.r1.or.rnc(k).le.r2) cycle
-<<<<<<< HEAD
        lamc = 2.*cdm2*(pidnc*(nc(k)+nccps(k))/rqc(k))**obmr
-=======
-       lamc = 2.*cdm2*(pidnc*(MAX(r0,nc(k))+nccps(k))/rqc(k))**obmr
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        re_qc(k) =  max(2.51e-6,min(sngl(3.0/lamc),50.e-6))
      enddo
    endif
@@ -251,13 +237,8 @@
      enddo
 !
      do k = kts,kte_in
-<<<<<<< HEAD
        qsqg(k) = qs(k)+qg(k)
        re_qs(k) = (re_qs(k)*qs(k)+re_qg(k)*qg(k))/qsqg(k)
-=======
-       qsqg(k) = max(r1,qs(k)+qg(k))
-       re_qs(k) = (re_qs(k)*max(r0,qs(k))+re_qg(k)*max(r0,qg(k)))/qsqg(k)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      enddo     
    endif
 !

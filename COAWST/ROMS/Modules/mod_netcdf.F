@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE mod_netcdf
 !
-<<<<<<< HEAD
 !svn $Id: mod_netcdf.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: mod_netcdf.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -59,19 +53,11 @@
       END INTERFACE netcdf_get_time
 
       INTERFACE netcdf_put_fvar
-<<<<<<< HEAD
 # ifdef SINGLE_PRECISION
         MODULE PROCEDURE netcdf_put_fvar_0dp
         MODULE PROCEDURE netcdf_put_fvar_1dp
         MODULE PROCEDURE netcdf_put_fvar_2dp
 # endif
-=======
-#ifdef SINGLE_PRECISION
-        MODULE PROCEDURE netcdf_put_fvar_0dp
-        MODULE PROCEDURE netcdf_put_fvar_1dp
-        MODULE PROCEDURE netcdf_put_fvar_2dp
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         MODULE PROCEDURE netcdf_put_fvar_0d
         MODULE PROCEDURE netcdf_put_fvar_1d
         MODULE PROCEDURE netcdf_put_fvar_2d
@@ -98,21 +84,6 @@
         MODULE PROCEDURE netcdf_put_svar_3d
       END INTERFACE netcdf_put_svar
 !
-<<<<<<< HEAD
-=======
-!  Switch to debug creating, opening, and closing of NetCDF file IDs
-!  to monitor 'Too many open files' error. In the Unix environment
-!  there is a limit to the number of open files. Use 'ulimit -a' or
-!  'ulimit -S -n' to check.
-!
-#ifdef CHECK_OPEN_FILES
-      logical :: Ldebug_ncid = .TRUE.
-#else
-      logical :: Ldebug_ncid = .FALSE.
-#endif
-      integer :: DBout = 1000           ! debug file 'fort.1000'
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Local dimension parameters.
 !
       integer, parameter :: Matts = 50  ! maximum number of attributes
@@ -2613,11 +2584,7 @@
 
       CALL netcdf_get_fatt (ng, model, ncname, varid, AttName,          &
      &                      AttValue, foundit,                          &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (.not.foundit(1)) THEN
@@ -2867,11 +2834,7 @@
 
       CALL netcdf_get_fatt (ng, model, ncname, varid, AttName,          &
      &                      AttValue, foundit,                          &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (.not.foundit(1)) THEN
@@ -3127,11 +3090,7 @@
 
       CALL netcdf_get_fatt (ng, model, ncname, varid, AttName,          &
      &                      AttValue, foundit,                          &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (.not.foundit(1)) THEN
@@ -3397,11 +3356,7 @@
 
       CALL netcdf_get_fatt (ng, model, ncname, varid, AttName,          &
      &                      AttValue, foundit,                          &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (.not.foundit(1)) THEN
@@ -4977,11 +4932,7 @@
 
       CALL netcdf_get_fatt (ng, model, ncname, varid, AttName,          &
      &                      AttValue, foundit,                          &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (.not.foundit(1)) THEN
@@ -5014,11 +4965,7 @@
 
       CALL netcdf_get_satt (ng, model, ncname, varid, UnitsAtt,         &
      &                      UnitsValue, got_units,                      &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (got_units(1)) THEN
@@ -5280,11 +5227,7 @@
 
       CALL netcdf_get_fatt (ng, model, ncname, varid, AttName,          &
      &                      AttValue, foundit,                          &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (.not.foundit(1)) THEN
@@ -5320,11 +5263,7 @@
 
       CALL netcdf_get_satt (ng, model, ncname, varid, UnitsAtt,         &
      &                      UnitsValue, got_units,                      &
-<<<<<<< HEAD
      &                      ncid = ncid)
-=======
-     &                      ncid = my_ncid)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       IF (exit_flag.eq.NoError) THEN
         IF (got_units(1)) THEN
@@ -8144,16 +8083,6 @@
             exit_flag=3
             ioerror=status
           END IF
-<<<<<<< HEAD
-=======
-          IF (Ldebug_ncid) THEN
-            WRITE (DBout,'(a,1x," <= ",i8,2(2x,a))') kernel(model)//    &
-     &                                               ' CLOSE', ncid,    &
-     &                                               TRIM(my_ncname),   &
-     &                                               TRIM(SourceFile)
-            CALL my_flush (DBout)
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ncid=-1
         END IF
       END IF
@@ -8277,16 +8206,6 @@
           exit_flag=3
           ioerror=status
         END IF
-<<<<<<< HEAD
-=======
-        IF (Ldebug_ncid) THEN
-            WRITE (DBout,'(a," <= ",i8,2(2x,a))') kernel(model)//       &
-     &                                            ' CREATE', ncid,      &
-     &                                            TRIM(ncname),         &
-     &                                            TRIM(SourceFile)
-          CALL my_flush (DBout)
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Set NOFILL mode to enhance performance.
 !
@@ -8514,16 +8433,6 @@
           exit_flag=3
           ioerror=status
         END IF
-<<<<<<< HEAD
-=======
-        IF (Ldebug_ncid) THEN
-           WRITE (DBout,'(a,2x," => ",i8,2(2x,a))') kernel(model)//     &
-     &                                              ' OPEN', ncid,      &
-     &                                              TRIM(ncname),       &
-     &                                              TRIM(SourceFile)
-          CALL my_flush (DBout)
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef DISTRIBUTE
         ibuffer(1)=exit_flag
         ibuffer(2)=ioerror

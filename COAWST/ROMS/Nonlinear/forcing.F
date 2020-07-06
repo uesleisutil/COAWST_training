@@ -1,22 +1,12 @@
 #include "cppdefs.h"
       MODULE forcing_mod
 
-<<<<<<< HEAD
 #if defined NLM_OUTER  || defined SENSITIVITY_4DVAR || \
     defined TL_W4DPSAS || defined W4DPSAS
 !
 !svn $Id: forcing.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-#if defined NLM_OUTER || defined SENSITIVITY_4DVAR || \
-    defined SP4DVAR   || defined TL_W4DPSAS        || \
-    defined W4DPSAS
-!
-!svn $Id: forcing.F 1017 2020-04-27 22:19:14Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -214,7 +204,6 @@
 
 # else
 !
-<<<<<<< HEAD
 !  Tangent linear 2D momentum.
 !
       DO j=JstrR,JendR
@@ -231,8 +220,6 @@
         END DO
       END DO
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  3D momentum.
 !
       DO k=1,N(ng)

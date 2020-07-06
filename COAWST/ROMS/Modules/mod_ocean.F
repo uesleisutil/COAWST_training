@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE mod_ocean
 !
-<<<<<<< HEAD
 !svn $Id: mod_ocean.F 921 2018-09-06 18:27:34Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: mod_ocean.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -60,10 +54,6 @@
 ! DINwcr_sav    Dissolved Inorganic Nitrogen-water column in SAV(mu M) ! 
 ! AGB           Above ground biomas                                    !
 ! BGB           Below ground biomass                                   !
-<<<<<<< HEAD
-=======
-! EPB           Epiphyte biomass                                       !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! PP                                                                   !  
 ! AGM                             
 ! AGAR
@@ -175,7 +165,6 @@
 # if defined ESTUARYBGC && defined SAV_BIOMASS
           real(r8), pointer :: DINwcr(:,:,:)
           real(r8), pointer :: DINsed(:,:,:)
-<<<<<<< HEAD
           real(r8), pointer :: DOwcr(:,:,:)
           real(r8), pointer :: DINwcr_sav(:,:,:)
           real(r8), pointer :: AGB(:,:)
@@ -189,22 +178,6 @@
           real(r8), pointer :: BGAG(:,:,:)
           real(r8), pointer :: BGR(:,:,:)
           real(r8), pointer :: BGM(:,:,:)
-=======
-          real(r8), pointer :: DOwcr(:,:)
-          real(r8), pointer :: DINwcr_sav(:,:)
-          real(r8), pointer :: AGB(:,:)
-          real(r8), pointer :: BGB(:,:)
-          real(r8), pointer :: EPB(:,:)
-          real(r8), pointer :: PP(:,:)
-          real(r8), pointer :: AGM(:,:)
-          real(r8), pointer :: AGAR(:,:)
-          real(r8), pointer :: AGBR(:,:)
-          real(r8), pointer :: SEARS(:,:)
-          real(r8), pointer :: AGBG(:,:)
-          real(r8), pointer :: BGAG(:,:)
-          real(r8), pointer :: BGR(:,:)
-          real(r8), pointer :: BGM(:,:)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # ifdef RED_TIDE
           real(r8), pointer :: CystIni(:,:)
@@ -430,11 +403,7 @@
 !
 !  Set horizontal array size.
 !
-<<<<<<< HEAD
       size2d=REAL((UBi-LBi)*(UBj-LBj),r8)
-=======
-      size2d=REAL((UBi-LBi+1)*(UBj-LBj+1),r8)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Nonlinear model state.
 !
@@ -568,7 +537,6 @@
       Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
       allocate ( OCEAN(ng) % DINsed(LBi:UBi,LBj:UBj,N(ng)) )
       Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-<<<<<<< HEAD
       allocate ( OCEAN(ng) % DOwcr(LBi:UBi,LBj:UBj,N(ng)) )
       Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
       allocate ( OCEAN(ng) % DINwcr_sav(LBi:UBi,LBj:UBj,N(ng)) )
@@ -594,35 +562,6 @@
       allocate ( OCEAN(ng) % BGR(LBi:UBi,LBj:UBj,N(ng)) )
       Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
       allocate ( OCEAN(ng) % BGM(LBi:UBi,LBj:UBj,N(ng)) )
-=======
-      allocate ( OCEAN(ng) % DOwcr(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % DINwcr_sav(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % AGB(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % BGB(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % EPB(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % PP(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % AGM(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % AGAR(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % AGBR(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % SEARS(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % AGBG(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % BGAG(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % BGR(LBi:UBi,LBj:UBj) )
-      Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
-      allocate ( OCEAN(ng) % BGM(LBi:UBi,LBj:UBj) )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       Dmem(ng)=Dmem(ng)+REAL(N(ng),r8)*size2d
 
 # endif
@@ -1166,7 +1105,6 @@
 # if defined ESTUARYBGC && defined SAV_BIOMASS
             OCEAN(ng) % DINwcr(i,j,k) = IniVal
             OCEAN(ng) % DINsed(i,j,k) = IniVal
-<<<<<<< HEAD
             OCEAN(ng) % DOwcr(i,j,k) = IniVal
             OCEAN(ng) % DINwcr_sav(i,j,k) = IniVal
             OCEAN(ng) % AGB(i,j) = IniVal
@@ -1180,21 +1118,6 @@
             OCEAN(ng) % BGAG(i,j,k) = IniVal
             OCEAN(ng) % BGR(i,j,k) = IniVal
             OCEAN(ng) % BGM(i,j,k) = IniVal
-=======
-            OCEAN(ng) % DOwcr(i,j) = IniVal
-            OCEAN(ng) % DINwcr_sav(i,j) = IniVal
-            OCEAN(ng) % AGB(i,j) = IniVal
-            OCEAN(ng) % BGB(i,j) = IniVal
-            OCEAN(ng) % PP(i,j)= IniVal
-            OCEAN(ng) % AGM(i,j) = IniVal
-            OCEAN(ng) % AGAR(i,j) = IniVal
-            OCEAN(ng) % AGBR(i,j) = IniVal
-            OCEAN(ng) % SEARS(i,j) = IniVal
-            OCEAN(ng) % AGBG(i,j) = IniVal
-            OCEAN(ng) % BGAG(i,j) = IniVal
-            OCEAN(ng) % BGR(i,j) = IniVal
-            OCEAN(ng) % BGM(i,j) = IniVal
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # if defined WEC
 #  ifdef WEC_MELLOR

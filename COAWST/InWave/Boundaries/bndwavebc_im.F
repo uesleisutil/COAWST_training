@@ -1,8 +1,5 @@
 #include "cppdefs.h"
-<<<<<<< HEAD
 #undef VARY_ACBC
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       MODULE bndwavebc_mod
 #ifdef INWAVE_SWAN_COUPLING
 # ifdef SOLVE3D
@@ -60,10 +57,6 @@
      &                          Insteps)
 !***********************************************************************
 
-<<<<<<< HEAD
-=======
-      USE mod_forces
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE mod_grid
       USE mod_ncparam
       USE mod_boundary
@@ -79,7 +72,6 @@
 !
 !  Local variable declarations.
 !
-<<<<<<< HEAD
       integer :: i, j, d, nt1, nt2, tidx
       real(r8):: cff, cff1, cff2, cff3, ramp, alpha
       real(r8):: phiw, cw, dist, toff, bndtot
@@ -93,28 +85,6 @@
 #  endif
 
       tidx=MOD(iic(ng),Insteps)+1
-=======
-      integer :: i, j, d
-      integer :: tidx1, tidx2, ratio
-      real(r8):: cff, cff1, cff2, cff3, ramp, alpha
-      real(r8):: fac1, fac2, tidx
-      real(r8):: phiw, cw, dist, toff, bndtot, veltot
-      real(r8), parameter :: eps = 0.0001_r8
-
-#  include "set_bounds.h"
-#  ifdef RAMP_INWAVE
-      ramp=TANH((tdays(ng)-dstart)/0.25_r8)
-#  else
-      ramp=1.0_r8
-#  endif
-!     tidx=MOD(iic(ng),Insteps)+1
-      ratio=INT(WAVES(ng)%idt/dt(ng))
-      tidx=MOD(iic(ng),(WAVES(ng)%Insteps-1)*ratio)/ratio+1.0_r8
-      tidx1=INT(tidx)
-      tidx2=tidx+1
-      fac1=tidx-REAL(INT(tidx),r8)
-      fac2=1.0_r8-fac1
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Lateral boundary conditions at the western edge.
@@ -124,7 +94,6 @@
      &    DOMAIN(ng)%Western_Edge(tile)) THEN
         IF (LBC(iwest,isAC3d,ng)%acquire) THEN
           DO j=Jstr,Jend
-<<<<<<< HEAD
 #  ifdef VARY_ACBC
             bndtot=0.0_r8
             DO d=1,ND
@@ -153,29 +122,6 @@
 #  endif
             BOUNDARY(ng)%zeta_west(j)=(BOUNDARY(ng)%zeta_west(j)+       &
      &                                 bndtot)*ramp
-=======
-# ifdef VARY_ACBC
-!           bndtot=WAVES(ng)%bndwave_z(j,tidx)
-!           veltot=WAVES(ng)%bndwave_u(j,tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(j,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_z(j,tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_u(j,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_u(j,tidx2)
-# else
-!           bndtot=WAVES(ng)%bndwave_z(tidx)
-!           veltot=WAVES(ng)%bndwave_u(tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_z(tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_u(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_u(tidx2)
-# endif
-            BOUNDARY(ng)%zeta_west(j)=(BOUNDARY(ng)%zeta_west(j)+       &
-     &                                 bndtot)*ramp
-            IF (LBC(iwest,isUbar,ng)%acquire) THEN
-              BOUNDARY(ng)%ubar_west(j)=(BOUNDARY(ng)%ubar_west(j)+     &
-     &                                   veltot)*ramp
-            END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           END DO
         END IF
       END IF
@@ -188,7 +134,6 @@
      &    DOMAIN(ng)%Eastern_Edge(tile)) THEN
         IF (LBC(ieast,isAC3d,ng)%acquire) THEN
           DO j=Jstr,Jend
-<<<<<<< HEAD
 #  ifdef VARY_ACBC
             bndtot=0.0_r8
             DO d=1,ND
@@ -217,29 +162,6 @@
 #  endif
             BOUNDARY(ng)%zeta_east(j)=(BOUNDARY(ng)%zeta_east(j)+       &
      &                                 bndtot)*ramp
-=======
-# ifdef VARY_ACBC
-!           bndtot=WAVES(ng)%bndwave_z(j,tidx)
-!           veltot=WAVES(ng)%bndwave_u(j,tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(j,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_z(j,tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_u(j,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_u(j,tidx2)
-# else
-!           bndtot=WAVES(ng)%bndwave_z(tidx)
-!           veltot=WAVES(ng)%bndwave_u(tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_z(tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_u(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_u(tidx2)
-# endif
-            BOUNDARY(ng)%zeta_east(j)=(BOUNDARY(ng)%zeta_east(j)+       &
-     &                                 bndtot)*ramp
-            IF (LBC(ieast,isUbar,ng)%acquire) THEN
-              BOUNDARY(ng)%ubar_east(j)=(BOUNDARY(ng)%ubar_east(j)+     &
-     &                                   veltot)*ramp
-            END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           END DO
         END IF
       END IF
@@ -252,7 +174,6 @@
      &    DOMAIN(ng)%Southern_Edge(tile)) THEN
         IF (LBC(isouth,isAC3d,ng)%acquire) THEN
           DO i=Istr,Iend
-<<<<<<< HEAD
 #  ifdef VARY_ACBC
             bndtot=0.0_r8
             DO d=1,ND
@@ -280,29 +201,6 @@
 #  endif
             BOUNDARY(ng)%zeta_south(i)=(BOUNDARY(ng)%zeta_south(i)+     &
      &                                  bndtot)*ramp
-=======
-# ifdef VARY_ACBC
-!           bndtot=WAVES(ng)%bndwave_z(i,tidx)
-!           veltot=WAVES(ng)%bndwave_v(i,tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(i,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_z(i,tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_v(i,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_v(i,tidx2)
-# else
-!           bndtot=WAVES(ng)%bndwave_z(tidx)
-!           veltot=WAVES(ng)%bndwave_v(tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_z(tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_v(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_v(tidx2)
-# endif
-            BOUNDARY(ng)%zeta_south(i)=(BOUNDARY(ng)%zeta_south(i)+     &
-     &                                  bndtot)*ramp
-            IF (LBC(isouth,isVbar,ng)%acquire) THEN
-              BOUNDARY(ng)%vbar_south(i)=(BOUNDARY(ng)%vbar_south(i)+   &
-     &                                    veltot)*ramp
-            END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           END DO
         END IF
       END IF
@@ -315,7 +213,6 @@
      &    DOMAIN(ng)%Northern_Edge(tile)) THEN
         IF (LBC(inorth,isAC3d,ng)%acquire) THEN
           DO i=Istr,Iend
-<<<<<<< HEAD
 #  ifdef VARY_ACBC
             bndtot=0.0_r8
             DO d=1,ND
@@ -344,29 +241,6 @@
 #  endif
             BOUNDARY(ng)%zeta_north(i)=(BOUNDARY(ng)%zeta_north(i)+     &
      &                                  bndtot)*ramp
-=======
-# ifdef VARY_ACBC
-!           bndtot=WAVES(ng)%bndwave_z(i,tidx)
-!           veltot=WAVES(ng)%bndwave_v(i,tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(i,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_z(i,tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_v(i,tidx1)+                   &
-     &             fac2*WAVES(ng)%bndwave_v(i,tidx2)
-# else
-!           bndtot=WAVES(ng)%bndwave_z(tidx)
-!           veltot=WAVES(ng)%bndwave_v(tidx)
-            bndtot=fac1*WAVES(ng)%bndwave_z(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_z(tidx2)
-            veltot=fac1*WAVES(ng)%bndwave_v(tidx1)+                     &
-     &             fac2*WAVES(ng)%bndwave_v(tidx2)
-# endif
-            BOUNDARY(ng)%zeta_north(i)=(BOUNDARY(ng)%zeta_north(i)+     &
-     &                                  bndtot)*ramp
-            IF (LBC(inorth,isVbar,ng)%acquire) THEN
-              BOUNDARY(ng)%vbar_north(i)=(BOUNDARY(ng)%vbar_north(i)+   &
-     &                                    veltot)*ramp
-            END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           END DO
         END IF
       END IF

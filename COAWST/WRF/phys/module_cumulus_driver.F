@@ -1152,13 +1152,6 @@ CONTAINS
                ,P_QC=p_qc                                       &
                ,MOMMIX=MOMMIX  &
                ,pgcon=pgcon,sas_mass_flux=sas_mass_flux         &
-<<<<<<< HEAD
-=======
-#if (HWRF==1)
-               ,pert_sas=pert_sas,ens_random_seed=ens_random_seed   &
-               ,ens_sasamp=ens_sasamp &
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                ,shalconv=shalconv,shal_pgcon=shal_pgcon         &
                ,hpbl2d=hpbl2d,evap2d=evap2d,heat2d=heat2d       &
                ,P_QI=p_qi,P_FIRST_SCALAR=param_first_scalar     &

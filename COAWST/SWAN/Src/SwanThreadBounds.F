@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 subroutine SwanThreadBounds ( nwetp, ivlow, ivup, tlist )
-=======
-subroutine SwanThreadBounds ( nwetp, ivlow, ivup, tlist, n )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !   --|-----------------------------------------------------------|--
 !     | Delft University of Technology                            |
@@ -15,11 +11,7 @@ subroutine SwanThreadBounds ( nwetp, ivlow, ivup, tlist, n )
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -62,10 +54,6 @@ subroutine SwanThreadBounds ( nwetp, ivlow, ivup, tlist, n )
 !
     integer, intent(out)                    :: ivlow     ! lower index in range of vertices in calling thread
     integer, intent(out)                    :: ivup      ! upper index in range of vertices in calling thread
-<<<<<<< HEAD
-=======
-    integer, intent(in)                     :: n         ! sweep counter
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     integer, dimension(nverts), intent(out) :: tlist     ! vertex list for calling thread
     !
     real, intent(in)                        :: nwetp     ! total number of active vertices
@@ -78,11 +66,7 @@ subroutine SwanThreadBounds ( nwetp, ivlow, ivup, tlist, n )
     integer                                 :: ivert     ! vertex index
     integer                                 :: j         ! counter
     integer                                 :: kvert     ! loop counter over vertices
-<<<<<<< HEAD
     integer, dimension(10)                  :: nacvt     ! number of active vertices for i-th thread
-=======
-    integer, dimension(100)                 :: nacvt     ! number of active vertices for i-th thread
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     integer                                 :: ncurvt    ! number of currently assigned vertices to a thread
     integer                                 :: nvcum     ! cumulative number of vertices
     integer                                 :: nth       ! number of threads
@@ -131,11 +115,7 @@ subroutine SwanThreadBounds ( nwetp, ivlow, ivup, tlist, n )
     !
     do kvert = 1, nverts
        !
-<<<<<<< HEAD
        ivert = vlist(kvert)
-=======
-       ivert = vlist(kvert,n)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        !
        if ( vert(ivert)%active ) then
           !
@@ -162,11 +142,7 @@ subroutine SwanThreadBounds ( nwetp, ivlow, ivup, tlist, n )
     !
     do kvert = ivlow, ivup
        !
-<<<<<<< HEAD
        ivert = vlist(kvert)
-=======
-       ivert = vlist(kvert,n)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        !
        if ( vert(ivert)%active ) then
           !

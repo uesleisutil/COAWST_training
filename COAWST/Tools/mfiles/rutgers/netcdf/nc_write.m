@@ -34,15 +34,9 @@ function status = nc_write(ncfile, Vname, f, varargin)
 %    status      Error flag
 %
 
-<<<<<<< HEAD
 % svn $Id: nc_write.m 895 2018-02-11 23:15:37Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: nc_write.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%
@@ -69,11 +63,7 @@ end
 
 [method,~,~] = nc_interface(ncfile);
 
-<<<<<<< HEAD
 switch(method),
-=======
-switch(method)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   case {'native'}
     status = nc_write_matlab(ncfile, Vname, f, Tindex, Info);
   case {'mexnc'}
@@ -149,19 +139,11 @@ status = 0;
 % Check if there is an unlimited dimension or a time dimension.
 
 index = 0;
-<<<<<<< HEAD
 if (nvdims > 0),
   for n=1:nvdims,
     dname = char(Info.Variables(ivar).Dimensions(n).Name);
     if (Info.Variables(ivar).Dimensions(n).Unlimited ||                 ...
         ~isempty(strfind(dname,'time'))),
-=======
-if (nvdims > 0)
-  for n=1:nvdims
-    dname = char(Info.Variables(ivar).Dimensions(n).Name);
-    if (Info.Variables(ivar).Dimensions(n).Unlimited ||                 ...
-        ~isempty(strfind(dname,'time')))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       got.RecDim = true;
       index = n;
     end
@@ -170,22 +152,13 @@ end
 
 % Inquire information about the attributes.
 
-<<<<<<< HEAD
 if (nvatts > 0),
   for n=1:nvatts,
-=======
-if (nvatts > 0)
-  for n=1:nvatts
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     aname = char(Info.Variables(ivar).Attributes(n).Name);
     switch aname
       case {'_FillValue', '_fillvalue', 'missing_value'}
         spval = Info.Variables(ivar).Attributes(n).Value;
-<<<<<<< HEAD
         if (strcmp(aname, 'missing_value')),
-=======
-        if (strcmp(aname, 'missing_value'))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           got.missing_value = true;
         else
           got.FillValue = true;
@@ -196,19 +169,11 @@ end
 
 % Set start and count indices to process.
 
-<<<<<<< HEAD
 if (nvdims > 0),
   start = zeros([1 nvdims]);
   count = Inf([1 nvdims]); 
 
   for n=1:nvdims,
-=======
-if (nvdims > 0)
-  start = zeros([1 nvdims]);
-  count = Inf([1 nvdims]); 
-
-  for n=1:nvdims
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     start(n) = 0;
     count(n) = Info.Variables(ivar).Dimensions(n).Length;
   end
@@ -219,17 +184,10 @@ end
 % (like variational data assimilation files).
 
 datum = false;
-<<<<<<< HEAD
 if (got.RecDim  && (nvdims == 1)),
   if (length(f) > 1)
     datum = true;
     if (time_rec),
-=======
-if (got.RecDim  && (nvdims == 1))
-  if (length(f) > 1)
-    datum = true;
-    if (time_rec)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       start(index) = Tindex-1;
     else
       start(index) = 0;
@@ -238,11 +196,7 @@ if (got.RecDim  && (nvdims == 1))
   end
 end
 
-<<<<<<< HEAD
 if (~datum && time_rec && (index > 0)),
-=======
-if (~datum && time_rec && (index > 0))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   start(index) = Tindex-1;
   count(index) = 1;
 end
@@ -258,11 +212,7 @@ fmax = max(f(:));
 
 % Replace NaNs if any with fill value.
 
-<<<<<<< HEAD
 if (got.FillValue),
-=======
-if (got.FillValue)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   ind = isnan(f);
   if (~isempty(ind))
     switch nctype
@@ -293,11 +243,7 @@ varid = netcdf.inqVarID(ncid, Vname);
 
 % Write out data.
 
-<<<<<<< HEAD
 if (nvdims > 0),
-=======
-if (nvdims > 0)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   netcdf.putVar(ncid, varid, start, count, f)
 else
   netcdf.putVar(ncid, varid, f)
@@ -309,17 +255,10 @@ netcdf.close(ncid);
 
 % Report.
 
-<<<<<<< HEAD
 if (nvdims > 1),
   text(1:19)=' ';
   text(1:length(Vname))=Vname;
   if (nargin > 3),
-=======
-if (nvdims > 1)
-  text(1:19)=' ';
-  text(1:length(Vname))=Vname;
-  if (got.RecDim)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     disp(['Wrote ',sprintf('%19s',text),                                ...
           ' into record: ',num2str(Tindex,'%4.4i'),                     ...
           ', Min=',sprintf('%12.5e',fmin),                              ...
@@ -383,11 +322,7 @@ end
 % Open NetCDF file.
 
 [ncid]=mexnc('ncopen',ncfile,'NC_WRITE');
-<<<<<<< HEAD
 if (ncid == -1),
-=======
-if (ncid == -1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   error(['NC_WRITE_MEXNC: ncopen - unable to open file: ', ncfile]);
 end
 
@@ -402,11 +337,7 @@ mexnc('setopts',0);
 % Get variable ID.
 
 [varid]=mexnc('ncvarid',ncid,Vname);
-<<<<<<< HEAD
 if (varid < 0),
-=======
-if (varid < 0)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   [status]=mexnc('ncclose',ncid);
   nc_inq(ncfile);
   disp('  ');
@@ -416,22 +347,14 @@ end
 % Inquire about unlimmited dimension.
 
 [~,~,~,recdim,status]=mexnc('ncinquire',ncid);
-<<<<<<< HEAD
 if (status == -1),
-=======
-if (status == -1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   error(['NC_WRITE_MEXNC: ncinquire - cannot inquire file: ',ncfile])
 end
 
 % Get information about requested variable.
 
 [Vname,nctype,nvdims,dimids,nvatts,status]=mexnc('ncvarinq',ncid,varid);
-<<<<<<< HEAD
 if (status == -1),
-=======
-if (status == -1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   error(['NC_WRITE_MEXNC: ncvarinq - unable to inquire about ',         ...
          'variable: ',Vname]);
 end
@@ -441,7 +364,6 @@ end
 index = 0;
 unlimited = false;
 
-<<<<<<< HEAD
 if (nvdims > 0),
   start = zeros([1 nvdims]);
   count = Inf([1 nvdims]); 
@@ -449,25 +371,12 @@ if (nvdims > 0),
   for n=1:nvdims,
     [dname,size,status]=mexnc('ncdiminq',ncid,dimids(n));
     if (status == -1),
-=======
-if (nvdims > 0)
-  start = zeros([1 nvdims]);
-  count = Inf([1 nvdims]); 
-
-  for n=1:nvdims
-    [dname,size,status]=mexnc('ncdiminq',ncid,dimids(n));
-    if (status == -1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       error(['NC_WRITE_MEXNC: ncdiminq - unable to inquire about ',     ...
              'dimension ID: ',num2str(dimids(n))])
     else
       start(n) = 0;
       count(n) = size;
-<<<<<<< HEAD
       if ((dimids(n) == recdim) || ~isempty(strfind(dname,'time'))),
-=======
-      if ((dimids(n) == recdim) || ~isempty(strfind(dname,'time')))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         unlimited = true;
         index = n;
       end
@@ -479,11 +388,7 @@ end
 
 got.FillValue = false;
 
-<<<<<<< HEAD
 for i = 0:nvatts-1,
-=======
-for i = 0:nvatts-1
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   [attnam,status]=mexnc('inq_attname',ncid,varid,i);
   if (status == -1)
     error(['NC_WRITE_MEXNC: inq_attname: error while inquiring ',       ...
@@ -494,15 +399,9 @@ for i = 0:nvatts-1
   if (status == -1)
     error(['NC_WRITE_MEXNC: inq_atttype: error while inquiring ',       ...
            'attribute ', num2str(i)]);
-<<<<<<< HEAD
   end,
   if (strcmp(attnam(1:lstr),'_FillValue')     ||                        ...
       strcmp(attnam(1:lstr),'missing_value')),
-=======
-  end
-  if (strcmp(attnam(1:lstr),'_FillValue')     ||                        ...
-      strcmp(attnam(1:lstr),'missing_value'))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     switch atype
       case (nc_constant('nc_double'))
         [spval,status] = mexnc('get_att_double',ncid,varid,attnam(1:lstr));
@@ -523,11 +422,7 @@ for i = 0:nvatts-1
         [spval,status] = mexnc('ncattget'      ,ncid,varid,attnam(1:lstr));
         myfunc = 'ncattget';
     end
-<<<<<<< HEAD
     if (status == -1),
-=======
-    if (status == -1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       error(['NC_WRITE_MEXNC: ',myfunc,' - error while reading ',       ...
              attnam(1:lstr),' attribute'])
     end
@@ -540,17 +435,10 @@ end
 % dimension (like variational data assimilation files).
 
 datum = false;
-<<<<<<< HEAD
 if (unlimited && (nvdims == 1)),
   if (length(f) > 1)
     datum = true;
     if (time_rec),
-=======
-if (unlimited && (nvdims == 1))
-  if (length(f) > 1)
-    datum = true;
-    if (time_rec)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       start(index) = Tindex-1;
     else
       start(index) = 0;
@@ -559,11 +447,7 @@ if (unlimited && (nvdims == 1))
   end
 end
 
-<<<<<<< HEAD
 if (~datum && time_rec && (index > 0)),
-=======
-if (~datum && time_rec && (index > 0))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   start(index) = Tindex-1;
   count(index) = 1;
 end
@@ -579,11 +463,7 @@ fmax = max(f(:));
 
 % Replace NaNs if any with fill value.
 
-<<<<<<< HEAD
 if (got.FillValue),
-=======
-if (got.FillValue)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   ind = isnan(f);
   if (~isempty(ind))
     switch nctype
@@ -607,11 +487,7 @@ end
 % Write out variable into NetCDF file.
 %--------------------------------------------------------------------------
 
-<<<<<<< HEAD
 if (nvdims > 0),
-=======
-if (nvdims > 0)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   switch nctype
     case (nc_constant('nc_double'))
       status = mexnc('put_vara_double',ncid,varid,start,count,f);
@@ -662,17 +538,10 @@ end
 
 % Report.
 
-<<<<<<< HEAD
 if (status ~= -1 && nvdims > 1),
   text(1:19)=' ';
   text(1:length(Vname))=Vname;
   if (nargin > 3),
-=======
-if (status ~= -1 && nvdims > 1)
-  text(1:19)=' ';
-  text(1:length(Vname))=Vname;
-  if (got.RecDim)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     disp(['Wrote ',sprintf('%19s',text),                                ...
           ' into record: ',num2str(Tindex,'%4.4i'),                     ...
           ', Min=',sprintf('%12.5e',fmin),                              ...
@@ -684,11 +553,7 @@ if (status ~= -1 && nvdims > 1)
   end
 end
 
-<<<<<<< HEAD
 if (status == -1),
-=======
-if (status == -1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   error(['NC_WRITE_MEXNC: ',myfunc,' - error while writting ',          ...
          'variable: ', Vname, sprintf('\n'), blanks(16),                ...
           mexnc('strerror',status)]);
@@ -699,11 +564,7 @@ end
 %--------------------------------------------------------------------------
 
 status = mexnc('ncclose',ncid);
-<<<<<<< HEAD
 if (status == -1),
-=======
-if (status == -1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   error(['NC_WRITE_MEXNC: ncclose - unable to close NetCDF file: ',     ...
         ncfile]);
 end

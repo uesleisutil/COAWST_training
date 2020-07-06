@@ -24,24 +24,15 @@ subroutine da_rttov_direct(inst, nchanl, nprofiles, nlevels, &
   
    ! RTTOV input parameters
    type (rttov_chanprof), allocatable :: chanprof(:)
-<<<<<<< HEAD
    type (profile_type),   allocatable :: profiles(:) 
-=======
-   type (rttov_profile),   allocatable :: profiles(:) 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    logical, allocatable               :: calcemis(:)
 
    ! RTTOV out parameters
    integer             :: errorstatus
 
    ! RTTOV inout parameters
-<<<<<<< HEAD
    type (radiance_type)     :: radiance
    type (transmission_type) :: transmission
-=======
-   type (rttov_radiance)     :: radiance
-   type (rttov_transmission) :: transmission
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    call da_trace_entry("da_rttov_direct")
 
@@ -88,11 +79,7 @@ subroutine da_rttov_direct(inst, nchanl, nprofiles, nlevels, &
          profiles(n) % cloud(:,:)      = 0.0
          profiles(n) % cfrac(:)        = 0.0
          profiles(n) % idg             = 1
-<<<<<<< HEAD
          profiles(n) % ish             = 1
-=======
-         profiles(n) % ice_scheme      = 1
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       end if
 
       profiles(n)% skin % surftype   = aux_vars(n) % surftype
@@ -106,12 +93,7 @@ subroutine da_rttov_direct(inst, nchanl, nprofiles, nlevels, &
 
       ! for microwave channels, land/sea-ce emissivity is computed
       ! from coefs in prof%skin%fastem, if calcemis = True
-<<<<<<< HEAD
       if ( coefs(inst)%coef%id_sensor == sensor_id_mw ) then
-=======
-      if ( coefs(inst)%coef%id_sensor == sensor_id_mw .or. &
-           coefs(inst)%coef%id_sensor == sensor_id_po ) then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          if ( profiles(n) % skin % surftype == 2 ) then  ! sea-ice
             profiles(n) % skin % fastem (1) = 2.2
             profiles(n) % skin % fastem (2) = 3.7
@@ -161,11 +143,7 @@ subroutine da_rttov_direct(inst, nchanl, nprofiles, nlevels, &
       & errorstatus,     &
       & nchanprof,       &
       & radiance,        &
-<<<<<<< HEAD
       & nlevels-1,       &
-=======
-      & nlevels,         &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       & asw,             &
       & init = .true. )
    if ( errorstatus /= errorstatus_success ) then
@@ -184,11 +162,7 @@ subroutine da_rttov_direct(inst, nchanl, nprofiles, nlevels, &
    call rttov_alloc_transmission( &
       & errorstatus,              &
       & transmission,             &
-<<<<<<< HEAD
       & nlevels-1,                &
-=======
-      & nlevels,                  &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       & nchanprof,                &
       & asw,                      &
       & init = .true. )
@@ -252,22 +226,14 @@ subroutine da_rttov_direct(inst, nchanl, nprofiles, nlevels, &
    deallocate (chanprof)
 
    asw = 0 ! deallocate radiance arrays
-<<<<<<< HEAD
    call rttov_alloc_rad (errorstatus,nchanprof,radiance,nlevels-1,asw)
-=======
-   call rttov_alloc_rad (errorstatus,nchanprof,radiance,nlevels,asw)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    if ( errorstatus /= errorstatus_success ) then
       call da_error(__FILE__,__LINE__, &
         (/"radiance deallocation error"/))
    end if
 
    asw = 0 ! deallocate transmission arrays
-<<<<<<< HEAD
    call rttov_alloc_transmission (errorstatus,transmission,nlevels-1,nchanprof,asw)
-=======
-   call rttov_alloc_transmission (errorstatus,transmission,nlevels,nchanprof,asw)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    if ( errorstatus /= errorstatus_success ) then
       call da_error(__FILE__,__LINE__, &
         (/"transmission deallocation error"/))

@@ -40,11 +40,7 @@
 
 !-----------------------------------------------------------------------
 
-<<<<<<< HEAD
       integer, parameter :: char_len  = 80,                             &
-=======
-      integer, parameter :: char_len  = 120,                            &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                      int_kind  = kind(1),                        &
      &                      log_kind  = kind(.true.),                   &
      &                      real_kind = selected_real_kind(6),          &

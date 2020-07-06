@@ -1261,10 +1261,7 @@ FCBASEOPTS_NO_G =       -w $(FORMAT_FREE) $(BYTESWAPIO) $(OPTERON_TYPE) $(OMP)
 FCBASEOPTS      =       $(FCBASEOPTS_NO_G) $(FCDEBUG)
 MODULE_SRCH_FLAG =    
 TRADFLAG        =      CONFIGURE_TRADFLAG
-<<<<<<< HEAD
 # LPP TRADFLAG        =      -traditional
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 CPP             =      /lib/cpp CONFIGURE_CPPFLAGS $(TRADFLAG)
 AR              =      ar
 ARFLAGS         =      ru
@@ -1312,10 +1309,7 @@ FORMAT_FREE     =       -f free
 FCSUFFIX        =
 BYTESWAPIO      =       -h byteswapio
 FCBASEOPTS_NO_G =       -N1023 $(FORMAT_FREE) $(BYTESWAPIO) #-ra
-<<<<<<< HEAD
 #FCBASEOPTS_NO_G =       -N255 $(FORMAT_FREE) $(BYTESWAPIO) #-ra
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 FCBASEOPTS      =       $(FCBASEOPTS_NO_G) $(FCDEBUG)
 MODULE_SRCH_FLAG =     
 TRADFLAG        =      CONFIGURE_TRADFLAG

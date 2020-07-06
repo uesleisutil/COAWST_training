@@ -15,13 +15,9 @@ subroutine zfft2i ( l, m, wsave, lensav, ier )
 !    On 10 May 2010, this code was modified by changing the value
 !    of an index into the WSAVE array.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Modified:
 !

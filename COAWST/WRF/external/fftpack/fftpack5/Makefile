@@ -29,10 +29,6 @@ library: $(OBJ)
 	$(RM) -f $*.f90
 
 clean:
-<<<<<<< HEAD
 	rm -f $(OBJ) $(TARGET) *.obj
-=======
-	@rm -f $(OBJ) $(TARGET) *.obj
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 superclean: clean

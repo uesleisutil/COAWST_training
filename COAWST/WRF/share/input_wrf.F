@@ -106,11 +106,6 @@
 
     LOGICAL :: yes_use_this_data
 
-<<<<<<< HEAD
-=======
-    CHARACTER(10) :: check_which_switch 
-    CHARACTER(10) :: my_string
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 
 !<DESCRIPTION>
@@ -164,38 +159,20 @@
 
 #if ( NMM_CORE != 1 )
     IF ( .NOT. dryrun ) THEN
-<<<<<<< HEAD
-=======
-   
-       !  Does this file exist?
-   
-       CALL wrf_inquire_filename ( fid , fname , filestate , ierr )
-       IF ( ( filestate .EQ. WRF_FILE_NOT_OPENED       ) .OR. &
-            ( filestate .EQ. WRF_FILE_OPENED_FOR_WRITE ) ) THEN
-          my_string = check_which_switch(switch)
-          CALL wrf_error_fatal( 'Possibly missing file for = ' // TRIM(my_string) )
-       END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
        !  Determine is the input file we are reading is acceptable given the
        !  assumptions about the current version of the modeling system.
    
        CALL is_this_data_ok_to_use ( fid , yes_use_this_data )
-<<<<<<< HEAD
    
        CALL wrf_inquire_filename ( fid , fname , filestate , ierr )
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        IF ( ( yes_use_this_data ) .OR. ( config_flags%force_use_old_data ) ) THEN
           WRITE(wrf_err_message,*)'Input data is acceptable to use: ' // TRIM(fname) 
           CALL wrf_debug( 0 , wrf_err_message )
        ELSE
           CALL wrf_debug( 0 , 'File name that is causing troubles = ' // TRIM(fname) )
-<<<<<<< HEAD
           CALL wrf_debug( 0 , TRIM(fname) )
           CALL wrf_debug( 0 , TRIM(wrf_err_message) )
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           WRITE(wrf_err_message,*)'You can try 1) ensure that the input file was created with WRF v4 pre-processors, or '
           CALL wrf_debug( 0 , TRIM(wrf_err_message) )
           WRITE(wrf_err_message,*)'2) use force_use_old_data=T in the time_control record of the namelist.input file'
@@ -926,7 +903,6 @@
             ( ( switch .EQ. auxinput1_only ) .AND. &
               ( config_flags%auxinput1_inname(1:8) .EQ. 'wrf_real' ) ) ) THEN
 
-<<<<<<< HEAD
        !  Test to make sure that the input data is the right size.
 
        IF ( ( ide .NE. ide_compare    ) .OR. &
@@ -935,30 +911,6 @@
           WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist   ide,jde,kde=',ide,jde,kde
           CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
           WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file ide,jde,kde=',ide_compare , jde_compare , kde_compare
-=======
-       !  Test to make sure that the input data is the right size: real into WRF.
-
-       IF ( ide .NE. ide_compare ) THEN
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist e_we                         = ',ide
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file WEST-EAST_GRID_DIMENSION   = ',ide_compare
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          CALL wrf_debug ( 0, "---- ERROR: Mismatch between namelist and input file dimensions" )
-          count_fatal_error = count_fatal_error + 1
-       ENDIF
-       IF ( jde .NE. jde_compare ) THEN
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist e_sn                         = ',jde
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file SOUTH-NORTH_GRID_DIMENSION = ',jde_compare
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          CALL wrf_debug ( 0, "---- ERROR: Mismatch between namelist and input file dimensions" )
-          count_fatal_error = count_fatal_error + 1
-       ENDIF
-       IF ( kde .NE. kde_compare ) THEN
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist e_vert                       = ',kde
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file BOTTOM-TOP_GRID_DIMENSION  = ',kde_compare
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
           CALL wrf_debug ( 0, "---- ERROR: Mismatch between namelist and input file dimensions" )
           count_fatal_error = count_fatal_error + 1
@@ -966,7 +918,6 @@
 
     ELSE IF ( switch .EQ. auxinput1_only ) THEN
 
-<<<<<<< HEAD
        !  Test to make sure that the input data is the right size.
 
        IF ( ( ide                             .NE. ide_compare ) .OR. &
@@ -975,30 +926,6 @@
           WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist   ide,jde,num_metgrid_levels=',ide,jde,config_flags%num_metgrid_levels
           CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
           WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file ide,jde,kde               =',ide_compare , jde_compare , kde_compare
-=======
-       !  Test to make sure that the input data is the right size: metgrid into real.
-
-       IF ( ide                             .NE. ide_compare ) THEN
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist e_we                         = ',ide
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file WEST-EAST_GRID_DIMENSION   = ',ide_compare
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          CALL wrf_debug ( 0, "---- ERROR: Mismatch between namelist and input file dimensions" )
-          count_fatal_error = count_fatal_error + 1
-       ENDIF
-       IF ( jde                             .NE. jde_compare ) THEN
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist e_sn                         = ',jde
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file SOUTH-NORTH_GRID_DIMENSION = ',jde_compare
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          CALL wrf_debug ( 0, "---- ERROR: Mismatch between namelist and input file dimensions" )
-          count_fatal_error = count_fatal_error + 1
-       ENDIF
-       IF ( config_flags%num_metgrid_levels .NE. kde_compare ) THEN
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  namelist num_metgrid_levels           = ',config_flags%num_metgrid_levels
-          CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
-          WRITE(wrf_err_message,*)'input_wrf.F: SIZE MISMATCH:  input file BOTTOM-TOP_GRID_DIMENSION  = ',kde_compare
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
           CALL wrf_debug ( 0, "---- ERROR: Mismatch between namelist and input file dimensions" )
           count_fatal_error = count_fatal_error + 1
@@ -1012,11 +939,7 @@
     IF      ( ( switch .EQ. auxinput1_only  ) .AND. &
               ( config_flags%auxinput1_inname(1:8) .EQ. 'wrf_real' ) ) THEN
 
-<<<<<<< HEAD
        CALL wrf_get_dom_ti_integer ( fid , 'BOTTOM-TOP_GRID_DIMSNSION' ,   kde_compare , 1 , icnt , ierr3 )
-=======
-       CALL wrf_get_dom_ti_integer ( fid , 'BOTTOM-TOP_GRID_DIMENSION' ,   kde_compare , 1 , icnt , ierr3 )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
        !  Test to make sure that the input data is the right size.
 
@@ -1187,12 +1110,8 @@
       CALL wrf_message ( TRIM(wrf_err_message ) )
       IF ( switch .EQ. boundary_only ) THEN
         WRITE(wrf_err_message,*) '---- ERROR: Ran out of valid boundary conditions in file ',TRIM(fname)
-<<<<<<< HEAD
         CALL wrf_debug ( 0, TRIM( wrf_err_message ) )
         count_fatal_error = count_fatal_error + 1
-=======
-        CALL wrf_error_fatal ( TRIM( wrf_err_message ) )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       ELSE
 #if ( NMM_CORE != 1 )
         WRITE(wrf_err_message,*) '---- ERROR: Could not find matching time in input file ',TRIM(fname)
@@ -1956,10 +1875,6 @@
 
     IF ( &
          ( INDEX(TRIM(input_title_char),'METGRID'     ) .NE. 0 ) .OR. &
-<<<<<<< HEAD
-=======
-         ( INDEX(TRIM(input_title_char),'OBSGRID'     ) .NE. 0 ) .OR. &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          ( INDEX(TRIM(input_title_char),'SFCFDDA'     ) .NE. 0 ) .OR. &
          ( INDEX(TRIM(input_title_char),'EMISSIONS'   ) .NE. 0 ) .OR. &
          ( INDEX(TRIM(input_title_char),'XYZZY'       ) .NE. 0 )      &
@@ -1985,35 +1900,4 @@
     END IF
     
   END SUBROUTINE is_this_data_ok_to_use
-<<<<<<< HEAD
-=======
-
-  FUNCTION check_which_switch (switch) RESULT (aux_thing)
-    IMPLICIT NONE
-    INTEGER, INTENT(IN) :: switch
-    CHARACTER(10) :: aux_thing
-  
-    CHARACTER(LEN=80) :: joe_message
-    INTEGER :: switch_loop, start, end, count
-  
-    aux_thing = 'auxinputxx'
-  
-    start =   MAX_HISTORY + 1
-    end   = 2*MAX_HISTORY
-    count = 0
-    DO switch_loop = start, end
-      IF ( switch .EQ. switch_loop ) THEN
-        IF ( count .EQ. 0 ) THEN
-          WRITE(aux_thing,FMT='(a      )') 'wrfinput '
-        ELSE IF ( count .LT. 10 ) THEN
-          WRITE(aux_thing,FMT='(a,i1   )') 'auxinput',count
-        ELSE 
-          WRITE(aux_thing,FMT='(a,i2.2 )') 'auxinput',count
-        END IF
-      END IF
-      count = count +1
-    END DO
-  END FUNCTION check_which_switch
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif

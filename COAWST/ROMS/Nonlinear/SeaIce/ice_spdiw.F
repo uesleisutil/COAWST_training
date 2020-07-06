@@ -3,11 +3,7 @@
 #ifdef ICE_MODEL
 !
 !=======================================================================
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group                         !
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !================================================== Hernan G. Arango ===
 !                                                                      !
 !  This module computes the magnitude of the shear between the ice
@@ -46,11 +42,7 @@
 # include "tile.h"
 !
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_on (ng, iNLM, 6)
-=======
-      CALL wclock_on (ng, iNLM, 6, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       CALL ice_spdiw_tile (ng, tile,                                    &
      &                     LBi, UBi, LBj, UBj,                          &
@@ -73,11 +65,7 @@
      &                     ICE(ng) % spd_iw                             &
      &                     )
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_off (ng, iNLM, 6)
-=======
-      CALL wclock_off (ng, iNLM, 6, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       RETURN
       END SUBROUTINE ice_spdiw

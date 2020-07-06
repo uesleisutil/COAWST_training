@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE def_var_mod
 !
-<<<<<<< HEAD
 !svn $Id: def_var.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: def_var.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -840,15 +834,6 @@
               ELSE IF (INT(Aval(5)).eq.p3dvar) THEN
                 text='lon_psi lat_psi s_rho'
                 location='node'
-<<<<<<< HEAD
-=======
-              ELSE IF (INT(Aval(5)).eq.l3dvar) THEN
-                text='lon_rho lat_rho light'
-                location='face'
-              ELSE IF (INT(Aval(5)).eq.l4dvar) THEN
-                text='lon_rho lat_rho s_rho light'
-                location='face'
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END IF
             ELSE
               IF (INT(Aval(5)).eq.r2dvar) THEN
@@ -891,15 +876,6 @@
               ELSE IF (INT(Aval(5)).eq.p3dvar) THEN
                 text='x_psi y_psi s_rho'
                 location='node'
-<<<<<<< HEAD
-=======
-              ELSE IF (INT(Aval(5)).eq.l3dvar) THEN
-                text='x_rho y_rho Nbands'
-                location='face'
-              ELSE IF (INT(Aval(5)).eq.l4dvar) THEN
-                text='x_rho y_rho s_rho Nbands'
-                location='face'
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END IF
             END IF
 

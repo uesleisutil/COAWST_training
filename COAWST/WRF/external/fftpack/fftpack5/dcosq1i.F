@@ -12,13 +12,9 @@ subroutine dcosq1i ( n, wsave, lensav, ier )
 !    in array WSAVE.  Separate WSAVE arrays are required for different
 !    values of N.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Modified:
 !

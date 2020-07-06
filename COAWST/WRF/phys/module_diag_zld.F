@@ -104,7 +104,6 @@ CONTAINS
    
                ke_loop_half : DO ke = ke_h , kte-2
    
-<<<<<<< HEAD
                   zm = ABS(z_zl(kz))
                   IF ( z_zl(kz) .LT. 1 ) THEN
                      zu = ( zp(i,ke+1,j)+zb(i,ke+1,j) + zp(i,ke+2,j)+zb(i,ke+2,j) ) / 2.0 / 9.8 - ht(i,j)
@@ -112,14 +111,6 @@ CONTAINS
                   ELSE 
                      zu = ( zp(i,ke+1,j)+zb(i,ke+1,j) + zp(i,ke+2,j)+zb(i,ke+2,j) ) / 2.0 / 9.8
                      zd = ( zp(i,ke  ,j)+zb(i,ke  ,j) + zp(i,ke+1,j)+zb(i,ke+1,j) ) / 2.0 / 9.8
-=======
-                  zu = ( zp(i,ke+1,j)+zb(i,ke+1,j) + zp(i,ke+2,j)+zb(i,ke+2,j) ) / 2.0 / g
-                  zd = ( zp(i,ke  ,j)+zb(i,ke  ,j) + zp(i,ke+1,j)+zb(i,ke+1,j) ) / 2.0 / g
-                  IF ( z_zl(kz) .LT. 1 ) THEN
-                     zm = ABS(z_zl(kz)) + ht(i,j)
-                  ELSE 
-                     zm = z_zl(kz)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                   END IF
                  
                   IF ( ( zd .LE. zm ) .AND. ( zu .GT. zm ) ) THEN
@@ -187,7 +178,6 @@ CONTAINS
    
                ke_loop_full : DO ke = ke_f , kte-1
 
-<<<<<<< HEAD
                   zm = ABS(z_zl(kz))
                   IF ( z_zl(kz) .LT. 1 ) THEN
                      zu = ( zp(i,ke+1,j)+zb(i,ke+1,j) ) / 9.8 - ht(i,j)
@@ -195,14 +185,6 @@ CONTAINS
                   ELSE 
                      zu = ( zp(i,ke+1,j)+zb(i,ke+1,j) ) / 9.8
                      zd = ( zp(i,ke  ,j)+zb(i,ke  ,j) ) / 9.8
-=======
-                  zu = ( zp(i,ke+1,j)+zb(i,ke+1,j) ) / g
-                  zd = ( zp(i,ke  ,j)+zb(i,ke  ,j) ) / g
-                  IF ( z_zl(kz) .LT. 1 ) THEN
-                     zm = ABS(z_zl(kz)) + ht(i,j)
-                  ELSE 
-                     zm = z_zl(kz)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                   END IF
 
                   IF ( ( zd .LE. zm ) .AND. &

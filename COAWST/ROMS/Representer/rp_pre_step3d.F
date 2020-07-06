@@ -3,15 +3,9 @@
 #if defined TL_IOMS && defined SOLVE3D
 # define NEUMANN
 !
-<<<<<<< HEAD
 !svn $Id: rp_pre_step3d.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: rp_pre_step3d.F 1001 2020-01-10 22:41:16Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -373,22 +367,15 @@
 # if defined DIAGNOSTICS_TS || defined DIAGNOSTICS_UV
       integer :: idiag
 # endif
-<<<<<<< HEAD
 # ifdef TS_MPDATA_NOT_YET
       real(r8), parameter :: Gamma = 0.5_r8
 # else
       real(r8), parameter :: Gamma = 1.0_r8/6.0_r8
 # endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), parameter :: eps = 1.0E-16_r8
 
       real(r8) :: cff, cff1, cff2, cff3, cff4
       real(r8) :: tl_cff, tl_cff1, tl_cff2, tl_cff3, tl_cff4
-<<<<<<< HEAD
-=======
-      real(r8) :: Gamma
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8), dimension(IminS:ImaxS,0:N(ng)) :: CF
       real(r8), dimension(IminS:ImaxS,0:N(ng)) :: DC
@@ -458,7 +445,6 @@
 !  Compute time rate of change of intermediate tracer due to
 !  horizontal advection.
 !
-<<<<<<< HEAD
       T_LOOP1 :DO itrc=1,NT(ng)
         K_LOOP: DO k=1,N(ng)
 
@@ -776,341 +762,10 @@
             END DO
           END DO
 #  endif
-=======
-      T_LOOP1 : DO itrc=1,NT(ng)
-        K_LOOP : DO k=1,N(ng)
-!
-          HADV_FLUX : IF (tl_Hadvection(itrc,ng)%CENTERED2) THEN
-!
-!  Second-order, centered differences horizontal advective fluxes.
-!
-            DO j=Jstr,Jend
-              DO i=Istr,Iend+1
-                FX(i,j)=Huon(i,j,k)*                                    &
-     &                  0.5_r8*(t(i-1,j,k,nstp,itrc)+                   &
-     &                          t(i  ,j,k,nstp,itrc))
-                tl_FX(i,j)=0.5_r8*                                      &
-     &                     (tl_Huon(i,j,k)*                             &
-     &                      (t(i-1,j,k,nstp,itrc)+                      &
-     &                       t(i  ,j,k,nstp,itrc))+                     &
-     &                      Huon(i,j,k)*                                &
-     &                      (tl_t(i-1,j,k,nstp,itrc)+                   &
-     &                       tl_t(i  ,j,k,nstp,itrc)))-                 &
-#  ifdef TL_IOMS
-     &                     FX(i,j)
-#  endif
-              END DO
-            END DO
-            DO j=Jstr,Jend+1
-              DO i=Istr,Iend
-                FE(i,j)=Hvom(i,j,k)*                                    &
-     &                  0.5_r8*(t(i,j-1,k,nstp,itrc)+                   &
-     &                          t(i,j  ,k,nstp,itrc))
-                tl_FE(i,j)=0.5_r8*                                      &
-     &                     (tl_Hvom(i,j,k)*                             &
-     &                      (t(i,j-1,k,nstp,itrc)+                      &
-     &                       t(i,j  ,k,nstp,itrc))+                     &
-     &                      Hvom(i,j,k)*                                &
-     &                      (tl_t(i,j-1,k,nstp,itrc)+                   &
-     &                       tl_t(i,j  ,k,nstp,itrc)))-                 &
-#  ifdef TL_IOMS
-     &                     FE(i,j)
-#  endif
-              END DO
-            END DO
-!
-          ELSE IF ((tl_Hadvection(itrc,ng)%MPDATA).or.                  &
-     &             (tl_Hadvection(itrc,ng)%HSIMT)) THEN
-!
-!  First-order, upstream differences horizontal advective fluxes.
-!
-            DO j=Jstr,Jend
-              DO i=Istr,Iend+1
-                cff1=MAX(Huon(i,j,k),0.0_r8)
-                cff2=MIN(Huon(i,j,k),0.0_r8)
-                tl_cff1=(0.5_r8+SIGN(0.5_r8, Huon(i,j,k)))*             &
-     &                  tl_Huon(i,j,k)
-                tl_cff2=(0.5_r8+SIGN(0.5_r8,-Huon(i,j,k)))*             &
-     &                  tl_Huon(i,j,k)
-                FX(i,j)=cff1*t(i-1,j,k,nstp,itrc)+                      &
-     &                  cff2*t(i  ,j,k,nstp,itrc)
-                tl_FX(i,j)=tl_cff1*t(i-1,j,k,nstp,itrc)+                &
-     &                     cff1*tl_t(i-1,j,k,nstp,itrc)+                &
-     &                     tl_cff2*t(i  ,j,k,nstp,itrc)+                &
-     &                     cff2*tl_t(i  ,j,k,nstp,itrc)-                &
-#  ifdef TL_IOMS
-     &                     FX(i,j)
-#  endif
-              END DO
-            END DO
-            DO j=Jstr,Jend+1
-              DO i=Istr,Iend
-                cff1=MAX(Hvom(i,j,k),0.0_r8)
-                cff2=MIN(Hvom(i,j,k),0.0_r8)
-                tl_cff1=(0.5_r8+SIGN(0.5_r8, Hvom(i,j,k)))*             &
-     &                  tl_Hvom(i,j,k)
-                tl_cff2=(0.5_r8+SIGN(0.5_r8,-Hvom(i,j,k)))*             &
-     &                  tl_Hvom(i,j,k)
-                FE(i,j)=cff1*t(i,j-1,k,nstp,itrc)+                      &
-     &                  cff2*t(i,j  ,k,nstp,itrc)
-                tl_FE(i,j)=tl_cff1*t(i,j-1,k,nstp,itrc)+                &
-     &                     cff1*tl_t(i,j-1,k,nstp,itrc)+                &
-     &                     tl_cff2*t(i,j  ,k,nstp,itrc)+                &
-     &                     cff2*tl_t(i,j  ,k,nstp,itrc)-                &
-#  ifdef TL_IOMS
-     &                     FE(i,j)
-#  endif
-              END DO
-            END DO
-!
-          ELSE IF ((tl_Hadvection(itrc,ng)%AKIMA4).or.                  &
-     &             (tl_Hadvection(itrc,ng)%CENTERED4).or.               &
-     &             (tl_Hadvection(itrc,ng)%SPLIT_U3).or.                &
-     &             (tl_Hadvection(itrc,ng)%UPSTREAM3)) THEN
-!
-!  Fourth-order Akima, fourth-order centered differences, or third-order
-!  upstream-biased horizontal advective fluxes.
-!
-            DO j=Jstr,Jend
-              DO i=Istrm1,Iendp2
-                FX(i,j)=t(i  ,j,k,nstp,itrc)-                           &
-     &                  t(i-1,j,k,nstp,itrc)
-                tl_FX(i,j)=tl_t(i  ,j,k,nstp,itrc)-                     &
-     &                     tl_t(i-1,j,k,nstp,itrc)
-#  ifdef MASKING
-                FX(i,j)=FX(i,j)*umask(i,j)
-                tl_FX(i,j)=tl_FX(i,j)*umask(i,j)
-#  endif
-              END DO
-            END DO
-            IF (.not.(CompositeGrid(iwest,ng).or.EWperiodic(ng))) THEN
-              IF (DOMAIN(ng)%Western_Edge(tile)) THEN
-                DO j=Jstr,Jend
-                  FX(Istr-1,j)=FX(Istr,j)
-                  tl_FX(Istr-1,j)=tl_FX(Istr,j)
-                END DO
-              END IF
-            END IF
-            IF (.not.(CompositeGrid(ieast,ng).or.EWperiodic(ng))) THEN
-              IF (DOMAIN(ng)%Eastern_Edge(tile)) THEN
-                DO j=Jstr,Jend
-                  FX(Iend+2,j)=FX(Iend+1,j)
-                  tl_FX(Iend+2,j)=tl_FX(Iend+1,j)
-                END DO
-              END IF
-            END IF
-!
-            DO j=Jstr,Jend
-              DO i=Istr-1,Iend+1
-                IF (tl_Hadvection(itrc,ng)%UPSTREAM3) THEN
-                  curv(i,j)=FX(i+1,j)-FX(i,j)
-                  tl_curv(i,j)=tl_FX(i+1,j)-tl_FX(i,j)
-                ELSE IF (tl_Hadvection(itrc,ng)%AKIMA4) THEN
-                  cff=2.0_r8*FX(i+1,j)*FX(i,j)
-                  tl_cff=2.0_r8*(tl_FX(i+1,j)*FX(i,j)+                  &
-     &                         FX(i+1,j)*tl_FX(i,j))-                   &
-#  ifdef TL_IOMS
-     &                   cff
-#  endif
-                  IF (cff.gt.eps) THEN
-                    grad(i,j)=cff/(FX(i+1,j)+FX(i,j))
-                    tl_grad(i,j)=((FX(i+1,j)+FX(i,j))*tl_cff-           &
-     &                            cff*(tl_FX(i+1,j)+tl_FX(i,j)))/       &
-     &                           ((FX(i+1,j)+FX(i,j))*                  &
-     &                            (FX(i+1,j)+FX(i,j)))+                 &
-#  ifdef TL_IOMS
-     &                           grad(i,j)
-#  endif
-                  ELSE
-                    grad(i,j)=0.0_r8
-                    tl_grad(i,j)=0.0_r8
-                  END IF
-                ELSE IF ((tl_Hadvection(itrc,ng)%CENTERED4).or.         &
-     &                   (tl_Hadvection(itrc,ng)%SPLIT_U3)) THEN
-                  grad(i,j)=0.5_r8*(FX(i+1,j)+FX(i,j))
-                  tl_grad(i,j)=0.5_r8*(tl_FX(i+1,j)+tl_FX(i,j))
-                END IF
-              END DO
-            END DO
-!
-            cff1=1.0_r8/6.0_r8
-            cff2=1.0_r8/3.0_r8
-            DO j=Jstr,Jend
-              DO i=Istr,Iend+1
-                IF (tl_Hadvection(itrc,ng)%UPSTREAM3) THEN
-                  FX(i,j)=Huon(i,j,k)*0.5_r8*                           &
-     &                    (t(i-1,j,k,nstp,itrc)+                        &
-     &                     t(i  ,j,k,nstp,itrc))-                       &
-     &                    cff1*(curv(i-1,j)*MAX(Huon(i,j,k),0.0_r8)+    &
-     &                          curv(i  ,j)*MIN(Huon(i,j,k),0.0_r8))
-                  tl_FX(i,j)=0.5_r8*                                    &
-     &                       (tl_Huon(i,j,k)*                           &
-     &                        (t(i-1,j,k,nstp,itrc)+                    &
-     &                         t(i  ,j,k,nstp,itrc))+                   &
-     &                        Huon(i,j,k)*                              &
-     &                        (tl_t(i-1,j,k,nstp,itrc)+                 &
-     &                         tl_t(i  ,j,k,nstp,itrc)))-               &
-     &                       cff1*                                      &
-     &                       (tl_curv(i-1,j)*MAX(Huon(i,j,k),0.0_r8)+   &
-     &                        curv(i-1,j)*                              &
-     &                        (0.5_r8+SIGN(0.5_r8, Huon(i,j,k)))*       &
-     &                        tl_Huon(i,j,k)+                           &
-     &                        tl_curv(i  ,j)*MIN(Huon(i,j,k),0.0_r8)+   &
-     &                        curv(i  ,j)*                              &
-     &                        (0.5_r8+SIGN(0.5_r8,-Huon(i,j,k)))*       &
-     &                        tl_Huon(i,j,k))-                          &
-#  ifdef TL_IOMS
-     &                       FX(i,j)
-#  endif
-                ELSE IF ((tl_Hadvection(itrc,ng)%AKIMA4).or.            &
-     &                   (tl_Hadvection(itrc,ng)%CENTERED4).or.         &
-     &                   (tl_Hadvection(itrc,ng)%SPLIT_U3)) THEN
-                  FX(i,j)=Huon(i,j,k)*0.5_r8*                           &
-     &                    (t(i-1,j,k,nstp,itrc)+                        &
-     &                     t(i  ,j,k,nstp,itrc)-                        &
-     &                     cff2*(grad(i  ,j)-                           &
-     &                           grad(i-1,j)))
-                  tl_FX(i,j)=0.5_r8*                                    &
-     &                       (tl_Huon(i,j,k)*                           &
-     &                        (t(i-1,j,k,nstp,itrc)+                    &
-     &                         t(i  ,j,k,nstp,itrc)-                    &
-     &                         cff2*(grad(i  ,j)-                       &
-     &                               grad(i-1,j)))+                     &
-     &                        Huon(i,j,k)*                              &
-     &                        (tl_t(i-1,j,k,nstp,itrc)+                 &
-     &                         tl_t(i  ,j,k,nstp,itrc)-                 &
-     &                         cff2*(tl_grad(i  ,j)-                    &
-     &                               tl_grad(i-1,j))))-                 &
-#  ifdef TL_IOMS
-     &                       FX(i,j)
-#  endif
-                END IF
-              END DO
-            END DO
-!
-            DO j=Jstrm1,Jendp2
-              DO i=Istr,Iend
-                FE(i,j)=t(i,j  ,k,nstp,itrc)-                           &
-     &                  t(i,j-1,k,nstp,itrc)
-                tl_FE(i,j)=tl_t(i,j  ,k,nstp,itrc)-                     &
-     &                     tl_t(i,j-1,k,nstp,itrc)
-#  ifdef MASKING
-                FE(i,j)=FE(i,j)*vmask(i,j)
-                tl_FE(i,j)=tl_FE(i,j)*vmask(i,j)
-#  endif
-              END DO
-            END DO
-            IF (.not.(CompositeGrid(isouth,ng).or.NSperiodic(ng))) THEN
-              IF (DOMAIN(ng)%Southern_Edge(tile)) THEN
-                DO i=Istr,Iend
-                  FE(i,Jstr-1)=FE(i,Jstr)
-                  tl_FE(i,Jstr-1)=tl_FE(i,Jstr)
-                END DO
-              END IF
-            END IF
-            IF (.not.(CompositeGrid(inorth,ng).or.NSperiodic(ng))) THEN
-              IF (DOMAIN(ng)%Northern_Edge(tile)) THEN
-                DO i=Istr,Iend
-                  FE(i,Jend+2)=FE(i,Jend+1)
-                  tl_FE(i,Jend+2)=tl_FE(i,Jend+1)
-                END DO
-              END IF
-            END IF
-!
-            DO j=Jstr-1,Jend+1
-              DO i=Istr,Iend
-                IF (tl_Hadvection(itrc,ng)%UPSTREAM3) THEN
-                  curv(i,j)=FE(i,j+1)-FE(i,j)
-                  tl_curv(i,j)=tl_FE(i,j+1)-tl_FE(i,j)
-                ELSE IF (tl_Hadvection(itrc,ng)%AKIMA4) THEN
-                  cff=2.0_r8*FE(i,j+1)*FE(i,j)
-                  tl_cff=2.0_r8*(tl_FE(i,j+1)*FE(i,j)+                  &
-     &                           FE(i,j+1)*tl_FE(i,j))-                 &
-#  ifdef TL_IOMS
-     &                   cff
-#  endif
-                  IF (cff.gt.eps) THEN
-                    grad(i,j)=cff/(FE(i,j+1)+FE(i,j))
-                    tl_grad(i,j)=((FE(i,j+1)+FE(i,j))*tl_cff-           &
-     &                            cff*(tl_FE(i,j+1)+tl_FE(i,j)))/       &
-     &                           ((FE(i,j+1)+FE(i,j))*                  &
-     &                            (FE(i,j+1)+FE(i,j)))+                 &
-#  ifdef TL_IOMS
-     &                           grad(i,j)
-#  endif
-                  ELSE
-                    grad(i,j)=0.0_r8
-                    tl_grad(i,j)=0.0_r8
-                  END IF
-                ELSE IF ((tl_Hadvection(itrc,ng)%CENTERED4).or.         &
-     &                   (tl_Hadvection(itrc,ng)%SPLIT_U3)) THEN
-                  grad(i,j)=0.5_r8*(FE(i,j+1)+FE(i,j))
-                  tl_grad(i,j)=0.5_r8*(tl_FE(i,j+1)+tl_FE(i,j))
-                END IF
-              END DO
-            END DO
-!
-            cff1=1.0_r8/6.0_r8
-            cff2=1.0_r8/3.0_r8
-            DO j=Jstr,Jend+1
-              DO i=Istr,Iend
-                IF (tl_Hadvection(itrc,ng)%UPSTREAM3) THEN
-                  FE(i,j)=Hvom(i,j,k)*0.5_r8*                           &
-     &                    (t(i,j-1,k,nstp,itrc)+                        &
-     &                     t(i,j  ,k,nstp,itrc))-                       &
-     &                    cff1*(curv(i,j-1)*MAX(Hvom(i,j,k),0.0_r8)+    &
-     &                          curv(i,j  )*MIN(Hvom(i,j,k),0.0_r8))
-                  tl_FE(i,j)=0.5_r8*                                    &
-     &                       (tl_Hvom(i,j,k)*                           &
-     &                        (t(i,j-1,k,nstp,itrc)+                    &
-     &                         t(i,j  ,k,nstp,itrc))+                   &
-     &                        Hvom(i,j,k)*                              &
-     &                        (tl_t(i,j-1,k,nstp,itrc)+                 &
-     &                         tl_t(i,j  ,k,nstp,itrc)))-               &
-     &                        cff1*                                     &
-     &                        (tl_curv(i,j-1)*MAX(Hvom(i,j,k),0.0_r8)+  &
-     &                         curv(i,j-1)*                             &
-     &                         (0.5_r8+SIGN(0.5_r8, Hvom(i,j,k)))*      &
-     &                         tl_Hvom(i,j,k)+                          &
-     &                         tl_curv(i,j  )*MIN(Hvom(i,j,k),0.0_r8)+  &
-     &                         curv(i,j  )*                             &
-     &                         (0.5_r8+SIGN(0.5_r8,-Hvom(i,j,k)))*      &
-     &                         tl_Hvom(i,j,k))-                         &
-#  ifdef TL_IOMS
-     &                       FE(i,j)
-#  endif
-                ELSE IF ((tl_Hadvection(itrc,ng)%AKIMA4).or.            &
-     &                   (tl_Hadvection(itrc,ng)%CENTERED4).or.         &
-     &                   (tl_Hadvection(itrc,ng)%SPLIT_U3)) THEN
-                  FE(i,j)=Hvom(i,j,k)*0.5_r8*                           &
-     &                    (t(i,j-1,k,nstp,itrc)+                        &
-     &                     t(i,j  ,k,nstp,itrc)-                        &
-     &                     cff2*(grad(i,j  )-                           &
-     &                           grad(i,j-1)))
-                  tl_FE(i,j)=0.5_r8*                                    &
-     &                       (tl_Hvom(i,j,k)*                           &
-     &                        (t(i,j-1,k,nstp,itrc)+                    &
-     &                         t(i,j  ,k,nstp,itrc)-                    &
-     &                         cff2*(grad(i,j  )-                       &
-     &                               grad(i,j-1)))+                     &
-     &                        Hvom(i,j,k)*                              &
-     &                        (tl_t(i,j-1,k,nstp,itrc)+                 &
-     &                         tl_t(i,j  ,k,nstp,itrc)-                 &
-     &                         cff2*(tl_grad(i,j  )-                    &
-     &                               tl_grad(i,j-1))))-                 &
-#  ifdef TL_IOMS
-     &                       FE(i,j)
-#  endif
-                END IF
-              END DO
-            END DO
-          END IF HADV_FLUX
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Apply tracers point sources to the horizontal advection terms,
 !  if any.
 !
-<<<<<<< HEAD
           IF (LuvSrc(ng).and.ANY(LtracerSrc(:,ng))) THEN
             DO is=1,Nsrc(ng)
               Isrc=SOURCES(ng)%Isrc(is)
@@ -1130,38 +785,6 @@
 !>
                   tl_FE(Isrc,Jsrc)=tl_Hvom(Isrc,Jsrc,k)*                &
      &                             SOURCES(ng)%Tsrc(is,k,itrc)
-=======
-          IF (LuvSrc(ng)) THEN
-            DO is=1,Nsrc(ng)
-              Isrc=SOURCES(ng)%Isrc(is)
-              Jsrc=SOURCES(ng)%Jsrc(is)
-              IF (((Istr.le.Isrc).and.(Isrc.le.Iend+1)).and.            &
-     &            ((Jstr.le.Jsrc).and.(Jsrc.le.Jend+1))) THEN
-                IF (INT(SOURCES(ng)%Dsrc(is)).eq.0) THEN
-                  IF (LtracerSrc(itrc,ng)) THEN
-!>                  FX(Isrc,Jsrc)=Huon(Isrc,Jsrc,k)*                    &
-!>   &                            SOURCES(ng)%Tsrc(is,k,itrc)
-!>
-                    tl_FX(Isrc,Jsrc)=tl_Huon(Isrc,Jsrc,k)*              &
-     &                               SOURCES(ng)%Tsrc(is,k,itrc)
-                  ELSE
-!>                  FX(Isrc,Jsrc)=0.0_r8
-!>
-                    tl_FX(Isrc,Jsrc)=0.0_r8
-                  END IF
-                ELSE
-                  IF (LtracerSrc(itrc,ng)) THEN
-!>                  FE(Isrc,Jsrc)=Hvom(Isrc,Jsrc,k)*                    &
-!>   &                            SOURCES(ng)%Tsrc(is,k,itrc)
-!>
-                    tl_FE(Isrc,Jsrc)=tl_Hvom(Isrc,Jsrc,k)*              &
-     &                               SOURCES(ng)%Tsrc(is,k,itrc)
-                  ELSE
-!>                  FE(Isrc,Jsrc)=0.0_r8
-!>
-                    tl_FE(Isrc,Jsrc)=0.0_r8
-                  END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 END IF
               END IF
             END DO
@@ -1169,15 +792,6 @@
 !
 !  Time-step horizontal advection (m Tunits).
 !
-<<<<<<< HEAD
-=======
-          IF ((tl_Hadvection(itrc,ng)%MPDATA).or.                       &
-     &        (tl_Hadvection(itrc,ng)%HSIMT)) THEN
-            Gamma=0.5_r8
-          ELSE
-            Gamma=1.0_r8/6.0_r8
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (iic(ng).eq.ntfirst(ng)) THEN
             cff=0.5_r8*dt(ng)
             cff1=1.0_r8
@@ -1213,18 +827,13 @@
         END DO K_LOOP
       END DO T_LOOP1
 
-<<<<<<< HEAD
 #  if (defined AGE_MEAN && defined T_PASSIVE) && !defined TS_MPDATA
-=======
-#  if defined AGE_MEAN && defined T_PASSIVE
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  If inert passive tracer and Mean Age, compute age concentration (even
 !  inert index) forced by the right-hand-side term that is concentration
 !  of an associated conservative passive tracer (odd inert index).
 !  Implemented and tested by W.G. Zhang and J. Wilkin. (m Tunits)
 !
-<<<<<<< HEAD
       IF (iic(ng).eq.ntfirst(ng)) THEN
         cff=0.5_r8*dt(ng)
       ELSE
@@ -1283,62 +892,19 @@
 #  endif
           END DO
         END DO
-=======
-      DO itrc=1,NPT,2
-        IF (.not.((tl_Hadvection(inert(itrc),ng)%MPDATA).or.            &
-     &            (tl_Hadvection(inert(itrc),ng)%HSIMT))) THEN
-          IF (iic(ng).eq.ntfirst(ng)) THEN
-            cff=0.5_r8*dt(ng)
-          ELSE
-            Gamma=1.0_r8/6.0_r8
-           cff=(1.0_r8-Gamma)*dt(ng)
-          END IF
-          iage=inert(itrc+1)                   ! even inert tracer index
-          DO k=1,N(ng)
-            DO j=Jstr,Jend
-              DO i=Istr,Iend
-!>              t(i,j,k,3,iage)=t(i,j,k,3,iage)+                        &
-!>   &                          cff*Hz(i,j,k)*                          &
-!>   &                          t(i,j,k,nnew,inert(itrc))
-!>
-                tl_t(i,j,k,3,iage)=tl_t(i,j,k,3,iage)+                  &
-     &                             cff*                                 &
-     &                             (Hz(i,j,k)*                          &
-     &                              tl_t(i,j,k,nnew,inert(itrc))+       &
-     &                              tl_Hz(i,j,k)*                       &
-     &                              t(i,j,k,nnew,inert(itrc)))-         &
-#   ifdef TL_IOMS
-     &                             cff*Hz(i,j,k)*                       &
-     &                             t(i,j,k,nnew,inert(itrc))
-#   endif
-              END DO
-            END DO
-          END DO
-        END IF
-      END DO
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Compute time rate of change of intermediate tracer due to vertical
 !  advection.  Impose artificial continuity equation.
 !-----------------------------------------------------------------------
 !
-<<<<<<< HEAD
         T_LOOP2: DO itrc=1,NT(ng)
 
 #  ifdef TS_SVADVECTION_TL
-=======
-      J_LOOP1 : DO j=Jstr,Jend
-        T_LOOP2 : DO itrc=1,NT(ng)
-!
-          VADV_FLUX : IF (tl_Vadvection(itrc,ng)%SPLINES) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Build conservative parabolic splines for the BASIC STATE vertical
 !  derivatives "FC" of the tracer.
 !
-<<<<<<< HEAD
           DO i=Istr,Iend
 #   ifdef NEUMANN
             FC(i,0)=1.5_r8*t(i,j,1,nstp,itrc)
@@ -1709,397 +1275,11 @@
             tl_FC(i,N(ng))=0.0_r8
           END DO
 #  endif
-=======
-            DO i=Istr,Iend
-#  ifdef NEUMANN
-              FC(i,0)=1.5_r8*t(i,j,1,nstp,itrc)
-              CF(i,1)=0.5_r8
-#  else
-              FC(i,0)=2.0_r8*t(i,j,1,nstp,itrc)
-              CF(i,1)=1.0_r8
-#  endif
-            END DO
-            DO k=1,N(ng)-1
-              DO i=Istr,Iend
-                cff=1.0_r8/(2.0_r8*Hz(i,j,k)+                           &
-     &                      Hz(i,j,k+1)*(2.0_r8-CF(i,k)))
-                CF(i,k+1)=cff*Hz(i,j,k)
-                FC(i,k)=cff*(3.0_r8*(Hz(i,j,k  )*t(i,j,k+1,nstp,itrc)+  &
-     &                               Hz(i,j,k+1)*t(i,j,k  ,nstp,itrc))- &
-     &                       Hz(i,j,k+1)*FC(i,k-1))
-              END DO
-            END DO
-            DO i=Istr,Iend
-#  ifdef NEUMANN
-              FC(i,N(ng))=(3.0_r8*t(i,j,N(ng),nstp,itrc)-               &
-     &                     FC(i,N(ng)-1))/(2.0_r8-CF(i,N(ng)))
-#  else
-              FC(i,N(ng))=(2.0_r8*t(i,j,N(ng),nstp,itrc)-               &
-     &                     FC(i,N(ng)-1))/(1.0_r8-CF(i,N(ng)))
-#  endif
-            END DO
-            DO k=N(ng)-1,0,-1
-              DO i=Istr,Iend
-                FC(i,k)=FC(i,k)-CF(i,k+1)*FC(i,k+1)
-              END DO
-            END DO
-!
-!  Now the tangent linear spline code.
-!
-            DO i=Istr,Iend
-#  ifdef NEUMANN
-!>            FC(i,0)=1.5_r8*t(i,j,1,nstp,itrc)
-!>
-              tl_FC(i,0)=1.5_r8*tl_t(i,j,1,nstp,itrc)
-              CF(i,1)=0.5_r8
-#  else
-!>            FC(i,0)=2.0_r8*t(i,j,1,nstp,itrc)
-!>
-              tl_FC(i,0)=2.0_r8*tl_t(i,j,1,nstp,itrc)
-              CF(i,1)=1.0_r8
-#  endif
-            END DO
-            DO k=1,N(ng)-1
-              DO i=Istr,Iend
-                cff=1.0_r8/(2.0_r8*Hz(i,j,k)+                           &
-     &                      Hz(i,j,k+1)*(2.0_r8-CF(i,k)))
-                CF(i,k+1)=cff*Hz(i,j,k)
-#  ifdef TL_IOMS
-                tl_FC(i,k)=cff*                                         &
-     &                     (3.0_r8*(Hz(i,j,k  )*                        &
-     &                              tl_t(i,j,k+1,nstp,itrc)+            &
-     &                              Hz(i,j,k+1)*                        &
-     &                              tl_t(i,j,k  ,nstp,itrc)+            &
-     &                              tl_Hz(i,j,k  )*                     &
-     &                              t(i,j,k+1,nstp,itrc)+               &
-     &                              tl_Hz(i,j,k+1)*                     &
-     &                              t(i,j,k  ,nstp,itrc)-               &
-     &                              Hz(i,j,k  )*t(i,j,k+1,nstp,itrc)-   &
-     &                              Hz(i,j,k+1)*t(i,j,k  ,nstp,itrc))-  &
-     &                      ((tl_Hz(i,j,k+1)-Hz(i,j,k+1))*FC(i,k-1)+    &
-     &                       2.0_r8*(tl_Hz(i,j,k  )+                    &
-     &                               tl_Hz(i,j,k+1)-                    &
-     &                               Hz(i,j,k  )-                       &
-     &                               Hz(i,j,k+1))*FC(i,k)+              &
-     &                       (tl_Hz(i,j,k  )-Hz(i,j,k  ))*FC(i,k+1))-   &
-     &                      Hz(i,j,k+1)*tl_FC(i,k-1))
-#  else
-                tl_FC(i,k)=cff*                                         &
-     &                     (3.0_r8*(Hz(i,j,k  )*                        &
-     &                              tl_t(i,j,k+1,nstp,itrc)+            &
-     &                              Hz(i,j,k+1)*                        &
-     &                              tl_t(i,j,k  ,nstp,itrc)+            &
-     &                              tl_Hz(i,j,k  )*                     &
-     &                              t(i,j,k+1,nstp,itrc)+               &
-     &                              tl_Hz(i,j,k+1)*                     &
-     &                              t(i,j,k  ,nstp,itrc))-              &
-     &                              (tl_Hz(i,j,k+1)*FC(i,k-1)+          &
-     &                               2.0_r8*(tl_Hz(i,j,k  )+            &
-     &                                       tl_Hz(i,j,k+1))*FC(i,k)+   &
-     &                               tl_Hz(i,j,k  )*FC(i,k+1))-         &
-     &                               Hz(i,j,k+1)*tl_FC(i,k-1))
-#  endif
-              END DO
-            END DO
-            DO i=Istr,Iend
-#  ifdef NEUMANN
-!>            FC(i,N(ng))=(3.0_r8*t(i,j,N(ng),nstp,itrc)-               &
-!>   &                     FC(i,N(ng)-1))/(2.0_r8-CF(i,N(ng)))
-!>
-              tl_FC(i,N(ng))=(3.0_r8*tl_t(i,j,N(ng),nstp,itrc)-         &
-     &                        tl_FC(i,N(ng)-1))/                        &
-     &                       (2.0_r8-CF(i,N(ng)))
-#  else
-!>            FC(i,N(ng))=(2.0_r8*t(i,j,N(ng),nstp,itrc)-               &
-!>   &                     FC(i,N(ng)-1))/(1.0_r8-CF(i,N(ng)))
-!>
-              tl_FC(i,N(ng))=(2.0_r8*tl_t(i,j,N(ng),nstp,itrc)-         &
-     &                        tl_FC(i,N(ng)-1))/                        &
-     &                       (1.0_r8-CF(i,N(ng)))
-#  endif
-            END DO
-            DO k=N(ng)-1,0,-1
-              DO i=Istr,Iend
-!>              FC(i,k)=FC(i,k)-CF(i,k+1)*FC(i,k+1)
-!>
-                tl_FC(i,k)=tl_FC(i,k)-CF(i,k+1)*tl_FC(i,k+1)
-!>              FC(i,k+1)=W(i,j,k+1)*FC(i,k+1)
-!>
-                tl_FC(i,k+1)=tl_W(i,j,k+1)*FC(i,k+1)+                   &
-     &                       W(i,j,k+1)*tl_FC(i,k+1)-                   &
-#  ifdef TL_IOMS
-     &                       W(i,j,k+1)*FC(i,k+1)
-#  endif
-              END DO
-            END DO
-            DO i=Istr,Iend
-!>            FC(i,N(ng))=0.0_r8
-!>
-              tl_FC(i,N(ng))=0.0_r8
-!>            FC(i,0)=0.0_r8
-!>
-              tl_FC(i,0)=0.0_r8
-            END DO
-!
-!  Now complete the computation of the flux array FC.
-!
-            DO k=N(ng)-1,0,-1
-              DO i=Istr,Iend
-                FC(i,k+1)=W(i,j,k+1)*FC(i,k+1)
-              END DO
-            END DO
-            DO i=Istr,Iend
-              FC(i,N(ng))=0.0_r8
-              FC(i,0)=0.0_r8
-            END DO
-!
-          ELSE IF (tl_Vadvection(itrc,ng)%AKIMA4) THEN
-!
-!  Fourth-order, Akima vertical advective flux.
-!
-            DO k=1,N(ng)-1
-              DO i=Istr,Iend
-                FC(i,k)=t(i,j,k+1,nstp,itrc)-                           &
-     &                  t(i,j,k  ,nstp,itrc)
-                tl_FC(i,k)=tl_t(i,j,k+1,nstp,itrc)-                     &
-     &                     tl_t(i,j,k  ,nstp,itrc)
-              END DO
-            END DO
-            DO i=Istr,Iend
-              FC(i,0)=FC(i,1)
-              tl_FC(i,0)=tl_FC(i,1)
-              FC(i,N(ng))=FC(i,N(ng)-1)
-              tl_FC(i,N(ng))=tl_FC(i,N(ng)-1)
-            END DO
-            DO k=1,N(ng)
-              DO i=Istr,Iend
-                cff=2.0_r8*FC(i,k)*FC(i,k-1)
-                tl_cff=2.0_r8*(tl_FC(i,k)*FC(i,k-1)+                    &
-     &                         FC(i,k)*tl_FC(i,k-1))-                   &
-#  ifdef TL_IOMS
-     &                 cff
-#  endif
-                IF (cff.gt.eps) THEN
-                  CF(i,k)=cff/(FC(i,k)+FC(i,k-1))
-                  tl_CF(i,k)=((FC(i,k)+FC(i,k-1))*tl_cff-               &
-     &                        cff*(tl_FC(i,k)+tl_FC(i,k-1)))/           &
-     &                       ((FC(i,k)+FC(i,k-1))*(FC(i,k)+FC(i,k-1)))+ &
-#  ifdef TL_IOMS
-     &                       CF(i,k)
-#  endif
-                ELSE
-                  CF(i,k)=0.0_r8
-                  tl_CF(i,k)=0.0_r8
-                END IF
-              END DO
-            END DO
-            cff1=1.0_r8/3.0_r8
-            DO k=1,N(ng)-1
-              DO i=Istr,Iend
-                FC(i,k)=W(i,j,k)*                                       &
-     &                  0.5_r8*(t(i,j,k  ,nstp,itrc)+                   &
-     &                          t(i,j,k+1,nstp,itrc)-                   &
-     &                          cff1*(CF(i,k+1)-CF(i,k)))
-                tl_FC(i,k)=0.5_r8*                                      &
-     &                     (tl_W(i,j,k)*                                &
-     &                      (t(i,j,k  ,nstp,itrc)+                      &
-     &                       t(i,j,k+1,nstp,itrc)-                      &
-     &                       cff1*(CF(i,k+1)-CF(i,k)))+                 &
-     &                      W(i,j,k)*                                   &
-     &                      (tl_t(i,j,k  ,nstp,itrc)+                   &
-     &                       tl_t(i,j,k+1,nstp,itrc)-                   &
-     &                       cff1*(tl_CF(i,k+1)-tl_CF(i,k))))-          &
-#  ifdef TL_IOMS
-     &                     FC(i,k)
-#  endif
-              END DO
-            END DO
-            DO i=Istr,Iend
-#  ifdef SED_MORPH
-              FC(i,0)=W(i,j,0)*t(i,j,1,nstp,itrc)
-              tl_FC(i,0)=tl_W(i,j,0)*t(i,j,1,nstp,itrc)+                &
-     &                   W(i,j,0)*tl_t(i,j,1,nstp,itrc)-                &
-#   ifdef TL_IOMS
-     &                   FC(i,0)
-#   endif
-#  else
-              FC(i,0)=0.0_r8
-              tl_FC(i,0)=0.0_r8
-#  endif
-              FC(i,N(ng))=0.0_r8
-              tl_FC(i,N(ng))=0.0_r8
-            END DO
-!
-          ELSE IF (tl_Vadvection(itrc,ng)%CENTERED2) THEN
-!
-!  Second-order, central differences vertical advective flux.
-!
-            DO k=1,N(ng)-1
-              DO i=Istr,Iend
-                FC(i,k)=W(i,j,k)*                                       &
-     &                  0.5_r8*(t(i,j,k  ,nstp,itrc)+                   &
-     &                          t(i,j,k+1,nstp,itrc))
-                tl_FC(i,k)=0.5_r8*                                      &
-     &                     (tl_W(i,j,k)*                                &
-     &                      (t(i,j,k  ,nstp,itrc)+                      &
-     &                       t(i,j,k+1,nstp,itrc))+                     &
-     &                      W(i,j,k)*                                   &
-     &                      (tl_t(i,j,k  ,nstp,itrc)+                   &
-     &                       tl_t(i,j,k+1,nstp,itrc)))-                 &
-#  ifdef TL_IOMS
-     &                   FC(i,k)
-#  endif
-              END DO
-            END DO
-            DO i=Istr,Iend
-#  ifdef SED_MORPH
-              FC(i,0)=W(i,j,0)*t(i,j,1,nstp,itrc)
-              tl_FC(i,0)=tl_W(i,j,0)*t(i,j,1,nstp,itrc)                 &
-     &                   W(i,j,0)*tl_t(i,j,1,nstp,itrc)-                &
-#   ifdef TL_IOMS
-     &                   FC(i,0)
-#   endif
-#  else
-              FC(i,0)=0.0_r8
-              tl_FC(i,0)=0.0_r8
-#  endif
-              FC(i,N(ng))=0.0_r8
-              tl_FC(i,N(ng))=0.0_r8
-            END DO
-!
-          ELSE IF ((tl_Vadvection(itrc,ng)%MPDATA).or                   &
-     &             (tl_Vadvection(itrc,ng)%HSINT)) THEN
-!
-!  First_order, upstream differences vertical advective flux.
-!
-            DO k=1,N(ng)-1
-              DO i=Istr,Iend
-                cff1=MAX(W(i,j,k),0.0_r8)
-                cff2=MIN(W(i,j,k),0.0_r8)
-                tl_cff1=(0.5_r8+SIGN(0.5_r8, W(i,j,k)))*tl_W(i,j,k)
-                tl_cff2=(0.5_r8+SIGN(0.5_r8,-W(i,j,k)))*tl_W(i,j,k)
-                FC(i,k)=cff1*t(i,j,k  ,nstp,itrc)+                      &
-     &                  cff2*t(i,j,k+1,nstp,itrc)
-                tl_FC(i,k)=tl_cff1*t(i,j,k  ,nstp,itrc)+                &
-     &                     cff1*tl_t(i,j,k  ,nstp,itrc)+                &
-     &                     tl_cff2*t(i,j,k+1,nstp,itrc)+                &
-     &                     cff2*tl_t(i,j,k+1,nstp,itrc)-                &
-#  ifdef TL_IOMS
-     &                     FC(i,k)
-#  endif
-              END DO
-            END DO
-            DO i=Istr,Iend
-#  ifdef SED_MORPH
-              FC(i,0)=W(i,j,0)*t(i,j,1,nstp,itrc)
-              tl_FC(i,0)=tl_W(i,j,0)*t(i,j,1,nstp,itrc)+                &
-     &                   W(i,j,0)*tl_t(i,j,1,nstp,itrc)-                &
-#   ifdef TL_IOMS
-     &                   FC(i,0)
-#   endif
-#  else
-!>            FC(i,0)=0.0_r8
-!>
-              tl_FC(i,0)=0.0_r8
-#  endif
-!>            FC(i,N(ng))=0.0_r8
-!>
-              tl_FC(i,N(ng))=0.0_r8
-            END DO
-!
-          ELSE IF ((tl_Vadvection(itrc,ng)%CENTERED4).or.               &
-     &             (tl_Vadvection(itrc,ng)%SPLIT_U3)) THEN
-!
-!  Fourth-order, central differences vertical advective flux.
-!
-            cff1=0.5_r8
-            cff2=7.0_r8/12.0_r8
-            cff3=1.0_r8/12.0_r8
-            DO k=2,N(ng)-2
-              DO i=Istr,Iend
-                FC(i,k)=W(i,j,k)*                                       &
-     &                  (cff2*(t(i,j,k  ,nstp,itrc)+                    &
-     &                         t(i,j,k+1,nstp,itrc))-                   &
-     &                   cff3*(t(i,j,k-1,nstp,itrc)+                    &
-     &                         t(i,j,k+2,nstp,itrc)))
-                tl_FC(i,k)=tl_W(i,j,k)*                                 &
-     &                     (cff2*(t(i,j,k  ,nstp,itrc)+                 &
-     &                            t(i,j,k+1,nstp,itrc))-                &
-     &                      cff3*(t(i,j,k-1,nstp,itrc)+                 &
-     &                            t(i,j,k+2,nstp,itrc)))+               &
-     &                     W(i,j,k)*                                    &
-     &                     (cff2*(tl_t(i,j,k  ,nstp,itrc)+              &
-     &                            tl_t(i,j,k+1,nstp,itrc))-             &
-     &                      cff3*(tl_t(i,j,k-1,nstp,itrc)+              &
-     &                            tl_t(i,j,k+2,nstp,itrc)))-            &
-#  ifdef TL_IOMS
-     &                     FC(i,k)
-#  endif
-              END DO
-            END DO
-            DO i=Istr,Iend
-#  ifdef SED_MORPH
-              FC(i,0)=W(i,j,0)*2.0_r8*                                  &
-     &                (cff2*t(i,j,1,nstp,itrc)-                         &
-     &                 cff3*t(i,j,2,nstp,itrc))
-              tl_FC(i,0)=2.0_r8*(tl_W(i,j,0)*                           &
-     &                           (cff2*t(i,j,1,nstp,itrc)-              &
-     &                            cff3*t(i,j,2,nstp,itrc))+             &
-     &                           W(i,j,0)*                              &
-     &                           (cff2*tl_t(i,j,1,nstp,itrc)-           &
-     &                            cff3*tl_t(i,j,2,nstp,itrc)))-         &
-#   ifdef TL_IOMS
-     &                   FC(i,0)
-#   endif
-#  else
-              FC(i,0)=0.0_r8
-              tl_FC(i,0)=0.0_r8
-#  endif
-              FC(i,1)=W(i,j,1)*                                         &
-     &                (cff1*t(i,j,1,nstp,itrc)+                         &
-     &                 cff2*t(i,j,2,nstp,itrc)-                         &
-     &                 cff3*t(i,j,3,nstp,itrc))
-              tl_FC(i,1)=tl_W(i,j,1)*                                   &
-     &                   (cff1*t(i,j,1,nstp,itrc)+                      &
-     &                    cff2*t(i,j,2,nstp,itrc)-                      &
-     &                    cff3*t(i,j,3,nstp,itrc))+                     &
-     &                   W(i,j,1)*                                      &
-     &                   (cff1*tl_t(i,j,1,nstp,itrc)+                   &
-     &                    cff2*tl_t(i,j,2,nstp,itrc)-                   &
-     &                    cff3*tl_t(i,j,3,nstp,itrc))-                  &
-#  ifdef TL_IOMS
-     &                   FC(i,1)
-#  endif
-
-              FC(i,N(ng)-1)=W(i,j,N(ng)-1)*                             &
-     &                      (cff1*t(i,j,N(ng)  ,nstp,itrc)+             &
-     &                       cff2*t(i,j,N(ng)-1,nstp,itrc)-             &
-     &                       cff3*t(i,j,N(ng)-2,nstp,itrc))
-              tl_FC(i,N(ng)-1)=tl_W(i,j,N(ng)-1)*                       &
-     &                         (cff1*t(i,j,N(ng)  ,nstp,itrc)+          &
-     &                          cff2*t(i,j,N(ng)-1,nstp,itrc)-          &
-     &                          cff3*t(i,j,N(ng)-2,nstp,itrc))+         &
-     &                         W(i,j,N(ng)-1)*                          &
-     &                         (cff1*tl_t(i,j,N(ng)  ,nstp,itrc)+       &
-     &                          cff2*tl_t(i,j,N(ng)-1,nstp,itrc)-       &
-     &                          cff3*tl_t(i,j,N(ng)-2,nstp,itrc))-      &
-#  ifdef TL_IOMS
-     &                         FC(i,N(ng)-1)
-#  endif
-              FC(i,N(ng))=0.0_r8
-              tl_FC(i,N(ng))=0.0_r8
-            END DO
-          END IF VADV_FLUX
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Apply mass point sources (volume vertical influx), if any.
 !  (Notice the j-loop is pipelined above).
 !
-<<<<<<< HEAD
           IF (LwSrc(ng).and.ANY(LtracerSrc(:,ng))) THEN
-=======
-          IF (LwSrc(ng)) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             DO is=1,Nsrc(ng)
               Isrc=SOURCES(ng)%Isrc(is)
               Jsrc=SOURCES(ng)%Jsrc(is)
@@ -2119,7 +1299,6 @@
             END DO
           END IF
 !
-<<<<<<< HEAD
 ! Time-step vertical advection of tracers (Tunits).
 !
 ! WARNING: t(:,:,:,3,itrc) at this point should be in units of
@@ -2127,19 +1306,6 @@
 !          STATE file and is in Tunits, so we need to multiply
 !          by level thickness (Hz).
 !
-=======
-!  Compute artificial continuity equation and load it into private
-!  array DC (1/m). It is needed to preserve tracer constancy. It is
-!  not the same for all the tracer advection schemes because of the
-!  Gamma value.
-!
-          IF ((Vadvection(itrc,ng)%MPDATA).or.                          &
-     &        (Vadvection(itrc,ng)%HSIMT)) THEN
-            Gamma=0.5_r8
-          ELSE
-            Gamma=1.0_r8/6.0_r8
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (iic(ng).eq.ntfirst(ng)) THEN
             cff=0.5_r8*dt(ng)
           ELSE
@@ -2147,36 +1313,6 @@
           END IF
           DO k=1,N(ng)
             DO i=Istr,Iend
-<<<<<<< HEAD
-=======
-              DC(i,k)=1.0_r8/(Hz(i,j,k)-                                &
-     &                        cff*pm(i,j)*pn(i,j)*                      &
-     &                        (Huon(i+1,j,k)-Huon(i,j,k)+               &
-     &                         Hvom(i,j+1,k)-Hvom(i,j,k)+               &
-     &                        (W(i,j,k)-W(i,j,k-1))))
-              tl_DC(i,k)=-DC(i,k)*DC(i,k)*                              &
-     &                    (tl_Hz(i,j,k)-                                &
-     &                     cff*pm(i,j)*pn(i,j)*                         &
-     &                     (tl_Huon(i+1,j,k)-tl_Huon(i,j,k)+            &
-     &                      tl_Hvom(i,j+1,k)-tl_Hvom(i,j,k)+            &
-     &                     (tl_W(i,j,k)-tl_W(i,j,k-1))))+               &
-#  ifdef TL_IOMS
-     &                   2.0_r8*DC(i,k)
-#  endif
-            END DO
-          END DO
-!
-! Time-step vertical advection of tracers (Tunits). Impose artificial
-! continuity equation.
-!
-! WARNING: t(:,:,:,3,itrc) at this point should be in units of
-! =======  m Tunits. But, t(:,:,:,3,itrc) is read from a BASIC
-!          STATE file and is in Tunits, so we need to multiply
-!          by level thickness (Hz).
-!
-          DO k=1,N(ng)
-            DO i=Istr,Iend
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               cff1=cff*pm(i,j)*pn(i,j)
 !>            t(i,j,k,3,itrc)=DC(i,k)*                                  &
 !>   &                        (t(i,j,k,3,itrc)-                         &
@@ -2355,15 +1491,9 @@
      &                  z_r(i,j,k  )-z_r(i-1,j,k  ))
             tl_cff=-cff*cff*(tl_z_r(i,j,k+1)+tl_z_r(i-1,j,k+1)-         &
      &                       tl_z_r(i,j,k  )-tl_z_r(i-1,j,k  ))+        &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &             2.0_r8*cff
 #  endif
-=======
-# ifdef TL_IOMS
-     &             2.0_r8*cff
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !!          FC(i,k)=cff3*cff*(u(i,j,k+1,nstp)-u(i,j,k,nstp))*           &
 !!   &                       (Akv(i,j,k)+Akv(i-1,j,k))
 !!
@@ -2424,15 +1554,9 @@
      &                        (Hz(i,j,k)+Hz(i-1,j,k))+                  &
      &                        u(i,j,k,nstp)*                            &
      &                        (tl_Hz(i,j,k)+tl_Hz(i-1,j,k)))-           &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &                cff1
 #  endif
-=======
-# ifdef TL_IOMS
-     &                cff1
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            cff2=FC(i,k)-FC(i,k-1)
 !>
               tl_cff2=tl_FC(i,k)-tl_FC(i,k-1)
@@ -2456,15 +1580,9 @@
      &                        (Hz(i,j,k)+Hz(i-1,j,k))+                  &
      &                        u(i,j,k,nstp)*                            &
      &                        (tl_Hz(i,j,k)+tl_Hz(i-1,j,k)))-           &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &                cff1
 #  endif
-=======
-# ifdef TL_IOMS
-     &                cff1
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            cff2=FC(i,k)-FC(i,k-1)
 !>
               tl_cff2=tl_FC(i,k)-tl_FC(i,k-1)
@@ -2499,15 +1617,9 @@
      &                        (Hz(i,j,k)+Hz(i-1,j,k))+                  &
      &                        u(i,j,k,nstp)*                            &
      &                        (tl_Hz(i,j,k)+tl_Hz(i-1,j,k)))-           &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &                cff3
 #  endif
-=======
-# ifdef TL_IOMS
-     &                cff3
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>            cff4=FC(i,k)-FC(i,k-1)
 !>
               tl_cff4=tl_FC(i,k)-tl_FC(i,k-1)
@@ -2555,15 +1667,9 @@
      &                    z_r(i,j,k  )-z_r(i,j-1,k  ))
               tl_cff=-cff*cff*(tl_z_r(i,j,k+1)+tl_z_r(i,j-1,k+1)-       &
      &                         tl_z_r(i,j,k  )-tl_z_r(i,j-1,k  ))+      &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &               2.0_r8*cff
 #  endif
-=======
-# ifdef TL_IOMS
-     &               2.0_r8*cff
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !!            FC(i,k)=cff3*cff*(v(i,j,k+1,nstp)-v(i,j,k,nstp))*         &
 !!   &                         (Akv(i,j,k)+Akv(i,j-1,k))
 !!
@@ -2623,15 +1729,9 @@
      &                          (Hz(i,j,k)+Hz(i,j-1,k))+                &
      &                          v(i,j,k,nstp)*                          &
      &                          (tl_Hz(i,j,k)+tl_Hz(i,j-1,k)))-         &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &                  cff1
 #  endif
-=======
-# ifdef TL_IOMS
-     &                  cff1
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>              cff2=FC(i,k)-FC(i,k-1)
 !>
                 tl_cff2=tl_FC(i,k)-tl_FC(i,k-1)
@@ -2655,15 +1755,9 @@
      &                          (Hz(i,j,k)+Hz(i,j-1,k))+                &
      &                          v(i,j,k,nstp)*                          &
      &                          (tl_Hz(i,j,k)+tl_Hz(i,j-1,k)))-         &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &                  cff1
 #  endif
-=======
-# ifdef TL_IOMS
-     &                  cff1
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>              cff2=FC(i,k)-FC(i,k-1)
 !>
                 tl_cff2=tl_FC(i,k)-tl_FC(i,k-1)
@@ -2698,15 +1792,9 @@
      &                          (Hz(i,j,k)+Hz(i,j-1,k))+                &
      &                          v(i,j,k,nstp)*                          &
      &                          (tl_Hz(i,j,k)+tl_Hz(i,j-1,k)))-         &
-<<<<<<< HEAD
 #  ifdef TL_IOMS
      &                  cff3
 #  endif
-=======
-# ifdef TL_IOMS
-     &                  cff3
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !>              cff4=FC(i,k)-FC(i,k-1)
 !>
                 tl_cff4=tl_FC(i,k)-tl_FC(i,k-1)

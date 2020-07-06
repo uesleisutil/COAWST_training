@@ -438,20 +438,7 @@
                       ids, ide, jds, jde, kds, kde,           &
                       ims, ime, jms, jme, kms, kme,           &
                       grid%i_start(ij), grid%i_end(ij), grid%j_start(ij), grid%j_end(ij), kts, kte, &
-<<<<<<< HEAD
                       config_flags%num_urban_layers,                        & !multi-layer urban
-=======
-                      config_flags%num_urban_ndm,                           & !multi-layer urban
-                      config_flags%urban_map_zrd,                           & !multi-layer urban
-                      config_flags%urban_map_zwd,                           & !multi-layer urban
-                      config_flags%urban_map_gd,                            & !multi-layer urban
-                      config_flags%urban_map_zd,                            & !multi-layer urban
-                      config_flags%urban_map_zdf,                           & !multi-layer urban
-                      config_flags%urban_map_bd,                            & !multi-layer urban
-                      config_flags%urban_map_wd,                            & !multi-layer urban
-                      config_flags%urban_map_gbd,                           & !multi-layer urban
-                      config_flags%urban_map_fbd,                           & !multi-layer urban
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                       config_flags%num_urban_hi,                            & !multi-layer urban
                       grid%raincv_a,grid%raincv_b,                                    &
                       grid%gd_cloud, grid%gd_cloud2,                                  & ! Optional

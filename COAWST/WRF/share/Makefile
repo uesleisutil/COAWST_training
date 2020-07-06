@@ -14,10 +14,6 @@ MODULES1=                               \
         module_llxy.o                   \
         module_interp_nmm.o             \
         module_interp_store.o           \
-<<<<<<< HEAD
-=======
-        module_string_tools.o           \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         module_MPP.o 
 
 MODULES2=                               \

@@ -44,11 +44,7 @@ CONTAINS
                     GWBASESWCRT,  GW_RESTART,RSTRT_SWC,TERADJ_SOLAR, &
                     sys_cpl, rst_typ, rst_bi_in, rst_bi_out, &
                     gwChanCondSw, GwPreCycles, GwSpinCycles, GwPreDiagInterval, gwsoilcpl, &
-<<<<<<< HEAD
                     UDMP_OPT
-=======
-                    UDMP_OPT, io_form_outputs
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           real:: DTRT_TER,DTRT_CH,dxrt, gwChanCondConstIn, gwChanCondConstOut, gwIhShift
           character(len=256) :: route_topo_f=""
           character(len=256) :: route_chan_f=""
@@ -62,23 +58,12 @@ CONTAINS
           character(len=256) :: udmap_file =""
           character(len=256) :: GWBUCKPARM_file = ""
        integer :: SOLVEG_INITSWC
-<<<<<<< HEAD
        real out_dt, rst_dt
        character(len=256)  :: RESTART_FILE = ""
        logical            :: GwPreDiag, GwSpinUp
        integer            :: split_output_count, order_to_write
        integer :: igrid, iocflag
        character(len=256) :: geo_static_flnm = ""
-=======
-       real*8 :: out_dt, rst_dt
-       character(len=256)  :: RESTART_FILE = ""
-       character(len=256)  :: hydrotbl_f   = ""
-       logical            :: GwPreDiag, GwSpinUp
-       integer            :: split_output_count, order_to_write
-       integer :: igrid, io_config_outputs, t0OutputFlag, output_channelBucket_influx
-       character(len=256) :: geo_static_flnm = ""
-       character(len=1024) :: land_spatial_meta_flnm = ""
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        integer  :: DEEPGWSPIN
 
        integer :: i
@@ -90,11 +75,6 @@ CONTAINS
           integer ::RTOUT_DOMAIN                ! Netcdf grid of terrain routing variables on routing grid
           integer  :: output_gw
           integer  :: outlake
-<<<<<<< HEAD
-=======
-          integer :: frxst_pts_out            ! ASCII text file of streamflow at forecast points
-          integer :: CHANOBS_DOMAIN           ! NetCDF point timeseries output at forecast points. 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 
 !!! add the following two dummy variables 
@@ -107,28 +87,12 @@ CONTAINS
        character(len=256) :: netwkReExFile
        logical            :: readTimesliceParallel
        logical            :: temporalPersistence
-<<<<<<< HEAD
        character(len=256) :: nudgingLastObsFile
-=======
-       logical            :: persistBias
-       logical            :: biasWindowBeforeT0
-       character(len=256) :: nudgingLastObsFile
-       character(len=256) :: timeSlicePath
-       integer            :: nLastObs
-       integer            :: minNumPairsBiasPersist
-       integer            :: maxAgePairsBiasPersist
-       logical            :: invDistTimeWeightBias
-       logical            :: noConstInterfBias
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif 
 
        namelist /HYDRO_nlist/ NSOIL, ZSOIL8,&
             RESTART_FILE,SPLIT_OUTPUT_COUNT,IGRID,&
             geo_static_flnm, &
-<<<<<<< HEAD
-=======
-            land_spatial_meta_flnm, &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             out_dt, rst_dt, &
             DEEPGWSPIN, SOLVEG_INITSWC, &
             RT_OPTION, CHANRTSWCRT, channel_option, &
@@ -139,7 +103,6 @@ CONTAINS
                     route_direction_f,route_order_f,gwbasmskfil, geo_finegrid_flnm,&
                     gwstrmfil,GW_RESTART,RSTRT_SWC,TERADJ_SOLAR, sys_cpl, &
                     order_to_write , rst_typ, rst_bi_in, rst_bi_out, gwsoilcpl, &
-<<<<<<< HEAD
                     CHRTOUT_DOMAIN,CHRTOUT_GRID,LSMOUT_DOMAIN,RTOUT_DOMAIN, output_gw, outlake, udmap_file, &
                     UDMP_OPT, GWBUCKPARM_file, iocflag
 
@@ -162,54 +125,6 @@ CONTAINS
 #endif 
 
                     
-=======
-                    CHRTOUT_DOMAIN,CHANOBS_DOMAIN,CHRTOUT_GRID,LSMOUT_DOMAIN,&
-                    RTOUT_DOMAIN, output_gw, outlake, &
-                    frxst_pts_out, udmap_file, UDMP_OPT, GWBUCKPARM_file, &
-                    io_config_outputs, io_form_outputs, hydrotbl_f, t0OutputFlag, output_channelBucket_influx
-      
-#ifdef WRF_HYDRO_NUDGING
-   namelist /NUDGING_nlist/ nudgingParamFile,       netwkReExFile,          &
-                            readTimesliceParallel,  temporalPersistence,    &
-                            persistBias,            nudgingLastObsFile,     &
-                            timeSlicePath,          nLastObs,               &
-                            minNumPairsBiasPersist, maxAgePairsBiasPersist, &
-                            biasWindowBeforeT0,     invDistTimeWeightBias,  &
-                            noConstInterfBias
-#endif
-
-   !! ---- End definitions ----
-   
-   ! Default values for HYDRO_nlist
-   UDMP_OPT = 0
-   rst_bi_in = 0
-   rst_bi_out = 0
-   io_config_outputs = 0
-   io_form_outputs = 0
-   frxst_pts_out = 0
-   CHANOBS_DOMAIN = 0
-   t0OutputFlag = 1
-   output_channelBucket_influx = 0
-   TERADJ_SOLAR = 0
-
-#ifdef WRF_HYDRO_NUDGING
-   ! Default values for NUDGING_nlist
-   nudgingParamFile = "DOMAIN/nudgingParams.nc"
-   netwkReExFile    = "DOMAIN/netwkReExFile.nc"
-   readTimesliceParallel  = .true.
-   temporalPersistence    = .true.
-   persistBias            = .false.
-   biasWindowBeforeT0     = .false.
-   nudgingLastObsFile     = ""
-   timeSlicePath          = "./nudgingTimeSliceObs/"
-   nLastObs               = 960
-   minNumPairsBiasPersist = 8
-   maxAgePairsBiasPersist = -99999
-   invDistTimeWeightBias  = .false.
-   noConstInterfBias      = .false.
-#endif 
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef MPP_LAND
        if(IO_id .eq. my_id) then
 #endif
@@ -224,11 +139,6 @@ CONTAINS
 #ifdef WRF_HYDRO_NUDGING          
           read(12, NUDGING_nlist, iostat=ierr)
           if(ierr .ne. 0) call hydro_stop("NUDGING_nlst namelist error in read_rt_nlst")
-<<<<<<< HEAD
-=======
-          !! Conditional default values for nuding_nlist
-          if(maxAgePairsBiasPersist .eq. -99999) maxAgePairsBiasPersist = -1*nLastObs
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
           close(12)
 
@@ -236,45 +146,18 @@ CONTAINS
        endif
 #endif
 
-<<<<<<< HEAD
 #ifdef HYDRO_REALTIME
    if ( iocflag .eq. 4 ) RTOUT_DOMAIN = 0
    if ( (iocflag .gt. 0) .and. (CHRTOUT_DOMAIN .eq.1) .and. (channel_option .ne. 3) ) CHRTOUT_DOMAIN = 2
 #endif
-=======
-   if ( int(mod(out_dt*60, nlst%dt))  .ne. 0) then
-      call hydro_stop("read_rt_nlst:: out_dt must be a multiple of the NOAH_TIMESTEP")
-   end if
-
-! ADCHANGE: move these checks to more universal namelist checks...
-   if ( io_config_outputs .eq. 4 ) RTOUT_DOMAIN = 0
-
-   if(output_channelBucket_influx .ne. 0) then
-      if(nlst%dt .ne. out_dt*60) &
-           call hydro_stop("read_rt_nlst:: output_channelBucket_influx =! 0 inconsistent with out_dt and NOAH_TIMESTEP choices.")
-      if(output_channelBucket_influx .eq. 2 .and. GWBASESWCRT .ne. 1) &
-           call hydro_stop("read_rt_nlst:: output_channelBucket_influx = 2 but GWBASESWCRT != 1.")
-   end if
-
-   if(CHANRTSWCRT .eq. 0 .and. channel_option .lt. 3) channel_option = 3
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #ifdef MPP_LAND
 !  call mpp_land_bcast_real1(DT)
   call mpp_land_bcast_int1(SPLIT_OUTPUT_COUNT)
   call mpp_land_bcast_int1(IGRID)
-<<<<<<< HEAD
   call mpp_land_bcast_int1(iocflag)
   call mpp_land_bcast_real1(out_dt)
   call mpp_land_bcast_real1(rst_dt)
-=======
-  call mpp_land_bcast_int1(io_config_outputs)
-  call mpp_land_bcast_int1(io_form_outputs)
-  call mpp_land_bcast_int1(t0OutputFlag)
-  call mpp_land_bcast_int1(output_channelBucket_influx)
-  call mpp_land_bcast_real1_double(out_dt)
-  call mpp_land_bcast_real1_double(rst_dt)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   call mpp_land_bcast_int1(DEEPGWSPIN)
   call mpp_land_bcast_int1(SOLVEG_INITSWC)
 #endif
@@ -291,27 +174,12 @@ CONTAINS
 #endif
 #endif
 
-<<<<<<< HEAD
 !  nlst%DT = DT
   nlst%RESTART_FILE = RESTART_FILE
   nlst%SPLIT_OUTPUT_COUNT = SPLIT_OUTPUT_COUNT
   nlst%IGRID = IGRID
   nlst%iocflag = iocflag
   nlst%geo_static_flnm = geo_static_flnm
-=======
-  !  nlst%DT = DT !!JLM: Note that %dt is set in the Land/WRF initialization, 
-  !               !!JLM: e.g. CPL/NoahMP_cpl/module_hrldas_HYDRO.F:hrldas_cpl_HYDRO_ini
-  nlst%RESTART_FILE = RESTART_FILE
-  nlst%hydrotbl_f = trim(hydrotbl_f) 
-  nlst%SPLIT_OUTPUT_COUNT = SPLIT_OUTPUT_COUNT
-  nlst%IGRID = IGRID
-  nlst%io_config_outputs = io_config_outputs
-  nlst%io_form_outputs = io_form_outputs
-  nlst%t0OutputFlag = t0OutputFlag
-  nlst%output_channelBucket_influx = output_channelBucket_influx
-  nlst%geo_static_flnm = geo_static_flnm
-  nlst%land_spatial_meta_flnm = land_spatial_meta_flnm
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   nlst%out_dt = out_dt
   nlst%rst_dt = rst_dt
   nlst%DEEPGWSPIN = DEEPGWSPIN
@@ -319,10 +187,6 @@ CONTAINS
 
 #ifdef MPP_LAND
   call mpp_land_bcast_char(256,nlst%RESTART_FILE)
-<<<<<<< HEAD
-=======
-  call mpp_land_bcast_char(256,nlst%hydrotbl_f)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 
   write(nlst%hgrid,'(I1)') igrid
@@ -371,15 +235,8 @@ CONTAINS
   call mpp_land_bcast_int1(rst_bi_out)
   call mpp_land_bcast_int1(order_to_write)
   call mpp_land_bcast_int1(CHRTOUT_DOMAIN)
-<<<<<<< HEAD
   call mpp_land_bcast_int1(output_gw)
   call mpp_land_bcast_int1(outlake)
-=======
-  call mpp_land_bcast_int1(CHANOBS_DOMAIN)
-  call mpp_land_bcast_int1(output_gw)
-  call mpp_land_bcast_int1(outlake)
-  call mpp_land_bcast_int1(frxst_pts_out)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   call mpp_land_bcast_int1(CHRTOUT_GRID)
   call mpp_land_bcast_int1(LSMOUT_DOMAIN)
   call mpp_land_bcast_int1(RTOUT_DOMAIN)
@@ -390,17 +247,6 @@ CONTAINS
   call mpp_land_bcast_char(256, nudgingLastObsFile)
   call mpp_land_bcast_log1(readTimesliceParallel)
   call mpp_land_bcast_log1(temporalPersistence)
-<<<<<<< HEAD
-=======
-  call mpp_land_bcast_log1(persistBias)
-  call mpp_land_bcast_log1(biasWindowBeforeT0)
-  call mpp_land_bcast_char(256, timeSlicePath)
-  call mpp_land_bcast_int1(nLastObs)
-  call mpp_land_bcast_int1(minNumPairsBiasPersist)
-  call mpp_land_bcast_int1(maxAgePairsBiasPersist)
-  call mpp_land_bcast_log1(invDistTimeWeightBias)
-  call mpp_land_bcast_log1(noConstInterfBias)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif 
 #endif /* MPP_LAND */
 
@@ -414,15 +260,8 @@ CONTAINS
     endif
 
     nlst%CHRTOUT_DOMAIN = CHRTOUT_DOMAIN
-<<<<<<< HEAD
     nlst%output_gw      = output_gw
     nlst%outlake      = outlake
-=======
-    nlst%CHANOBS_DOMAIN = CHANOBS_DOMAIN
-    nlst%output_gw      = output_gw
-    nlst%outlake      = outlake
-    nlst%frxst_pts_out = frxst_pts_out
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     nlst%CHRTOUT_GRID = CHRTOUT_GRID
     nlst%LSMOUT_DOMAIN = LSMOUT_DOMAIN
     nlst%RTOUT_DOMAIN = RTOUT_DOMAIN
@@ -495,27 +334,11 @@ CONTAINS
     nlst%UDMP_OPT = UDMP_OPT
     nlst%GWBUCKPARM_file =  GWBUCKPARM_file
 #ifdef WRF_HYDRO_NUDGING
-<<<<<<< HEAD
     nlst%nudgingParamFile      = nudgingParamFile
     nlst%netWkReExFile         = netWkReExFile
     nlst%readTimesliceParallel = readTimesliceParallel
     nlst%temporalPersistence   = temporalPersistence
     nlst%nudgingLastObsFile    = nudgingLastObsFile
-=======
-    nlst%nudgingParamFile       = nudgingParamFile
-    nlst%netWkReExFile          = netWkReExFile
-    nlst%readTimesliceParallel  = readTimesliceParallel
-    nlst%temporalPersistence    = temporalPersistence
-    nlst%persistBias            = persistBias
-    nlst%biasWindowBeforeT0     = biasWindowBeforeT0
-    nlst%nudgingLastObsFile     = nudgingLastObsFile
-    nlst%timeSlicePath          = timeSlicePath
-    nlst%nLastObs               = nLastObs
-    nlst%minNumPairsBiasPersist = minNumPairsBiasPersist
-    nlst%maxAgePairsBiasPersist = maxAgePairsBiasPersist
-    nlst%invDistTimeWeightBias  = invDistTimeWeightBias
-    nlst%noConstInterfBias      = noConstInterfBias
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 
 #ifdef MPP_LAND
@@ -559,27 +382,11 @@ CONTAINS
     write(6,*) " nlst%gwstrmfil ",  gwstrmfil
     write(6,*) " nlst%geo_finegrid_flnm ",  geo_finegrid_flnm
 #ifdef WRF_HYDRO_NUDGING
-<<<<<<< HEAD
     write(6,*) " nlst%nudgingParamFile",       trim(nudgingParamFile)
     write(6,*) " nlst%netWkReExFile",          trim(netWkReExFile)
     write(6,*) " nlst%readTimesliceParallel",  readTimesliceParallel
     write(6,*) " nlst%temporalPersistence",    temporalPersistence
     write(6,*) " nlst%nudgingLastObsFile",     trim(nudgingLastObsFile)
-=======
-    write(6,*) " nlst%nudgingParamFile      ",  trim(nudgingParamFile)
-    write(6,*) " nlst%netWkReExFile         ",  trim(netWkReExFile)
-    write(6,*) " nlst%readTimesliceParallel ",  readTimesliceParallel
-    write(6,*) " nlst%temporalPersistence   ",  temporalPersistence
-    write(6,*) " nlst%persistBias           ",  persistBias
-    write(6,*) " nlst%biasWindowBeforeT0    ",  biasWindowBeforeT0
-    write(6,*) " nlst%nudgingLastObsFile    ",  trim(nudgingLastObsFile)
-    write(6,*) " timeSlicePath              ",  trim(timeSlicePath)
-    write(6,*) " nLastObs                   ",  nLastObs
-    write(6,*) " minNumPairsBiasPersist     ",  minNumPairsBiasPersist
-    write(6,*) " maxAgePairsBiasPersist     ",  maxAgePairsBiasPersist
-    write(6,*) " invDistTimeWeightBias      ",  invDistTimeWeightBias
-    write(6,*) " noConstInterfBias          ",  noConstInterfBias
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #endif /* HYDRO_D */
 #ifdef MPP_LAND
@@ -591,18 +398,6 @@ CONTAINS
       call mpp_land_bcast_real1(nlst%dt)
 #endif
 
-<<<<<<< HEAD
-=======
-! LRK - Add checking subroutine for hydro.namelist options
-#ifdef MPP_LAND
-       if(IO_id .eq. my_id) then
-#endif
-          call rt_nlst_check(nlst)
-#ifdef MPP_LAND
-       endif
-#endif
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! derive rtFlag
       nlst%rtFlag = 1
       if(channel_option .eq. 4) nlst%rtFlag = 0
@@ -611,213 +406,5 @@ CONTAINS
       return
     end subroutine read_rt_nlst
 
-<<<<<<< HEAD
-=======
-subroutine rt_nlst_check(nlst)
-   ! Subroutine to check namelist options specified by the user.
-   implicit none
-  
-   type(namelist_rt_field) nlst
-
-   ! Local variables
-   logical :: fileExists = .false.
-   integer :: i
-
-   ! Go through and make some logical checks for each hydro.namelist option.
-   ! Some of these checks will depend on specific options chosen by the user. 
-  
-   if( (nlst%sys_cpl .lt. 1) .or. (nlst%sys_cpl .gt. 4) ) then
-      call hydro_stop("hydro.namelist ERROR: Invalid sys_cpl value specified.")
-   endif
-   if(len(trim(nlst%geo_static_flnm)) .eq. 0) then
-      call hydro_stop("hydro.namelist ERROR: Please specify a GEO_STATIC_FLNM file.")
-   else
-      inquire(file=trim(nlst%geo_static_flnm),exist=fileExists)
-      if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: GEO_STATIC_FLNM not found.')
-   endif
-   if(len(trim(nlst%geo_finegrid_flnm)) .eq. 0) then
-      call hydro_stop("hydro.namelist ERROR: Please specify a GEO_FINEGRID_FLNM file.")
-   else
-      inquire(file=trim(nlst%geo_finegrid_flnm),exist=fileExists)
-      if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: GEO_FINEGRID_FLNM not found.')
-   endif
-   !if(len(trim(nlst%land_spatial_meta_flnm)) .eq. 0) then
-   !   call hydro_stop("hydro.namelist ERROR: Please specify a LAND_SPATIAL_META_FLNM file.")
-   !else
-   !   inquire(file=trim(nlst%land_spatial_meta_flnm),exist=fileExists)
-   !   if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: LAND_SPATIAL_META_FLNM not found.')
-   !endif
-   if(len(trim(nlst%RESTART_FILE)) .ne. 0) then
-      inquire(file=trim(nlst%RESTART_FILE),exist=fileExists)
-      if (.not. fileExists) call hydro_stop('hydro.namelist ERROR:= Hydro RESTART_FILE not found.')
-   endif   
-   if(nlst%igrid .le. 0) call hydro_stop('hydro.namelist ERROR: Invalid IGRID specified.') 
-   if(nlst%out_dt .le. 0) call hydro_stop('hydro_namelist ERROR: Invalid out_dt specified.') 
-   if( (nlst%split_output_count .lt. 0 ) .or. (nlst%split_output_count .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid SPLIT_OUTPUT_COUNT specified')
-   endif  
-   if( (nlst%rst_typ .lt. 0 ) .or. (nlst%rst_typ .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid rst_typ specified')
-   endif   
-   if( (nlst%rst_bi_in .lt. 0 ) .or. (nlst%rst_bi_in .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid rst_bi_in specified')
-   endif    
-   if( (nlst%rst_bi_out .lt. 0 ) .or. (nlst%rst_bi_out .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid rst_bi_out specified')
-   endif
-   if( (nlst%RSTRT_SWC .lt. 0 ) .or. (nlst%RSTRT_SWC .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid RSTRT_SWC specified')
-   endif   
-   if( (nlst%GW_RESTART .lt. 0 ) .or. (nlst%GW_RESTART .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid GW_RESTART specified')
-   endif
-   if( (nlst%order_to_write .lt. 1 ) .or. (nlst%order_to_write .gt. 12) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid order_to_write specified')
-   endif   
-   if( (nlst%io_form_outputs .lt. 0 ) .or. (nlst%io_form_outputs .gt. 4) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid io_form_outputs specified')
-   endif   
-   if( (nlst%io_config_outputs .lt. 0 ) .or. (nlst%io_config_outputs .gt. 6) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid io_config_outputs specified')
-   endif
-   if( (nlst%t0OutputFlag .lt. 0 ) .or. (nlst%t0OutputFlag .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid t0OutputFlag specified')
-   endif
-   if( (nlst%output_channelBucket_influx .lt. 0 ) .or. (nlst%output_channelBucket_influx .gt. 3) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid output_channelBucket_influx specified')
-   endif   
-   if( (nlst%CHRTOUT_DOMAIN .lt. 0 ) .or. (nlst%CHRTOUT_DOMAIN .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid CHRTOUT_DOMAIN specified')
-   endif   
-   if( (nlst%CHANOBS_DOMAIN .lt. 0 ) .or. (nlst%CHANOBS_DOMAIN .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid CHANOBS_DOMAIN specified')
-   endif
-   if( (nlst%CHRTOUT_GRID .lt. 0 ) .or. (nlst%CHRTOUT_GRID .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid CHRTOUT_GRID specified')
-   endif
-   if( (nlst%LSMOUT_DOMAIN .lt. 0 ) .or. (nlst%LSMOUT_DOMAIN .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid LSMOUT_DOMAIN specified')
-   endif
-   if( (nlst%RTOUT_DOMAIN .lt. 0 ) .or. (nlst%RTOUT_DOMAIN .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid RTOUT_DOMAIN specified')
-   endif
-   if( (nlst%output_gw .lt. 0 ) .or. (nlst%output_gw .gt. 2) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid output_gw specified')
-   endif   
-   if( (nlst%outlake .lt. 0 ) .or. (nlst%outlake .gt. 2) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid outlake specified')
-   endif
-   if( (nlst%frxst_pts_out .lt. 0 ) .or. (nlst%frxst_pts_out .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid frxst_pts_out specified')
-   endif
-   if(nlst%TERADJ_SOLAR .ne. 0) then
-      call hydro_stop('hydro.namelist ERROR: Invalid TERADJ_SOLAR specified')
-   endif
-   if(nlst%NSOIL .le. 0) then
-      call hydro_stop('hydro.namelist ERROR: Invalid NSOIL specified.')
-   endif
-   do i = 1,nlst%NSOIL
-      if(nlst%ZSOIL8(i) .gt. 0) then
-          call hydro_stop('hydro.namelist ERROR: Invalid ZSOIL layer depth specified.')
-      endif
-      if(i .gt. 1) then
-         if(nlst%ZSOIL8(i) .ge. nlst%ZSOIL8(i-1)) then
-            call hydro_stop('hydro.namelist ERROR: Invalid ZSOIL layer depth specified.')
-         endif
-      endif
-   end do
-   if(nlst%dxrt0 .le. 0) then
-      call hydro_stop('hydro.namelist ERROR: Invalid DXRT specified.')
-   endif
-   if(nlst%AGGFACTRT .le. 0) then
-      call hydro_stop('hydro.namelist ERROR: Invalid AGGFACTRT specified.') 
-   endif   
-   if(nlst%DTRT_CH .le. 0) then
-      call hydro_stop('hydro.namelist ERROR: Invalid DTRT_CH specified.') 
-   endif
-   if(nlst%DTRT_TER .le. 0) then
-      call hydro_stop('hydro.namelist ERROR: Invalid DTRT_TER specified.') 
-   endif
-   if( (nlst%SUBRTSWCRT .lt. 0 ) .or. (nlst%SUBRTSWCRT .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid SUBRTSWCRT specified')
-   endif
-   if( (nlst%OVRTSWCRT .lt. 0 ) .or. (nlst%OVRTSWCRT .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid OVRTSWCRT specified')
-   endif
-   if( (nlst%OVRTSWCRT .eq. 1 ) .or. (nlst%SUBRTSWCRT .eq. 1) ) then
-      if( (nlst%rt_option .lt. 1 ) .or. (nlst%rt_option .gt. 2) ) then
-      !if(nlst%rt_option .ne. 1) then
-         call hydro_stop('hydro.namelist ERROR: Invalid rt_option specified')
-      endif
-   endif
-   if( (nlst%CHANRTSWCRT .lt. 0 ) .or. (nlst%CHANRTSWCRT .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid CHANRTSWCRT specified')
-   endif
-   if(nlst%CHANRTSWCRT .eq. 1) then
-      if( (nlst%channel_option .lt. 1 ) .or. (nlst%channel_option .gt. 3) ) then
-         call hydro_stop('hydro.namelist ERROR: Invalid channel_option specified')
-      endif
-   endif
-   if( (nlst%CHANRTSWCRT .eq. 1) .and. (nlst%channel_option .lt. 3) ) then
-      if(len(trim(nlst%route_link_f)) .eq. 0) then
-         call hydro_stop("hydro.namelist ERROR: Please specify a route_link_f file.")
-      else
-         inquire(file=trim(nlst%route_link_f),exist=fileExists)
-         if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: route_link_f not found.')
-      endif
-   endif
-   if( (nlst%GWBASESWCRT .lt. 0 ) .or. (nlst%GWBASESWCRT .gt. 2) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid GWBASESWCRT specified')
-   endif
-   if(nlst%GWBASESWCRT .eq. 1) then
-      if(len(trim(nlst%GWBUCKPARM_file)) .eq. 0) then
-         call hydro_stop("hydro.namelist ERROR: Please specify a GWBUCKPARM_file file.")
-      else
-         inquire(file=trim(nlst%GWBUCKPARM_file),exist=fileExists)
-         if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: GWBUCKPARM_file not found.')
-      endif
-   endif
-   if( (nlst%GWBASESWCRT .gt. 0) .and. (nlst%UDMP_OPT .ne. 1) ) then
-      if(len(trim(nlst%gwbasmskfil)) .eq. 0) then
-         call hydro_stop("hydro.namelist ERROR: Please specify a gwbasmskfil file.")
-      else
-         inquire(file=trim(nlst%gwbasmskfil),exist=fileExists)
-         if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: gwbasmskfil not found.')
-      endif
-   endif
-   if( (nlst%UDMP_OPT .lt. 0 ) .or. (nlst%UDMP_OPT .gt. 1) ) then
-      call hydro_stop('hydro.namelist ERROR: Invalid UDMP_OPT specified')
-   endif
-   if(nlst%UDMP_OPT .gt. 0) then
-      if(len(trim(nlst%udmap_file)) .eq. 0) then
-         call hydro_stop("hydro.namelist ERROR: Please specify a udmap_file file.")
-      else
-         inquire(file=trim(nlst%udmap_file),exist=fileExists)
-         if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: udmap_file not found.')
-      endif
-   endif
-   if( (nlst%UDMP_OPT .eq. 1) .and. (nlst%CHANRTSWCRT .eq. 0) ) then
-         call hydro_stop('hydro.namelist ERROR: User-defined mapping requires channel routing on.')
-   endif 
-   if(nlst%outlake .ne. 0) then
-      if(len(trim(nlst%route_lake_f)) .eq. 0) then
-         call hydro_stop('hydro.namelist ERROR: You MUST specify a route_lake_f to ouptut and run lakes.')
-      endif
-   endif
-   if(len(trim(nlst%route_lake_f)) .ne. 0) then
-      inquire(file=trim(nlst%route_lake_f),exist=fileExists)
-      if (.not. fileExists) call hydro_stop('hydro.namelist ERROR: route_lake_f not found.')
-   endif
-   ! Only allow lakes to be ran with gridded routing or NWM routing
-   if(len(trim(nlst%route_lake_f)) .ne. 0) then
-      if(nlst%channel_option .ne. 3) then
-         if(nlst%UDMP_OPT .ne. 1) then 
-            call hydro_stop('hydro.namelist ERROR: Currently lakes only work with gridded channel routing or UDMP=1. Please change your namelist settings.')
-         endif
-      endif
-   endif
-
-end subroutine rt_nlst_check
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 end module module_namelist

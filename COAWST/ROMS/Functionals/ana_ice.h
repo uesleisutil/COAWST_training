@@ -518,7 +518,4 @@
 
       RETURN
       END SUBROUTINE ana_ice_tile
-<<<<<<< HEAD
  
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

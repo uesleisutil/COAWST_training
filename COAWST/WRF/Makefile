@@ -45,11 +45,7 @@ NMM_MODULE_DIR = -I../dyn_nmm
 NMM_MODULES =  $(NMM_MODULE_DIR)
 
 #jcw
-<<<<<<< HEAD
 MCT_INCDIR ?= /usr/local/include
-=======
-MCT_INCDIR ?= /usr/local/mct/include
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 MCT_MODULES = -I$(MCT_INCDIR)
 
 ALL_MODULES =                           \
@@ -156,11 +152,7 @@ all_wrfvar :
 	$(MAKE) MODULE_DIRS="$(DA_WRFVAR_MODULES)" ext
 	$(MAKE) MODULE_DIRS="$(DA_WRFVAR_MODULES)" toolsdir
 	if [ $(CRTM) -ne 0 ] ; then \
-<<<<<<< HEAD
 	  (cd var/external/crtm_2.2.3; $(MAKE) $(J)) ; \
-=======
-	  (cd var/external/crtm_2.3.0; $(MAKE) $(J)) ; \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 	fi
 	if [ $(BUFR) ] ; then \
 	  (cd var/external/bufr;  \
@@ -569,19 +561,8 @@ em_real : wrf
                ln -sf ../../run/aerosol_lon.formatted . ;              \
                ln -sf ../../run/aerosol_plev.formatted . ;             \
                ln -sf ../../run/CCN_ACTIVATE.BIN . ;                   \
-<<<<<<< HEAD
                ln -sf ../../run/p3_lookup_table_1.dat-v2.8.2 . ;              \
                ln -sf ../../run/p3_lookup_table_2.dat-v2.8.2 . ;              \
-=======
-               ln -sf ../../run/p3_lookup_table_1.dat-v4.1 . ;         \
-               ln -sf ../../run/p3_lookup_table_2.dat-v4.1 . ;         \
-               ln -sf ../../run/HLC.TBL . ;                            \
-               ln -sf ../../run/wind-turbine-1.tbl . ;                 \
-               ln -sf ../../run/ishmael-gamma-tab.bin . ;              \
-               ln -sf ../../run/ishmael-qi-qc.bin . ;                  \
-               ln -sf ../../run/ishmael-qi-qr.bin . ;                  \
-               ln -sf ../../run/BROADBAND_CLOUD_GODDARD.bin . ;        \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                if [ $(RWORDSIZE) -eq 8 ] ; then                        \
                   ln -sf ../../run/ETAMPNEW_DATA_DBL ETAMPNEW_DATA ;   \
                   ln -sf ../../run/ETAMPNEW_DATA.expanded_rain_DBL ETAMPNEW_DATA.expanded_rain ;   \
@@ -634,7 +615,6 @@ em_real : wrf
              ln -sf ../../run/aerosol_lat.formatted . ;             \
              ln -sf ../../run/aerosol_lon.formatted . ;             \
              ln -sf ../../run/aerosol_plev.formatted . ;            \
-<<<<<<< HEAD
              ln -sf ../../run/capacity.asc . ;            \
              ln -sf ../../run/coeff_p.asc . ;            \
              ln -sf ../../run/coeff_q.asc . ;            \
@@ -648,27 +628,6 @@ em_real : wrf
              ln -sf ../../run/CCN_ACTIVATE.BIN . ;                   \
              ln -sf ../../run/p3_lookup_table_1.dat-v2.8.2 . ;                   \
              ln -sf ../../run/p3_lookup_table_2.dat-v2.8.2 . ;                   \
-=======
-             ln -sf ../../run/capacity.asc . ;                      \
-             ln -sf ../../run/coeff_p.asc . ;                       \
-             ln -sf ../../run/coeff_q.asc . ;                       \
-             ln -sf ../../run/constants.asc . ;                     \
-             ln -sf ../../run/masses.asc . ;                        \
-             ln -sf ../../run/termvels.asc . ;                      \
-             ln -sf ../../run/kernels.asc_s_0_03_0_9 . ;            \
-             ln -sf ../../run/kernels_z.asc . ;                     \
-             ln -sf ../../run/bulkdens.asc_s_0_03_0_9 . ;           \
-             ln -sf ../../run/bulkradii.asc_s_0_03_0_9 . ;          \
-             ln -sf ../../run/CCN_ACTIVATE.BIN . ;                  \
-             ln -sf ../../run/p3_lookup_table_1.dat-v4.1 . ;        \
-             ln -sf ../../run/p3_lookup_table_2.dat-v4.1 . ;        \
-             ln -sf ../../run/HLC.TBL . ;                           \
-             ln -sf ../../run/wind-turbine-1.tbl . ;                \
-             ln -sf ../../run/ishmael-gamma-tab.bin . ;             \
-             ln -sf ../../run/ishmael-qi-qc.bin . ;                 \
-             ln -sf ../../run/ishmael-qi-qr.bin . ;                 \
-             ln -sf ../../run/BROADBAND_CLOUD_GODDARD.bin . ;       \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
              if [ $(RWORDSIZE) -eq 8 ] ; then                       \
                 ln -sf ../../run/ETAMPNEW_DATA_DBL ETAMPNEW_DATA ;  \
                 ln -sf ../../run/ETAMPNEW_DATA.expanded_rain_DBL ETAMPNEW_DATA.expanded_rain ;   \
@@ -912,59 +871,9 @@ nmm_real : nmm_wrf
 	( cd test/nmm_real ; /bin/rm -f real_nmm.exe ; ln -s ../../main/real_nmm.exe . )
 	( cd test/nmm_real ; /bin/rm -f README.namelist ; ln -s ../../run/README.namelist . )
 	( cd test/nmm_real ; /bin/rm -f ETAMPNEW_DATA.expanded_rain ETAMPNEW_DATA RRTM_DATA ;    \
-<<<<<<< HEAD
 	     ln -sf ../../run/ETAMPNEW_DATA . ;                     \
 	     ln -sf ../../run/ETAMPNEW_DATA.expanded_rain . ;                     \
 	     ln -sf ../../run/RRTM_DATA . ;                         \
-=======
-             ln -sf ../../run/ETAMPNEW_DATA . ;                     \
-             ln -sf ../../run/ETAMPNEW_DATA.expanded_rain . ;       \
-             ln -sf ../../run/RRTM_DATA . ;                         \
-             ln -sf ../../run/RRTMG_LW_DATA . ;                     \
-             ln -sf ../../run/RRTMG_SW_DATA . ;                     \
-             ln -sf ../../run/CAM_ABS_DATA . ;                      \
-             ln -sf ../../run/CAM_AEROPT_DATA . ;                   \
-             ln -sf ../../run/CAMtr_volume_mixing_ratio.RCP4.5 . ;  \
-             ln -sf ../../run/CAMtr_volume_mixing_ratio.RCP6   . ;  \
-             ln -sf ../../run/CAMtr_volume_mixing_ratio.RCP8.5 CAMtr_volume_mixing_ratio ;   \
-             ln -sf ../../run/CAMtr_volume_mixing_ratio.A1B    . ;  \
-             ln -sf ../../run/CAMtr_volume_mixing_ratio.A2     . ;  \
-             ln -sf ../../run/CLM_ALB_ICE_DFS_DATA . ;              \
-             ln -sf ../../run/CLM_ALB_ICE_DRC_DATA . ;              \
-             ln -sf ../../run/CLM_ASM_ICE_DFS_DATA . ;              \
-             ln -sf ../../run/CLM_ASM_ICE_DRC_DATA . ;              \
-             ln -sf ../../run/CLM_DRDSDT0_DATA . ;                  \
-             ln -sf ../../run/CLM_EXT_ICE_DFS_DATA . ;              \
-             ln -sf ../../run/CLM_EXT_ICE_DRC_DATA . ;              \
-             ln -sf ../../run/CLM_KAPPA_DATA . ;                    \
-             ln -sf ../../run/CLM_TAU_DATA . ;                      \
-             ln -sf ../../run/ozone.formatted . ;                   \
-             ln -sf ../../run/ozone_lat.formatted . ;               \
-             ln -sf ../../run/ozone_plev.formatted . ;              \
-             ln -sf ../../run/aerosol.formatted . ;                 \
-             ln -sf ../../run/aerosol_lat.formatted . ;             \
-             ln -sf ../../run/aerosol_lon.formatted . ;             \
-             ln -sf ../../run/aerosol_plev.formatted . ;            \
-             ln -sf ../../run/capacity.asc . ;                      \
-             ln -sf ../../run/coeff_p.asc . ;                       \
-             ln -sf ../../run/coeff_q.asc . ;                       \
-             ln -sf ../../run/constants.asc . ;                     \
-             ln -sf ../../run/masses.asc . ;                        \
-             ln -sf ../../run/termvels.asc . ;                      \
-             ln -sf ../../run/kernels.asc_s_0_03_0_9 . ;            \
-             ln -sf ../../run/kernels_z.asc . ;                     \
-             ln -sf ../../run/bulkdens.asc_s_0_03_0_9 . ;           \
-             ln -sf ../../run/bulkradii.asc_s_0_03_0_9 . ;          \
-             ln -sf ../../run/CCN_ACTIVATE.BIN . ;                  \
-             ln -sf ../../run/p3_lookup_table_1.dat-v4.1 . ;        \
-             ln -sf ../../run/p3_lookup_table_2.dat-v4.1 . ;        \
-             ln -sf ../../run/HLC.TBL . ;                           \
-             ln -sf ../../run/wind-turbine-1.tbl . ;                \
-             ln -sf ../../run/ishmael-gamma-tab.bin . ;             \
-             ln -sf ../../run/ishmael-qi-qc.bin . ;                 \
-             ln -sf ../../run/ishmael-qi-qr.bin . ;                 \
-             ln -sf ../../run/BROADBAND_CLOUD_GODDARD.bin . ;       \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 	     if [ $(RWORDSIZE) -eq 8 ] ; then                       \
 	        ln -sf ../../run/ETAMPNEW_DATA_DBL ETAMPNEW_DATA ;  \
                 ln -sf ../../run/ETAMPNEW_DATA.expanded_rain_DBL ETAMPNEW_DATA.expanded_rain ;   \

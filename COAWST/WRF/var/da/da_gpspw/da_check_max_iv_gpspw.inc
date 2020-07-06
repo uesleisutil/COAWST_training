@@ -30,15 +30,8 @@ subroutine da_check_max_iv_gpspw(iv, it, num_qcstat_conv)
        num_qcstat_conv(1,gpspw,7,1) = num_qcstat_conv(1,gpspw,7,1) + 1
       if(failed) then
        num_qcstat_conv(2,gpspw,7,1) = num_qcstat_conv(2,gpspw,7,1) + 1
-<<<<<<< HEAD
        write(qcstat_conv_unit,'(2x,a10,2x,a4,2f12.2,a12)')&
        'gpspw',ob_vars(7),iv%info(gpspw)%lat(1,n),iv%info(gpspw)%lon(1,n),'1013.25'                     
-=======
-       if ( write_rej_obs_conv ) then
-       write(qcstat_conv_unit,'(2x,a10,2x,a4,2f12.2,a12)')&
-       'gpspw',ob_vars(7),iv%info(gpspw)%lat(1,n),iv%info(gpspw)%lon(1,n),'1013.25'                     
-       end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       end if
       end if
       end if

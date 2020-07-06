@@ -14,21 +14,11 @@ CONTAINS
    SUBROUTINE trad_fields ( u,v,w,t,qv,zp,zb,pp,pb,p,pw,            &
                     msfux,msfuy,msfvx,msfvy,msftx,msfty,            &
                     f,e,sina,cosa,                                  &
-<<<<<<< HEAD
                     ht,                                             &
                     use_theta_m,                                    &
                     sealevelp,                                      &
                     temperature,pressure,geoheight,                 &
                     umet,vmet,speed,dir,                            &
-=======
-                    qc,rho,dz8w, ht,                                &
-                    use_theta_m,                                    &
-                    psfc,rainc,rainnc,snownc,graupelnc,hailnc,      &
-                    sealevelp,                                      &
-                    temperature,pressure,geoheight,                 &
-                    umet,vmet,speed,dir,                            &
-                    rain, liqrain, tpw,potential_t, rh,             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                     ids,ide, jds,jde, kds,kde,                      &
                     ims,ime, jms,jme, kms,kme,                      &
                     ips,ipe, jps,jpe, kps,kpe,                      &
@@ -50,41 +40,21 @@ CONTAINS
                                                                          f,e,sina,cosa,ht
       INTEGER, INTENT(IN   )                                          :: use_theta_m
       REAL   , INTENT(IN   ) , DIMENSION(ims:ime , kms:kme , jms:jme) :: u,v,w,t,qv,zp,zb,pp,pb,p,pw
-<<<<<<< HEAD
    
       !  Output variables
    
       REAL   , INTENT(  OUT) ,  DIMENSION(ims:ime , jms:jme)           :: sealevelp
-=======
-
-      REAL   , INTENT(IN   ) , DIMENSION(ims:ime , kms:kme , jms:jme) :: qc, rho, dz8w
-      REAL   , INTENT(IN   ) , DIMENSION(ims:ime , jms:jme)           :: psfc, rainc, rainnc, hailnc,graupelnc, snownc
-   
-      !  Output variables
-   
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       REAL   , INTENT(  OUT) ,  DIMENSION(ims:ime , kms:kme , jms:jme) :: temperature , &
                                                                           pressure    , &
                                                                           geoheight   , &
                                                                           umet        , &
                                                                           vmet        , &
                                                                           speed       , &
-<<<<<<< HEAD
                                                                           dir
    
       !  Local variables
    
       REAL,  DIMENSION(its:ite , jts:jte) :: pscf
-=======
-                                                                          potential_t , &
-                                                                          rh          , &
-                                                                          dir
-      REAL   , INTENT(  OUT) ,  DIMENSION(ims:ime , jms:jme)           :: sealevelp, rain, liqrain,tpw
-   
-      !  Local variables
-   
-      REAL :: ptot
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       REAL, PARAMETER :: eps = 0.622, t_kelvin = svpt0 , s1 = 243.5, s2 = svp2 , s3 = svp1*10., s4 = 611.0, s5 = 5418.12
       REAL, PARAMETER :: zshul=75., tvshul=290.66
@@ -101,7 +71,6 @@ CONTAINS
    
                !  Temperature
 
-<<<<<<< HEAD
                IF ( use_theta_m .EQ. 1 ) THEN
                   temperature(i,k,j) = ( ( t(i,k,j) + t0 ) * ( (pb(i,k,j)+pp(i,k,j)) / p1000mb ) ** rcp ) / ( 1. + (R_v/R_d) * qv(i,k,j) )
                ELSE
@@ -109,11 +78,6 @@ CONTAINS
                END IF
  
                !  Hydrostatic ressure
-=======
-               temperature(i,k,j) = ( ( t(i,k,j) + t0 ) * ( (pb(i,k,j)+pp(i,k,j)) / p1000mb ) ** rcp )
- 
-               !  Hydrostatic pressure
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
                pressure(i,k,j) = p(i,k,j)
  
@@ -123,13 +87,8 @@ CONTAINS
    
                !  Earth relative winds
 
-<<<<<<< HEAD
                umet(i,k,j) = (u(i,k,j)+u(i+1,k,j))*cosa(i,j) - (v(i,k,j)+v(i,k,j+1))*sina(i,j)
                vmet(i,k,j) = (u(i,k,j)+u(i+1,k,j))*sina(i,j) + (v(i,k,j)+v(i,k,j+1))*cosa(i,j)
-=======
-               umet(i,k,j) = 0.5 * ( (u(i,k,j)+u(i+1,k,j))*cosa(i,j) - (v(i,k,j)+v(i,k,j+1))*sina(i,j) )
-               vmet(i,k,j) = 0.5 * ( (u(i,k,j)+u(i+1,k,j))*sina(i,j) + (v(i,k,j)+v(i,k,j+1))*cosa(i,j) )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    
                !  Horizontal wind speed
 
@@ -153,19 +112,6 @@ CONTAINS
                   END IF
                END IF
 
-<<<<<<< HEAD
-=======
-               !  Potential Temperature  
-
-               potential_t(i,k,j) =   t(i,k,j) + t0  
-
-
-               !  Relative humidity
-
-                  ptot      = pb(i,k,j)+pp(i,k,j)
-                  rh(i,k,j) = calc_rh(ptot, temperature(i,k,j), qv(i,k,j)) 
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             END DO i_loop_h
          END DO k_loop_h
       END DO j_loop_h
@@ -191,23 +137,7 @@ CONTAINS
 
                sealevelp(i,j) =   MSLP ( ht(i,j), pressure(i,kms,j), geoheight(i,kms,j) , &
                                          qv(i,kms,j), temperature(i,kms,j) )
-<<<<<<< HEAD
  
-=======
-
-               ! Total rainfall
-
-               rain(i,j) =   rainc(i,j) + rainnc(i,j)
-
-               ! Total liquid rainfall
-
-               liqrain(i,j) =   rainc(i,j) + rainnc(i,j) - snownc(i,j) - graupelnc(i,j) - hailnc(i,j)
-
-               ! Total precipitable water
-
-               tpw(i,j) = PWAT(kme-kms+1, qv(i,kms:kme,j), qc(i,kms:kme,j), dz8w(i,kms:kme,j), rho(i,kms:kme,j))  
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          END DO i_loop_2
       END DO j_loop_2
 

@@ -25,11 +25,7 @@ $(TARGET) : $(OBJS)
 	$(FC) -c -g -I../ioapi_share $*.f
 
 superclean: 
-<<<<<<< HEAD
 	/bin/rm -f *.f *.o $(TARGET) *.mod
-=======
-	@/bin/rm -f *.f *.o $(TARGET) *.mod
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 # DEPENDENCIES : only dependencies after this line 
 

@@ -2,15 +2,9 @@
 #if defined FOUR_DVAR || defined ENKF_RESTART
       SUBROUTINE def_dai (ng)
 !
-<<<<<<< HEAD
 !svn $Id: def_dai.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: def_dai.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -55,19 +49,12 @@
       integer :: i, j, itrc, nvd3, nvd4
       integer :: recdim, status, varid
 
-<<<<<<< HEAD
       integer :: DimIDs(32)
-=======
-      integer :: DimIDs(nDimID)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer :: t2dgrd(3), u2dgrd(3), v2dgrd(3)
 # ifdef SOLVE3D
       integer :: t3dgrd(4), u3dgrd(4), v3dgrd(4), w3dgrd(4)
 # endif
-<<<<<<< HEAD
       integer :: Vsize(4)
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       integer :: def_dim
 
@@ -185,14 +172,6 @@
      &                 __FILE__)) RETURN
 #  endif
 #  ifdef ECOSIM
-<<<<<<< HEAD
-=======
-        status=def_dim(ng, iNLM, DAI(ng)%ncid, ncname, 'Nbands',        &
-     &                 NBands, DimIDs(33))
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         status=def_dim(ng, iNLM, DAI(ng)%ncid, ncname, 'Nphy',          &
      &                 Nphy, DimIDs(25))
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
@@ -307,11 +286,6 @@
         CALL def_info (ng, iNLM, DAI(ng)%ncid, ncname, DimIDs)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-
-# ifdef SOLVE3D
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Define time independent (unperturb) depths of RHO-points.
 !
@@ -368,10 +342,6 @@
      &                 SetFillVal = .FALSE.)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Define time-varying variables.

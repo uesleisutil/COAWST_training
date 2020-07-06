@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       SUBROUTINE wrt_info (ng, model, ncid, ncname)
 !
-<<<<<<< HEAD
 !svn $Id: wrt_info.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: wrt_info.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -38,12 +32,6 @@
 #endif
 #ifdef BIOLOGY
       USE mod_biology
-<<<<<<< HEAD
-=======
-# ifdef ECOSIM
-      USE mod_eclight
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
       USE mod_grid
 #ifdef FOUR_DVAR
@@ -158,23 +146,6 @@
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
 
-<<<<<<< HEAD
-=======
-#ifdef W4DPSAS_FCT_SENSITIVITY
-      CALL netcdf_put_ivar (ng, model, ncname, 'ntimes_ana',            &
-     &                      ntimes_ana(ng), (/0/), (/0/),               &
-     &                      ncid = ncid)
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-
-      CALL netcdf_put_ivar (ng, model, ncname, 'ntimes_fct',            &
-     &                      ntimes_fct(ng), (/0/), (/0/),               &
-     &                      ncid = ncid)
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-#endif
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #if defined HDF5 && defined DEFLATE
       CALL netcdf_put_ivar (ng, model, ncname, 'shuffle',               &
      &                      shuffle, (/0/), (/0/),                      &
@@ -797,22 +768,6 @@
      &                      ncid = ncid)
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-
-      CALL netcdf_put_fvar (ng, model, ncname, 'Tnudg_SSS',             &
-     &                      Tnudg_SSS(ng)/sec2day, (/0/), (/0/),        &
-     &                      ncid = ncid)
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-# ifdef SSSC_THRESHOLD
-      CALL netcdf_put_fvar (ng, model, ncname, 'sss_mismatch_threshold',&
-     &                      sss_mismatch_threshold(ng)/sec2day, (/0/),  &
-     &                      (/0/), ncid = ncid)
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 
 #ifndef DEBUGGING
@@ -1082,14 +1037,8 @@
      &                        NpostI, (/0/), (/0/),                     &
      &                        ncid = ncid)
 # endif
-<<<<<<< HEAD
 # if defined IS4DVAR_SENSITIVITY || defined W4DPSAS_SENSITIVITY || \
      defined W4DVAR_SENSITIVITY
-=======
-# if defined IS4DVAR_SENSITIVITY     || defined W4DPSAS_SENSITIVITY || \
-     defined W4DPSAS_FCT_SENSITIVITY || defined W4DVAR_SENSITIVITY  || \
-     defined ARRAY_MODES
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         CALL netcdf_put_ivar (ng, model, ncname, 'Nimpact',             &
      &                        Nimpact, (/0/), (/0/),                    &
      &                        ncid = ncid)

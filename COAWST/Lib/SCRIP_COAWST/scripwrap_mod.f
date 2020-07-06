@@ -24,21 +24,12 @@
       character(char_len), dimension(5) :: swan_coord, swan_bath
       character(char_len), dimension(5) :: ww3_xcoord, ww3_ycoord
       character(char_len), dimension(5) :: ww3_bath
-<<<<<<< HEAD
       character(char_len), dimension(5) :: wrf_grids
-=======
-      character(char_len), dimension(5) :: wrf_grids, hydro_grids
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       character(char_len) :: output_ncfile 
 
       integer(int_kind) :: iunit, counter_grid
       integer(int_kind) :: Ngrids_roms, Ngrids_swan, Ngrids_wrf
-<<<<<<< HEAD
       integer(int_kind) :: Ngrids_ww3,  Ngrids_comb_total
-=======
-      integer(int_kind) :: Ngrids_ww3,  Ngrids_hyd
-      integer(int_kind) :: Ngrids_comb_total
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer(int_kind),dimension(5) :: swan_numx, swan_numy
       integer(int_kind),dimension(5) :: ww3_numx, ww3_numy
       integer(int_kind),dimension(5) :: cartesian
@@ -111,25 +102,6 @@
 
       type(get_wrf_grid), allocatable :: ngrd_wr(:)
 !-----------------------------------------------------------------------
-<<<<<<< HEAD
-=======
-!-----------------------------------------------------------------------
-      type get_hydro_grid
-        integer(int_kind) :: we_size, sn_size
-        integer(int_kind) :: istr_h, jstr_h,                            &
-     &                       iend_h, jend_h
-! rho points
-        real(dbl_kind), allocatable :: lon_rho_h(:,:),lat_rho_h(:,:)
-! full grid psi/corner points
-        real(dbl_kind), allocatable ::x_full_grid(:,:), y_full_grid(:,:)
-! masking values
-        integer(int_kind), allocatable :: mask_rho_h(:,:) 
-        integer(int_kind), allocatable :: src_mask(:,:), dst_mask(:,:)
-      end type get_hydro_grid
-
-      type(get_hydro_grid), allocatable :: ngrd_hy(:)
-!-----------------------------------------------------------------------
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       end module scripwrap_mod
 

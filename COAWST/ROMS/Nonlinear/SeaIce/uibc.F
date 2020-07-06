@@ -105,20 +105,13 @@
               END IF
               tau=tau*dt(ng)
             END IF
-<<<<<<< HEAD
             IF ((dUdt*dUdx).lt.0.0_r8) dUdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF ((dUdt*(grad(Istr+1,j)+grad(Istr+1,j+1))).gt.0.0_r8) THEN
               dUde=grad(Istr+1,j  )
             ELSE
               dUde=grad(Istr+1,j+1)
             END IF
             cff=MAX(dUdx*dUdx+dUde*dUde,eps)
-<<<<<<< HEAD
-=======
-            IF ((dUdt*dUdx).lt.0.0_r8) dUdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             Cx=dUdt*dUdx
 # ifdef RADIATION_2D
             Ce=MIN(cff,MAX(dUdt*dUde,-cff))
@@ -206,20 +199,13 @@
               END IF
               tau=tau*dt(ng)
             END IF
-<<<<<<< HEAD
             IF ((dUdt*dUdx).lt.0.0_r8) dUdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF ((dUdt*(grad(Iend,j)+grad(Iend,j+1))).gt.0.0_r8) THEN
               dUde=grad(Iend,j)
             ELSE
               dUde=grad(Iend,j+1)
             END IF
             cff=MAX(dUdx*dUdx+dUde*dUde,eps)
-<<<<<<< HEAD
-=======
-            IF ((dUdt*dUdx).lt.0.0_r8) dUdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             Cx=dUdt*dUdx
 # ifdef RADIATION_2D
             Ce=MIN(cff,MAX(dUdt*dUde,-cff))
@@ -307,20 +293,13 @@
               END IF
               tau=tau*dt(ng)
             END IF
-<<<<<<< HEAD
             IF ((dUdt*dUde).lt.0.0_r8) dUdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF ((dUdt*(grad(i-1,Jstr)+grad(i,Jstr))).gt.0.0_r8) THEN
               dUdx=grad(i-1,Jstr)
             ELSE
                 dUdx=grad(i  ,Jstr)
             END IF
             cff=MAX(dUdx*dUdx+dUde*dUde,eps)
-<<<<<<< HEAD
-=======
-            IF ((dUdt*dUde).lt.0.0_r8) dUdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef RADIATION_2D
             Cx=MIN(cff,MAX(dUdt*dUdx,-cff))
 # else
@@ -424,20 +403,13 @@
               END IF
               tau=tau*dt(ng)
             END IF
-<<<<<<< HEAD
             IF ((dUdt*dUde).lt.0.0_r8) dUdt=0.0_r8
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF ((dUdt*(grad(i-1,Jend)+grad(i,Jend))).gt.0.0_r8) THEN
               dUdx=grad(i-1,Jend)
             ELSE
               dUdx=grad(i  ,Jend)
             END IF
             cff=MAX(dUdx*dUdx+dUde*dUde,eps)
-<<<<<<< HEAD
-=======
-            IF ((dUdt*dUde).lt.0.0_r8) dUdt=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef RADIATION_2D
             Cx=MIN(cff,MAX(dUdt*dUdx,-cff))
 # else
@@ -449,19 +421,12 @@
      &                         MAX(Cx,0.0_r8)*grad(i-1,Jend+1)-         &
      &                         MIN(Cx,0.0_r8)*grad(i  ,Jend+1))/        &
      &                        (cff+Ce)
-<<<<<<< HEAD
 # ifdef NORTH_MINUDGING
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (LBC(inorth,isUice,ng)%nudging) THEN
               ui(i,Jend+1,liunw)=ui(i,Jend+1,liunw)+                    &
      &                          tau*(BOUNDARY(ng)%ui_north(i)-          &
      &                             ui(i,Jend+1,know))
-<<<<<<< HEAD
 # endif
-=======
-            END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
             ui(i,Jend+1,liunw)=ui(i,Jend+1,liunw)*                      &
      &                        GRID(ng)%umask(i,Jend+1)

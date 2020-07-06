@@ -42,15 +42,9 @@ function [V] = gregorian(Jday, varargin)
 % 365.2425 days instead of 365.25 in the Julian Calendar.
 %
  
-<<<<<<< HEAD
 % svn $Id: gregorian.m 916 2018-07-14 01:28:47Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: gregorian.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license               Hernan G. Arango  %
 %    See License_ROMS.txt                               Rich Signell      %
 %=========================================================================%

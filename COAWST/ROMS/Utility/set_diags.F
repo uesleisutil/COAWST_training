@@ -2,15 +2,9 @@
 #ifdef DIAGNOSTICS
       SUBROUTINE set_diags (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: set_diags.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: set_diags.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -73,12 +67,6 @@
       USE bc_2d_mod
 # ifdef SOLVE3D
       USE bc_3d_mod
-<<<<<<< HEAD
-=======
-#  ifdef ECOSIM
-      USE bc_4d_mod
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # ifdef WET_DRY
       USE exchange_2d_mod
@@ -105,11 +93,7 @@
 !  Local variable declarations.
 !
       integer :: i, it, j, k
-<<<<<<< HEAD
       integer :: idiag
-=======
-      integer :: iband, idiag
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8) :: fac
 
@@ -474,12 +458,7 @@
           END DO
         END DO
 # endif
-<<<<<<< HEAD
 # if defined DIAGNOSTICS_BIO
-=======
-# ifdef DIAGNOSTICS_BIO
-#  if defined BIO_FENNEL || defined HYPOXIA_SRM
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         DO idiag=1,NDbio2d
           IF (idiag.ne.ipCO2) THEN
             DO j=JstrR,JendR
@@ -490,11 +469,6 @@
             END DO
           END IF
         END DO
-<<<<<<< HEAD
-=======
-#  endif
-#  if defined BIO_FENNEL
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         DO idiag=1,NDbio3d
           DO k=1,N(ng)
             DO j=JstrR,JendR
@@ -505,33 +479,6 @@
             END DO
           END DO
         END DO
-<<<<<<< HEAD
-=======
-#  elif defined ECOSIM
-        DO idiag=1,NDbio3d
-          DO k=1,NDbands
-            DO j=JstrR,JendR
-              DO i=IstrR,IendR
-                DIAGS(ng)%DiaBio3d(i,j,k,idiag)=rfac(i,j)*              &
-     &                    DIAGS(ng)%DiaBio3d(i,j,k,idiag)
-              END DO
-            END DO
-          END DO
-        END DO
-        DO idiag=1,NDbio4d
-          DO iband=1,NDbands
-            DO k=1,N(ng)
-              DO j=JstrR,JendR
-                DO i=IstrR,IendR
-                  DIAGS(ng)%DiaBio4d(i,j,k,iband,idiag)=rfac(i,j)*      &
-     &                      DIAGS(ng)%DiaBio4d(i,j,k,iband,idiag)
-                END DO
-              END DO
-            END DO
-          END DO
-        END DO
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 # ifdef DIAGNOSTICS_UV
         DO idiag=1,NDM2d
@@ -636,12 +583,7 @@
 #    endif
 #   endif
 #  endif
-<<<<<<< HEAD
 #  if defined DIAGNOSTICS_BIO
-=======
-#  ifdef DIAGNOSTICS_BIO
-#   if defined BIO_FENNEL || defined HYPOXIA_SRM
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Biological terms 2D diagnostics.
 !
@@ -650,23 +592,13 @@
      &                      LBi, UBi, LBj, UBj,                         &
      &                      DIAGS(ng)%DiaBio2d(:,:,idiag))
         END DO
-<<<<<<< HEAD
 #   ifdef DISTRIBUTE
-=======
-#    ifdef DISTRIBUTE
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         CALL mp_exchange3d (ng, tile, iNLM, 1,                          &
      &                      LBi, UBi, LBj, UBj, 1, NDbio2d,             &
      &                      NghostPoints,                               &
      &                      EWperiodic(ng), NSperiodic(ng),             &
      &                      DIAGS(ng)%DiaBio2d)
-<<<<<<< HEAD
 #   endif
-=======
-#    endif
-#   endif
-#   if defined BIO_FENNEL
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Biological terms 3D diagnostics.
 !
@@ -675,51 +607,12 @@
      &                      LBi, UBi, LBj, UBj, 1, N(ng),               &
      &                      DIAGS(ng)%DiaBio3d(:,:,:,idiag))
         END DO
-<<<<<<< HEAD
 #   ifdef DISTRIBUTE
-=======
-#    ifdef DISTRIBUTE
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         CALL mp_exchange4d (ng, tile, iNLM, 1,                          &
      &                      LBi, UBi, LBj, UBj, 1, N(ng), 1, NDbio3d,   &
      &                      NghostPoints,                               &
      &                      EWperiodic(ng), NSperiodic(ng),             &
      &                      DIAGS(ng)%DiaBio3d)
-<<<<<<< HEAD
-=======
-#    endif
-#   elif defined ECOSIM
-!
-!  Biological terms 3D diagnostics.
-!
-        DO idiag=1,NDbio3d
-          CALL bc_r3d_tile (ng, tile,                                   &
-     &                      LBi, UBi, LBj, UBj, 1, NDbands,             &
-     &                      DIAGS(ng)%DiaBio3d(:,:,:,idiag))
-        END DO
-#    ifdef DISTRIBUTE
-        CALL mp_exchange4d (ng, tile, iNLM, 1,                          &
-     &                      LBi, UBi, LBj, UBj, 1, NDbands, 1, NDbio3d, &
-     &                      NghostPoints,                               &
-     &                      EWperiodic(ng), NSperiodic(ng),             &
-     &                      DIAGS(ng)%DiaBio3d)
-#    endif
-!
-!  Biological terms 4D diagnostics.
-!
-        DO idiag=1,NDbio4d
-          CALL bc_r4d_tile (ng, tile,                                   &
-     &                      LBi, UBi, LBj, UBj, 1, N(ng), 1, NDbands,   &
-     &                      DIAGS(ng)%DiaBio4d(:,:,:,:,idiag))
-#    ifdef DISTRIBUTE
-          CALL mp_exchange4d (ng, tile, iNLM, 1,                        &
-     &                        LBi, UBi, LBj, UBj, 1, N(ng), 1, NDbands, &
-     &                        NghostPoints,                             &
-     &                        EWperiodic(ng), NSperiodic(ng),           &
-     &                        DIAGS(ng)%DiaBio4d(:,:,:,:,idiag))
-#    endif
-        END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   endif
 #  endif
 # endif

@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE mod_strings
 !
-<<<<<<< HEAD
 !svn $Id: mod_strings.F 914 2018-07-07 20:57:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: mod_strings.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -123,12 +117,7 @@
         character (len=2048) :: Coptions
 
         integer, parameter :: Mregion = 60
-<<<<<<< HEAD
         integer, parameter :: Nregion = 73
-=======
-        integer, parameter :: Iceregion = 74
-        integer, parameter :: Nregion = 80
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
         character (len=48), dimension(17) :: StateMsg =                 &
      &    (/'state initial conditions,                       ',         & !01
@@ -222,18 +211,7 @@
      &      'Message Passage: nesting point data gathering ....',       & !70
      &      'Message Passage: nesting array data gathering ....',       & !71
      &      'Message Passage: synchronization barrier .........',       & !72
-<<<<<<< HEAD
      &      'Message Passage: multi-model coupling ............'/)        !73
-=======
-     &      'Message Passage: multi-model coupling ............',       & !73
-     &      'Unused 15 ........................................',       & !74
-     &      'Unused 16 ........................................',       & !75
-     &      'Ice thermodynamics................................',       & !76
-     &      'Ice rheology coefficients.........................',       & !77
-     &      'Iterative solver of ice dynamics..................',       & !78
-     &      'Advection of ice tracers..........................',       & !79
-     &      'Frazil ice........................................'/)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  The following variables are assigned during C-preprocessing.  They
 !  have information about operating sytem, CPU hardware, compiling

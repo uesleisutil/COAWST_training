@@ -22,7 +22,6 @@ function cmap = cmocean(ColormapName,varargin)
 %          SEQUENTIAL:                DIVERGING: 
 %          'thermal'                  'balance'
 %          'haline'                   'delta'
-<<<<<<< HEAD
 %          'solar'                    'curl'
 %          'ice'
 %          'gray'                     CONSTANT LIGHTNESS:
@@ -35,30 +34,6 @@ function cmap = cmocean(ColormapName,varargin)
 %          'speed'                    'plasma'
 %          'amp'                      'viridis'
 %          'tempo'                    'cividis'
-=======
-%          'solar'                    'diff'
-%          'ice'                      'curl'
-%          'gray'                     'tarn'
-%          'oxy'
-%          'deep'                     CONSTANT LIGHTNESS:
-%          'dense'                    'phase'
-%          'algae'
-%          'matter'
-%          'turbid'
-%          'speed'
-%          'amp'
-%          'tempo'
-%          'rain'
-%
-%          OTHERS:
-%          'cividis'		      
-%          'inferno'  
-%          'magma'
-%          'parula'    (Matlab default)
-%          'plasma'
-%          'topo'
-%          'viridis'
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %
 % cmap = cmocean('-ColormapName') a minus sign preceeding any ColormapName flips the
 % order of the colormap. 
@@ -133,11 +108,7 @@ function cmap = cmocean(ColormapName,varargin)
 %          cm_phase,  cm_solar, cm_speed,   cm_tempo, cm_thermal, cm_turbid,
 %          inferno,   magma,    parula,     plasma,   cividis,    viridis
   
-<<<<<<< HEAD
 % svn $Id: cmocean.m 926 2018-10-09 21:53:45Z arango $
-=======
-% svn $Id: cmocean.m 996 2020-01-10 04:28:56Z arango $
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 % Display colormap options: 
 
@@ -219,11 +190,6 @@ switch lower(ColormapName(1:3))
       cmap = cm_amp;
    case 'bal' 
       cmap = cm_balance;
-<<<<<<< HEAD
-=======
-   case 'civ' 
-      cmap = cividis;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    case 'cur'
       cmap = cm_curl;
    case 'dee' 
@@ -232,11 +198,6 @@ switch lower(ColormapName(1:3))
       cmap = cm_delta;
    case 'den' 
       cmap = cm_dense;
-<<<<<<< HEAD
-=======
-   case 'dif' 
-      cmap = cm_diff;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    case 'gra'
       cmap = cm_gray;
    case 'hal' 
@@ -257,38 +218,20 @@ switch lower(ColormapName(1:3))
       cmap = cm_phase;
    case 'pla' 
       cmap = plasma;
-<<<<<<< HEAD
-=======
-   case 'rai' 
-      cmap = cm_rain;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    case 'sol' 
       cmap = cm_solar;
    case 'spe' 
       cmap = cm_speed;
-<<<<<<< HEAD
-=======
-   case 'tar' 
-      cmap = cm_tarn;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    case 'tem' 
       cmap = cm_tempo;
    case 'the' 
       cmap = cm_thermal;
-<<<<<<< HEAD
-=======
-   case 'top' 
-      cmap = cm_topo;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    case 'tur' 
       cmap = cm_turbid;
    case 'vir' 
       cmap = viridis;
-<<<<<<< HEAD
    case 'civ' 
       cmap = cividis;
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    otherwise 
       error('Unrecognized colormap name.') 
 end

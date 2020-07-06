@@ -10,7 +10,6 @@
 
 
 !
-<<<<<<< HEAD
 ! Earth System Modeling Framework
 ! Copyright 2002-2003, University Corporation for Atmospheric Research,
 ! Massachusetts Institute of Technology, Geophysical Fluid Dynamics
@@ -19,8 +18,6 @@
 ! NASA Goddard Space Flight Center.
 ! Licensed under the University of Illinois-NCSA license.
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !==============================================================================
 !
 !     ESMF TimeInterval Module

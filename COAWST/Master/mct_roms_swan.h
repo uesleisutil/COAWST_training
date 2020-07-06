@@ -1,13 +1,7 @@
 /*
-<<<<<<< HEAD
 ** svn $Id: mct_roms_swan.h 830 2017-01-24 21:21:11Z arango $
 ***************************************************** John C. Warner ***
 ** Copyright (c) 2002-2019 The ROMS/TOMS Group      Hernan G. Arango  **
-=======
-** svn $Id: mct_roms_swan.h 995 2020-01-10 04:01:28Z arango $
-***************************************************** John C. Warner ***
-** Copyright (c) 2002-2020 The ROMS/TOMS Group      Hernan G. Arango  **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                             **
 **   See License_ROMS.txt                                             **
 ************************************************************************
@@ -38,11 +32,7 @@
 #endif
 #if defined VEGETATION && defined VEG_SWAN_COUPLING
       USE mod_vegetation
-<<<<<<< HEAD
       USE mod_vegarr 
-=======
-      USE mod_vegarr
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 !
 !  Imported variable definitions.
@@ -448,11 +438,7 @@
       cad=LEN_TRIM(to_add)
       write(owstring(cid:cid+cad-1),'(a)') to_add(1:cad)
       cid=cid+cad
-<<<<<<< HEAD
 #if defined VEGETATION && defined VEG_SWAN_COUPLING 
-=======
-#if defined VEGETATION && defined VEG_SWAN_COUPLING
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       to_add=':VEGDENS'
       cad=LEN_TRIM(to_add)
@@ -610,11 +596,7 @@
 #endif
 #if defined VEGETATION && defined VEG_SWAN_COUPLING
       USE mod_vegetation
-<<<<<<< HEAD
       USE mod_vegarr 
-=======
-      USE mod_vegarr
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 !
       USE exchange_2d_mod, ONLY : exchange_r2d_tile
@@ -638,11 +620,7 @@
       integer :: gtype, i, id, ifield, ij, j, k, status
 #if defined VEGETATION && defined VEG_SWAN_COUPLING
       integer :: iveg
-<<<<<<< HEAD
 #endif	
-=======
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8), parameter ::  Lwave_min = 1.0_r8
       real(r8), parameter ::  Lwave_max = 500.0_r8
@@ -832,11 +810,7 @@
 #ifdef SOLVE3D
 # ifdef UV_KIRBY
       DO j=JstrR,JendR
-<<<<<<< HEAD
         DO i=IstrR,Iend
-=======
-        DO i=IstrR,IendR
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           OCEAN(ng)%vwave(i,j)=vbar_rho(i,j)
         ENDDO
       ENDDO
@@ -902,11 +876,7 @@
 # else
 !         Specify this to be Madsen 0.05 minimum.
           A(ij)=MAX(0.05_r8, SEDBED(ng)%bottom(i,j,izNik)*30.0_r8)
-<<<<<<< HEAD
 # endif 
-=======
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #else
 !               This value will be replaced by the value entered in the
 !               SWAN INPUT file. See SWAN/Src/waves_coupler.F.
@@ -916,11 +886,7 @@
       END DO
       CALL AttrVect_importRAttr (AttrVect_G(ng)%ocn2wav_AV, "ZO",       &
      &                           A, Asize)
-<<<<<<< HEAD
 #if defined VEGETATION && defined VEG_SWAN_COUPLING 
-=======
-#if defined VEGETATION && defined VEG_SWAN_COUPLING
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Equivalent Plant density.
 !
@@ -1570,11 +1536,7 @@
 #ifdef WAVES_DSPR
 !
 !  wave directional spreading
-<<<<<<< HEAD
 !  
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL AttrVect_exportRAttr (AttrVect_G(ng)%wav2ocn_AV, "WDSPR",    &
      &                           A, Asize)
       range(1)= Large
@@ -1603,11 +1565,7 @@
       END IF
 !
 !  wave spectrum peakedness
-<<<<<<< HEAD
 !  
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL AttrVect_exportRAttr (AttrVect_G(ng)%wav2ocn_AV, "WQP",      &
      &                           A, Asize)
       range(1)= Large
@@ -1634,11 +1592,7 @@
         write(stdout,40) 'SWANtoROMS Min/Max WQP     (-):     ',        &
      &                    range(1),range(2)
       END IF
-<<<<<<< HEAD
 #endif 
-=======
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 #if defined WAVES_OCEAN && defined WEC_VF && \
     defined BOTTOM_STREAMING && defined VEGETATION &&  \
@@ -1656,17 +1610,10 @@
         DO i=IstrR,IendR
           ij=ij+1
           cff=MAX(0.0_r8,A(ij)*ramp)*fac
-<<<<<<< HEAD
           IF (iw.eq.1) THEN 
             VEG(ng)%Dissip_veg(i,j)=cff
           ELSE
             VEG(ng)%Dissip_veg(i,j)=VEG(ng)%Dissip_veg(i,j)+            &    
-=======
-          IF (iw.eq.1) THEN
-            VEG(ng)%Dissip_veg(i,j)=cff
-          ELSE
-            VEG(ng)%Dissip_veg(i,j)=VEG(ng)%Dissip_veg(i,j)+            &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                              cff
           END IF
           range(1)=MIN(range(1),cff)

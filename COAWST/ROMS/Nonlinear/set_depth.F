@@ -2,15 +2,9 @@
       MODULE set_depth_mod
 #ifdef SOLVE3D
 !
-<<<<<<< HEAD
 !svn $Id: set_depth.F 889 2018-02-10 03:32:52Z arango $
 !=======================================================================
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: set_depth.F 995 2020-01-10 04:01:28Z arango $
-!=======================================================================
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                           Hernan G. Arango   !
 !========================================== Alexander F. Shchepetkin ===
@@ -194,10 +188,6 @@
               hwater=hwater-ABS(zice(i,j))
 # endif
               hinv=1.0_r8/hwater
-<<<<<<< HEAD
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               z_w0=cff_w+cff1_w*hwater
               z_w(i,j,k)=z_w0+Zt_avg1(i,j)*(1.0_r8+z_w0*hinv)
               z_r0=cff_r+cff1_r*hwater

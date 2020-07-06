@@ -1,9 +1,5 @@
       SUBROUTINE read_SedPar (model, inp, out, Lwrite)
 !
-<<<<<<< HEAD
-=======
-!svn $Id: sediment_inp.h 1001 2020-01-10 22:41:16Z arango $
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !=======================================================================
 !                                                                      !
 !  This routine reads in cohesive and non-cohesive sediment model      !
@@ -122,55 +118,6 @@
                 Dbzp(ng)=Rbed(ng)
               END DO
 #endif
-<<<<<<< HEAD
-=======
-            CASE ('Hadvection')
-              IF (itracer.lt.NST) THEN
-                itracer=itracer+1
-              ELSE
-                itracer=1                      ! next nested grid
-              END IF
-              itrc=idsed(itracer)
-              Npts=load_tadv(Nval, Cval, line, nline, itrc, igrid,      &
-     &                       itracer, idsed(iTrcStr), idsed(iTrcEnd),   &
-     &                       Vname(1,idTvar(itrc)),                     &
-     &                       Hadvection)
-            CASE ('Vadvection')
-              IF (itracer.lt.NST) THEN
-                itracer=itracer+1
-              ELSE
-                itracer=1                      ! next nested grid
-              END IF
-              itrc=idsed(itracer)
-              Npts=load_tadv(Nval, Cval, line, nline, itrc, igrid,      &
-     &                       itracer, idsed(iTrcStr), idsed(iTrcEnd),   &
-     &                       Vname(1,idTvar(itrc)),                     &
-     &                       Vadvection)
-#if defined ADJOINT || defined TANGENT || defined TL_IOMS
-            CASE ('ad_Hadvection')
-              IF (itracer.lt.NST) THEN
-                itracer=itracer+1
-              ELSE
-                itracer=1                      ! next nested grid
-              END IF
-              itrc=idsed(itracer)
-              Npts=load_tadv(Nval, Cval, line, nline, itrc, igrid,      &
-     &                       itracer, idsed(iTrcStr), idsed(iTrcEnd),   &
-     &                       Vname(1,idTvar(itrc)),                     &
-     &                       ad_Hadvection)
-            CASE ('Vadvection')
-              IF (itracer.lt.(NST) THEN
-                itracer=itracer+1
-              ELSE
-                itracer=1                      ! next nested grid
-              END IF
-              itrc=idsed(itracer)
-              Npts=load_tadv(Nval, Cval, line, nline, itrc, igrid,      &
-     &                       itracer, idsed(iTrcStr), idsed(iTrcEnd),   &
-     &                       Vname(1,idTvar(itrc)),                     &
-     &                       ad_Vadvection)
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             CASE ('LBC(isTvar)')
               IF (itracer.lt.NST) THEN
                 itracer=itracer+1
@@ -288,11 +235,7 @@
                 DO itrc=1,NCS
                   i=idsed(itrc)
                   ad_tnu4(i,ng)=Rmud(itrc,ng)
-<<<<<<< HEAD
                   nl_tnu4(i,ng)=Rmud(itrc,ng)
-=======
-                  tl_tnu4(i,ng)=Rmud(itrc,ng)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 END DO
               END DO
             CASE ('MUD_Sponge')
@@ -889,11 +832,7 @@
                   Hout(i,ng)=Lsand(itrc,ng)
                 END DO
               END DO
-<<<<<<< HEAD
 # ifdef BEDLOAD_VANDERA
-=======
-!# ifdef BEDLOAD_VANDERA
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             CASE ('Hout(idsurs)')
               Npts=load_l(Nval, Cval, NNS, Ngrids, Lsand)
               DO ng=1,Ngrids
@@ -942,49 +881,11 @@
                   Hout(i,ng)=Lsand(itrc,ng)
                 END DO
               END DO
-<<<<<<< HEAD
 !            CASE ('THCK_WBL_INP')
 !              Npts=load_r(Nval, Rval, Ngrids, Rbed)
 !                DO ng=1,Ngrids
 !                  THCK_WBL_INP(ng)=Rbed(ng)
 !                END DO
-=======
-            CASE ('SG_ZWBL')
-              Npts=load_r(Nval, Rval, Ngrids, Rbed)
-                DO ng=1,Ngrids
-                  sg_zwbl(ng)=Rbed(ng)
-                END DO
-            CASE ('SEDSLOPE_CRIT_WET')
-              Npts=load_r(Nval, Rval, Ngrids, Rbed)
-                DO ng=1,Ngrids
-                  sedslope_crit_wet(ng)=Rbed(ng)
-                END DO
-            CASE ('SEDSLOPE_CRIT_DRY')
-              Npts=load_r(Nval, Rval, Ngrids, Rbed)
-                DO ng=1,Ngrids
-                  sedslope_crit_dry(ng)=Rbed(ng)
-                END DO
-            CASE ('SLOPEFAC_WET')
-              Npts=load_r(Nval, Rval, Ngrids, Rbed)
-                DO ng=1,Ngrids
-                  slopefac_wet(ng)=Rbed(ng)
-                END DO
-            CASE ('SLOPEFAC_DRY')
-              Npts=load_r(Nval, Rval, Ngrids, Rbed)
-                DO ng=1,Ngrids
-                  slopefac_dry(ng)=Rbed(ng)
-                END DO
-            CASE ('BEDLOAD_VANDERA_ALPHAC')
-              Npts=load_r(Nval, Rval, Ngrids, Rbed)
-                DO ng=1,Ngrids
-                  bedload_vandera_alphac(ng)=Rbed(ng)
-                END DO
-            CASE ('BEDLOAD_VANDERA_ALPHAW')
-              Npts=load_r(Nval, Rval, Ngrids, Rbed)
-                DO ng=1,Ngrids
-                  bedload_vandera_alphaw(ng)=Rbed(ng)
-                END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             CASE ('Hout(idstbl)')
               Npts=load_l(Nval, Cval, NNS, Ngrids, Lsand)
               DO ng=1,Ngrids
@@ -1049,11 +950,7 @@
                   Hout(i,ng)=Lsand(itrc,ng)
                 END DO
               END DO
-<<<<<<< HEAD
 # endif
-=======
-!# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
             CASE ('Qout(idsand)')
               Npts=load_l(Nval, Cval, NNS, Ngrids, Lsand)
@@ -1746,11 +1643,7 @@
               DO itrc=1,NST
                 i=idBmas(itrc)
                 IF (Hout(i,ng)) WRITE (out,160) Hout(i,ng),             &
-<<<<<<< HEAD
      &              'Hout(idfrac)',                                     &
-=======
-     &              'Hout(idmass)',                                     &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &              'Write out mass, sediment ', itrc,                  &
      &              TRIM(Vname(1,i))
               END DO

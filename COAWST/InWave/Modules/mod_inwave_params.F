@@ -21,24 +21,12 @@
 
 !     These indices are for the I/O.
       integer  :: idACtp                    ! absolute peak period
-<<<<<<< HEAD
       integer  :: idACag                    ! energy angle direction
       integer  :: idACac                    ! energy angle direction centered
       integer  :: idACen                    ! wave action 
       integer  :: idACcx                    ! wave action celerity in xi  
       integer  :: idACcy                    ! wave action celerity in eta
       integer  :: idACct                    ! wave action celerity in theta dir
-=======
-      integer  :: idACkc                    ! wave number
-      integer  :: idACag                    ! energy angle direction
-      integer  :: idACac                    ! energy angle direction centered
-      integer  :: idACen                    ! wave action 
-      integer  :: idACkl                    ! wave 3D wave length
-      integer  :: idACcx                    ! wave action celerity in xi  
-      integer  :: idACcy                    ! wave action celerity in eta
-      integer  :: idACct                    ! wave action celerity in theta dir
-      integer  :: idACbz                    ! wave action bound wave
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 !  These integers are assigned values in mod_ncparam.F
 

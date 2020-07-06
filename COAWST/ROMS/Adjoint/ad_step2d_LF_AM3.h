@@ -2,11 +2,7 @@
 #ifdef ADJOINT
       SUBROUTINE ad_step2d (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: ad_step2d_LF_AM3.h 889 2018-02-10 03:32:52Z arango $
-=======
-!svn $Id: ad_step2d_LF_AM3.h 1009 2020-03-03 20:38:52Z arango $
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !=======================================================================
 !                                                                      !
 !  Adjoint shallow-water primitive equations predictor (Leap-frog)     !
@@ -226,10 +222,6 @@
 !
       USE mod_param
       USE mod_clima
-<<<<<<< HEAD
-=======
-      USE mod_ncparam
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE mod_scalars
 # if defined SEDIMENT_NOT_YET && defined SED_MORPH_NOT_YET
       USE mod_sediment

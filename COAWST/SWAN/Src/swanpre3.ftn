@@ -133,10 +133,6 @@
       USE SWCOMM2
       USE SWCOMM3
       USE M_GENARR
-<<<<<<< HEAD
-=======
-      USE mct_coupler_params
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       integer, intent(in) :: ng, ngp
 

@@ -20,13 +20,6 @@
 
   INTEGER :: GNLINKSL, linklsS, linklsE , nlinksize  !## for reach based channel routing
 
-<<<<<<< HEAD
-=======
-  INTEGER :: iswater     !id for water in vegtyp
-  INTEGER :: isurban     !id for urban in vegtyp
-  INTEGER :: isoilwater  !id for water in soiltyp
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !DJG   VARIABLES FOR ROUTING
   INTEGER, allocatable, DIMENSION(:,:)      :: CH_NETRT !-- keeps track of the 0-1 channel network
@@ -122,10 +115,6 @@
   REAL, allocatable, DIMENSION(:)      :: So         !link slope
   REAL, allocatable, DIMENSION(:)      :: ChSSlp, Bw !trapezoid link params
   REAL, allocatable, DIMENSION(:,:)    :: QLINK      !flow in link
-<<<<<<< HEAD
-=======
-  integer, allocatable, DIMENSION(:)   :: ascendIndex !sorting of routelink
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef WRF_HYDRO_NUDGING
   REAL, allocatable, DIMENSION(:)      :: nudge      !difference between modeled and DA adj link flow
 #endif
@@ -148,13 +137,7 @@
   INTEGER, allocatable, DIMENSION(:) :: LAKEIDX ! integer index for lakes, mapped to linkid
 
 !!! accumulated variables for reach beased rt
-<<<<<<< HEAD
   REAL, allocatable, DIMENSION(:)    :: accLndRunOff, accQLateral, accStrmvolrt, accBucket
-=======
-  Real*8, allocatable, DIMENSION(:)  :: accSfcLatRunoff, accBucket
-  REAL  , allocatable, DIMENSION(:)  ::   qSfcLatRunoff,   qBucket, qBtmVertRunoff
-  REAL, allocatable, DIMENSION(:)    :: accLndRunOff, accQLateral, accStrmvolrt
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   !REAL, allocatable, DIMENSION(:)    :: qqLndRunOff, qqStrmvolrt, qqBucket
   REAL, allocatable, DIMENSION(:)    :: QLateral, velocity
 
@@ -176,11 +159,7 @@
   REAL,    allocatable, DIMENSION(:,:)     :: INFXSAGGRT
   REAL,    allocatable, DIMENSION(:,:)     :: DHRT,QSTRMVOLRT,QBDRYRT,LAKE_INFLORT
   REAL,    allocatable, DIMENSION(:,:)     :: QSTRMVOLRT_TS,LAKE_INFLORT_TS
-<<<<<<< HEAD
   REAL,    allocatable, DIMENSION(:,:)     :: QSTRMVOLRT_DUM,LAKE_INFLORT_DUM
-=======
-  REAL,    allocatable, DIMENSION(:,:)     :: QSTRMVOLRT_ACC, LAKE_INFLORT_DUM
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   REAL,    allocatable, DIMENSION(:,:)       :: INFXSWGT, ywtmp
   REAL,    allocatable, DIMENSION(:)       :: SMCAGGRT,STCAGGRT,SH2OAGGRT
   REAL    :: INFXSAGG1RT,SFCHEADAGG1RT,SFCHEADAGGRT
@@ -224,10 +203,6 @@
       REAL,    allocatable, DIMENSION(:,:,:) :: SMC,STC,SH2OX
       REAL,    allocatable, DIMENSION(:,:)   :: SMCMAX1,SMCWLT1,SMCREF1
       INTEGER, allocatable, DIMENSION(:,:)   :: VEGTYP 
-<<<<<<< HEAD
-=======
-      REAL, allocatable, DIMENSION(:,:)      :: OV_ROUGH2d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       REAL,    allocatable, DIMENSION(:)   :: SLDPTH
 
 !!! define constant/parameter

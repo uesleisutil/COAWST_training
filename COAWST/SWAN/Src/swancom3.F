@@ -32,11 +32,7 @@
      &                   DEP2  ,WIND10,GENC0 ,GENC1 ,                     40.85 32.06
      &                   THETAW,AC2   ,KWAVE ,IMATRA,IMATDA,              32.06
      &                   SPCSIG,CGO   ,ALIMW ,GROWW ,ETOTW ,              32.06
-<<<<<<< HEAD
      &                   PLWNDS,PLWNDD,SPCDIR,ITER            )           32.06
-=======
-     &                   PLWNDS,PLWNDD,SPCDIR,ITER,AICELOC    )           41.75 32.06
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !****************************************************************
 !
@@ -58,11 +54,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -90,10 +82,6 @@
 !     40.00: Nico Booij (Nonstationary boundary conditions)
 !     40.41: Marcel Zijlema
 !     40.85: Marcel Zijlema
-<<<<<<< HEAD
-=======
-!     41.75: Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  1. Updates
 !
@@ -109,10 +97,6 @@
 !     40.41, Aug. 04: COS(THETA-THETAW) replaced by sumrule to make it cheaper
 !     40.41, Oct. 04: common blocks replaced by modules, include files removed
 !     40.85, Aug. 08: store wind input for output purposes
-<<<<<<< HEAD
-=======
-!     41.75, Jan. 19: adding sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  2. Purpose
 !
@@ -240,10 +224,6 @@
 !        THETAW      Mean direction of the relative wind vector
 !        TWOPI       Two times pi
 !        WIND10      Velocity of the relative wind vector
-<<<<<<< HEAD
-=======
-!        AICELOC     Local ice fraction
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !        one and more dimensional arrays:
 !        ---------------------------------
@@ -296,15 +276,7 @@
 !
 !     8. REMARKS
 !
-<<<<<<< HEAD
 !        ---
-=======
-!     Regarding ICEWIND variable :
-!        factor_on_Sin=(1-aice*(1-icewind))    (1)
-!        This can be re-written as :
-!        factor_on_Sin=awater+aice*icewind     (2)
-!        where a_water is open water fraction and a_water+aice==1.0 by definition
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     9. STRUCTURE
 !
@@ -351,10 +323,6 @@
      &         SIGPK ,SIGPKD,DND   ,ETOTW ,ALIM1D,
      &         CTW   ,STW   ,COSDIF,                                      40.41
      &         DIRDIS,AC2CEN,DTHETA
-<<<<<<< HEAD
-=======
-      REAL, INTENT(IN) :: AICELOC                                         41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       REAL  :: AC2(MDC,MSC,MCGRD)
       REAL  :: ALIMW(MDC,MSC)
@@ -368,10 +336,6 @@
       REAL  :: DEP2(MCGRD)
 !     Changed ICMAX to MICMAX, since MICMAX doesn't vary over gridpoint   40.22
       REAL  :: CGO(MSC,MICMAX)                                            40.22
-<<<<<<< HEAD
-=======
-      REAL  :: FACTOR_ON_SIN ! See remarks.                               41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       INTEGER  IDCMIN(MSC)           ,
      &         IDCMAX(MSC)
@@ -402,11 +366,6 @@
       FPM    = SIGPKD                                                     30.75
       CTW    = COS(THETAW)                                                40.41
       STW    = SIN(THETAW)                                                40.41
-<<<<<<< HEAD
-=======
-
-      FACTOR_ON_SIN = (1.-AICELOC*(1.-ICEWIND))                           41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       IF ( IWIND .EQ. 1 ) THEN
 !
@@ -535,14 +494,6 @@
             BDUM = TAUINV
           END IF
 !
-<<<<<<< HEAD
-=======
-          IF ( AICELOC.GT.0. ) THEN                                       41.75
-             SWIND_EXP = SWIND_EXP * FACTOR_ON_SIN                        41.75
-             SWIND_IMP = SWIND_IMP * FACTOR_ON_SIN                        41.75
-          ENDIF                                                           41.75
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !         *** store results in IMATDA and IMATRA ***
 !
           IMATRA(ID,IS) = IMATRA(ID,IS) + SWIND_EXP
@@ -623,11 +574,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1078,15 +1025,7 @@
            UTL   = WIND10/UREF
            CDRAG = ( PP + QQ*UTL + RR*UTL*UTL ) * 0.001
            CDRAG = MIN ( CDCAP, CDRAG )
-<<<<<<< HEAD
            UFRIC = SQRT ( CDRAG ) * WIND10
-=======
-           IF ( WIND10 .GT. 50.7 ) THEN
-              UFRIC = 1.9441
-           ELSE
-              UFRIC = SQRT ( CDRAG ) * WIND10
-           ENDIF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         ELSE IF ( IDRAG.EQ.3 ) THEN
 !          drag based on swell
            UTL1  = WIND10/UREF1
@@ -1224,11 +1163,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1461,11 +1396,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1623,11 +1554,7 @@
      &                   SPCSIG  ,THETAW  ,ANYWND  ,
      &                   UFRIC   ,FPM     ,PLWNDS  ,
      &                   IMATRA  ,SPCDIR  ,GENC0   ,
-<<<<<<< HEAD
      &                   KWAVE   )
-=======
-     &                   KWAVE   ,AICELOC )                               41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !****************************************************************
 !
@@ -1649,11 +1576,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -1677,10 +1600,6 @@
 !     30.82: IJsbrand Haagsma
 !     40.41: Marcel Zijlema
 !     40.85: Marcel Zijlema
-<<<<<<< HEAD
-=======
-!     41.75: Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  1. Updates
 !
@@ -1689,10 +1608,6 @@
 !     40.41, Aug. 04: COS(THETA-THETAW) replaced by sumrule to make it cheaper
 !     40.41, Oct. 04: common blocks replaced by modules, include files removed
 !     40.85, Aug. 08: store wind input for output purposes
-<<<<<<< HEAD
-=======
-!     41.75, Jan. 19: adding sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  2. PURPOSE
 !
@@ -1753,10 +1668,6 @@
 !        THETA       Spectral direction
 !        THETAW      Mean direction of the relative wind vector
 !        UFRIC       Wind friction velocity
-<<<<<<< HEAD
-=======
-!        AICELOC     Local ice fraction
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !        one and more dimensional arrays:
 !        ---------------------------------
@@ -1814,15 +1725,6 @@
 ! Alternate bending point: fpm, though this would have a much more noticeable effect on
 !   typical simulations.
 !
-<<<<<<< HEAD
-=======
-!     Regarding ICEWIND variable :
-!        factor_on_Sin=(1-aice*(1-icewind))    (1)
-!        This can be re-written as :
-!        factor_on_Sin=awater+aice*icewind     (2)
-!        where a_water is open water fraction and a_water+aice==1.0 by definition
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     9. STRUCTURE
 !
 !   ------------------------------------------------------------
@@ -1843,19 +1745,11 @@
      &         CTW     ,STW     ,COSDIF  ,                                40.41
      &         TEMP3   ,FILTER  ,ARGU    ,REDUC   ,FREQ1
       REAL     TAUX    ,TAUY    ,CINV2   ,CTH     ,STH
-<<<<<<< HEAD
-=======
-      REAL, INTENT(IN) :: AICELOC                                         41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       REAL    IMATRA(MDC,MSC)      ,
      &        PLWNDS(MDC,MSC,NPTST)                                       40.00
       REAL    GENC0(MDC,MSC,MGENR)                                        40.85
       REAL    KWAVE(MSC,MICMAX)
-<<<<<<< HEAD
-=======
-      REAL    FACTOR_ON_SIN ! See remarks.                                41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       INTEGER IDCMIN(MSC)          ,
      &        IDCMAX(MSC)
@@ -1872,13 +1766,6 @@
       STW = SIN(THETAW)                                                   40.41
       FPM =  GRAV / ( 28.0 * UFRIC )
       TEMP1 = PWIND(31) / ( GRAV**2 * 2. * PI )                           7/MAR
-<<<<<<< HEAD
-=======
-      IF ( AICELOC.GT.0. ) THEN                                           41.75
-         FACTOR_ON_SIN = (1.-AICELOC*(1.-ICEWIND))                        41.75
-         TEMP1 = TEMP1 * FACTOR_ON_SIN                                    41.75
-      ENDIF                                                               41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       DO IS = 1, ISSTOP
         SIGMA  = SPCSIG(IS)                                               30.72
 !
@@ -1969,12 +1856,7 @@
       SUBROUTINE SWIND3 (SPCSIG  ,THETAW  ,
      &                   KWAVE   ,IMATRA  ,GENC0   ,
      &                   IDCMIN  ,IDCMAX  ,AC2     ,UFRIC   ,
-<<<<<<< HEAD
      &                   FPM     ,PLWNDS  ,ISSTOP  ,SPCDIR  ,ANYWND)
-=======
-     &                   FPM     ,PLWNDS  ,ISSTOP  ,SPCDIR  ,
-     &                   ANYWND  ,AICELOC )                               41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !****************************************************************
 !
@@ -1997,11 +1879,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -2025,10 +1903,6 @@
 !     30.82: IJsbrand Haagsma
 !     40.41: Marcel Zijlema
 !     40.85: Marcel Zijlema
-<<<<<<< HEAD
-=======
-!     41.75: Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  1. Updates
 !
@@ -2037,10 +1911,6 @@
 !     40.41, Aug. 04: COS(THETA-THETAW) replaced by sumrule to make it cheaper
 !     40.41, Oct. 04: common blocks replaced by modules, include files removed
 !     40.85, Aug. 08: store wind input for output purposes
-<<<<<<< HEAD
-=======
-!     41.75, Jan. 19: adding sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  2. PURPOSE
 !
@@ -2092,19 +1962,11 @@
 !
       REAL    SPCDIR(MDC,6)                                               30.82
       REAL    SPCSIG(MSC)                                                 30.72
-<<<<<<< HEAD
-=======
-      REAL, INTENT(IN) :: AICELOC
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !        IS          Counter of relative frequency band
 !        ID          Counter of directional distribution
 !        MSC         Maximum counter of relative frequency
 !        MDC         Maximum counter of directional distribution
-<<<<<<< HEAD
-=======
-!        ISSTOP      Maximum frequency counter in this sweep
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !        REALS:
 !        ---------
@@ -2112,13 +1974,6 @@
 !        THETA       Spectral direction
 !        THETAW      Mean direction of the relative wind vector
 !        UFRIC       Wind friction velocity
-<<<<<<< HEAD
-=======
-!        GENC0       generation coeff.
-!        AC2         action density
-!        PLWNDS      Values of wind input for test point
-!        AICELOC     Local ice fraction
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !        one and more dimensional arrays:
 !        ---------------------------------
@@ -2147,15 +2002,7 @@
 !
 !     8. REMARKS
 !
-<<<<<<< HEAD
 !        ---
-=======
-!     Regarding ICEWIND variable :
-!        factor_on_Sin=(1-aice*(1-icewind))    (1)
-!        This can be re-written as :
-!        factor_on_Sin=awater+aice*icewind     (2)
-!        where a_water is open water fraction and a_water+aice==1.0 by definition
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     9. STRUCTURE
 !
@@ -2181,10 +2028,6 @@
      &        KWAVE(MSC,MICMAX)    ,
      &        PLWNDS(MDC,MSC,NPTST)                                       40.00
       REAL  :: GENC0(MDC,MSC,MGENR)                                       40.85
-<<<<<<< HEAD
-=======
-      REAL  :: FACTOR_ON_SIN ! See remarks.                               41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       INTEGER IDCMIN(MSC)          ,
      &        IDCMAX(MSC)
@@ -2200,13 +2043,6 @@
       CTW   = COS(THETAW)                                                 40.41
       STW   = SIN(THETAW)                                                 40.41
       TEMP1 = 0.25 * PWIND(9)
-<<<<<<< HEAD
-=======
-      IF ( AICELOC.GT.0. ) THEN                                           41.75
-         FACTOR_ON_SIN = (1.-AICELOC*(1.-ICEWIND))                        41.75
-         TEMP1 = TEMP1 * FACTOR_ON_SIN                                    41.75
-      ENDIF                                                               41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       TEMP2 = 28.0 * UFRIC
       DO IS = 1, ISSTOP
         SIGMA = SPCSIG(IS)                                                30.72
@@ -2258,11 +2094,7 @@
      &                   DD      ,KWAVE   ,IMATRA  ,GENC0   ,
      &                   IDCMIN  ,IDCMAX  ,AC2     ,UFRIC   ,
      &                   PLWNDS  ,ISSTOP  ,ITER    ,USTAR   ,ZELEN   ,
-<<<<<<< HEAD
      &                   SPCDIR  ,ANYWND  ,IT      ,TAUWV   )
-=======
-     &                   SPCDIR  ,ANYWND  ,IT      ,TAUWV   ,AICELOC )    41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !******************************************************************
 !
@@ -2286,11 +2118,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -2317,10 +2145,6 @@
 !     40.41: Marcel Zijlema
 !     40.61: Roop Lalbeharry
 !     40.85: Marcel Zijlema
-<<<<<<< HEAD
-=======
-!     41.75: Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  1. Updates
 !
@@ -2332,10 +2156,6 @@
 !     40.41, Oct. 04: common blocks replaced by modules, include files removed
 !     40.61, Nov. 06: improvements to WAM4 based on WAM4.5
 !     40.85, Aug. 08: store wind input for output purposes
-<<<<<<< HEAD
-=======
-!     41.75, Jan. 19: adding sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  2. Purpose
 !
@@ -2394,10 +2214,6 @@
 !        WIND10      Velocity of the relative wind vector
 !        UFRIC       Wind friction velocity
 !        ZALP        Wave growth parameter used in WAM4                   40.61
-<<<<<<< HEAD
-=======
-!        AICELOC     Local ice fraction
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !        one and more dimensional arrays:
 !        ---------------------------------
@@ -2434,15 +2250,7 @@
 !
 !     8. REMARKS
 !
-<<<<<<< HEAD
 !        ---
-=======
-!     Regarding ICEWIND variable :
-!        factor_on_Sin=(1-aice*(1-icewind))    (1)
-!        This can be re-written as :
-!        factor_on_Sin=awater+aice*icewind     (2)
-!        where a_water is open water fraction and a_water+aice==1.0 by definition
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     9. STRUCTURE
 !
@@ -2478,12 +2286,6 @@
      &        TAUWV(MCGRD)
       REAL    GENC0(MDC,MSC,MGENR)                                        40.85
 !
-<<<<<<< HEAD
-=======
-      REAL, INTENT(IN) :: AICELOC                                         41.75
-      REAL    FACTOR_ON_SIN ! See remarks.                                41.75
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       INTEGER IDCMIN(MSC)          ,
      &        IDCMAX(MSC)
 !
@@ -2514,10 +2316,6 @@
       ZALP   = 0.011                                                      40.61
       CTW    = COS(THETAW)                                                40.41
       STW    = SIN(THETAW)                                                40.41
-<<<<<<< HEAD
-=======
-      FACTOR_ON_SIN = (1.-AICELOC*(1.-ICEWIND))                           41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       IF ( NSTATC.EQ.1 .AND. IT.EQ.1 ) THEN                               40.41 40.00
 !
@@ -2808,12 +2606,6 @@
 !           *** compute the factor B and store result in array ***
 !
             SWINEB = RHOAW * BETA * XFAC2 * COS2 * SIGMA
-<<<<<<< HEAD
-=======
-            IF ( AICELOC.GT.0. ) THEN                                     41.75
-               SWINEB = SWINEB * FACTOR_ON_SIN                            41.75
-            ENDIF                                                         41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IMATRA(ID,IS) = IMATRA(ID,IS) + SWINEB * AC2(ID,IS,KCGRD(1))  30.21
             IF (TESTFL) PLWNDS(ID,IS,IPTST) = PLWNDS(ID,IS,IPTST) +
      &                                        SWINEB*AC2(ID,IS,KCGRD(1))  40.85 40.00
@@ -2862,11 +2654,7 @@
       SUBROUTINE SWIND5 (SPCSIG  ,THETAW  ,ISSTOP  ,
      &                   UFRIC   ,KWAVE   ,IMATRA  ,IDCMIN  ,
      &                   IDCMAX  ,AC2     ,ANYWND  ,PLWNDS  ,
-<<<<<<< HEAD
      &                   SPCDIR  ,GENC0                     )
-=======
-     &                   SPCDIR  ,GENC0   ,AICELOC          )             41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !****************************************************************
 !
@@ -2889,11 +2677,7 @@
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -2918,10 +2702,6 @@
 !     40.41: Marcel Zijlema
 !     40.53: Andre van der Westhuysen
 !     40.85: Marcel Zijlema
-<<<<<<< HEAD
-=======
-!     41.75: Erick Rogers
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  1. Updates
 !
@@ -2932,10 +2712,6 @@
 !     40.53, Aug. 04: changes parameters of Yan formulae in case of Alves and
 !                     Banner whitecapping method
 !     40.85, Aug. 08: store wind input for output purposes
-<<<<<<< HEAD
-=======
-!     41.75, Jan. 19: adding sea ice
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! 2. Purpose
 !
@@ -2984,10 +2760,6 @@
 !        THETA       Spectral direction
 !        THETAW      Mean direction of the relative wind vector
 !        UFRIC       Wind friction velocity
-<<<<<<< HEAD
-=======
-!        AICELOC     Local ice fraction
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !        one and more dimensional arrays:
 !        ---------------------------------
@@ -3014,15 +2786,7 @@
 !
 !     8. REMARKS
 !
-<<<<<<< HEAD
 !        ---
-=======
-!     Regarding ICEWIND variable :
-!        factor_on_Sin=(1-aice*(1-icewind))    (1)
-!        This can be re-written as :
-!        factor_on_Sin=awater+aice*icewind     (2)
-!        where a_water is open water fraction and a_water+aice==1.0 by definition
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     9. STRUCTURE
 !
@@ -3049,12 +2813,6 @@
      &        PLWNDS(MDC,MSC,NPTST)
       REAL    GENC0(MDC,MSC,MGENR)                                        40.85
 !
-<<<<<<< HEAD
-=======
-      REAL, INTENT(IN) :: AICELOC                                         41.75
-      REAL    FACTOR_ON_SIN ! See remarks.                                41.75
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       INTEGER IDCMIN(MSC)          ,
      &        IDCMAX(MSC)
 !
@@ -3082,10 +2840,6 @@
 !
       CTW  = COS(THETAW)                                                  40.41
       STW  = SIN(THETAW)                                                  40.41
-<<<<<<< HEAD
-=======
-      FACTOR_ON_SIN = (1.-AICELOC*(1.-ICEWIND))                           41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       DO IS = 1, ISSTOP
         SIGMA  = SPCSIG(IS)
         USTAC1 = ( UFRIC * KWAVE(IS,1) ) / SIGMA
@@ -3098,12 +2852,6 @@
             COSDIF = SPCDIR(ID,2)*CTW + SPCDIR(ID,3)*STW                  40.41
             SWINEB = TEMP3 * COSDIF - COF4                                40.41
             SWINEB = MAX ( 0. , SWINEB * SIGMA )
-<<<<<<< HEAD
-=======
-            IF ( AICELOC.GT.0. ) THEN                                     41.75
-               SWINEB = SWINEB * FACTOR_ON_SIN                            41.75
-            ENDIF                                                         41.75
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IMATRA(ID,IS) = IMATRA(ID,IS) + SWINEB * AC2(ID,IS,KCGRD(1))
             IF (TESTFL) PLWNDS(ID,IS,IPTST) = PLWNDS(ID,IS,IPTST) +
      &                                        SWINEB*AC2(ID,IS,KCGRD(1))  40.85 40.00

@@ -14,11 +14,7 @@ subroutine da_qc_rad (it, ob, iv)
 
    integer :: i, nchan,p,j
    logical   :: amsua, amsub, hirs, msu,airs, hsb, ssmis, mhs, iasi, seviri
-<<<<<<< HEAD
    logical   :: mwts, mwhs, atms, amsr2, imager
-=======
-   logical   :: mwts, mwhs, atms, amsr2, imager, ahi
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    integer, allocatable :: index(:)
    integer :: num_tovs_avg
@@ -68,10 +64,6 @@ subroutine da_qc_rad (it, ob, iv)
       seviri = trim(rttov_inst_name(rtminit_sensor(i))) == 'seviri'
       amsr2 = trim(rttov_inst_name(rtminit_sensor(i))) == 'amsr2'
       imager = trim(rttov_inst_name(rtminit_sensor(i))) == 'imager'
-<<<<<<< HEAD
-=======
-         ahi = trim(rttov_inst_name(rtminit_sensor(i))) == 'ahi'
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       if (hirs) then
          ! 1.0 QC for HIRS
@@ -104,11 +96,6 @@ subroutine da_qc_rad (it, ob, iv)
          call da_qc_seviri(it,i,nchan,ob,iv)
       else if (amsr2) then
          call da_qc_amsr2(it,i,nchan,ob,iv)
-<<<<<<< HEAD
-=======
-      else if (ahi) then
-         call da_qc_ahi(it,i,nchan,ob,iv)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       else if (imager) then
          call da_qc_goesimg(it,i,nchan,ob,iv)
       else

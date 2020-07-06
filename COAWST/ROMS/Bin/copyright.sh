@@ -1,14 +1,8 @@
 #!/bin/csh -f
 #
-<<<<<<< HEAD
 # svn $Id: copyright.sh 889 2018-02-10 03:32:52Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
-=======
-# svn $Id: copyright.sh 995 2020-01-10 04:01:28Z arango $
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::: David Robertson :::
@@ -33,21 +27,12 @@
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-<<<<<<< HEAD
 set search = "2002-2018 The ROMS/TOMS"
 set replace = "2002-2019 The ROMS/TOMS"
 
 # Directories to search for replacements.
 
 set c_dirs = "Apps ESM Compilers Master ROMS User"
-=======
-set search = "2002-2019 The ROMS/TOMS"
-set replace = "2002-2020 The ROMS/TOMS"
-
-# Directories to search for replacements.
-
-set c_dirs = "Apps Compilers ESM Master ROMS User"
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 # Specific files not in the "c_dirs".
 
@@ -133,7 +118,6 @@ echo "Done."
 echo ""
 
 if ( $setsvn == 1 ) then
-<<<<<<< HEAD
   svn propset -R copyright '(c) 2002-2019 The ROMS/TOMS Group' Compilers
   svn propset -R copyright '(c) 2002-2019 The ROMS/TOMS Group' Data
   svn propset -R copyright '(c) 2002-2019 The ROMS/TOMS Group' ESM
@@ -143,17 +127,6 @@ if ( $setsvn == 1 ) then
   svn propset copyright '(c) 2002-2019 The ROMS/TOMS Group' . makefile
   svn propset copyright '(c) 2002-2019 The ROMS/TOMS Group' Waves/SWAN/Src/Module.mk
   svn propset copyright '(c) 2002-2019 The ROMS/TOMS Group' Waves/SWAN/Src/waves_coupler.F
-=======
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' Compilers
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' Data
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' ESM
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' Master
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' ROMS
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' User
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' . makefile
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' Waves/SWAN/Src/Module.mk
-  svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' Waves/SWAN/Src/waves_coupler.F
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 else
   echo ""
   echo "Not updating svn properties."

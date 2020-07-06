@@ -1,14 +1,8 @@
       MODULE ocean_control_mod
 !
-<<<<<<< HEAD
 !svn $Id: pert_ocean.h 937 2019-01-28 06:13:04Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: pert_ocean.h 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -313,7 +307,6 @@
       DO ng=1,Ngrids
         IF (nTLM(ng).gt.0) LdefTLM(ng)=.TRUE.
         IF (nADJ(ng).gt.0) LdefADJ(ng)=.TRUE.
-<<<<<<< HEAD
       END DO
       Lstiffness=.FALSE.
 
@@ -324,24 +317,6 @@
 !
       DO ng=1,Ngrids
         BLK(ng)%name=FWD(ng)%name
-=======
-        LreadFWD(ng)=.TRUE.
-      END DO
-      Lstiffness=.FALSE.
-
-#if defined BULK_FLUXES && defined NL_BULK_FLUXES
-!  Set structure for the nonlinear surface fluxes to be processed by
-!  by the tangent linear and adjoint models. Also, set switches to
-!  process the BLK structure in routine "check_multifile".  Notice that
-!  it is possible to split solution into multiple NetCDF files to reduce
-!  their size.
-!
-      CALL edit_multifile ('FWD2BLK')
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-      DO ng=1,Ngrids
-        LreadBLK(ng)=.TRUE.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       END DO
 #endif
 !
@@ -728,11 +703,7 @@
             IF (Master) WRITE (stdout,10)
  10         FORMAT (/,' Blowing-up: Saving latest model state into ',   &
      &                ' RESTART file',/)
-<<<<<<< HEAD
             Fcount=RST(ng)%Fcount
-=======
-            Fcount=RST(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (LcycleRST(ng).and.(RST(ng)%Nrec(Fcount).ge.2)) THEN
               RST(ng)%Rindex=2
               LcycleRST(ng)=.FALSE.
@@ -772,12 +743,6 @@
 !
 !  Close IO files.
 !
-<<<<<<< HEAD
-=======
-      DO ng=1,Ngrids
-        CALL close_inp (ng, iNLM)
-      END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL close_out
 
       RETURN

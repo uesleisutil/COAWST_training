@@ -16,13 +16,9 @@ subroutine sintmb ( lot, jump, n, inc, x, lenx, wsave, lensav, &
 !    by a call to SINTMF (or vice-versa) reproduces the original
 !    array within roundoff error.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Copyright (C) 1995-2004, Scientific Computing Division,
 !    University Corporation for Atmospheric Research
 !

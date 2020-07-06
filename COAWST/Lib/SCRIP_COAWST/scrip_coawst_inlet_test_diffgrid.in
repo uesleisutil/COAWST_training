@@ -15,10 +15,6 @@ NGRIDS_ROMS=1,
 NGRIDS_SWAN=1,
 NGRIDS_WW3=0,
 NGRIDS_WRF=0,
-<<<<<<< HEAD
-=======
-NGRIDS_HYD=0,
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 ! 3) Enter name of the ROMS grid file(s):
 !
@@ -26,11 +22,7 @@ ROMS_GRIDS(1)='../../Projects/Inlet_test/DiffGrid/inlet_test_grid.nc',
 
 ! 4) Enter SWAN information:
 !    -the name(s) of the SWAN grid file(s) for coords and bathy.
-<<<<<<< HEAD
 !    -the size of the SWAN grids, and 
-=======
-!    -the size of the SWAN grids (full number of center points), and 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    -if the swan grids are Spherical(set cartesian=0) or
 !                           Cartesian(set cartesian=1).
 !
@@ -58,13 +50,6 @@ WRF_GRIDS(1)='wrfinput_d01',
 PARENT_GRID_RATIO(1)=1,
 PARENT_ID(1)=0
 
-<<<<<<< HEAD
-=======
-! 7) Enter the name of the WRF Hydro input grid(s).
-!
-HYDRO_GRIDS(1)='../../WRF_hydro/forcings/WRF-Hydro/DOMAIN/Fulldom_hires.nc',
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  The $END statement below is required
 !

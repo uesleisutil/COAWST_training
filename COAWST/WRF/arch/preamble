@@ -105,11 +105,7 @@ NETCDF4_DEP_LIB = $(DEP_LIB_PATH) $(HDF5) $(ZLIB) $(GPFS) $(CURL)
 
 LIBWRFLIB = libwrflib.a
 
-<<<<<<< HEAD
 MCT_LIBDIR ?= /usr/local/lib
-=======
-MCT_LIBDIR ?= /usr/local/mct/lib
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #### Architecture specific settings ####
 

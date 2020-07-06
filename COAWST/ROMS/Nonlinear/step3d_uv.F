@@ -2,15 +2,9 @@
       MODULE step3d_uv_mod
 #if defined NONLINEAR && defined SOLVE3D
 !
-<<<<<<< HEAD
 !svn $Id: step3d_uv.F 889 2018-02-10 03:32:52Z arango $
 !=======================================================================
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: step3d_uv.F 995 2020-01-10 04:01:28Z arango $
-!=======================================================================
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license           Hernan G. Arango   !
 !    See License_ROMS.txt                   Alexander F. Shchepetkin   !
 !==================================================== John C. Warner ===
@@ -1071,18 +1065,10 @@
 # endif
             END DO
           END DO
-<<<<<<< HEAD
 # if defined DIAGNOSTICS_UV && defined MASKING
           DO k=1,N(ng)
             DO idiag=1,NDM3d
               DO i=Istr,Iend
-=======
-
-# if defined DIAGNOSTICS_UV && defined MASKING
-          DO k=1,N(ng)
-            DO i=Istr,Iend
-              DO idiag=1,NDM3d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 DiaV3wrk(i,j,k,idiag)=DiaV3wrk(i,j,k,idiag)*vmask(i,j)
               END DO
             END DO

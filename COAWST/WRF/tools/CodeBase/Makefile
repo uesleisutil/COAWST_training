@@ -22,8 +22,4 @@ wrfvar : wrfvar.o util.o
 	/bin/mv -f $@ ..
 
 clean :
-<<<<<<< HEAD
 	/bin/rm -f *.o deftab nocontf90 callgraph subinfo_calls
-=======
-	@/bin/rm -f *.o deftab nocontf90 callgraph subinfo_calls 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

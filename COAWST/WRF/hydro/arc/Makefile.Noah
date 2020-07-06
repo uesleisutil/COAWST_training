@@ -1,11 +1,5 @@
 # Makefile 
 all:
-<<<<<<< HEAD
-=======
-	@if [ ! -d "Run" ]; then \
-		(mkdir Run);\
-	fi
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 	(rm -f Run/wrf_hydro.exe   )
 	(make -f Makefile.comm BASIC)
 	@if [ -d "LandModel_cpl" ]; then \

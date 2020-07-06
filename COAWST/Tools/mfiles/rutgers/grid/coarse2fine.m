@@ -27,15 +27,9 @@ function F = coarse2fine(Ginp,Gout,Gfactor,varargin)
 %    F          Fine resolution Grid structure
 %
 
-<<<<<<< HEAD
 % svn $Id: coarse2fine.m 913 2018-07-02 22:16:58Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: coarse2fine.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%
@@ -281,11 +275,6 @@ end
 
 Qconservative = false;        % quadratic conservative interpolation
                               % off by default
-<<<<<<< HEAD
-=======
-%COAWST - sometimes this helps for small grid spacings to ensure dx_child*Nrefined=dx_parent etc
-%Qconservative = true;        %  Use Nrefined scaling to compute pm pn dmde dndx angle f h hraw
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 % Set method (linear or cubic spline) for regular interpolation of grid
 % coordinates (x,y) and/or (lon,lat) coordinates. The method is 'linear'

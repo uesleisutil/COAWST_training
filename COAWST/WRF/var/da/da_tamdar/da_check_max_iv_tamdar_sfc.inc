@@ -35,15 +35,8 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
                        num_qcstat_conv(1,tamdar_sfc,1,1) = num_qcstat_conv(1,tamdar_sfc,1,1) + 1
                        if(failed) then
                           num_qcstat_conv(2,tamdar_sfc,1,1) = num_qcstat_conv(2,tamdar_sfc,1,1) + 1
-<<<<<<< HEAD
                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                           'tamdar_sfc',ob_vars(1),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-=======
-                          if ( write_rej_obs_conv ) then
-                          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                          'tamdar_sfc',ob_vars(1),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-                          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                        end if
                    end if
                end if
@@ -55,15 +48,8 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
                        num_qcstat_conv(1,tamdar_sfc,2,1) = num_qcstat_conv(1,tamdar_sfc,2,1) + 1
                        if(failed)then
                           num_qcstat_conv(2,tamdar_sfc,2,1) = num_qcstat_conv(2,tamdar_sfc,2,1) + 1
-<<<<<<< HEAD
                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                           'tamdar_sfc',ob_vars(2),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-=======
-                          if ( write_rej_obs_conv ) then
-                          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                          'tamdar_sfc',ob_vars(2),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-                          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                        end if
                    end if
                end if
@@ -75,15 +61,8 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
                        num_qcstat_conv(1,tamdar_sfc,1,1) = num_qcstat_conv(1,tamdar_sfc,1,1) + 1
                        if(failed) then
                           num_qcstat_conv(2,tamdar_sfc,1,1) = num_qcstat_conv(2,tamdar_sfc,1,1) + 1
-<<<<<<< HEAD
                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                           'tamdar_sfc',ob_vars(1),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-=======
-                          if ( write_rej_obs_conv ) then
-                          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                          'tamdar_sfc',ob_vars(1),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-                          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                        end if
                    end if
                end if
@@ -95,15 +74,8 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
                        num_qcstat_conv(1,tamdar_sfc,2,1) = num_qcstat_conv(1,tamdar_sfc,2,1) + 1
                        if(failed)then
                           num_qcstat_conv(2,tamdar_sfc,2,1) = num_qcstat_conv(2,tamdar_sfc,2,1) + 1
-<<<<<<< HEAD
                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                           'tamdar_sfc',ob_vars(2),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-=======
-                          if ( write_rej_obs_conv ) then
-                          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                          'tamdar_sfc',ob_vars(2),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-                          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                        end if
                    end if
                end if
@@ -139,23 +111,11 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
 
                 if(failed1 .or. failed2) then
                    num_qcstat_conv(2,tamdar_sfc,1,1) = num_qcstat_conv(2,tamdar_sfc,1,1) + 1
-<<<<<<< HEAD
                    write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                          'tamdar_sfc',ob_vars(1),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
                    num_qcstat_conv(2,tamdar_sfc,2,1) = num_qcstat_conv(2,tamdar_sfc,2,1) + 1
                    write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                          'tamdar_sfc',ob_vars(2),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-=======
-                   if ( write_rej_obs_conv ) then
-                   write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                         'tamdar_sfc',ob_vars(1),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-                   end if
-                   num_qcstat_conv(2,tamdar_sfc,2,1) = num_qcstat_conv(2,tamdar_sfc,2,1) + 1
-                   if ( write_rej_obs_conv ) then
-                   write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                         'tamdar_sfc',ob_vars(2),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
-                   end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 endif
             endif
 
@@ -184,19 +144,11 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
       num_qcstat_conv(1,tamdar_sfc,3,1)= num_qcstat_conv(1,tamdar_sfc,3,1) + 1
       if(failed) then
       num_qcstat_conv(2,tamdar_sfc,3,1)= num_qcstat_conv(2,tamdar_sfc,3,1) + 1
-<<<<<<< HEAD
-=======
-      if ( write_rej_obs_conv ) then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
            'tamdar_sfc',ob_vars(3),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
       end if
       end if
       end if
-<<<<<<< HEAD
-=======
-      end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       failed=.false.
       if( iv%tamdar_sfc(n)%p%qc >= obs_qc_pointer ) then
@@ -205,19 +157,11 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
       num_qcstat_conv(1,tamdar_sfc,5,1)= num_qcstat_conv(1,tamdar_sfc,5,1) + 1
       if(failed) then
       num_qcstat_conv(2,tamdar_sfc,5,1)= num_qcstat_conv(2,tamdar_sfc,5,1) + 1
-<<<<<<< HEAD
-=======
-      if ( write_rej_obs_conv ) then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
            'tamdar_sfc',ob_vars(5),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
       end if
       end if
       end if
-<<<<<<< HEAD
-=======
-      end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       failed=.false.
       if( iv%tamdar_sfc(n)%q%qc >= obs_qc_pointer ) then
@@ -232,19 +176,11 @@ subroutine da_check_max_iv_tamdar_sfc(iv,ob, it, num_qcstat_conv)
       num_qcstat_conv(1,tamdar_sfc,4,1)= num_qcstat_conv(1,tamdar_sfc,4,1) + 1
       if(failed) then
       num_qcstat_conv(2,tamdar_sfc,4,1)= num_qcstat_conv(2,tamdar_sfc,4,1) + 1
-<<<<<<< HEAD
-=======
-      if ( write_rej_obs_conv ) then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
            'tamdar_sfc',ob_vars(4),iv%info(tamdar_sfc)%lat(1,n),iv%info(tamdar_sfc)%lon(1,n),0.01*ob%tamdar_sfc(n)%p
       end if
       end if
       end if
-<<<<<<< HEAD
-=======
-      end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    end do
 

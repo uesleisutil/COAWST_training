@@ -2,15 +2,9 @@
 #ifdef TL_IOMS
       SUBROUTINE rp_initial (ng)
 !
-<<<<<<< HEAD
 !svn $Id: rp_initial.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: rp_initial.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -93,11 +87,6 @@
       integer :: LBi, UBi, LBj, UBj
       integer :: Fcount, IniRec, Tindex
       integer :: thread, tile
-<<<<<<< HEAD
-=======
-
-      real(dp) :: my_dstart
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !=======================================================================
 !   Initialize model variables.
@@ -144,31 +133,7 @@
 !
       synchro_flag(ng)=.TRUE.
       first_time(ng)=0
-<<<<<<< HEAD
       tdays(ng)=dstart
-=======
-
-# ifdef GENERIC_DSTART
-!
-!  Rarely, the tangent linear model is initialized from a NetCDF file,
-!  so we do not know its actual initialization time. Usually, it is
-!  computed from DSTART, implying that its value is correct in the ROMS
-!  input script. Therefore, the user needs to check and update its value
-!  to every time that ROMS is executed. Alternatively, if available, we
-!  can use the initialization time from the nonlinear model, INItime.
-!  This variable is assigned when computing or processing the basic
-!  state trajectory needed to linearize the adjoint model.
-!
-      IF (INItime(ng).lt.0.0_dp) THEN
-        my_dstart=dstart                    ! ROMS input script
-      ELSE
-        my_dstart=INItime(ng)/86400.0_dp    ! NLM IC time is known
-      END IF
-      tdays(ng)=my_dstart
-# else
-      tdays(ng)=dstart
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       time(ng)=tdays(ng)*day2sec
 !$OMP MASTER
       ntstart(ng)=INT((time(ng)-dstart*day2sec)/dt(ng))+1

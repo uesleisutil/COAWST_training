@@ -117,11 +117,7 @@ end
 
 % for all use:
     spherical='F';
-<<<<<<< HEAD
     projection.name='mercator';
-=======
-    projection='mercator';
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 %%%%%%%%%%%%% END OF USER SECTION %%%%%%%%%%%%%%%%
 

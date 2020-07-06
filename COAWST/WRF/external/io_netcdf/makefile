@@ -66,9 +66,5 @@ field_routines.o:	field_routines.F90 wrf_io.o
 			$(FC) -o $@ $(FFLAGS) -c field_routines.f
 
 superclean:
-<<<<<<< HEAD
 			/bin/rm -f *.f *.o *.obj *.i testWRFWrite testWRFRead \
-=======
-			@/bin/rm -f *.f *.o *.obj *.i testWRFWrite testWRFRead \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 			*.mod libwrfio_nf.a diffwrf

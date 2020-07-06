@@ -876,11 +876,7 @@ integer, parameter :: BDR_WIDTH = 3
       !   now we simply output every field from the storage module.
       !
     
-<<<<<<< HEAD
       title = 'OUTPUT FROM METGRID V4.0.2' 
-=======
-      title = 'OUTPUT FROM METGRID V4.1' 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    
       ! Initialize the output module for this domain and time
       call mprintf(.true.,LOGFILE,'Initializing output module.')

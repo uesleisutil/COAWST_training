@@ -139,12 +139,7 @@
       real(r8) :: twopi, otwopi, ogrho0, cff
       real(r8), parameter :: Trmin=1.0_r8
       real(r8), parameter :: alfa=1.0_r8
-<<<<<<< HEAD
       real(r8), parameter :: break=0.45_r8
-=======
-      real(r8), parameter :: breakr=0.45_r8
-      real(r8), parameter :: breakg=0.45_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), parameter :: n_r=15.0_r8
       real(r8), parameter :: EWlim=0.00001_r8
       real(r8):: EN(ND)
@@ -195,13 +190,8 @@
 !  Compute the energy dissipation
 !=======================================================================
           IF (h_tot(i,j).ge.Dcrit(ng)) THEN
-<<<<<<< HEAD
             Hmax_r=break*(MAX(h_tot(i,j),0.0_r8))
 #  ifdef WDISS_ROELVINK
-=======
-#  ifdef WDISS_ROELVINK
-            Hmax_r=breakr*(MAX(h_tot(i,j),0.0_r8))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             Qb=MIN(1.0_r8,1.0_r8-EXP(-(H/Hmax_r)**n_r))
             IF (TRM.gt.0.0001_r8) THEN
               Dissip_break(i,j)=2.0_r8*alfa/TRM*EW*Qb*dt(ng)
@@ -209,10 +199,6 @@
               Dissip_break(i,j)=0.0_r8
             END IF
 #  elif defined WDISS_GAMMA
-<<<<<<< HEAD
-=======
-            Hmax_r=breakg*(MAX(h_tot(i,j),0.0_r8))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             Emax_r=0.125_r8*g*rho0*Hmax_r**2.0_r8
             diff=EW-Emax_r
             Dissip_break(i,j)=MAX(0.0_r8,diff)

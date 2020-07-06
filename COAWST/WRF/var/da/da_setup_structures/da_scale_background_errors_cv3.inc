@@ -7,13 +7,8 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
    REAL, DIMENSION( ids: ide,  jds: jde,  kds: kde, 1:4) :: hwll
    REAL, DIMENSION( ids: ide,  jds: jde)                 :: hwllp, global_fac
    REAL, DIMENSION( kts: kte,  kts: kte)                 :: vv
-<<<<<<< HEAD
    integer                     :: n, i, j, k, ic, jc, ii, ij, ijk, &
                                   iis, iie, jjs, jje, kks, kke
-=======
-   integer                     :: n, i, j, k, ic, jc, ii, ij, ijk
-   integer, dimension(1)       :: iis, iie, jjs, jje, kks, kke, ivar
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    real, dimension(1)          :: xsum
    real, dimension(ids: ide,  jds: jde)                   :: global_2d
    real, dimension(ids: ide,  jds: jde,  kds: kde)        :: global_3d
@@ -21,13 +16,8 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
    character(len=9)            :: chr
    character(len=8)            :: i_char
 
-<<<<<<< HEAD
    INTEGER :: nta, ndeg, ku, kz
    real    :: samp,s2u,tin,as(5),as0(5),slim
-=======
-   INTEGER :: nta, ndeg, ku(1), kz
-   real    :: samp(1),s2u,tin,as(5),as0(5),slim
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    character(len=256) :: mesg
 
    integer                     :: ier, be_rf_unit, be_print_unit
@@ -86,7 +76,6 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
    write (be_print_unit,'(3x,a)')  'VARIANCE:'
    do ii = 1, 4
      if (rootproc) &
-<<<<<<< HEAD
         read (be_rf_unit) chr, vname, i, global_3d
      call wrf_dm_bcast_string( chr, 9 )
      call wrf_dm_bcast_string( vname, 6 )
@@ -98,45 +87,21 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
      if (rootproc .and. print_detail_be) &
      write (be_print_unit,'(5x,i3,1x,a,2x,"sum^2=",e20.12)') ii, vname, xsum(1)
 !     write (*,'(3x,a9,2x,a6,2x,i3)') chr, vname, i
-=======
-        read (be_rf_unit) chr, vname, ivar, global_3d
-     call wrf_dm_bcast_string( chr, 9 )
-     call wrf_dm_bcast_string( vname, 6 )
-     call wrf_dm_bcast_integer( ivar, 1 )
-     call wrf_dm_bcast_real( global_3d, ijk )
-     be%corz(its:ite,jts:jte,kts:kte,ivar(1)) = global_3d(its:ite,jts:jte,kts:kte)
-     xsum(1) = sum (be%corz(its:ite,jts:jte,kts:kte,ivar(1))*be%corz(its:ite,jts:jte,kts:kte,ivar(1)))
-     call da_proc_sum_real(xsum)
-     if (rootproc .and. print_detail_be) &
-     write (be_print_unit,'(5x,i3,1x,a,2x,"sum^2=",e20.12)') ii, vname, xsum(1)
-!     write (*,'(3x,a9,2x,a6,2x,i3)') chr, vname, ivar
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    enddo
 
 !  Psfc Variance before the normalization.
    if (rootproc) &
-<<<<<<< HEAD
       read (be_rf_unit) chr, vname, ii, global_2d
    call wrf_dm_bcast_string( chr, 9 )
    call wrf_dm_bcast_string( vname, 6 )
    call wrf_dm_bcast_integer( ii, 1 )
-=======
-      read (be_rf_unit) chr, vname, ivar, global_2d
-   call wrf_dm_bcast_string( chr, 9 )
-   call wrf_dm_bcast_string( vname, 6 )
-   call wrf_dm_bcast_integer( ivar, 1 )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    call wrf_dm_bcast_real( global_2d, ij )
    be%corp(its:ite,jts:jte) = global_2d(its:ite,jts:jte)
    xsum(1) = sum (be%corp(its:ite,jts:jte)*be%corp(its:ite,jts:jte))
    call da_proc_sum_real(xsum)
    if (rootproc .and. print_detail_be) &
    write (be_print_unit,'(9x,a,2x,"sum^2=",e20.12)') 'PSFC_u', xsum(1)
-<<<<<<< HEAD
 !   write (*,'(3x,a9,2x,a6,2x,i3)') chr, vname, ii
-=======
-!   write (*,'(3x,a9,2x,a6,2x,i3)') chr, vname, ivar
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! 2.4 Read in the vertical scales to "be_print_unit":
 !
@@ -146,22 +111,14 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
    write (be_print_unit,'(3x,a)')  'VERTICAL SCALE:'
    do ii = 1, 4
      if (rootproc) &
-<<<<<<< HEAD
          read (be_rf_unit) chr, vname, n, global_3d
      call wrf_dm_bcast_string( chr, 9 )
      call wrf_dm_bcast_string( vname, 6 )
      call wrf_dm_bcast_integer( n, 1 )
-=======
-         read (be_rf_unit) chr, vname, ivar, global_3d
-     call wrf_dm_bcast_string( chr, 9 )
-     call wrf_dm_bcast_string( vname, 6 )
-     call wrf_dm_bcast_integer( ivar, 1 )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      call wrf_dm_bcast_real( global_3d, ijk )
      do i = its, ite
      do j = jts, jte
      do k = kts, kte
-<<<<<<< HEAD
         be%vz(k,i,j,n) = global_3d(i,j,k)
      enddo
      enddo
@@ -171,17 +128,6 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
      if (rootproc .and. print_detail_be) &
      write (be_print_unit,'(5x,i3,1x,a,2x,"sum^2=",e20.12)') ii, vname, xsum(1)
 !     write (*,'(3x,a9,2x,a6,2x,i3)') chr, vname, n
-=======
-        be%vz(k,i,j,ivar(1)) = global_3d(i,j,k)
-     enddo
-     enddo
-     enddo
-     xsum(1) = sum (be%vz(kts:kte,its:ite,jts:jte,ivar(1))*be%vz(kts:kte,its:ite,jts:jte,ivar(1)))
-     call da_proc_sum_real(xsum)
-     if (rootproc .and. print_detail_be) &
-     write (be_print_unit,'(5x,i3,1x,a,2x,"sum^2=",e20.12)') ii, vname, xsum(1)
-!     write (*,'(3x,a9,2x,a6,2x,i3)') chr, vname, ivar
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    enddo
 !
 ! 2.5 Read in the Horizontal scales, and write out vertical scales to "be_print_unit":
@@ -317,11 +263,7 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
      ! Normalize the covariance for psi, chi, t, and rh:
             do k=kts,kte
                be % corz(i,j,k,n)=be % corz(i,j,k,n)*as(n) &
-<<<<<<< HEAD
                                   *samp/hwll(i,j,k,n)/vv(k,k)/global_fac(i,j)
-=======
-                                  *samp(1)/hwll(i,j,k,n)/vv(k,k)/global_fac(i,j)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             enddo
 
          enddo
@@ -344,11 +286,7 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
 !   write (*,'("as(5)=",f15.5,2x,"samp=",f15.5)') as(5), samp
 
     be % corp(its:ite,jts:jte)=be % corp(its:ite,jts:jte)*as(5) &
-<<<<<<< HEAD
          *samp/hwllp(its:ite,jts:jte)/global_fac(its:ite,jts:jte)
-=======
-         *samp(1)/hwllp(its:ite,jts:jte)/global_fac(its:ite,jts:jte)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 !    xsum(1) = sum (be%corp(its:ite,jts:jte)*be%corp(its:ite,jts:jte))
 !    call da_proc_sum_real(xsum)
@@ -393,11 +331,7 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
     ! Above level ku, the sljy fields are set to a constant 
     ! for psi and chi, i.e. homogenous:
     do n=1,2
-<<<<<<< HEAD
        do k=max(ku, grid%xp%kpsy), grid%xp%kpey
-=======
-       do k=max(ku(1), grid%xp%kpsy), grid%xp%kpey
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           slim=1./global_fac(ic,jc)/hwll(ic,jc,k,n)
           do j= grid%xp%jpsy, grid%xp%jpey
              do i= grid%xp%ipsy, grid%xp%ipey
@@ -434,11 +368,7 @@ subroutine da_scale_background_errors_cv3 ( grid, be, it )
    ! Above level ku, the sljy fields are set to a constant 
    ! for psi and chi, i.e. homogenous:
     do n=1,2
-<<<<<<< HEAD
       do k=max(ku, grid%xp%kpsx), grid%xp%kpex
-=======
-      do k=max(ku(1), grid%xp%kpsx), grid%xp%kpex
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          slim=1./global_fac(ic,jc)/hwll(ic,jc,k,n)
          do j= grid%xp%jpsx, grid%xp%jpex
             do i= grid%xp%ipsx, grid%xp%ipex

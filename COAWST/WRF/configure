@@ -204,7 +204,6 @@ fi
 
 # If the user asked for classic netcdf, acquiesce to the request.
 
-<<<<<<< HEAD
 if [ "`uname`" = "Linux" ] ; then
   ans="`whereis nf-config`"
 elif [ "`uname`" = "Darwin" ] ; then
@@ -215,11 +214,6 @@ else
 # exit 1
 fi
 if [ "$ans" = "nf-config:" -o "$ans" = "" ] ; then
-=======
-ans="`which nf-config`"
-status="$?"
-if [ "$ans" = "nf-config:" -o "$ans" = "" -o "$status" != "0" ] ; then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     export NETCDF_classic=1
     unset NETCDF4
 else
@@ -885,11 +879,7 @@ EOF
   rm -f ${foo} ${foo}.[cfo] 2> /dev/null
 fi
 
-<<<<<<< HEAD
 # testing for Fortran 2003 IEEE signaling features
-=======
-# testing for Fortran 2003 IEEE features
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 make fortran_2003_ieee_test > tools/fortran_2003_ieee_test.log 2>&1
 rm -f tools/fortran_2003_ieee_test.log
 retval=-1
@@ -903,13 +893,8 @@ if [ $retval -ne 0 ] ; then
   echo " "
   echo "************************** W A R N I N G ************************************"
   echo " "
-<<<<<<< HEAD
   echo "There are some Fortran 2003 features in WRF that your compiler does not recognize"
   echo "The IEEE signaling call has been removed.  That may not be enough."
-=======
-  echo "There are some IEEE Fortran 2003 features in WRF that your compiler does not"
-  echo "recognize. The IEEE function calls have been removed."
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   echo " "
   echo "*****************************************************************************"
 fi
@@ -1025,11 +1010,7 @@ if [ -n "$NETCDF4" ] ; then
       echo "!!! configure.wrf has been REMOVED !!!"
       echo
       echo "*****************************************************************************"
-<<<<<<< HEAD
 #LPP      rm -f configure.wrf
-=======
-      rm -f configure.wrf
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     else
       echo "*****************************************************************************"
       echo "This build of WRF will use NETCDF4 with HDF5 compression"

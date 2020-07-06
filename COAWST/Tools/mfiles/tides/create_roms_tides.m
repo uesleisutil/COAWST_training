@@ -32,45 +32,11 @@ IWRITE=1;           % 1 to write output to netcdf, 0 for no output
 
 % (3) Select Adcirc or topex/osu tidal constituent data 
       adcirc=1
-<<<<<<< HEAD
-=======
-      adcirc2012=0
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       osu=0
       if (adcirc)
         load c:\work\models\COAWST_data\tide\adcirc_ec2001v2e_fix.mat tri lon lat u v elev depth periods freq names
         names=names';
       end
-<<<<<<< HEAD
-=======
-      if (adcirc2012)
-        ncz=ncgeodataset('http://geoport.whoi.edu/thredds/dodsC/sand/usgs/users/aretxabaleta/ADCIRC_tides/f53.nc');
-        nc=ncgeodataset('http://geoport.whoi.edu/thredds/dodsC/sand/usgs/users/aretxabaleta/ADCIRC_tides/f54.nc');
-        lat=nc{'lat'}(:);
-        lon=nc{'lon'}(:);
-        depth=nc{'depth'}(:);
-        tri=nc{'ele'}(:);
-        ne=length(tri);nn=length(lat);
-        freq=nc{'Frequencies'}(:);
-        periods=(2*pi./freq)/3600;
-        names=nc{'Names'}(:);
-        elev=NaN*ones(nn,length(freq));
-        u=NaN*ones(nn,length(freq));
-        v=NaN*ones(nn,length(freq));
-        for io=1:length(freq)
-            display(['Z ',names(io,:)])
-            elev(:,io)=ncz{'Amp'}(io,:).*exp(sqrt(-1)*ncz{'Pha'}(io,:));
-            %elev(:,io)=complex(ncz{'Re'}(io,:),ncz{'Im'}(io,:));
-        end
-        for io=1:length(freq)
-            display(['U ',names(io,:)])
-            u(:,io)=nc{'UAmp'}(io,:).*exp(sqrt(-1)*nc{'UPha'}(io,:));
-            display(['V ',names(io,:)])
-            v(:,io)=nc{'VAmp'}(io,:).*exp(sqrt(-1)*nc{'VPha'}(io,:));
-        end
-        names=names';
-      end
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       if (osu)
         load ('COAWST_data\tide\tpx_uv.mat')
         load ('COAWST_data\tide\tpx_h.mat')
@@ -78,11 +44,7 @@ IWRITE=1;           % 1 to write output to netcdf, 0 for no output
       end
 % (4) Specify which tidal constituents to use.  Look at "names" in the .mat file to
 %     see what is available.  Program will halt if these are not found.
-<<<<<<< HEAD
       if (adcirc)
-=======
-      if (adcirc||adcirc2012)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         tides_to_use=['K1'
                      'O1'
                      'Q1'
@@ -115,11 +77,7 @@ IWRITE=1;           % 1 to write output to netcdf, 0 for no output
       end
 %%%%% END of USER-MODIFIED SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<<<<<<< HEAD
 if(adcirc)
-=======
-if(adcirc||adcirc2012)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   % make sure that tidal data is double 
   tri=double(tri);
   lon=double(lon);
@@ -159,11 +117,7 @@ rangle=ncread(Gname,'angle');
 % do only water points
 % [iwater]=find(~rmask);
 % do all points
-<<<<<<< HEAD
 if (adcirc)
-=======
-if (adcirc||adcirc2012)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   iwater=[1:size(rmask,1)*size(rmask,2)];
 end
 % Calculate V,U,F arguments using Rich P's T_Tide.  
@@ -180,11 +134,7 @@ a=t_getconsts;
 %
 %  Initialize arrays for interpolated tidal data.
 
-<<<<<<< HEAD
 if (adcirc)
-=======
-if (adcirc||adcirc2012)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   ei=ones(Lp,Mp,Ntide).*NaN;                       % elevation
   ui=ones(Lp,Mp,Ntide).*NaN;                       % u 
   vi=ones(Lp,Mp,Ntide).*NaN;                       % v
@@ -219,16 +169,7 @@ if (adcirc||adcirc2012)
     
   % find T_TIDE constituent names (a.name) that match 
   % selected constituent names (names(tides_to_use))
-<<<<<<< HEAD
     iconst(kk)=strmatch(names(:,k), a.name);
-=======
-    if (adcirc)
-        iconst(kk)=strmatch(names(:,k), a.name);
-    end
-    if (adcirc2012)
-        iconst(kk)=strmatch(names(1:2,k)', a.name);
-    end
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   end
 end
 
@@ -316,11 +257,7 @@ ui_amplitude=ones(Lp,Mp,Ntide).*NaN;                       %   u vel
 vi_phase=ones(Lp,Mp,Ntide).*NaN;                       % v vel
 vi_amplitude=ones(Lp,Mp,Ntide).*NaN;                       %   v vel
 
-<<<<<<< HEAD
 if (adcirc)
-=======
-if (adcirc||adcirc2012)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   for k=1:Ntide;
       ei_phase(:,:,k) = angle(ei(:,:,k)).*180./pi - vv(k) - uu(k);   % degrees
       ei_amplitude(:,:,k) = abs(ei(:,:,k)) .* ff(k);

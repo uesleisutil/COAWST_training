@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       SUBROUTINE wrt_rst (ng)
 !
-<<<<<<< HEAD
 !svn $Id: wrt_rst.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: wrt_rst.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -48,21 +42,12 @@
       USE mod_stepping
 !
       USE nf_fwrite2d_mod, ONLY : nf_fwrite2d
-<<<<<<< HEAD
 #if defined PERFECT_RESTART || defined SOLVE3D
       USE nf_fwrite3d_mod, ONLY : nf_fwrite3d
 #endif
 #if defined PERFECT_RESTART && defined SOLVE3D
       USE nf_fwrite4d_mod, ONLY : nf_fwrite4d
 #endif
-=======
-# if defined PERFECT_RESTART || defined SOLVE3D
-      USE nf_fwrite3d_mod, ONLY : nf_fwrite3d
-# endif
-# if defined PERFECT_RESTART && defined SOLVE3D
-      USE nf_fwrite4d_mod, ONLY : nf_fwrite4d
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE strings_mod,     ONLY : FoundError
 #ifdef INWAVE_MODEL
       USE mod_inwave_params
@@ -79,15 +64,9 @@
 !
       integer :: LBi, UBi, LBj, UBj
       integer :: Fcount, gfactor, gtype, i, itrc, status, varid
-<<<<<<< HEAD
 #if defined PERFECT_RESTART || defined SOLVE3D
       integer :: ntmp(1)
 #endif
-=======
-# if defined PERFECT_RESTART || defined SOLVE3D
-      integer :: ntmp(1)
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8) :: scale
 !
       LBi=LBOUND(GRID(ng)%h,DIM=1)
@@ -1115,16 +1094,8 @@
 #   endif
      &                 ICE (ng) % hi(:,:,IOUT))
 #  endif
-<<<<<<< HEAD
       IF (OutThread.and.(status.ne.nf90_noerr)) THEN
         WRITE (stdout,10) TRIM(Vname(1,idHice)), RST(ng)%Rindex
-=======
-      IF (FoundError(status, nf90_noerr, __LINE__,                      &
-     &               __FILE__)) THEN
-        IF (Master) THEN
-          WRITE (stdout,10) TRIM(Vname(1,idHice)), RST(ng)%Rindex
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         exit_flag=3
         ioerror=status
         RETURN
@@ -1152,7 +1123,6 @@
 #   endif
      &                 ICE (ng) % hsn(:,:,IOUT))
 #  endif
-<<<<<<< HEAD
       IF (OutThread.and.(status.ne.nf90_noerr)) THEN
         WRITE (stdout,10) TRIM(Vname(1,idHsno)), RST(ng)%Rindex
         exit_flag=3
@@ -1214,21 +1184,11 @@
 #  endif
       IF (OutThread.and.(status.ne.nf90_noerr)) THEN
         WRITE (stdout,10) TRIM(Vname(1,idHpond)), RST(ng)%Rindex
-=======
-      IF (FoundError(status, nf90_noerr, __LINE__,                      &
-     &               __FILE__)) THEN
-        IF (Master) THEN
-          WRITE (stdout,10) TRIM(Vname(1,idHsno)), RST(ng)%Rindex
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         exit_flag=3
         ioerror=status
         RETURN
       END IF
-<<<<<<< HEAD
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Write out ice age
 !

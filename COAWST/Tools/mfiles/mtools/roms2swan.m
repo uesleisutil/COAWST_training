@@ -61,15 +61,8 @@ end
 
 %Print the grid coordinates to the grid file
 fid = fopen('swan_coord.grd','w');
-<<<<<<< HEAD
 fprintf(fid,'%12.6f\n',x_rho);
 fprintf(fid,'%12.6f\n',y_rho);
-=======
-%fprintf(fid,'%12.6f\n',x_rho);
-%fprintf(fid,'%12.6f\n',y_rho);
-fprintf(fid,'%18.12f\n',x_rho);
-fprintf(fid,'%18.12f\n',y_rho);
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 fclose('all');
 

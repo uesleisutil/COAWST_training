@@ -92,34 +92,20 @@
                   k0=k1
                 END DO
                 kwc(Istr-1,j,d)=MAX(kwc_min,MIN(k0,kwc_max))
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(Istr-1,j,d)=kwc(Istr-1,j,d)*                        &
      &                          GRID(ng)%rmask(Istr-1,j)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(Istr-1,j,d)=kwc(Istr-1,j,d)*                        &
-!     &                          GRID(ng)%rmask(Istr-1,j)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           ELSE
             DO d=1,ND
               DO j=Jstr,Jend
                 kwc(Istr-1,j,d)=kwc(Istr,j,d)
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(Istr-1,j,d)=kwc(Istr-1,j,d)*                        &
      &                          GRID(ng)%rmask(Istr-1,j)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(Istr-1,j,d)=kwc(Istr-1,j,d)*                        &
-!     &                          GRID(ng)%rmask(Istr-1,j)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           END IF
@@ -151,34 +137,20 @@
                   k0=k1
                 END DO
                 kwc(Iend+1,j,d)=MAX(kwc_min,MIN(k0,kwc_max))
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(Iend+1,j,d)=kwc(Iend+1,j,d)*                        &
      &                          GRID(ng)%rmask(Iend+1,j)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(Iend+1,j,d)=kwc(Iend+1,j,d)*                        &
-!     &                          GRID(ng)%rmask(Iend+1,j)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           ELSE
             DO d=1,ND
               DO j=Jstr,Jend
                 kwc(Iend+1,j,d)=kwc(Iend,j,d)
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(Iend+1,j,d)=kwc(Iend+1,j,d)*                        &
      &                         GRID(ng)%rmask(Iend+1,j)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(Iend+1,j,d)=kwc(Iend+1,j,d)*                        &
-!     &                         GRID(ng)%rmask(Iend+1,j)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           END IF
@@ -213,34 +185,20 @@
                   k0=k1
                 END DO
                 kwc(i,Jstr-1,d)=MAX(kwc_min,MIN(k0,kwc_max))
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(i,Jstr-1,d)=kwc(i,Jstr-1,d)*                        &
      &                          GRID(ng)%rmask(i,Jstr-1)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(i,Jstr-1,d)=kwc(i,Jstr-1,d)*                        &
-!     &                          GRID(ng)%rmask(i,Jstr-1)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           ELSE
             DO d=1,ND
               DO i=Istr,Iend
                 kwc(i,Jstr-1,d)=kwc(i,Jstr,d)
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(i,Jstr-1,d)=kwc(i,Jstr-1,d)*                        &
      &                         GRID(ng)%rmask(i,Jstr-1)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(i,Jstr-1,d)=kwc(i,Jstr-1,d)*                        &
-!     &                         GRID(ng)%rmask(i,Jstr-1)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           END IF
@@ -272,34 +230,20 @@
                   k0=k1
                 END DO
                 kwc(i,Jend+1,d)=MAX(kwc_min,MIN(k0,kwc_max))
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(i,Jend+1,d)=kwc(i,Jend+1,d)*                        &
      &                          GRID(ng)%rmask(i,Jend+1)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(i,Jend+1,d)=kwc(i,Jend+1,d)*                        &
-!     &                          GRID(ng)%rmask(i,Jend+1)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           ELSE
             DO d=1,ND
               DO i=Istr,Iend
                 kwc(i,Jend+1,d)=kwc(i,Jend,d)
-<<<<<<< HEAD
 #   ifdef MASKING
                 kwc(i,Jend+1,d)=kwc(i,Jend+1,d)*                          &
      &                          GRID(ng)%rmask(i,Jend+1)
 #   endif
-=======
-!#   ifdef MASKING
-!                kwc(i,Jend+1,d)=kwc(i,Jend+1,d)*                          &
-!     &                          GRID(ng)%rmask(i,Jend+1)
-!#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               END DO
             END DO
           END IF

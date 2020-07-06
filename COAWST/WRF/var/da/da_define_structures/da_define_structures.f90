@@ -21,10 +21,6 @@ module da_define_structures
       trace_use_dull,comm, num_pseudo
    use da_control, only : cloud_cv_options, use_cv_w
    use da_control, only : pseudo_uvtpq
-<<<<<<< HEAD
-=======
-   use da_control, only : use_radar_rhv, use_radar_rqv
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    use da_tracing, only : da_trace_entry, da_trace_exit
    use da_tools_serial, only : da_array_print
@@ -228,7 +224,6 @@ module da_define_structures
 
       type (field_type)     , pointer :: rv       (:) ! Radial Velocity
       type (field_type)     , pointer :: rf       (:) ! Reflectivity
-<<<<<<< HEAD
       type (field_type)     , pointer :: rrn      (:) ! qrain
       type (field_type)     , pointer :: rsn      (:) ! qsnow
       type (field_type)     , pointer :: rgr      (:) ! qgraupel
@@ -237,16 +232,6 @@ module da_define_structures
       real                  , pointer :: rsno     (:)
       real                  , pointer :: rgro     (:)
       real                  , pointer :: rqvo     (:)
-=======
-      type (field_type)     , pointer :: rrn      (:) => null() ! qrain
-      type (field_type)     , pointer :: rsn      (:) => null() ! qsnow
-      type (field_type)     , pointer :: rgr      (:) => null() ! qgraupel
-      type (field_type)     , pointer :: rqv      (:) => null()
-      real                  , pointer :: rrno     (:) => null()
-      real                  , pointer :: rsno     (:) => null()
-      real                  , pointer :: rgro     (:) => null()
-      real                  , pointer :: rqvo     (:) => null()
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    end type radar_type
 
    type multi_level_type
@@ -529,10 +514,6 @@ module da_define_structures
       integer, pointer     :: scanpos(:)
       integer, pointer     :: scanline(:)
       integer, pointer     :: cloud_flag(:,:)
-<<<<<<< HEAD
-=======
-      integer, pointer     :: cloudflag(:)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer, pointer     :: rain_flag(:)
       real,    pointer     :: satzen(:) 
       real,    pointer     :: satazi(:) 
@@ -855,17 +836,10 @@ module da_define_structures
    type residual_radar_type
       real, pointer :: rv(:)                    ! rv
       real, pointer :: rf(:)                    ! rf
-<<<<<<< HEAD
       real, pointer :: rrn(:)                   ! rrain
       real, pointer :: rsn(:)                   ! rsnow
       real, pointer :: rgr(:)                   ! rgraupel
       real, pointer :: rqv(:) 
-=======
-      real, pointer :: rrn(:) => null()         ! rrain
-      real, pointer :: rsn(:) => null()         ! rsnow
-      real, pointer :: rgr(:) => null()         ! rgraupel
-      real, pointer :: rqv(:) => null()
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    end type residual_radar_type
 
    type residual_instid_type

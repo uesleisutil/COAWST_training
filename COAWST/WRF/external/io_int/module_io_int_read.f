@@ -113,16 +113,10 @@ module module_io_int_read
                           read_c1
     end interface io_int_fetch_data
 
-<<<<<<< HEAD
     include "mpif.h"
 
 contains
 
-=======
-
-
-contains
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     !>
     !! Read a single integer
     !
@@ -134,21 +128,15 @@ contains
     integer,                 intent(out) :: dst
     integer,                 intent(out) :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)       :: offset
     integer                             :: count
     integer                             :: tmp
-=======
-    integer(kind=llong_t)               :: offset
-    integer                             :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     call mpi_file_read_at(ifd, offset, tmp, 1, &
                           mpi_integer4, mpi_status_ignore, ierr)
     if (ierr .ne. 0) then
@@ -157,15 +145,6 @@ contains
         return
     end if
     dst = ntohl(tmp)
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 789, message)
-        return
-    end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 !    write(message,*) 'read_i0: ', varname, ':', dst
 !    call wrf_debug(2, message)
@@ -183,24 +162,18 @@ contains
     integer,                 intent(inout) :: dst(:)
     integer,                 intent(out)   :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)          :: offset
     integer                                :: count
     integer                                :: num
     integer                                :: i
     integer                                :: its, ite
     integer, allocatable, dimension(:)     :: tmp
-=======
-    integer(kind=llong_t)                  :: offset
-    integer                                :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     its = lbound(dst,1)
     ite = ubound(dst,1)
     num = ite - its + 1
@@ -231,16 +204,6 @@ contains
     end forall
 
     deallocate(tmp)
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 821, message)
-        return
-    end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     write(message,*) 'read_i1: ', varname, ':', dst(1,1)
 !     call wrf_debug(2, message)
 
@@ -257,24 +220,18 @@ contains
     integer,                 intent(inout) :: dst(:,:)
     integer,                 intent(out)   :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)          :: offset
     integer                                :: count
     integer                                :: num
     integer                                :: i, j
     integer                                :: its, ite, jts, jte
     integer, allocatable, dimension(:,:)   :: tmp
-=======
-    integer(kind=llong_t)                  :: offset
-    integer                                :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     its = lbound(dst,1)
     ite = ubound(dst,1)
     jts = lbound(dst,2)
@@ -307,16 +264,6 @@ contains
     end forall
 
     deallocate(tmp)
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 853, message)
-        return
-    end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     write(message,*) 'read_i2: ', varname, ':', dst(1,1)
 !     call wrf_debug(2, message)
 
@@ -333,24 +280,18 @@ contains
     integer,                 intent(inout) :: dst(:,:,:)
     integer,                 intent(out)   :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)          :: offset
     integer                                :: count
     integer                                :: num
     integer                                :: i, j, k
     integer                                :: its, ite, jts, jte, kts, kte
     integer, allocatable, dimension(:,:,:) :: tmp
-=======
-    integer(kind=llong_t)                  :: offset
-    integer                                :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     its = lbound(dst,1)
     ite = ubound(dst,1)
     jts = lbound(dst,2)
@@ -387,16 +328,6 @@ contains
 
     deallocate(tmp)
 
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 885, message)
-        return
-    end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     write(message,*) 'read_i3: ', varname, ':', dst(1,1,1)
 !     call wrf_debug(2, message)
 
@@ -413,21 +344,15 @@ contains
     real,                    intent(out) :: dst
     integer,                 intent(out) :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)        :: offset
     integer                              :: count
     integer                              :: tmp
-=======
-    integer(kind=llong_t)                :: offset
-    integer                              :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     call mpi_file_read_at(ifd, offset, tmp, 1, &
                           mpi_integer4,  mpi_status_ignore, ierr)
     if (ierr .ne. 0) then
@@ -436,15 +361,6 @@ contains
         return
     end if
     dst = transfer(ntohl(tmp), 1.0)
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 917, message)
-        return
-    end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 !    write(message,*) 'read_r0: ', varname, ':', dst
 !    call wrf_debug(2, message)
@@ -462,24 +378,18 @@ contains
     real,                    intent(inout) :: dst(:)
     integer,                 intent(out)   :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)          :: offset
     integer                                :: count
     integer                                :: num
     integer                                :: i
     integer                                :: its, ite
     integer, allocatable, dimension(:)     :: tmp
-=======
-    integer(kind=llong_t)                  :: offset
-    integer                                :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     its = lbound(dst,1)
     ite = ubound(dst,1)
     num = ite - its + 1
@@ -510,16 +420,6 @@ contains
     end forall
 
     deallocate(tmp)
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 949, message)
-        return
-    end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     write(message,*) 'read_r1: ', varname, ':', dst(1,1)
 !     call wrf_debug(2, message)
 
@@ -536,24 +436,18 @@ contains
     real,                    intent(inout) :: dst(:,:)
     integer,                 intent(out)   :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)          :: offset
     integer                                :: count
     integer                                :: num
     integer                                :: i, j
     integer                                :: its, ite, jts, jte
     integer, allocatable, dimension(:,:)   :: tmp
-=======
-    integer(kind=llong_t)                  :: offset
-    integer                                :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     its = lbound(dst,1)
     ite = ubound(dst,1)
     jts = lbound(dst,2)
@@ -586,16 +480,6 @@ contains
     end forall
 
     deallocate(tmp)
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 981, message)
-        return
-    end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     write(message,*) 'read_r2: ', varname, ':', dst(1,1)
 !     call wrf_debug(2, message)
 
@@ -612,24 +496,18 @@ contains
     real,                    intent(inout) :: dst(:,:,:)
     integer,                 intent(out)   :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)          :: offset
     integer                                :: count
     integer                                :: num
     integer                                :: i, j, k
     integer                                :: its, ite, jts, jte, kts, kte
     integer, allocatable, dimension(:,:,:) :: tmp
-=======
-    integer(kind=llong_t)                  :: offset
-    integer                                :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     call io_int_loc(varname, records, offset, count, ierr)
     if (ierr .ne. 0) then
         return
     end if
 
-<<<<<<< HEAD
     its = lbound(dst,1)
     ite = ubound(dst,1)
     jts = lbound(dst,2)
@@ -666,16 +544,6 @@ contains
 
     deallocate(tmp)
 
-=======
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) dst
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 1013, message)
-        return
-    end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     write(message,*) 'read_r3: ', varname, ':', dst(1,1,1)
 !     call wrf_debug(2, message)
 
@@ -692,14 +560,9 @@ contains
     character(len=*),        intent(inout) :: dst
     integer,                 intent(out)   :: ierr
 
-<<<<<<< HEAD
     integer(kind=mpi_offset_kind)          :: offset
     integer                                :: count
     integer                                :: num
-=======
-    integer(kind=llong_t)                  :: offset
-    integer                                :: count
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     integer                                :: i
     integer, allocatable, dimension(:)     :: tmp
 
@@ -708,7 +571,6 @@ contains
         return
     end if
 
-<<<<<<< HEAD
     num = len(dst)
 
     allocate(tmp(num), stat=ierr)
@@ -724,20 +586,6 @@ contains
     if (ierr .ne. 0) then
         write(message,*) 'MPI IO: Unable to read ', varname
         call wrf_error_fatal3("module_io_int_read.F90", 587, message)
-=======
-    allocate(tmp(count), stat=ierr)
-    if (ierr .ne. 0) then
-        call wrf_error_fatal3("module_io_int_read.F90", 1045, &
-             'Unable to allocate a temporary array')
-        return
-    end if
-
-    offset = offset + 1
-    read(ifd, pos=offset, iostat=ierr) tmp
-    if (ierr .ne. 0) then
-        write(message,*) 'Unable to read ', varname
-        call wrf_error_fatal3("module_io_int_read.F90", 1054, message)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         return
     end if
 
@@ -754,11 +602,7 @@ contains
 !    end forall
 
     do i=1,count
-<<<<<<< HEAD
         dst(i:i) = achar(ntohl(tmp(i)))
-=======
-        dst(i:i) = achar(tmp(i))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     end do
 
     deallocate(tmp)
@@ -766,8 +610,5 @@ contains
 !     call wrf_debug(2, message)
 
     end subroutine read_c1
-<<<<<<< HEAD
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 end module module_io_int_read

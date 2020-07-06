@@ -3,15 +3,9 @@
 
 #ifdef ADJUST_BOUNDARY
 !
-<<<<<<< HEAD
 !svn $Id: obc_adjust.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: obc_adjust.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -108,15 +102,7 @@
         fac1=1.0_r8
         fac2=0.0_r8
       ELSE
-<<<<<<< HEAD
         it1=MAX(0,(iic(ng)-1)/nOBC(ng))+1
-=======
-# ifdef GENERIC_DSTART
-        it1=MAX(0,(iic(ng)-ntstart(ng))/nOBC(ng))+1
-# else
-        it1=MAX(0,(iic(ng)-1)/nOBC(ng))+1
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         it2=MIN(it1+1,Nbrec(ng))
         fac1=OBC_time(it2,ng)-(time(ng)+dt(ng))
         fac2=(time(ng)+dt(ng))-OBC_time(it1,ng)

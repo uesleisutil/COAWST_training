@@ -8,11 +8,7 @@ function create_inwave_grid(x,y,dx,dy,depth,roms_angle,mask_rho,f,spherical,grd_
   rho.angle = roms_angle;
   rho.mask = mask_rho
   rho.f = f;
-<<<<<<< HEAD
   projection.name='mercator';
-=======
-  projection='mercator';
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   spherical=spherical;
   save temp_jcw33.mat
   eval(['mat2roms_mw(''temp_jcw33.mat'',''',grd_file,''');'])

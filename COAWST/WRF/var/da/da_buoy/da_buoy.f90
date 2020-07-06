@@ -12,11 +12,7 @@ module da_buoy
       qcstat_conv_unit,ob_vars, &
       convert_fd2uv, convert_uv2fd, max_error_spd, max_error_dir, &
       max_omb_spd, max_omb_dir, pi, qc_rej_both, &
-<<<<<<< HEAD
       wind_sd_buoy, wind_stats_sd
-=======
-      wind_sd_buoy, wind_stats_sd, write_rej_obs_conv
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    use da_grid_definitions, only : da_ffdduv, da_ffdduv_model, da_ffdduv_diagnose
    use da_define_structures, only : maxmin_type, iv_type, y_type, jo_type, &
       bad_data_type, x_type, number_type, bad_data_type

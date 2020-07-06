@@ -1,13 +1,7 @@
 !
-<<<<<<< HEAD
 !svn $Id: ecosim_mod.h 921 2018-09-06 18:27:34Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: ecosim_mod.h 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -276,43 +270,6 @@
       integer :: iSiO_              ! Silica concentration
       integer :: iDIC_              ! Dissolved inorganic Carbon
       integer :: FirstPig           ! Index of first tracer pigment
-<<<<<<< HEAD
-=======
-
-#if defined DIAGNOSTICS && defined DIAGNOSTICS_BIO
-!
-!-----------------------------------------------------------------------
-!  Set biological diagnostic identification indices.
-!-----------------------------------------------------------------------
-!
-!  Center wavelenght of spectral irradiance bands for diagnostic
-!  terms.
-!
-      real(r8), allocatable :: dia_light(:)
-!
-!  3D diagnostic variable IDs.
-!
-      integer, allocatable :: iDbio3(:)
-!
-      integer  :: idSpIr = 1        ! surface spectral irradiance
-!
-!  4D diagnostic variable IDs.
-!
-      integer, allocatable :: iDbio4(:)
-!
-      integer  :: iddIrr = 1        ! downward irradiance (Ed)
-      integer  :: idsIrr = 2        ! scalar irradiance (E0)
-      integer  :: idLatt = 3        ! light attenuation (Kd)
-      integer  :: idaPHY = 4        ! PHY absorption (aPHYN_at)
-      integer  :: idaDET = 5        ! detrital absorption (aDET)
-      integer  :: idaCDC = 6        ! CDC absorption (aCDC)
-      integer  :: idAcos = 7        ! avg cosine zenith angle (avgcos)
-      integer  :: idbPHY = 8        ! PHY backscattering (bb_phy)
-      integer  :: idsPHY = 9        ! PHY scattering (b_phy)
-      integer  :: idbTOT = 10       ! total backscattering (bb_tot)
-      integer  :: idsTOT = 11       ! total scattering (b_tot)
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  EcoSim group names used on standard output.
@@ -447,21 +404,13 @@
 !-----------------------------------------------------------------------
 !
 !  Spectral band width used in light calculations.
-<<<<<<< HEAD
 
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), parameter :: DLAM  = 5.0_r8
 !
 !  Flags used for testing purposes.
 !
       real(r8), parameter :: SMALL  = 1.0e-6_r8
       real(r8), parameter :: VSMALL = 1.0e-14_r8
-<<<<<<< HEAD
-=======
-      real(r8), parameter :: LARGER = 1.0e+10_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8), parameter :: VLARGE = 1.0e+50_r8
 !
 !  Array indexes for frequently used constituents.
@@ -530,11 +479,7 @@
 !        Bacteria: C, Fe, N, P                   (Nbac*4)
 !             DOM: CDM, C, N, P                  (Ndom*4)
 !           Fecal: C, Fe, N, P, Si               (Nfec*5)
-<<<<<<< HEAD
 !    Phytoplakton: C, Fe, N, P                   (Nfec*4 + Si)
-=======
-!    Phytoplakton: C, Fe, N, P                   (Nphy*4 + Si)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !        Pigments: look table
 !
       NBT=6+(Nbac*4)+(Ndom*4)+(Nfec*5)+(Nphy*4)
@@ -553,19 +498,6 @@
           IF (PIG(PHY(i),j).eq.1) NBT=NBT+1
         END DO
       END DO
-<<<<<<< HEAD
-=======
-
-#if defined DIAGNOSTICS && defined DIAGNOSTICS_BIO
-!
-!-----------------------------------------------------------------------
-!  Set sources and sinks biology number of diagnostic terms.
-!-----------------------------------------------------------------------
-!
-      NDbio3d=1
-      NDbio4d=11
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Allocate various module variables.
@@ -1087,24 +1019,6 @@
         allocate ( idbio(NBT) )
         Dmem(1)=Dmem(1)+REAL(NBT,r8)
       END IF
-<<<<<<< HEAD
-=======
-
-#if defined DIAGNOSTICS && defined DIAGNOSTICS_BIO
-!
-!  Allocate biological diagnostics vectors
-!
-      IF (.not.allocated(iDbio3)) THEN
-        allocate ( iDbio3(NDbio3d) )
-        Dmem(1)=Dmem(1)+REAL(NDbio3d,r8)
-      END IF
-
-      IF (.not.allocated(iDbio4)) THEN
-        allocate ( iDbio4(NDbio4d) )
-        Dmem(1)=Dmem(1)+REAL(NDbio4d,r8)
-      END IF
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Initialize tracer identification indices.

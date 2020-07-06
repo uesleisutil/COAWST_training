@@ -32,11 +32,7 @@
       integer,parameter:: kind_sfcflux=kind_R, &
      &                    kind_SST=kind_R, &
      &                    kind_SLM=kind_R, &
-<<<<<<< HEAD
      &                    kind_lonlat=kind_R
-=======
-     &                    kind_lonlat=kind_REAL
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       INTEGER, PARAMETER  :: kind_cur = kind_r, kind_wstate = kind_r, &
                              kind_windp = kind_r
       integer MPI_kind_R, &
@@ -533,26 +529,10 @@
 
 !c     IF (gid.eq.1) THEN    !  only "parent grid" coordinates are sent
 
-<<<<<<< HEAD
         call ASSEMBLE(ALONt,HLON,kind_lonlat)
         call ASSEMBLE(ALATt,HLAT,kind_lonlat)
         call ASSEMBLE(ALONv,VLON,kind_lonlat)
         call ASSEMBLE(ALATv,VLAT,kind_lonlat)
-=======
-        if (kind_lonlat.eq.4) then
-          call ASSEMBLE(ALONt,HLON,kind_lonlat)
-          call ASSEMBLE(ALATt,HLAT,kind_lonlat)
-          call ASSEMBLE(ALONv,VLON,kind_lonlat)
-          call ASSEMBLE(ALATv,VLAT,kind_lonlat)
-        else if (kind_lonlat.eq.8) then
-          call ASSEMBLE_R8(ALONt,HLON,kind_lonlat)
-          call ASSEMBLE_R8(ALATt,HLAT,kind_lonlat)
-          call ASSEMBLE_R8(ALONv,VLON,kind_lonlat)
-          call ASSEMBLE_R8(ALATv,VLAT,kind_lonlat)
-        else
-          call GLOB_ABORT(1,'wrong value of kind_lonlat in ATM_SENDGRIDS',1)
-        end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
         call ATM_ANNOUNCE('(BP) to send grid arrays (4 MPI calls)',2)
 

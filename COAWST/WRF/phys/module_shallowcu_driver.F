@@ -51,23 +51,7 @@ CONTAINS
                  ! for grims shallow convection with ysupbl
                      ,wstar,delta,kpbl,znu,raincv                   &
                  ! for nscv shallow convection
-<<<<<<< HEAD
                      ,w,xland,hfx,qfx,mp_physics,pgcon                                           &
-=======
-                     ,w,xland,hfx,qfx,mp_physics,pgcon              &
-                     ,RDCASHTEN, RQCDCSHTEN, W0AVG                 &
-                     ,clddpthb, cldtopb                               &
-                     ,cldareaa, cldareab, cldliqa, cldliqb            &
-                     ,cldfra_sh, ca_rad, cw_rad                       &
-                     ,wub, pblmax, xlong                              &
-                     ,rainshvb, capesave, radsave                     &
-                     ,ainckfsa, ltopb                                 &
-                     ,kdcldtop, kdcldbas                              &
-                     ,el_pbl, rthratenlw, rthratensw, exch_h          &
-                     ,dnw, xtime, xtime1, gmt                         &
-                     ,qke,PBLHAVG, TKEAVG                             &
-                     ,bl_pbl_physics                                  &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                                                                       )
 !----------------------------------------------------------------------
    USE module_model_constants
@@ -77,21 +61,12 @@ CONTAINS
 # endif
                                        , G3SHCUSCHEME     & 
                                        , GRIMSSHCUSCHEME  &
-<<<<<<< HEAD
-=======
-                                       , DENGSHCUSCHEME   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                                        , NSCVSHCUSCHEME 
 ! *** add new modules of schemes here
 
    USE module_shcu_camuwshcu_driver, ONLY : camuwshcu_driver
    USE module_shcu_grims           , ONLY : grims
    USE module_shcu_nscv            , ONLY : shcu_nscv
-<<<<<<< HEAD
-=======
-   USE module_shcu_deng, ONLY: deng_shcu_driver
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    USE module_dm
    USE module_domain, ONLY: domain
 #if ( WRF_CHEM == 1 )
@@ -299,12 +274,7 @@ CONTAINS
 
 
    REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN) ::           &
-<<<<<<< HEAD
                   MAVAIL,PBLH,ht
-=======
-!                 MAVAIL,PBLH,ht
-                         PBLH,ht
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    REAL, DIMENSION( ims:ime , jms:jme ),                         &
           INTENT(INOUT) ::                               RAINSH  &
@@ -382,56 +352,6 @@ CONTAINS
          OPTIONAL, INTENT(IN   ) ::                      hfx,qfx
    INTEGER, INTENT(IN), OPTIONAL ::                   mp_physics
    REAL,    INTENT(IN), OPTIONAL ::                        pgcon
-<<<<<<< HEAD
-=======
-
-
-! PSU-DENG Shallow cu variables
-!
-   INTEGER,   INTENT(IN   ) ::           bl_pbl_physics
-   REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                 &
-                   INTENT(IN   ) ::           qke
-
-   REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                 &
-                   INTENT(INOUT) ::           RDCASHTEN, RQCDCSHTEN
-
-   REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                       &
-                   INTENT(INOUT) :: cldareaa, cldareab,                &
-                                    cldliqa,  cldliqb, wub,            &
-                                    W0AVG, TKEAVG
-   REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                       &
-                   INTENT(  OUT) :: cldfra_sh, ca_rad, cw_rad
-
-   REAL, DIMENSION( ims:ime, kms:kme, jms:jme ),                 &
-                   INTENT(INOUT) :: el_pbl, rthratenlw, rthratensw, exch_h
-
-   REAL, DIMENSION( kms:kme ), INTENT(IN   ) ::    &
-                                   dnw
-
-   REAL, INTENT(IN   ) ::          xtime, gmt
-
-   REAL, DIMENSION( ims:ime, jms:jme ),                 &
-                   INTENT(INOUT) ::                              &
-                                  cldtopb, pblmax, rainshvb, capesave, radsave, &
-                                  clddpthb, xtime1, PBLHAVG, MAVAIL
-
-   REAL, DIMENSION( ims:ime, jms:jme ),                 &
-                   INTENT(IN   ) ::         xlong
-
-   INTEGER, DIMENSION( ims:ime, jms:jme ),                 &
-                   INTENT(INOUT) ::                              &
-                                                    ltopb, kdcldtop, kdcldbas
-
-   REAL, DIMENSION( ims:ime, 1:100, jms:jme ),                 &
-                   INTENT(INOUT) ::                              &
-                                 ainckfsa
-
-  REAL, DIMENSION( ims:ime, kms:kme, jms:jme )  :: tke_scr, kth_scr, bbls_scr
-!
-! End PSU-DENG Shallow cu variables
-!
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! Flags relating to the optional tendency arrays declared above
 ! Models that carry the optional tendencies will provdide the
@@ -588,71 +508,6 @@ CONTAINS
          CALL wrf_error_fatal('Lacking arguments for SHCU_NSCV in shallow cumulus driver')
       ENDIF
 
-<<<<<<< HEAD
-=======
-  CASE (DENGSHCUSCHEME)
-      CALL wrf_debug(100,'in PSU-DENG Shallow Cu CPS')
-
-
-     IF ( bl_pbl_physics == 2 ) THEN   ! MYJ
-         DO j=jts,jte
-         DO i=its,ite
-         DO k=kts,kte
-            tke_scr(I,K,J) = tke_pbl(I,K,J)
-            kth_scr(I,K,J) = exch_h(I,K,J)
-            bbls_scr(I,K,J) = el_pbl(I,K,J)
-         ENDDO
-         ENDDO
-         ENDDO
-      ELSE IF ( bl_pbl_physics == 5 ) THEN   ! MYNN
-         DO j=jts,jte
-         DO i=its,ite
-         DO k=kts,kte
-            tke_scr(I,K,J) = 0.5 * qke(I,K,J)
-            kth_scr(I,K,J) = exch_h(I,K,J)
-            bbls_scr(I,K,J) = el_pbl(I,K,J)
-         ENDDO
-         ENDDO
-         ENDDO
-      ELSE
-         WRITE(message,*) 'PSU DENG ShCu currently does not support PBL option: ', &
-                            bl_pbl_physics
-         CALL wrf_error_fatal ( message )
-         STOP
-      ENDIF
-      CALL deng_shcu_driver(                                             &
-            IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde              &
-           ,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme              &
-           ,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte              &
-           ,DT=dt ,KTAU=itimestep ,DX=dx, xtime=xtime, gmt=gmt           &
-           ,XLV=XLV, XLS=XLS                                             &
-           ,XLV0=XLV0 ,XLV1=XLV1 ,XLS0=XLS0 ,XLS1=XLS1                   &
-           ,CP=CP, R=R_d ,G=G                                            &
-           ,SVP1=SVP1 ,SVP2=SVP2 ,SVP3=SVP3 ,SVPT0=SVPT0                 &
-           ,ADAPT_STEP_FLAG=ADAPT_STEP_FLAG, DSIGMA=dnw                  &
-           ,XLONG=xlong, HT=ht, PBLH=pblh                                &
-           ,U=u,V=v, w=w, TH=th ,T=t                                     &
-           ,QV=qv_curr, QC=qc_curr, QR=qr_curr, DZ8W=dz8w                &
-           ,PCPS=p, RHO=rho, Z_AT_W=z_at_w, PI=pi                        &
-           ,TKE=tke_scr, kth=kth_scr, bbls=bbls_scr                      &
-           ,ten_radl=rthratenlw, ten_rads=rthratensw                     &
-           ,RAINSH=RAINSH, RAINSHV=RAINSHV,rainshvb=rainshvb             &
-           ,pblmax=pblmax, capesave=capesave, xtime1=xtime1              &
-           ,radsave=radsave, clddpthb=clddpthb, cldtopb=cldtopb          &
-           ,MAVAIL=MAVAIL, PBLHAVG=PBLHAVG                               &
-           ,ainckfsa=ainckfsa                                            &
-           ,ltopb=ltopb, kdcldtop=kdcldtop, kdcldbas=kdcldbas            &
-           ,W0AVG=W0AVG, TKEAVG=TKEAVG                                   &
-           ,cldareaa=cldareaa, cldareab=cldareab                         &
-           ,cldliqa=cldliqa, cldliqb=cldliqb                             &
-           ,cldfra_sh=cldfra_sh,ca_rad=ca_rad, cw_rad=cw_rad, wub=wub    &
-           ,RUSHTEN=rushten, RVSHTEN=rvshten, RTHSHTEN=rthshten          &
-           ,RQVSHTEN=rqvshten, RQCSHTEN=rqcshten, RQRSHTEN=rqrshten      &
-           ,RDCASHTEN=RDCASHTEN, RQCDCSHTEN=RQCDCSHTEN                   &
-                                                                         )
-
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    CASE DEFAULT 
       WRITE( message , * ) 'The shallow cumulus option does not exist: shcu_physics = ', shcu_physics
       CALL wrf_error_fatal ( message )

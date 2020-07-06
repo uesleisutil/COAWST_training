@@ -61,19 +61,11 @@ subroutine da_check_max_iv_gpsref(iv,it, num_qcstat_conv, opt)
         endif
             if(failed) then
             num_qcstat_conv(2,gpsref,8,ipr) = num_qcstat_conv(2,gpsref,8,ipr) + 1
-<<<<<<< HEAD
-=======
-            if ( write_rej_obs_conv ) then
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2,I5)')&
              'gpsref',ob_vars(8),iv%info(gpsref)%lat(k,n), &
              iv%info(gpsref)%lon(k,n),0.01*iv%gpsref(n)%p(k)%inv, &
              iv%gpsref(n)%ref(k)%qc 
             end if
-<<<<<<< HEAD
-=======
-            end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       end do
    end do
          ENDIF

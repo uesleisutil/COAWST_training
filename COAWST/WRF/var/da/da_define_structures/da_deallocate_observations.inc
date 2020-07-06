@@ -138,26 +138,10 @@ subroutine da_deallocate_observations (iv)
          deallocate (iv%radar (n) % model_p)
          deallocate (iv%radar (n) % model_rho)
          deallocate (iv%radar (n) % model_qrn)
-<<<<<<< HEAD
-=======
-         deallocate (iv%radar (n) % model_qsn)
-         deallocate (iv%radar (n) % model_qgr)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          deallocate (iv%radar (n) % height  )
          deallocate (iv%radar (n) % height_qc)
          deallocate (iv%radar (n) % rv      )
          deallocate (iv%radar (n) % rf      )
-<<<<<<< HEAD
-=======
-         if (associated(iv%radar(n)%rrn))  deallocate (iv%radar(n)%rrn)
-         if (associated(iv%radar(n)%rsn))  deallocate (iv%radar(n)%rsn)
-         if (associated(iv%radar(n)%rgr))  deallocate (iv%radar(n)%rgr)
-         if (associated(iv%radar(n)%rqv))  deallocate (iv%radar(n)%rqv)
-         if (associated(iv%radar(n)%rrno)) deallocate (iv%radar(n)%rrno)
-         if (associated(iv%radar(n)%rsno)) deallocate (iv%radar(n)%rsno)
-         if (associated(iv%radar(n)%rgro)) deallocate (iv%radar(n)%rgro)
-         if (associated(iv%radar(n)%rqvo)) deallocate (iv%radar(n)%rqvo)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       end do
 
       deallocate (iv%radar)

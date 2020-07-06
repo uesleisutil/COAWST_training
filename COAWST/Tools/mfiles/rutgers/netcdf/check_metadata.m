@@ -25,15 +25,9 @@ function S = check_metadata(Sinp)
 %    S          Updated ROMS metadata structure (struct array)
 %
 
-<<<<<<< HEAD
 % svn $Id: check_metadata.m 926 2018-10-09 21:53:45Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: check_metadata.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMVariables.txt                   Hernan G. Arango      %
 %=========================================================================%
@@ -142,8 +136,4 @@ for n=1:nvars
    
 end  
   
-<<<<<<< HEAD
 return
-=======
-return
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

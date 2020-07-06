@@ -4,15 +4,9 @@
 #if defined NONLINEAR && defined FLOATS && defined FLOAT_VWALK && \
     defined SOLVE3D
 !
-<<<<<<< HEAD
 !svn $Id: vwalk_floats.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group         Mark Hadfield   !
-=======
-!svn $Id: vwalk_floats.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group         Mark Hadfield   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================

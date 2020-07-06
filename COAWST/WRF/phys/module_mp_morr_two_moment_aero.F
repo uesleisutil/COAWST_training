@@ -109,11 +109,8 @@
 
 MODULE MODULE_MP_MORR_TWO_MOMENT_AERO
    USE     module_wrf_error
-<<<<<<< HEAD
    USE module_utility, ONLY: WRFU_Clock, WRFU_Alarm  ! GT
    USE module_domain, ONLY : HISTORY_ALARM, Is_alarm_tstep  ! GT
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    USE module_mp_radar
 
 ! USE WRF PHYSICS CONSTANTS

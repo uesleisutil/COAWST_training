@@ -1,6 +1,5 @@
 #if 0
 
-<<<<<<< HEAD
 Earth System Modeling Framework
 Copyright 2002-2003, University Corporation for Atmospheric Research,
 Massachusetts Institute of Technology, Geophysical Fluid Dynamics
@@ -9,8 +8,6 @@ Prediction, Los Alamos National Laboratory, Argonne National Laboratory,
 NASA Goddard Space Flight Center.
 Licensed under the University of Illinois-NCSA license.
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 Do not have C++ or F90 style comments in here because this file is processed
 by both C++ and F90 compilers.
 

@@ -2,19 +2,11 @@
 #define MPDATA_HOT
 
       MODULE mpdata_adiff_mod
-<<<<<<< HEAD
 #if defined NONLINEAR && defined TS_MPDATA && defined SOLVE3D
 !
 !svn $Id: mpdata_adiff.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group        John C. Warner   !
-=======
-#if defined NONLINEAR && defined SOLVE3D
-!
-!svn $Id: mpdata_adiff.F 1001 2020-01-10 22:41:16Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group        John C. Warner   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================

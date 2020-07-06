@@ -1,29 +1,13 @@
 /*
-<<<<<<< HEAD
 ** svn $Id: estuarybgc_var.h 2232 2012-01-03 18:55:20Z arango $
 *************************************************** Hernan G. Arango ***
 ** Copyright (c) 2002-2012 The ROMS/TOMS Group                        **
-=======
-** svn $Id: estuarybgc_var.h 2232 2019-01-03 18:55:20Z arango $
-!************************************************** Hernan G. Arango ***
-!************************************************ Tarandeep S. Kalra ***
-!************************************************** Neil K. Ganju    ***
-!************************************************** Jeremy Testa     ***
-!************************************************* John C. Warner    ***
-** Copyright (c) 2002-2019 The ROMS/TOMS Group                        **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **   Licensed under a MIT/X style license                             **
 **   See License_ROMS.txt                                             **
 ************************************************************************
 **                                                                    **
-<<<<<<< HEAD
 **  Assigns metadata indices for the Fennel et al. (2006) ecosystem   **
 **  model variables that are used in input and output NetCDF files.   **
-=======
-**  Assigns metadata indices for the Kalra et al. (2020) SAV growth   **
-**  model and Fennel et al. (2006) ecosystem model variables that are **
-**  used in input and output NetCDF files.                            **
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 **  The metadata information is read from "varinfo.dat".              **
 **                                                                    **
 **  This file is included in file "mod_ncparam.F", routine            **
@@ -96,11 +80,6 @@
                 idsagb=varid
               CASE ('idsbgb')
                 idsbgb=varid
-<<<<<<< HEAD
-=======
-              CASE ('idsepb')
-                idsepb=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               CASE ('idsvpp')
                 idsvpp=varid
               CASE ('idsvam')
@@ -345,7 +324,4 @@
               CASE ('iDbio3(iNO3u)')
                 iDbio3(iNO3u)=varid
 #endif
-<<<<<<< HEAD
  
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

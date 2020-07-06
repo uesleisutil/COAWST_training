@@ -4,13 +4,9 @@ subroutine cmf5kf ( lot, ido, l1, na, cc, im1, in1, ch, im2, in2, wa )
 !
 !! CMF5KF is an FFTPACK5 auxiliary routine.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Copyright (C) 1995-2004, Scientific Computing Division,
 !    University Corporation for Atmospheric Research
 !

@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       SUBROUTINE check_multifile (ng, model)
 !
-<<<<<<< HEAD
 !svn $Id: check_multifile.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: check_multifile.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -25,14 +19,9 @@
 !=======================================================================
 !
       USE mod_param
-<<<<<<< HEAD
       USE mod_parallel
       USE mod_ncparam
       USE mod_iounits
-=======
-      USE mod_iounits
-      USE mod_ncparam
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE mod_scalars
 !
       USE dateclock_mod, ONLY : time_string
@@ -46,7 +35,6 @@
 !
 !  Local variable declarations.
 !
-<<<<<<< HEAD
       logical :: Lcheck, foundit
       logical :: check_file
 
@@ -57,14 +45,6 @@
       character (len=1), parameter :: blank = ' '
       character (len= 22) :: F_code, I_code, Tmin_code, Tmax_code
       character (len=256) :: ncname
-=======
-      integer :: i, max_files
-
-      real(dp) :: Tfinal
-
-      character (len= 1), parameter :: blank = ' '
-      character (len=40) :: file_type
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       SourceFile=__FILE__
 !
@@ -129,7 +109,6 @@
 !-----------------------------------------------------------------------
 !
       IF (ObcData(ng)) THEN
-<<<<<<< HEAD
         DO i=1,nBCfiles(ng)
           Nfiles=BRY(i,ng)%Nfiles
           DO ifile=1,Nfiles
@@ -221,76 +200,12 @@
           END IF
         END DO
       END IF
-=======
-        file_type='Lateral Boundary'
-        max_files=nBCfiles(ng)
-        CALL multifile_info_s2d (ng, model, file_type, nBCfiles,        &
-     &                         max_files, BRY)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-      END IF
-!
-!-----------------------------------------------------------------------
-!  Input climatology data.
-!-----------------------------------------------------------------------
-!
-      IF (CLM_FILE(ng)) THEN
-        file_type='Climatology'
-        max_files=nCLMfiles(ng)
-        CALL multifile_info_s2d (ng, model, file_type, nCLMfiles,       &
-     &                         max_files, CLM)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-      END IF
-
-#ifdef FORWARD_READ
-!
-!-----------------------------------------------------------------------
-!  Nonlinear model forward trajectory data.
-!-----------------------------------------------------------------------
-!
-      IF (LreadFWD(ng)) THEN
-        CALL multifile_info_s1d (ng, model, 'Forward', FWD)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-      END IF
-#endif
-
-#if defined TANGENT || defined TL_IOMS
-!
-!-----------------------------------------------------------------------
-!  Adjoint model trajectory data.
-!-----------------------------------------------------------------------
-!
-      IF (LreadTLM(ng)) THEN
-        CALL multifile_info_s1d (ng, model, 'Tangent Linear', TLM)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-      END IF
-#endif
-
-#if defined BULK_FLUXES && defined NL_BULK_FLUXES
-!
-!-----------------------------------------------------------------------
-!  Nonlinear model surface fluxes data.
-!-----------------------------------------------------------------------
-!
-      IF (LreadBLK(ng)) THEN
-        CALL multifile_info_s1d (ng, model, 'Nonlinear Fluxes', BLK)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-      END IF
-#endif
-
-#ifndef ANA_PSOURCE
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Input Source/Sink data (river runoff).
 !-----------------------------------------------------------------------
 !
       IF (LuvSrc(ng).or.LwSrc(ng)) THEN
-<<<<<<< HEAD
         Nfiles=SSF(ng)%Nfiles
         DO ifile=1,Nfiles
           ncname=SSF(ng)%files(ifile)
@@ -301,108 +216,10 @@
           SSF(ng)%time_min(ifile)=Tmin
           SSF(ng)%time_max(ifile)=Tmax
         END DO
-=======
-        file_type='Sources/Sinks Data'
-        CALL multifile_info_s1d (ng, model, file_type, SSF)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-      END IF
-#endif
-
-#ifdef FRC_FILE
-!
-!-----------------------------------------------------------------------
-!  Input forcing data.
-!-----------------------------------------------------------------------
-!
-      file_type='Forcing'
-      max_files=MAXVAL(nFfiles)
-      CALL multifile_info_s2d (ng, model, file_type, nFfiles,           &
-     &                         max_files, FRC)
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-#endif
-!
-      RETURN
-      END SUBROUTINE check_multifile
-!
-      SUBROUTINE multifile_info_s1d (ng, model, file_type, S)
-!
-!=======================================================================
-!                                                                      !
-!  Updates multi-file information for the given 1D file structure, S.  !
-!                                                                      !
-!  On Input:                                                           !
-!                                                                      !
-!     ng         Nested grid number (integer)                          !
-!     model      Calling model identifier (integer)                    !
-!     file_type  File structure indentifier (string)                   !
-!     S          2D Derived type structure, TYPE(T_IO)                 !
-!                                                                      !
-!=======================================================================
-!
-      USE mod_param
-      USE mod_parallel
-      USE mod_iounits
-      USE mod_ncparam
-      USE mod_scalars
-!
-      USE dateclock_mod, ONLY : time_string
-      USE strings_mod,   ONLY : FoundError, lowercase
-!
-!  Imported variable declarations.
-!
-      integer, intent(in) :: ng, model
-
-      character (len=*), intent(in) :: file_type
-
-      TYPE(T_IO), intent(inout) :: S(Ngrids)
-!
-!  Local variable declarations.
-!
-      logical :: Lcheck, foundit
-      logical :: check_file
-
-      integer :: Fcount, Nfiles, i, ifile
-
-      real(dp) :: Tfinal, Tmax, Tmin, Tscale
-
-      character (len= 22) :: Tmin_code, Tmax_code
-      character (len=256) :: ncname
-!
-      SourceFile=__FILE__ // ", multifile_info_s1d"
-!
-!-----------------------------------------------------------------------
-!  Update file structure parameters.
-!-----------------------------------------------------------------------
-!
-!  Set final time of simulation.
-!
-      IF (model.eq.iADM) THEN
-        Tfinal=time(ng)-ntimes(ng)*dt(ng)
-      ELSE
-!       Tfinal=time(ng)+ntimes(ng)*dt(ng)
-        Tfinal=dstart*day2sec+ntimes(ng)*dt(ng)
-      END IF
-!
-!  Set minimum and maximum time values.
-!
-      Nfiles=S(ng)%Nfiles
-      DO ifile=1,Nfiles
-        ncname=S(ng)%files(ifile)
-        foundit=check_file(ng, model, Nfiles, ncname,                   &
-     &                     Tmin, Tmax, Tscale,  Lcheck)
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                   __FILE__)) RETURN
-        S(ng)%time_min(ifile)=Tmin
-        S(ng)%time_max(ifile)=Tmax
-      END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Set the appropriate file counter to use during initialization or
 !  restart.
 !
-<<<<<<< HEAD
         Fcount=0
         IF (Lcheck) THEN
           IF (model.eq.iADM) THEN
@@ -423,33 +240,10 @@
         ELSE
           Fcount=1
         END IF
-=======
-      Fcount=0
-      IF (Lcheck) THEN
-        IF (model.eq.iADM) THEN
-          DO ifile=Nfiles,1,-1
-            Tmax=Tscale*S(ng)%time_max(ifile)
-            IF (time(ng).le.Tmax) THEN
-              Fcount=ifile
-            END IF
-          END DO
-        ELSE
-          DO ifile=1,Nfiles
-            Tmin=Tscale*S(ng)%time_min(ifile)
-            IF (time(ng).ge.Tmin) THEN
-              Fcount=ifile
-            END IF
-          END DO
-        END IF
-      ELSE
-        Fcount=1
-      END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Initialize other structure parameters or issue an error if data does
 !  not include initalization time.
 !
-<<<<<<< HEAD
         IF (Fcount.gt.0) THEN
           SSF(ng)%Fcount=Fcount
           ncname=SSF(ng)%files(Fcount)
@@ -522,149 +316,6 @@
      &                   __FILE__)) RETURN
           FRC(i,ng)%time_min(ifile)=Tmin
           FRC(i,ng)%time_max(ifile)=Tmax
-=======
-      IF (Fcount.gt.0) THEN
-        S(ng)%Fcount=Fcount
-        ncname=S(ng)%files(Fcount)
-        S(ng)%name=TRIM(ncname)
-      ELSE
-        IF (Master.and.Lcheck) THEN
-          WRITE (stdout,10) TRIM(lowercase(file_type)), I_code
-          DO ifile=1,Nfiles
-            Tmin=Tscale*S(ng)%time_min(ifile)
-            Tmax=Tscale*S(ng)%time_max(ifile)
-            CALL time_string (Tmin, Tmin_code)
-            CALL time_string (Tmax, Tmax_code)
-            WRITE (stdout,20) Tmin_code, Tmax_code,                     &
-     &                        TRIM(S(ng)%files(ifile))
-          END DO
-        END IF
-        exit_flag=4
-        IF (FoundError(exit_flag, NoError, __LINE__,                    &
-     &                 __FILE__)) RETURN
-      END IF
-!
-!  Check if there is data up to the end of the simulation.
-!
-      IF (Lcheck) THEN
-        IF (model.eq.iADM) THEN
-          Tmin=Tscale*S(ng)%time_min(1)
-          IF (Tfinal.lt.Tmin) THEN
-            CALL time_string (Tmin, Tmin_code)
-            IF (Master) THEN
-              WRITE (stdout,30) TRIM(file_type)//' (adjoint)',          &
-     &                          TRIM(S(ng)%files(1)),                   &
-     &                          'first ', Tmin_code, F_code
-            END IF
-            exit_flag=4
-            IF (FoundError(exit_flag, NoError, __LINE__,                &
-     &                     __FILE__)) RETURN
-          END IF
-        ELSE
-          Tmax=Tscale*S(ng)%time_max(Nfiles)
-          IF (Tfinal.gt.Tmax) THEN
-            CALL time_string (Tmax, Tmax_code)
-            IF (Master) THEN
-              WRITE (stdout,30) TRIM(file_type),                        &
-     &                          TRIM(S(ng)%files(Nfiles)),              &
-     &                          'last  ', Tmax_code, F_code
-            END IF
-            exit_flag=4
-              IF (FoundError(exit_flag, NoError, __LINE__,              &
-     &                     __FILE__)) RETURN
-          END IF
-        END IF
-      END IF
-!
- 10   FORMAT (/,' MULTIFILE_INFO_S1D - Error while processing ', a,     &
-     &        ' multi-files: ',/,22x,'data does not include',           &
-     &        ' initialization time = ', a,/)
- 20   FORMAT (3x,a,2x,a,5x,a)
- 30   FORMAT (/,' MULTIFILE_INFO_S1D - Error while checking input ', a, &
-     &        ' file:',/,22x,a,/,22x,                                   &
-     &        a,'data time record available is for day: ',a,/,22x,      &
-     &        'but data is needed to finish run until day: ',a)
-!
-      RETURN
-      END SUBROUTINE multifile_info_s1d
-!
-      SUBROUTINE multifile_info_s2d (ng, model, file_type, InpFiles,    &
-     &                               idim, S)
-!
-!=======================================================================
-!                                                                      !
-!  Updates multi-file information for the given 2D file structure, S.  !
-!                                                                      !
-!  On Input:                                                           !
-!                                                                      !
-!     ng         Nested grid number (integer)                          !
-!     model      Calling model identifier (integer)                    !
-!     file_type  File structure indentifier (string)                   !
-!     InpFiles   Number of source input files per grid (integer vector)!
-!     idim       Size of structure inner dimension (integer):          !
-!                  idim=MAXVAL(InpFiles) in calling routine            !
-!     S          2D Derived type structure, TYPE(T_IO)                 !
-!                                                                      !
-!=======================================================================
-!
-      USE mod_param
-      USE mod_parallel
-      USE mod_iounits
-      USE mod_ncparam
-      USE mod_scalars
-!
-      USE dateclock_mod, ONLY : time_string
-      USE strings_mod,   ONLY : FoundError, lowercase
-!
-!  Imported variable declarations.
-!
-      integer, intent(in) :: ng, model, idim
-      integer, intent(in) :: InpFiles(Ngrids)
-
-      character (len=*), intent(in) :: file_type
-
-      TYPE(T_IO), intent(inout) :: S(idim,Ngrids)
-!
-!  Local variable declarations.
-!
-      logical :: Lcheck, foundit
-      logical :: check_file
-
-      integer :: Fcount, Nfiles, i, ifile
-
-      real(dp) :: Tfinal, Tmax, Tmin, Tscale
-
-      character (len= 22) :: Tmin_code, Tmax_code
-      character (len=256) :: ncname
-!
-      SourceFile=__FILE__ // ", multifile_info_s2d"
-!
-!-----------------------------------------------------------------------
-!  Update file structure parameters.
-!-----------------------------------------------------------------------
-!
-!  Set final time of simulation.
-!
-      IF (model.eq.iADM) THEN
-        Tfinal=time(ng)-ntimes(ng)*dt(ng)
-      ELSE
-!       Tfinal=time(ng)+ntimes(ng)*dt(ng)
-        Tfinal=dstart*day2sec+ntimes(ng)*dt(ng)
-      END IF
-!
-!  Set minimum and maximum time values.
-!
-      DO i=1,InpFiles(ng)
-        Nfiles=S(i,ng)%Nfiles
-        DO ifile=1,Nfiles
-          ncname=S(i,ng)%files(ifile)
-          foundit=check_file(ng, model, Nfiles, ncname,                 &
-     &                       Tmin, Tmax, Tscale, Lcheck)
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
-          S(i,ng)%time_min(ifile)=Tmin
-          S(i,ng)%time_max(ifile)=Tmax
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
 !
 !  Set the appropriate file counter to use during initialization or
@@ -674,22 +325,14 @@
         IF (Lcheck) THEN
           IF (model.eq.iADM) THEN
             DO ifile=Nfiles,1,-1
-<<<<<<< HEAD
               Tmax=Tscale*FRC(i,ng)%time_max(ifile)
-=======
-              Tmax=Tscale*S(i,ng)%time_max(ifile)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF (time(ng).le.Tmax) THEN
                 Fcount=ifile
               END IF
             END DO
           ELSE
             DO ifile=1,Nfiles
-<<<<<<< HEAD
               Tmin=Tscale*FRC(i,ng)%time_min(ifile)
-=======
-              Tmin=Tscale*S(i,ng)%time_min(ifile)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF (time(ng).ge.Tmin) THEN
                 Fcount=ifile
               END IF
@@ -703,7 +346,6 @@
 !  not include initalization time.
 !
         IF (Fcount.gt.0) THEN
-<<<<<<< HEAD
           FRC(i,ng)%Fcount=Fcount
           ncname=FRC(i,ng)%files(Fcount)
           lstr=LEN_TRIM(ncname)
@@ -719,21 +361,6 @@
               CALL time_string (Tmax, Tmax_code)
               WRITE (stdout,20) Tmin_code, Tmax_code,                   &
      &                          TRIM(FRC(i,ng)%files(ifile))
-=======
-          S(i,ng)%Fcount=Fcount
-          ncname=S(i,ng)%files(Fcount)
-          S(i,ng)%name=TRIM(ncname)
-        ELSE
-          IF (Master.and.Lcheck) THEN
-            WRITE (stdout,10) TRIM(lowercase(file_type)), I_code
-            DO ifile=1,Nfiles
-              Tmin=Tscale*S(i,ng)%time_min(ifile)
-              Tmax=Tscale*S(i,ng)%time_max(ifile)
-              CALL time_string (Tmin, Tmin_code)
-              CALL time_string (Tmax, Tmax_code)
-              WRITE (stdout,20) Tmin_code, Tmax_code,                   &
-     &                          TRIM(S(i,ng)%files(ifile))
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             END DO
           END IF
           exit_flag=4
@@ -741,7 +368,6 @@
      &                   __FILE__)) RETURN
         END IF
 !
-<<<<<<< HEAD
 !  Check if there is forcing data up to the end of the simulation.
 !
         IF (Lcheck) THEN
@@ -752,18 +378,6 @@
               IF (Master) THEN
                 WRITE (stdout,30) 'Forcing (adjoint)',                  &
      &                            TRIM(FRC(i,ng)%files(1)),             &
-=======
-!  Check if there is data up to the end of the simulation.
-!
-        IF (Lcheck) THEN
-          IF (model.eq.iADM) THEN
-            Tmin=Tscale*S(i,ng)%time_min(1)
-            IF (Tfinal.lt.Tmin) THEN
-              CALL time_string (Tmin, Tmin_code)
-              IF (Master) THEN
-                WRITE (stdout,30) TRIM(file_type)//' (adjoint)',        &
-     &                            TRIM(S(i,ng)%files(1)),               &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                            'first ', Tmin_code, F_code
               END IF
               exit_flag=4
@@ -771,21 +385,12 @@
      &                       __FILE__)) RETURN
             END IF
           ELSE
-<<<<<<< HEAD
             Tmax=Tscale*FRC(i,ng)%time_max(Nfiles)
             IF (Tfinal.gt.Tmax) THEN
               CALL time_string (Tmax, Tmax_code)
               IF (Master) THEN
                 WRITE (stdout,30) 'Forcing',                            &
      &                            TRIM(FRC(i,ng)%files(Nfiles)),        &
-=======
-            Tmax=Tscale*S(i,ng)%time_max(Nfiles)
-            IF (Tfinal.gt.Tmax) THEN
-              CALL time_string (Tmax, Tmax_code)
-              IF (Master) THEN
-                WRITE (stdout,30) TRIM(file_type),                      &
-     &                            TRIM(S(i,ng)%files(Nfiles)),          &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                            'last  ', Tmax_code, F_code
               END IF
               exit_flag=4
@@ -795,7 +400,6 @@
           END IF
         END IF
       END DO
-<<<<<<< HEAD
 #endif
 !
 !-----------------------------------------------------------------------
@@ -914,22 +518,6 @@
 !
       FUNCTION check_file (ng, model, ncname, Tmin, Tmax, Tscale,       &
      &                     Lcheck) RESULT (foundit)
-=======
-!
- 10   FORMAT (/,' MULTIFILE_INFO_S2D - Error while processing ', a,     &
-     &        ' multi-files: ',/,22x,'data does not include',           &
-     &        ' initialization time = ', a,/)
- 20   FORMAT (3x,a,2x,a,5x,a)
- 30   FORMAT (/,' MULTIFILE_INFO_S2D - Error while checking input ', a, &
-     &        ' file:',/,22x,a,/,22x,                                   &
-     &        a,'data time record available is for day: ',a,/,22x,      &
-     &        'but data is needed to finish run until day: ',a)
-!
-      END SUBROUTINE multifile_info_s2d
-!
-      FUNCTION check_file (ng, model, Nfiles, ncname, Tmin, Tmax,       &
-     &                     Tscale, Lcheck) RESULT (foundit)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !=======================================================================
 !                                                                      !
@@ -942,10 +530,6 @@
 !                                                                      !
 !     ng           Nested grid number.                                 !
 !     model        Calling model identifier.                           !
-<<<<<<< HEAD
-=======
-!     Nfiles       Number of multi-files.                              !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     ncname       NetCDF file name to process (string).               !
 !                                                                      !
 !  On Output:                                                          !
@@ -966,11 +550,7 @@
       USE mod_netcdf
       USE mod_scalars
 !
-<<<<<<< HEAD
       USE strings_mod, ONLY : FoundError
-=======
-      USE strings_mod, ONLY : FoundError, lowercase
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       implicit none
 !
@@ -978,11 +558,7 @@
 !
       logical, intent(out) :: Lcheck
 
-<<<<<<< HEAD
       integer, intent(in) :: ng, model
-=======
-      integer, intent(in) :: ng, model, Nfiles
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       character (*), intent(in) :: ncname
 
@@ -1033,11 +609,7 @@
 !  'time' in the variable name.
 !
       DO i=1,n_var
-<<<<<<< HEAD
         IF ((INDEX(TRIM(var_name(i)),'time').ne.0).and.                 &
-=======
-        IF ((INDEX(TRIM(lowercase(var_name(i))),'time').ne.0).and.      &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &            (var_ndim(i).eq.1)) THEN
           TvarName=TRIM(var_name(i))
           foundit=.TRUE.
@@ -1090,11 +662,7 @@
             Tscale=1.0_r8
           END IF
         ELSE IF (TRIM(var_Aname(i)).eq.'calendar') THEN
-<<<<<<< HEAD
           IF ((Nrec.eq.1).or.                                           &
-=======
-          IF (((Nrec.eq.1).and.(Nfiles.eq.1)).or.                       &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &        (INDEX(TRIM(var_Achar(i)),'none').ne.0)) THEN
             Lperpetual=.TRUE.
           END IF
@@ -1106,12 +674,7 @@
 !  Turn off the checking of time range if cycling, perpectual, or
 !  spectral time axis.
 !
-<<<<<<< HEAD
       IF (Lcycle.or.Lperpetual.or.Lspectral.or.(Nrec.eq.1)) THEN
-=======
-      IF (Lcycle.or.Lperpetual.or.Lspectral.or.                         &
-     &    ((Nrec.eq.1).and.(Nfiles.eq.1))) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         Lcheck=.FALSE.
       END IF
 !

@@ -1,13 +1,7 @@
 !
-<<<<<<< HEAD
 !svn $Id: fennel_mod.h 921 2018-09-06 18:27:34Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: fennel_mod.h 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -89,12 +83,6 @@
 #ifdef OXYGEN
       integer :: iOxyg                  ! Dissolved oxygen concentration
 #endif
-<<<<<<< HEAD
-=======
-#ifdef ODU
-      integer :: iODU_                  ! Dissolved oxygen demand units
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #if defined DIAGNOSTICS && defined DIAGNOSTICS_BIO
 !
@@ -106,19 +94,6 @@
       integer  :: iDNIT                       ! denitrification flux
       integer  :: ipCO2                       ! partial pressure of CO2
       integer  :: iO2fx                       ! air-sea O2 flux
-<<<<<<< HEAD
-=======
-# if defined SEDBIO_COUP
-      integer  :: isdO2                       !Seabed-sea diff. O2 flx
-      integer  :: iseO2                       !Seabed-sea eros. O2 flx
-      integer  :: isdNO                       !Seabed-sea diff. NO3 flx
-      integer  :: iseNO                       !Seabed-sea eros. NO3 flx
-      integer  :: isdNH                       !Seabed-sea diff. NH4 flx
-      integer  :: iseNH                       !Seabed-sea eros. NH4 flx
-      integer  :: isdOD                       !Seabed-sea diff. ODU flx
-      integer  :: iseOD                       !Seabed-sea eros. ODU flx
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Biological 3D diagnostic variable IDs.
 !
@@ -200,12 +175,6 @@
       NBT=7
 # endif
 #endif
-<<<<<<< HEAD
-=======
-#ifdef ODU
-      NBT=NBT+1
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #if defined DIAGNOSTICS && defined DIAGNOSTICS_BIO
 !
@@ -226,12 +195,6 @@
 # ifdef OXYGEN
       NDbio2d=NDbio2d+1
 # endif
-<<<<<<< HEAD
-=======
-# ifdef SEDBIO_COUP
-      NDbio2d=NDbio2d+8
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Initialize biology diagnostic indices.
 !
@@ -247,21 +210,6 @@
 # endif
 # ifdef OXYGEN
       iO2fx=ic+1
-<<<<<<< HEAD
-=======
-      ic=ic+1
-# endif
-# ifdef SEDBIO_COUP
-      isdO2=ic+1
-      iseO2=ic+2
-      isdNO=ic+3
-      iseNO=ic+4
-      isdNH=ic+5
-      iseNH=ic+6
-      isdOD=ic+7
-      iseOD=ic+8
-      ic=ic+8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 #endif
 !
@@ -498,13 +446,6 @@
       iOxyg=ic+1
       ic=ic+1
 # endif
-<<<<<<< HEAD
-=======
-# ifdef ODU
-      iODU_=ic+1
-      ic=ic+1
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       RETURN
       END SUBROUTINE initialize_biology

@@ -2,15 +2,9 @@
       SUBROUTINE checkvars (ng, model, ncname, ncid, string, Nrec,      &
      &                      Nvar,tvarnam, get_var, have_var)
 !
-<<<<<<< HEAD
 !svn $Id: checkvars.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: checkvars.F 1012 2020-03-04 22:09:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -141,15 +135,8 @@
         END IF
 #else
         get_var(idFsur)=.TRUE.
-<<<<<<< HEAD
         get_var(idUbar)=.TRUE.
         get_var(idVbar)=.TRUE.
-=======
-        IF (model.ne.7) THEN        ! not needed by impulse forcing
-          get_var(idUbar)=.TRUE.
-          get_var(idVbar)=.TRUE.
-        END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef SOLVE3D
         get_var(idUvel)=.TRUE.
         get_var(idVvel)=.TRUE.
@@ -187,29 +174,15 @@
 # endif
 # ifdef VEGETATION 
 #  ifdef ANA_VEGETATION 
-<<<<<<< HEAD
-=======
-#   if defined VEG_DRAG || defined VEG_BIOMASS 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (nrrec(ng).ne.0) THEN
           DO ivpr=1,NVEGP
             get_var(idvprp(ivpr))=.TRUE.
           END DO
         END IF
-<<<<<<< HEAD
 #  else
         DO ivpr=1,NVEGP
           get_var(idvprp(ivpr))=.TRUE.
         END DO
-=======
-#   endif         
-#  else
-#   if defined VEG_DRAG || defined VEG_BIOMASS 
-        DO ivpr=1,NVEGP
-          get_var(idvprp(ivpr))=.TRUE.
-        END DO
-#   endif         
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif 
 # endif
 # ifdef SEDIMENT
@@ -256,7 +229,6 @@
 #  endif
 # endif
 # ifdef ICE_MODEL
-<<<<<<< HEAD
         get_var(idUice)=.true.
         get_var(idVice)=.true.
         get_var(idAice)=.true.
@@ -277,24 +249,6 @@
 #  ifndef ICE_MOM_BULK
         get_var(idChuiw)=.true.
         get_var(idTauiw)=.true.
-=======
-        get_var(idUice)=.TRUE.
-        get_var(idVice)=.TRUE.
-        get_var(idAice)=.TRUE.
-        get_var(idHice)=.TRUE.
-        get_var(idTice)=.TRUE.
-        get_var(idHsno)=.TRUE.
-        get_var(idAgeice)=.TRUE.
-        get_var(idTimid)=.TRUE.
-        get_var(idSig11)=.TRUE.
-        get_var(idSig22)=.TRUE.
-        get_var(idSig12)=.TRUE.
-        get_var(idS0mk)=.TRUE.
-        get_var(idT0mk)=.TRUE.
-#  ifndef ICE_MOM_BULK
-        get_var(idChuiw)=.TRUE.
-        get_var(idTauiw)=.TRUE.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 #  ifdef PERFECT_RESTART
         get_var(idUsms)=.true.
@@ -305,7 +259,6 @@
 #  endif
 # endif
 # ifdef NCEP_FLUXES
-<<<<<<< HEAD
         get_var(idWg2d)=.true.
         get_var(idCdd)=.true.
         get_var(idChd)=.true.
@@ -315,17 +268,6 @@
         get_var(idChm)=.true.
         get_var(idCem)=.true.
         get_var(idRhoa)=.true.
-=======
-        get_var(idWg2d)=.TRUE.
-        get_var(idCdd)=.TRUE.
-        get_var(idChd)=.TRUE.
-        get_var(idCed)=.TRUE.
-        get_var(idWg2m)=.TRUE.
-        get_var(idCdm)=.TRUE.
-        get_var(idChm)=.TRUE.
-        get_var(idCem)=.TRUE.
-        get_var(idRhoa)=.TRUE.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 #endif
 #ifdef PERFECT_RESTART
@@ -337,14 +279,11 @@
           get_var(idRu3d)=.TRUE.
           get_var(idRv3d)=.TRUE.
 # endif
-<<<<<<< HEAD
 # ifdef WET_DRY
           get_var(idRwet)=.TRUE.
           get_var(idUwet)=.TRUE.
           get_var(idVwet)=.TRUE.
 # endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           get_var(idRzet)=.TRUE.
           get_var(idRu2d)=.TRUE.
           get_var(idRv2d)=.TRUE.
@@ -411,7 +350,6 @@
 # endif
       END IF
 #endif
-<<<<<<< HEAD
 #ifdef BNORM
 !
 !  Determine variables for Hessian singular vectors with background
@@ -432,8 +370,6 @@
 # endif
       END IF
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Scan variable list from input NetCDF and activate switches for
 !  model state variables.
@@ -470,7 +406,6 @@
           have_var(idSbry(isVvel))=.TRUE.
 # endif
 #endif
-<<<<<<< HEAD
 #if defined WET_DRY && defined PERFECT_RESTART
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idRwet))) THEN
           have_var(idRwet)=.TRUE.
@@ -479,8 +414,6 @@
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idVwet))) THEN
           have_var(idVwet)=.TRUE.
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef SOLVE3D
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idKver))) THEN
           have_var(idKver)=.TRUE.
@@ -620,7 +553,6 @@
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idTice))) THEN
           have_var(idTice)=.true.
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idHsno))) THEN
-<<<<<<< HEAD
           have_var(idHsno)=.true.
 #  ifdef MELT_PONDS
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idApond))) THEN
@@ -628,9 +560,6 @@
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idHpond))) THEN
           have_var(idHpond)=.true.
 #  endif
-=======
-          have_var(idHsno)=.TRUE.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idAgeice))) THEN
           have_var(idAgeice)=.true.
         ELSE IF (TRIM(var_name(i)).eq.TRIM(Vname(1,idTimid))) THEN
@@ -801,7 +730,6 @@
         END IF
       END IF
 #endif
-<<<<<<< HEAD
 #if defined WET_DRY && defined PERFECT_RESTART
       IF (.not.have_var(idRwet).and.get_var(idRwet)) THEN
         IF (Master) WRITE (stdout,10) string, TRIM(Vname(1,idRwet)),    &
@@ -822,8 +750,6 @@
         RETURN
       END IF
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef SOLVE3D
       IF (.not.have_var(idUvel).and.get_var(idUvel)) THEN
         IF (Master) WRITE (stdout,10) string, TRIM(Vname(1,idUvel)),    &
@@ -1047,7 +973,6 @@
         exit_flag=2
         RETURN
       END IF
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
       IF (.not.have_var(idApond)) THEN
         IF (Master) WRITE (stdout,10) string,                           &
@@ -1064,8 +989,6 @@
         RETURN
       END IF
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       IF (.not.have_var(idAgeice)) THEN
         IF (Master) WRITE (stdout,10) string,                           &
      &                                TRIM(Vname(1,idAgeice)),          &

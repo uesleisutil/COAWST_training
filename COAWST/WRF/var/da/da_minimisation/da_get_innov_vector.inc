@@ -30,7 +30,6 @@ subroutine da_get_innov_vector (it, num_qcstat_conv, ob, iv, grid, config_flags)
    if (trace_use) call da_trace_entry("da_get_innov_vector") 
 
    call da_message((/"Calculate innovation vector(iv)"/))
-<<<<<<< HEAD
    call da_get_unit(qcstat_conv_unit)
 
 #ifdef DM_PARALLEL
@@ -47,20 +46,6 @@ subroutine da_get_innov_vector (it, num_qcstat_conv, ob, iv, grid, config_flags)
    end if
 
 
-=======
-
-   if ( write_rej_obs_conv ) then
-      call da_get_unit(qcstat_conv_unit)
-      write(unit=filename, fmt='(a,i2.2,a,i4.4)') 'rej_obs_conv_',it,'.', myproc
-      open (unit=qcstat_conv_unit,file=trim(filename),form='formatted',status='replace', &
-         iostat=ios)
-      if (ios /= 0) then
-         call da_error(__FILE__,__LINE__, &
-            (/"Cannot open qc observation file"//filename/))
-      end if
-   end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    iv%ptop = grid%xb%ptop
 
    filename = ' '
@@ -178,16 +163,7 @@ subroutine da_get_innov_vector (it, num_qcstat_conv, ob, iv, grid, config_flags)
 #if defined(CRTM) || defined(RTTOV)
       if (use_rad                      ) call da_get_innov_vector_radiance (it, grid, ob, iv)
 #endif
-<<<<<<< HEAD
       if (iv%info(pseudo)%nlocal    ==1) call da_get_innov_vector_pseudo   (it, grid, ob, iv)
-=======
-      if ( var4d ) then
-         if ( iv%info(pseudo)%nlocal==1 .and. n==pseudo_time ) &
-             call da_get_innov_vector_pseudo   (it, grid, ob, iv)
-      else
-         if (iv%info(pseudo)%nlocal    ==1) call da_get_innov_vector_pseudo   (it, grid, ob, iv)
-      end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       if (iv%info(airsr)%nlocal     > 0) &
       call da_get_innov_vector_airsr    (it,num_qcstat_conv, grid, ob, iv)
 
@@ -253,15 +229,8 @@ subroutine da_get_innov_vector (it, num_qcstat_conv, ob, iv, grid, config_flags)
        !call wrfu_finalize
        !call wrf_shutdown
        !stop
-<<<<<<< HEAD
        close(qcstat_conv_unit)
        call da_free_unit(qcstat_conv_unit)
-=======
-       if ( write_rej_obs_conv ) then
-          close(qcstat_conv_unit)
-          call da_free_unit(qcstat_conv_unit)
-       end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        if (trace_use) call da_trace_exit("da_get_innov_vector")
        return
    endif
@@ -312,15 +281,8 @@ subroutine da_get_innov_vector (it, num_qcstat_conv, ob, iv, grid, config_flags)
    end if
 #endif
 
-<<<<<<< HEAD
    close(qcstat_conv_unit)
    call da_free_unit(qcstat_conv_unit)
-=======
-   if ( write_rej_obs_conv ) then
-      close(qcstat_conv_unit)
-      call da_free_unit(qcstat_conv_unit)
-   end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    if (trace_use) call da_trace_exit("da_get_innov_vector")
 

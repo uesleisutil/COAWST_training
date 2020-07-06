@@ -75,20 +75,7 @@ CONTAINS
                   FLXHUMR_URB2D,FLXHUMB_URB2D,FLXHUMG_URB2D,    & !H urban
                   julian, julyr,                                & !H urban
                   FRC_URB2D,UTYPE_URB2D,                        & !O
-<<<<<<< HEAD
                   num_urban_layers,                             & !I multi-layer urban
-=======
-                  num_urban_ndm,                                & !I multi-layer urban
-                  urban_map_zrd,                                & !I multi-layer urban
-                  urban_map_zwd,                                & !I multi-layer urban
-                  urban_map_gd,                                 & !I multi-layer urban
-                  urban_map_zd,                                 & !I multi-layer urban
-                  urban_map_zdf,                                & !I multi-layer urban
-                  urban_map_bd,                                 & !I multi-layer urban
-                  urban_map_wd,                                 & !I multi-layer urban
-                  urban_map_gbd,                                & !I multi-layer urban
-                  urban_map_fbd,                                & !I multi-layer urban
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                   num_urban_hi,                                 & !I multi-layer urban
                   tsk_rural_bep,                                & !H multi-layer urban
                   trb_urb4d,tw1_urb4d,tw2_urb4d,tgb_urb4d,      & !H multi-layer urban
@@ -581,7 +568,6 @@ CONTAINS
    REAL, OPTIONAL, INTENT(IN  )   ::                                   GMT 
    INTEGER, OPTIONAL, INTENT(IN  ) ::                               JULDAY
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(IN   )        ::XLAT, XLONG
-<<<<<<< HEAD
    INTEGER, INTENT(IN  ) ::                               NUM_URBAN_LAYERS
    INTEGER, INTENT(IN  ) ::                               NUM_URBAN_HI
    REAL, OPTIONAL, DIMENSION( ims:ime,                     jms:jme ), INTENT(INOUT) :: tsk_rural_bep
@@ -595,50 +581,17 @@ CONTAINS
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: tw2lev_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: tglev_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: tflev_urb3d
-=======
-   INTEGER, INTENT(IN  ) ::                               num_urban_ndm
-   INTEGER, INTENT(IN  ) ::                               urban_map_zrd
-   INTEGER, INTENT(IN  ) ::                               urban_map_zwd
-   INTEGER, INTENT(IN  ) ::                               urban_map_gd
-   INTEGER, INTENT(IN  ) ::                               urban_map_zd
-   INTEGER, INTENT(IN  ) ::                               urban_map_zdf
-   INTEGER, INTENT(IN  ) ::                               urban_map_bd
-   INTEGER, INTENT(IN  ) ::                               urban_map_wd
-   INTEGER, INTENT(IN  ) ::                               urban_map_gbd
-   INTEGER, INTENT(IN  ) ::                               urban_map_fbd
-   INTEGER, INTENT(IN  ) ::                               NUM_URBAN_HI
-   REAL, OPTIONAL, DIMENSION( ims:ime,                     jms:jme ), INTENT(INOUT) :: tsk_rural_bep
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zrd, jms:jme ), INTENT(INOUT) :: trb_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zwd, jms:jme ), INTENT(INOUT) :: tw1_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zwd, jms:jme ), INTENT(INOUT) :: tw2_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_gd , jms:jme ), INTENT(INOUT) :: tgb_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_bd , jms:jme ), INTENT(INOUT) :: tlev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_bd , jms:jme ), INTENT(INOUT) :: qlev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: tw1lev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: tw2lev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_gbd, jms:jme ), INTENT(INOUT) :: tglev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_fbd, jms:jme ), INTENT(INOUT) :: tflev_urb3d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: lf_ac_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: sf_ac_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: cm_ac_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: sfvent_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: lfvent_urb3d
-<<<<<<< HEAD
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfwin1_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfwin2_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfw1_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfw2_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfr_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfg_urb3d
-=======
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: sfwin1_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: sfwin2_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zd , jms:jme ), INTENT(INOUT) :: sfw1_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zd , jms:jme ), INTENT(INOUT) :: sfw2_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zdf, jms:jme ), INTENT(INOUT) :: sfr_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_ndm, jms:jme ), INTENT(INOUT) :: sfg_urb3d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_hi, jms:jme ), INTENT(IN) :: hi_urb2d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(IN) :: lp_urb2d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(IN) :: lb_urb2d
@@ -1555,13 +1508,7 @@ CONTAINS
        CALL BEP(frc_urb2d,utype_urb2d,itimestep,dz8w,dt,u_phy,v_phy,   &
                 th_phy,rho,p_phy,swdown,glw,                           &
                 gmt,julday,xlong,xlat,declin_urb,cosz_urb2d,omg_urb2d, &
-<<<<<<< HEAD
                 num_urban_layers,num_urban_hi,                         &
-=======
-           num_urban_ndm, urban_map_zrd, urban_map_zwd, urban_map_gd,  &
-            urban_map_zd, urban_map_zdf,  urban_map_bd, urban_map_wd,  &
-           urban_map_gbd, urban_map_fbd,  num_urban_hi,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 trb_urb4d,tw1_urb4d,tw2_urb4d,tgb_urb4d,               &
                 sfw1_urb3d,sfw2_urb3d,sfr_urb3d,sfg_urb3d,             &
                 lp_urb2d,hi_urb2d,lb_urb2d,hgt_urb2d,                  &
@@ -1594,13 +1541,7 @@ CONTAINS
        CALL BEP_BEM(frc_urb2d,utype_urb2d,itimestep,dz8w,dt,u_phy,v_phy, &
                 th_phy,rho,p_phy,swdown,glw,                           &
                 gmt,julday,xlong,xlat,declin_urb,cosz_urb2d,omg_urb2d, &
-<<<<<<< HEAD
                 num_urban_layers,num_urban_hi,                         &
-=======
-           num_urban_ndm, urban_map_zrd, urban_map_zwd, urban_map_gd,  &
-            urban_map_zd, urban_map_zdf,  urban_map_bd, urban_map_wd,  &
-           urban_map_gbd, urban_map_fbd,  num_urban_hi,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 trb_urb4d,tw1_urb4d,tw2_urb4d,tgb_urb4d,               &
                 tlev_urb3d,qlev_urb3d,tw1lev_urb3d,tw2lev_urb3d,       &
                 tglev_urb3d,tflev_urb3d,sf_ac_urb3d,lf_ac_urb3d,       &
@@ -2317,20 +2258,7 @@ SUBROUTINE lsm_mosaic(DZ8W,QV3D,P8W3D,T3D,TSK,                      &
                   DRELR_URB2D,DRELB_URB2D,DRELG_URB2D,          & !H urban
                   FLXHUMR_URB2D,FLXHUMB_URB2D,FLXHUMG_URB2D,    & !H urban
                   FRC_URB2D,UTYPE_URB2D,                        & !O
-<<<<<<< HEAD
                   num_urban_layers,                             & !I multi-layer urban
-=======
-                  num_urban_ndm,                                & !I multi-layer urban
-                  urban_map_zrd,                                & !I multi-layer urban
-                  urban_map_zwd,                                & !I multi-layer urban
-                  urban_map_gd,                                 & !I multi-layer urban
-                  urban_map_zd,                                 & !I multi-layer urban
-                  urban_map_zdf,                                & !I multi-layer urban
-                  urban_map_bd,                                 & !I multi-layer urban
-                  urban_map_wd,                                 & !I multi-layer urban
-                  urban_map_gbd,                                & !I multi-layer urban
-                  urban_map_fbd,                                & !I multi-layer urban
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                   num_urban_hi,                                 & !I multi-layer urban
                   tsk_rural_bep,                                & !H multi-layer urban
                   trb_urb4d,tw1_urb4d,tw2_urb4d,tgb_urb4d,      & !H multi-layer urban
@@ -2821,7 +2749,6 @@ SUBROUTINE lsm_mosaic(DZ8W,QV3D,P8W3D,T3D,TSK,                      &
    REAL, OPTIONAL, INTENT(IN  )   ::                                   GMT 
    INTEGER, OPTIONAL, INTENT(IN  ) ::                               JULDAY
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(IN   )        ::XLAT, XLONG
-<<<<<<< HEAD
    INTEGER, INTENT(IN  ) ::                               NUM_URBAN_LAYERS
    INTEGER, INTENT(IN  ) ::                               NUM_URBAN_HI
    REAL, OPTIONAL, DIMENSION( ims:ime,                     jms:jme ), INTENT(INOUT) :: tsk_rural_bep
@@ -2835,50 +2762,17 @@ SUBROUTINE lsm_mosaic(DZ8W,QV3D,P8W3D,T3D,TSK,                      &
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: tw2lev_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: tglev_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: tflev_urb3d
-=======
-   INTEGER, INTENT(IN  ) ::                               num_urban_ndm
-   INTEGER, INTENT(IN  ) ::                               urban_map_zrd
-   INTEGER, INTENT(IN  ) ::                               urban_map_zwd
-   INTEGER, INTENT(IN  ) ::                               urban_map_gd
-   INTEGER, INTENT(IN  ) ::                               urban_map_zd
-   INTEGER, INTENT(IN  ) ::                               urban_map_zdf
-   INTEGER, INTENT(IN  ) ::                               urban_map_bd
-   INTEGER, INTENT(IN  ) ::                               urban_map_wd
-   INTEGER, INTENT(IN  ) ::                               urban_map_gbd
-   INTEGER, INTENT(IN  ) ::                               urban_map_fbd
-   INTEGER, INTENT(IN  ) ::                               NUM_URBAN_HI
-   REAL, OPTIONAL, DIMENSION( ims:ime,                     jms:jme ), INTENT(INOUT) :: tsk_rural_bep
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zrd, jms:jme ), INTENT(INOUT) :: trb_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zwd, jms:jme ), INTENT(INOUT) :: tw1_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zwd, jms:jme ), INTENT(INOUT) :: tw2_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_gd , jms:jme ), INTENT(INOUT) :: tgb_urb4d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_bd , jms:jme ), INTENT(INOUT) :: tlev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_bd , jms:jme ), INTENT(INOUT) :: qlev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: tw1lev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: tw2lev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_gbd, jms:jme ), INTENT(INOUT) :: tglev_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_fbd, jms:jme ), INTENT(INOUT) :: tflev_urb3d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: lf_ac_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: sf_ac_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: cm_ac_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: sfvent_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(INOUT) :: lfvent_urb3d
-<<<<<<< HEAD
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfwin1_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfwin2_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfw1_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfw2_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfr_urb3d
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_layers, jms:jme ), INTENT(INOUT) :: sfg_urb3d
-=======
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: sfwin1_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_wd , jms:jme ), INTENT(INOUT) :: sfwin2_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zd , jms:jme ), INTENT(INOUT) :: sfw1_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zd , jms:jme ), INTENT(INOUT) :: sfw2_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:urban_map_zdf, jms:jme ), INTENT(INOUT) :: sfr_urb3d
-   REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_ndm, jms:jme ), INTENT(INOUT) :: sfg_urb3d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    REAL, OPTIONAL, DIMENSION( ims:ime, 1:num_urban_hi, jms:jme ), INTENT(IN) :: hi_urb2d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(IN) :: lp_urb2d
    REAL, OPTIONAL, DIMENSION( ims:ime, jms:jme ), INTENT(IN) :: lb_urb2d

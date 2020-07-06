@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       SUBROUTINE initial
 !
-<<<<<<< HEAD
 !svn $Id: initial.F 882 2017-11-23 05:41:19Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: initial.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -84,13 +78,6 @@
       USE ocean_coupler_mod, ONLY : ocn2atm_coupling
       USE ocean_coupler_mod, ONLY : ocnfatm_coupling
 #endif
-<<<<<<< HEAD
-=======
-#ifdef HYDRO_OCEAN
-      USE ocean_coupler_mod, ONLY : ocn2hyd_coupling
-      USE ocean_coupler_mod, ONLY : ocnfhyd_coupling
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef INWAVE_MODEL
       USE driver_inwave_mod, ONLY : inwave_init
 #endif
@@ -102,11 +89,7 @@
       logical, save :: First = .TRUE.
       logical :: update = .FALSE.
 
-<<<<<<< HEAD
       integer :: Fcount, iw, ia, io
-=======
-      integer :: Fcount, iw, ia, io, ih
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer :: ng, thread, tile
 #ifdef NESTING
       integer :: ig, nl
@@ -634,12 +617,7 @@
             CALL ana_ice (ng, TILE, iNLM)
           END DO
 !$OMP BARRIER
-<<<<<<< HEAD
           IF (exit_flag.ne.NoError) RETURN
-=======
-          IF (FoundError(exit_flag, NoError, __LINE__,                  &
-     &                   __FILE__)) RETURN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           time(ng)=io_time                   ! needed for shared-memory
         END IF
       END DO
@@ -673,11 +651,7 @@
       END DO
 #endif
 
-<<<<<<< HEAD
 #ifdef OBSERVATIONS
-=======
-#if defined OBSERVATIONS && !defined W4DPSAS_FCT_SENSITIVITY
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Open observations NetCDF file and initialize various variables
@@ -697,7 +671,6 @@
 !$OMP BARRIER
 #endif
 
-<<<<<<< HEAD
 #if (defined W4DPSAS || defined TL_W4DPSAS || \
      defined W4DPSAS_SENSITIVITY)          && \
     (defined ADJUST_BOUNDARY || defined ADJUST_WSTRESS ||\
@@ -705,15 +678,6 @@
 !
 !-----------------------------------------------------------------------
 !  Read in the surface forcing and/or open boundary conditions
-=======
-#if (defined TL_W4DPSAS          || defined W4DPSAS                  ||\
-     defined W4DPSAS_SENSITIVITY || defined W4DPSAS_FCT_SENSITIVITY) &&\
-    (defined ADJUST_BOUNDARY     || defined ADJUST_WSTRESS           ||\
-     defined ADJUST_STFLUX)
-!
-!-----------------------------------------------------------------------
-!  Read in the surface forcing and or open boundary conditions
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  increments for PSAS from record IniRec of the NLM initial NetCDF
 !  file.
 !-----------------------------------------------------------------------
@@ -985,14 +949,8 @@
       END DO
 #endif
 
-<<<<<<< HEAD
 #if defined NLM_OUTER || defined TL_W4DPSAS          || \
     defined W4DPSAS   || defined W4DPSAS_SENSITIVITY
-=======
-#if defined NLM_OUTER               || defined TL_W4DPSAS          ||\
-    defined W4DPSAS                 || defined W4DPSAS_SENSITIVITY ||\
-    defined W4DPSAS_FCT_SENSITIVITY
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Read in convolved adjoint impulse forcing (first record) and its
@@ -1122,34 +1080,6 @@
         END DO
       END DO
 #endif
-<<<<<<< HEAD
-=======
-#ifdef HYDRO_OCEAN
-!
-!-----------------------------------------------------------------------
-!  Read in initial forcing from coupled atm model.
-!-----------------------------------------------------------------------
-!
-      DO ng=1,Ngrids
-        DO ih=1,Nhyd_grids
-          DO tile=first_tile(ng),last_tile(ng),+1
-            CALL ocnfhyd_coupling (ng, ih, tile)
-          END DO
-!$OMP BARRIER
-          IF (Master) WRITE (stdout,'(/)')
-        END DO
-      END DO
-      DO ng=1,Ngrids
-        DO ih=1,Nhyd_grids
-          DO tile=first_tile(ng),last_tile(ng),+1
-            CALL ocn2hyd_coupling (ng, ih, tile)
-          END DO
-!$OMP BARRIER
-          IF (Master) WRITE (stdout,'(/)')
-        END DO
-      END DO
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Initialize time-stepping counter and clock.
@@ -1160,10 +1090,6 @@
 !
       DO ng=1,Ngrids
         iic(ng)=ntstart(ng)-1
-<<<<<<< HEAD
-=======
-        INItime(ng)=time(ng)         ! Save NLM initial conditions time
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         time(ng)=time(ng)-dt(ng)
       END DO
 

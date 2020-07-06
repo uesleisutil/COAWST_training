@@ -35,15 +35,9 @@ function [ubar,vbar]=uv_barotropic(u,v,Hz,boundary);
 %    u.north  v.norht  ubar.north  vbar.north
 %
 
-<<<<<<< HEAD
 % svn $Id: uv_barotropic.m 895 2018-02-11 23:15:37Z arango $
 %===========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                              %
-=======
-% svn $Id: uv_barotropic.m 996 2020-01-10 04:28:56Z arango $
-%===========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                              %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                   %
 %    See License_ROMS.txt                           Hernan G. Arango        %
 %===========================================================================%

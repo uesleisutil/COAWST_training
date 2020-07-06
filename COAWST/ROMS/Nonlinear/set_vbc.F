@@ -2,15 +2,9 @@
       MODULE set_vbc_mod
 #ifdef NONLINEAR
 !
-<<<<<<< HEAD
 !svn $Id: set_vbc.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: set_vbc.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -124,15 +118,6 @@
      &                   ICE(ng) % ai,                                  &
 #   endif
 #  endif
-<<<<<<< HEAD
-=======
-#  if defined BULK_FLUXES || defined AIR_OCEAN
-     &                   FORCES(ng) % snhflx,                           &
-#  endif
-#  if (defined BULK_FLUXES && defined EMINUSP) || defined AIR_OCEAN
-     &                   FORCES(ng) % EminusP,                          &
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                   FORCES(ng) % stflx,                            &
      &                   FORCES(ng) % btflx)
 #  ifdef PROFILE
@@ -209,15 +194,6 @@
      &                         ai,                                      &
 #   endif
 #  endif
-<<<<<<< HEAD
-=======
-#  if defined BULK_FLUXES || defined AIR_OCEAN
-     &                         snhflx,                                  &
-#  endif
-#  if (defined BULK_FLUXES && defined EMINUSP) || defined AIR_OCEAN
-     &                         EminusP,                                 &
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                         stflx, btflx)
 !***********************************************************************
 !
@@ -282,15 +258,6 @@
 #   if defined SSSFLX
       real(r8), intent(inout) :: sssflx(LBi:,LBj:)
 #   endif
-<<<<<<< HEAD
-=======
-#   if defined BULK_FLUXES || defined AIR_OCEAN
-      real(r8), intent(in) :: snhflx(LBi:,LBj:)
-#   endif
-#   if (defined BULK_FLUXES && defined EMINUSP) || defined AIR_OCEAN
-      real(r8), intent(in) :: EminusP(LBi:,LBj:)
-#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   if defined ICESHELF
 #    ifdef SHORTWAVE
       real(r8), intent(inout) :: srflx(LBi:,LBj:)
@@ -360,15 +327,6 @@
 #   if defined SSSFLX
       real(r8), intent(inout) :: sssflx(LBi:UBi,LBj:UBj)
 #   endif
-<<<<<<< HEAD
-=======
-#   if defined BULK_FLUXES || defined AIR_OCEAN
-      real(r8), intent(in) :: snhflx(LBi:UBi,LBj:UBj)
-#   endif
-#   if (defined BULK_FLUXES && defined EMINUSP) || defined AIR_OCEAN
-      real(r8), intent(in) :: EminusP(LBi:UBi,LBj:UBj)
-#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   if defined ICESHELF
 #    ifdef SHORTWAVE
       real(r8), intent(inout) :: srflx(LBi:UBi,LBj:UBj)
@@ -401,10 +359,6 @@
 !
       integer :: i, j, itrc
 
-<<<<<<< HEAD
-=======
-      real(r8) :: EmP
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef ICESHELF
 
 #  ifdef ICESHELF_3EQ
@@ -439,36 +393,6 @@
 
 #  include "set_bounds.h"
 
-<<<<<<< HEAD
-=======
-#  if defined BULK_FLUXES || defined AIR_OCEAN
-!
-!-----------------------------------------------------------------------
-!  If air-sea parameterization and or atmospheric coupling, assign
-!  surface net heat flux (degC m/s).  During model coupling, we need
-!  to make sure that this forcing is unaltered during the coupling
-!  interval when ROMS timestep size is smaller. Notice that further
-!  manipulations to state variable stflx(:,:,itemp)are allowed below.
-!-----------------------------------------------------------------------
-!
-#   if defined FOUR_DVAR && defined NL_BULK_FLUXES
-      IF (Nrun.eq.1) THEN
-        DO j=JstrR,JendR
-          DO i=IstrR,IendR
-            stflx(i,j,itemp)=snhflx(i,j)
-          END DO
-        END DO
-      END IF
-#   else
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
-          stflx(i,j,itemp)=snhflx(i,j)
-        END DO
-      END DO
-#   endif
-#  endif
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  ifdef QCORRECTION
 !
 !-----------------------------------------------------------------------
@@ -497,11 +421,7 @@
 !-----------------------------------------------------------------------
 !
 !  Below the surface heat flux stflx(:,:,itemp) is ZERO if cooling AND
-<<<<<<< HEAD
 !  the SST is cooler that the threshold.  The value is retained if
-=======
-!  the SST is cooler than the threshold.  The value is retained if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  warming.
 !
 !    cff3 = 0      if SST warmer than threshold (cff1) - change nothing
@@ -527,44 +447,8 @@
 !  apply correction.
 !-----------------------------------------------------------------------
 !
-<<<<<<< HEAD
       DO j=JstrR,JendR
         DO i=IstrR,IendR
-=======
-#   if defined FOUR_DVAR && defined NL_BULK_FLUXES
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
-          IF (Nrun.eq.1) THEN
-#    if (defined BULK_FLUXES && defined EMINUSP) || defined AIR_OCEAN
-            EmP=EminusP(i,j)
-#    else
-            EmP=stflx(i,j,isalt)
-#    endif
-          ELSE
-            EmP=stflx(i,j,isalt)
-          END IF
-#    if defined SCORRECTION
-          stflx(i,j,isalt)=EmP*t(i,j,N(ng),nrhs,isalt)-                 &
-     &                     Tnudg(isalt,ng)*Hz(i,j,N(ng))*               &
-     &                     (t(i,j,N(ng),nrhs,isalt)-sss(i,j))
-#    elif defined SRELAXATION
-          stflx(i,j,isalt)=-Tnudg(isalt,ng)*Hz(i,j,N(ng))*              &
-     &                     (t(i,j,N(ng),nrhs,isalt)-sss(i,j))
-#    else
-          stflx(i,j,isalt)=EmP*t(i,j,N(ng),nrhs,isalt)
-#    endif
-          btflx(i,j,isalt)=btflx(i,j,isalt)*t(i,j,1,nrhs,isalt)
-        END DO
-      END DO
-#   else
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
-#    if (defined BULK_FLUXES && defined EMINUSP) || defined AIR_OCEAN
-          EmP=EminusP(i,j)
-#    else
-          EmP=stflx(i,j,isalt)
-#    endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   if defined SCORRECTION
 #    if defined ICE_MODEL || defined CICE_MODEL
 #     ifdef NO_SCORRECTION_ICE
@@ -590,11 +474,7 @@
      &                     (t(i,j,N(ng),nrhs,isalt)-sss(i,j))
 #     endif
 #    else
-<<<<<<< HEAD
           stflx(i,j,isalt)=stflx(i,j,isalt)*t(i,j,N(ng),nrhs,isalt)-    &
-=======
-          stflx(i,j,isalt)=EmP*t(i,j,N(ng),nrhs,isalt)-                 &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                     Tnudg(isalt,ng)*Hz(i,j,N(ng))*               &
 #     if defined SSSC_THRESHOLD
 ! limit mismatch to avoid too strong relaxation fluxes
@@ -627,11 +507,7 @@
 #    ifdef ICE_THERMO
           stflx(i,j,isalt)=stflx(i,j,isalt)
 #    else
-<<<<<<< HEAD
           stflx(i,j,isalt)=stflx(i,j,isalt)*t(i,j,N(ng),nrhs,isalt)
-=======
-          stflx(i,j,isalt)=EmP*t(i,j,N(ng),nrhs,isalt)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #    endif
 #    ifdef WET_DRY
           stflx(i,j,isalt) = rmask_wet(i,j)*stflx(i,j,isalt)
@@ -661,10 +537,6 @@
           btflx(i,j,isalt)=btflx(i,j,isalt)*t(i,j,1,nrhs,isalt)
         END DO
       END DO
-<<<<<<< HEAD
-=======
-#   endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 #  ifdef ICESHELF
 !

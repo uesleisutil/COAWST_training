@@ -2,15 +2,9 @@
 #ifdef ADJOINT
       SUBROUTINE ad_output (ng)
 !
-<<<<<<< HEAD
 !svn $Id: ad_output.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: ad_output.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -98,15 +92,7 @@
             Ldefine=.FALSE.
           END IF
           IF (Ldefine) THEN                     ! create new file or
-<<<<<<< HEAD
             Fcount=ADM(ng)%Fcount               ! inquire existing file
-=======
-            IF (iic(ng).eq.ntstart(ng)) THEN    ! inquire existing file
-              ADM(ng)%load=0                    ! reset filename counter
-            END IF
-            ADM(ng)%load=ADM(ng)%load+1
-            Fcount=ADM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             ADM(ng)%Nrec(Fcount)=0
             ifile=(iic(ng)-1)/ndefADJ(ng)+1
             IF (Master) THEN
@@ -116,10 +102,6 @@
 # ifdef DISTRIBUTE
             CALL mp_bcasts (ng, iADM, ADM(ng)%name)
 # endif
-<<<<<<< HEAD
-=======
-            ADM(ng)%files(Fcount)=TRIM(ADM(ng)%name)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (ADM(ng)%ncid.ne.-1) THEN
               CALL netcdf_close (ng, iADM, ADM(ng)%ncid)
             END IF
@@ -216,14 +198,6 @@
             Ldefine=.FALSE.
           END IF
           IF (Ldefine) THEN
-<<<<<<< HEAD
-=======
-            IF (iic(ng).eq.ntstart(ng)) THEN
-              AVG(ng)%load=0                  ! reset filename counter
-            END IF
-            AVG(ng)%load=AVG(ng)%load+1
-            Fcount=AVG(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             AVG(ng)%Nrec(Fcount)=0
             IF (ndefAVG(ng).eq.nAVG(ng)) THEN
               ifile=(iic(ng)-1)/ndefAVG(ng)
@@ -237,10 +211,6 @@
 #  ifdef DISTRIBUTE
             CALL mp_bcasts (ng, iADM, AVG(ng)%name)
 #  endif
-<<<<<<< HEAD
-=======
-            AVG(ng)%files(Fcount)=TRIM(AVG(ng)%name)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (AVG(ng)%ncid.ne.-1) THEN
               CALL netcdf_close (ng, iADM, AVG(ng)%ncid)
             END IF

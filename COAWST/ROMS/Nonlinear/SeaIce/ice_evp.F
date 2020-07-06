@@ -3,11 +3,7 @@
 #if defined ICE_MOMENTUM && defined ICE_EVP
 !
 !=======================================================================
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group                         !
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !================================================== Hernan G. Arango ===
 !                                                                      !
 !  This routine computes the parameters for elastic-viscous-plastic    !
@@ -36,11 +32,7 @@
 # include "tile.h"
 !
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_on (ng, iNLM, 52)
-=======
-      CALL wclock_on (ng, iNLM, 77, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 !
       CALL ice_evp_tile (ng, tile,                                      &
@@ -66,11 +58,7 @@
      &                   ICE(ng) % eta                                  &
      &                   )
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_off (ng, iNLM, 52)
-=======
-      CALL wclock_off (ng, iNLM, 77, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       RETURN
       END SUBROUTINE ice_evp

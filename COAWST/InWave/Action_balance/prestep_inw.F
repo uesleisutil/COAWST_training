@@ -266,7 +266,6 @@
 !
 !  First-order, upstream differences horizontal advective fluxes.
 !
-<<<<<<< HEAD
           DO j=Jstr,Jend
             DO i=Istr,Iend+1
               cff=cx(i,j,d)*on_u(i,j)
@@ -285,26 +284,6 @@
      &                cff2*AC(i,j  ,d,nstp)
             END DO
           END DO
-=======
-        DO j=Jstr,Jend
-          DO i=Istr,Iend+1
-            cff=cx(i,j,d)*on_u(i,j)
-            cff1=MAX(cff,0.0_r8)
-            cff2=MIN(cff,0.0_r8)
-            FX(i,j)=cff1*AC(i-1,j,d,nstp)+                              &
-     &             cff2*AC(i  ,j,d,nstp)
-          END DO
-        END DO
-        DO j=Jstr,Jend+1
-          DO i=Istr,Iend
-            cff=cy(i,j,d)*om_v(i,j)
-            cff1=MAX(cff,0.0_r8)
-            cff2=MIN(cff,0.0_r8)
-            FE(i,j)=cff1*AC(i,j-1,d,nstp)+                              &
-     &              cff2*AC(i,j  ,d,nstp)
-          END DO
-        END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
 !
 !  Time-step horizontal advection.
@@ -333,40 +312,24 @@
 ! Need to wrap around in theta dir. NOt always
 !
       opd=1.0_r8/pd
-<<<<<<< HEAD
       J_LOOP: DO j=Jstr,Jend
         DO i=Istr,Iend
 # if defined THETA_AC_PERIODIC
-=======
-# ifdef AC_U3HADVECTION
-      J_LOOP: DO j=Jstr,Jend
-        DO i=Istr,Iend
-#  if defined THETA_AC_PERIODIC
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           FD(i,0)=AC(i,j,ND  ,nstp)-                                    &
      &            AC(i,j,ND-1,nstp)
           FD(i,1)=AC(i,j,1       ,nstp)-                                &
      &            AC(i,j,ND  ,nstp)
-<<<<<<< HEAD
 # else
-=======
-#  else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !!IN THIS POINT IT DOESNT MATTER THE BOUNDARY CONDITION, 
 !!WE JUST PUT IT AS IF IT WAS A NO GRADIENT
 !!THE WALL BOUNDARY CONDITION WILL BE STABLISHED LATER
           FD(i,0)=0.0_r8
           FD(i,1)=0.0_r8
-<<<<<<< HEAD
 # endif
-=======
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           DO d=2,ND
             FD(i,d)=AC(i,j,d  ,nstp)-                                   &
      &              AC(i,j,d-1,nstp)
           END DO
-<<<<<<< HEAD
 # if defined THETA_AC_PERIODIC
           FD(i,ND+1)=FD(i,1)
           FD(i,ND+2)=FD(i,2)
@@ -374,15 +337,6 @@
           FD(i,ND+1)=0.0_r8
           FD(i,ND+2)=0.0_r8
 # endif
-=======
-#  if defined THETA_AC_PERIODIC
-          FD(i,ND+1)=FD(i,1)
-          FD(i,ND+2)=FD(i,2)
-#  else
-          FD(i,ND+1)=0.0_r8
-          FD(i,ND+2)=0.0_r8
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
 !
         DO i=Istr,Iend
@@ -395,7 +349,6 @@
         cff2=1.0_r8/3.0_r8
         DO i=Istr,Iend
           DO d=1,1
-<<<<<<< HEAD
 # if defined THETA_AC_PERIODIC
             cff=ct(i,j,d)*opd
 # else
@@ -413,25 +366,6 @@
      &              (AC(i,j,d ,nstp)+                                   &
      &               AC(i,j,d ,nstp))-                                  &
 # endif
-=======
-#  if defined THETA_AC_PERIODIC
-            cff=ct(i,j,d)*opd
-#  else
-#   if defined THETA_AC_WALL
-            cff=0.0_r8
-#   else
-            cff=ct(i,j,d)*opd
-#   endif
-#  endif
-            FD(i,d)=cff*0.5_r8*                                         &
-#  if defined THETA_AC_PERIODIC
-     &              (AC(i,j,ND,nstp)+                                   &
-     &               AC(i,j,d ,nstp))-                                  &
-#  else
-     &              (AC(i,j,d ,nstp)+                                   &
-     &               AC(i,j,d ,nstp))-                                  &
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &               cff1*(curvd(i,d-1)*MAX(cff,0.0_r8)+                &
      &                     curvd(i,d  )*MIN(cff,0.0_r8))
           END DO
@@ -444,7 +378,6 @@
      &                     curvd(i,d  )*MIN(cff,0.0_r8))
           END DO
           DO d=ND+1,ND+1
-<<<<<<< HEAD
 # if defined THETA_AC_PERIODIC
             cff=ct(i,j,d)*opd
 # else
@@ -462,82 +395,10 @@
      &              (AC(i,j,ND,nstp)+                                   &
      &               AC(i,j,ND,nstp))-                                  &
 # endif
-=======
-#  if defined THETA_AC_PERIODIC
-            cff=ct(i,j,d)*opd
-#  else
-#   if defined THETA_AC_WALL
-            cff=0.0_r8
-#   else
-            cff=ct(i,j,d)*opd
-#   endif
-#  endif
-            FD(i,d)=cff*0.5_r8*                                         &
-#  if defined THETA_AC_PERIODIC
-     &              (AC(i,j,ND,nstp)+                                   &
-     &               AC(i,j,1 ,nstp))-                                  &
-#  else
-     &              (AC(i,j,ND,nstp)+                                   &
-     &               AC(i,j,ND,nstp))-                                  &
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &               cff1*(curvd(i,d-1)*MAX(cff,0.0_r8)+                &
      &                     curvd(i,d  )*MIN(cff,0.0_r8))
           END DO
         END DO
-<<<<<<< HEAD
-=======
-# elif defined AC_MPDATA || defined AC_HSIMT
-!
-!  First-order, upstream differences horizontal advective fluxes.
-!
-      J_LOOP: DO j=Jstr,Jend
-        DO d=1,1
-          DO i=Istr,Iend
-#  if defined THETA_AC_WALL
-            cff=0.0_r8
-#  else
-            cff=ct(i,j,d)*opd
-#  endif
-            cff1=MAX(cff,0.0_r8)
-            cff2=MIN(cff,0.0_r8)
-#  if defined THETA_AC_PERIODIC
-            FD(i,d)=cff1*AC(i,j,ND, nstp)+                             &
-     &              cff2*AC(i,j,d  ,nstp)
-#  else
-            FD(i,d)=cff2*AC(i,j,d  ,nstp)
-#  endif
-          END DO
-        END DO
-        DO d=2,ND
-          DO i=Istr,Iend
-            cff=ct(i,j,d)*opd
-            cff1=MAX(cff,0.0_r8)
-            cff2=MIN(cff,0.0_r8)
-            FD(i,d)=cff1*AC(i,j,d-1,nstp)+                             &
-     &              cff2*AC(i,j,d  ,nstp)
-          END DO
-        END DO
-        DO d=ND+1,ND+1
-          DO i=Istr,Iend
-#  if defined THETA_AC_WALL
-            cff=0.0_r8
-#  else
-            cff=ct(i,j,d)*opd
-#  endif
-            cff=ct(i,j,d)*opd
-            cff1=MAX(cff,0.0_r8)
-            cff2=MIN(cff,0.0_r8)
-#  if defined THETA_AC_PERIODIC
-            FD(i,d)=cff1*AC(i,j,d-1,nstp)+                             &
-     &              cff2*AC(i,j,  1,nstp)
-#  else
-            FD(i,d)=cff1*AC(i,j,d-1,nstp)
-#  endif
-          END DO
-        END DO
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Time-step directional advection.
 !

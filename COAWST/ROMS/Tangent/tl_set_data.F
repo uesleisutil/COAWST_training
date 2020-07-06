@@ -2,15 +2,9 @@
 #ifdef TANGENT
       SUBROUTINE tl_set_data (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: tl_set_data.F 900 2018-03-21 03:23:08Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: tl_set_data.F 1012 2020-03-04 22:09:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -1542,11 +1536,6 @@
      &                       update)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
-<<<<<<< HEAD
-=======
-
-#   ifndef SOLVE3D
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Set 2D momentum forcing.
 !
@@ -1565,12 +1554,8 @@
      &                       update)
         IF (FoundError(exit_flag, NoError, __LINE__,                    &
      &                 __FILE__)) RETURN
-<<<<<<< HEAD
 
 #   ifdef SOLVE3D
-=======
-#   else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Set 3D momentum forcing.
 !

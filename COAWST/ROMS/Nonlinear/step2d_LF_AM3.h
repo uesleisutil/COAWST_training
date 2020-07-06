@@ -1,11 +1,7 @@
 #ifdef NONLINEAR
       SUBROUTINE step2d (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: step2d_LF_AM3.h 889 2018-02-10 03:32:52Z arango $
-=======
-!svn $Id: step2d_LF_AM3.h 995 2020-01-10 04:01:28Z arango $
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !=======================================================================
 !                                                                      !
 !  Nonlinear shallow-water primitive equations predictor (Leap-frog)   !
@@ -400,10 +396,7 @@
       real(r8), intent(inout) :: rmask_wet(LBi:,LBj:)
       real(r8), intent(inout) :: umask_wet(LBi:,LBj:)
       real(r8), intent(inout) :: vmask_wet(LBi:,LBj:)
-<<<<<<< HEAD
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   ifdef SOLVE3D
       real(r8), intent(inout) :: umask_diff(LBi:,LBj:)
       real(r8), intent(inout) :: vmask_diff(LBi:,LBj:)
@@ -542,10 +535,7 @@
       real(r8), intent(inout) :: rmask_wet(LBi:UBi,LBj:UBj)
       real(r8), intent(inout) :: umask_wet(LBi:UBi,LBj:UBj)
       real(r8), intent(inout) :: vmask_wet(LBi:UBi,LBj:UBj)
-<<<<<<< HEAD
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   ifdef SOLVE3D
       real(r8), intent(inout) :: umask_diff(LBi:UBi,LBj:UBj)
       real(r8), intent(inout) :: vmask_diff(LBi:UBi,LBj:UBj)

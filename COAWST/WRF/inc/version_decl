@@ -1,5 +1,1 @@
-<<<<<<< HEAD
    CHARACTER (LEN=10) :: release_version = 'V4.0.3    '
-=======
-   CHARACTER (LEN=*), PARAMETER :: release_version = 'V4.1.5'
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

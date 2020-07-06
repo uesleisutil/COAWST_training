@@ -2,11 +2,7 @@
       SUBROUTINE biology (ng,tile)
 !
 !========================================== Alexander F. Shchepetkin ===
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group                         !
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !================================================== Hernan G. Arango ===
 !                                                                      !
 !  This routine computes the biological sources and sinks and adds     !
@@ -47,11 +43,7 @@
       END IF
 !
 #ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_on (ng, iNLM, 15)
-=======
-      CALL wclock_on (ng, iNLM, 15, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
       CALL biology_tile (ng, tile,                                      &
      &                   LBi, UBi, LBj, UBj,                            &
@@ -104,11 +96,7 @@
      &                   OCEAN(ng) % t)
 
 #ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_off (ng, iNLM, 15)
-=======
-      CALL wclock_off (ng, iNLM, 15, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
       RETURN
       END SUBROUTINE biology
@@ -168,10 +156,6 @@
       USE mod_ocean
       USE mod_grid
       USE mod_biology
-<<<<<<< HEAD
-=======
-      USE dateclock_mod,   ONLY : caldate
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #if defined CLIM_ICE_1D
       USE mod_clima
 #endif
@@ -294,20 +278,13 @@
       integer :: ibioBI
 #endif
       integer :: Iter,is
-<<<<<<< HEAD
       integer :: iday, month, year
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8) :: cff1, cff2, cff3,cff4
       real(r8) :: Drate, Pmax, NOup, NHup
       real(r8) :: dtdays
       real(r8) :: LightLim, NOLim, NHLim, IronLim
-<<<<<<< HEAD
       real(r8) :: hour, yday, lat, k_phy, Dl, Par1
-=======
-      real(r8) :: yday, lat, k_phy, Dl, Par1
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8) :: Sal1, Temp1
 !      , TmaxPhS, KtBm_PhS, TmaxPhL, KtBm_PhL,TmaxMZS,KtBm_MZS,TmaxMZL,KtBm_MZL
       real(r8) :: ParMax,BasalMet
@@ -384,11 +361,7 @@
 !----------------------
 #include "set_bounds.h"
 !
-<<<<<<< HEAD
       CALL caldate (r_date, tdays(ng), year, yday, month, iday, hour)
-=======
-      CALL caldate(tdays(ng), yd_dp=yday)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       dtdays = dt(ng)*sec2day/REAL(BioIter(ng),r8)
       k_phy = k_chl / ccr
 !
@@ -3837,7 +3810,4 @@
      &             / Pmax1 / CrChlRatio1 )
        GetLightLim2 = LightLim
       END FUNCTION GetLightLim2
-<<<<<<< HEAD
  
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

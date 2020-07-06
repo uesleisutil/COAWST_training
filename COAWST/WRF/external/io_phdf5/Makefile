@@ -32,15 +32,8 @@ wrf-phdf5.o:             wrf-phdf5.F90 wrf-phdf5attr.o wrf-phdf5support.o
 			$(FC) $(FFLAGS) -c wrf-phdf5.f90
 
 clean:
-<<<<<<< HEAD
 	/bin/rm -f *.f90 *.o *.mod
 
 superclean: clean
 	/bin/rm -f libwrfio_phdf5.a
-=======
-	@/bin/rm -f *.f90 *.o *.mod
-
-superclean: clean
-	@/bin/rm -f libwrfio_phdf5.a
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 

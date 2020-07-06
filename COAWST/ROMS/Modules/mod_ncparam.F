@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE mod_ncparam
 !
-<<<<<<< HEAD
 !svn $Id: mod_ncparam.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: mod_ncparam.F 1001 2020-01-10 22:41:16Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -66,10 +60,6 @@
 !               Finfo( 8,*) => minimum value for current data.         !
 !               Finfo( 9,*) => maximum value for current data.         !
 !               Finfo(10,*) => value of scale_factor attribute if any. !
-<<<<<<< HEAD
-=======
-!               Finfo(11,*) => value of add_offset attribute if any.   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Fscale     Scale to convert input data to model units.              !
 !  Fpoint     Latest two-time records of input point data.             !
 !  Tintrp     Time (sec) of latest field snapshots used for            !
@@ -91,15 +81,6 @@
         integer, parameter :: MV = 1400
         integer, parameter :: NV = 1400
 !
-<<<<<<< HEAD
-=======
-!  Maximum number of dimension IDs stored in local array DimIDs used to
-!  defined variable dimensions in output NetCDF files.
-!
-!       integer, parameter :: nDimID = 33
-        integer, parameter :: nDimID = 35
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Input/output grid-type variables.
 !
         integer, parameter :: p2dvar = 1         ! 2D PSI-variable
@@ -112,16 +93,8 @@
         integer, parameter :: v3dvar = 8         ! 3D V-variable
         integer, parameter :: w3dvar = 9         ! 3D W-variable
         integer, parameter :: b3dvar = 10        ! 3D BED-sediment
-<<<<<<< HEAD
 #ifdef SPECTRAL_LIGHT
         integer, parameter :: s3dvar = 11        ! 3D spectral light variable
-=======
-        integer, parameter :: l3dvar = 11        ! 3D spectral light
-        integer, parameter :: l4dvar = 12        ! 4D spectral light
-
-#ifdef SPECTRAL_LIGHT
-        integer, parameter :: s3dvar = 13        ! jcw 8/5/19 3D spectral light variable
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 !
 !  Number of horizontal interior and boundary water points.
@@ -238,11 +211,6 @@
         integer  :: idHice        ! depth of ice cover
         integer  :: idHsbl        ! depth of surface boundary layer
         integer  :: idHsno        ! depth of snow cover
-<<<<<<< HEAD
-=======
-        integer  :: idIncr        ! 4D-Var analysis increment
-        integer  :: idInno        ! 4D-Var innovation vector
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         integer  :: idKhor        ! convolution horizontal diffusion
         integer  :: idKver        ! convolution vertical diffusion
         integer  :: idLdwn        ! downwelling longwave radiation flux
@@ -318,10 +286,6 @@
         integer  :: idSSTc        ! SST climatology
         integer  :: idShea        ! net sensible heat flux
         integer  :: idSWCW        ! SIN(omega(k)*t)*COS(omega(l)*t)
-<<<<<<< HEAD
-=======
-        integer  :: idResi        ! 4D-Var residual vector
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         integer  :: idsfwf        ! surface freswater flux
         integer  :: idTLmo        ! TLM at observation locations
         integer  :: idTair        ! surface air temperature
@@ -423,10 +387,6 @@
         integer  :: idW3yy        ! 3D radiation stress, Syy-component
         integer  :: idW3zx        ! 3D radiation stress, Szx-component
         integer  :: idW3zy        ! 3D radiation stress, Szy-component
-<<<<<<< HEAD
-=======
-        integer  :: idWads        ! 3D W-velocity adjoint sensitivity
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         integer  :: idW3Sd        ! 3D W-Stokes omega drift velocity
         integer  :: idW3St        ! 3D W-Stokes vertical drift velocity
         integer  :: idWamp        ! wave amplitude
@@ -470,13 +430,7 @@
         integer  :: idUnms         ! surface U-momentum stress (NCEP)
         integer  :: idVnms         ! surface V-momentum stress (NCEP)
 
-<<<<<<< HEAD
         integer  :: idTimid        ! interior ice temperature
-=======
-! Ice variables
-        integer  :: idTimid        ! interior ice temperature
-        integer  :: idT2ice        ! top of ice temperature
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         integer  :: idTauiw        ! ice-water friction velocity
         integer  :: idChuiw        ! ice-water momentum transfer coefficient
         integer  :: idS0mk         ! salinity of molecular sub-layer under ice
@@ -505,34 +459,8 @@
         integer  :: idSig12        ! internal ice stress component 12
         integer  :: idAIclm        ! ice concentration climatology
         integer  :: idHIclm        ! ice thickness climatology
-<<<<<<< HEAD
         integer  :: idUIclm        ! ice u-velocity climatology
         integer  :: idVIclm        ! ice v-velocity climatology
-=======
-        integer  :: idHSNclm       ! ice thickness climatology
-        integer  :: idS11clm       ! ice sigma11 climatology
-        integer  :: idS12clm       ! ice sigma12 climatology
-        integer  :: idS22clm       ! ice sigma22 climatology
-        integer  :: idUIclm        ! ice u-velocity climatology
-        integer  :: idVIclm        ! ice v-velocity climatology
-! Ice diagnostics
-        integer  :: idAlbI         ! shortwave albedo of ice
-        integer  :: idLWdn         ! downward longwave
-        integer  :: idSWdn         ! downward shortwave
-        integer  :: idLatI         ! latent heat flux over ice
-        integer  :: idSenI         ! sensible heat flux over ice
-        integer  :: idLWupI        ! upward longwave from ice
-        integer  :: idSWupI        ! upward shortwave from ice
-        integer  :: idSWinI        ! upward shortwave from ice
-        integer  :: idSWthruI      ! shortwave through ice
-        integer  :: idSaltI        ! salt flux from ice
-        integer  :: idSaltL        ! salt flux from leads
-        integer  :: idQao          ! heat flux in leads
-        integer  :: idQai          ! heat flux ice to atmosphere
-        integer  :: idQio          ! heat flux ocean to ice
-        integer  :: idQi2          ! heat flux ocean to ice
-        integer  :: idSnoI         ! snow-ice conversion
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
         integer, allocatable :: idRtrc(:)    ! river runoff for tracers
         integer, allocatable :: idsurT(:)    ! model surface tracers
@@ -664,13 +592,6 @@
 !
         integer, allocatable :: ncFRCid(:,:)
 !
-<<<<<<< HEAD
-=======
-!  Input river NetCDF files IDs.
-!
-!       integer, allocatable :: ncSSFid(:,:)
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Flags to create output files.
 !
         integer, allocatable :: idefADJ(:)    ! adjoint file
@@ -700,11 +621,7 @@
         real(dp), allocatable :: Tintrp(:,:,:)
         real(dp), allocatable :: Vtime(:,:,:)
 
-<<<<<<< HEAD
         character (len=5  ) :: version = '3.7  '
-=======
-        character (len=5  ) :: version = '3.8  '
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         character (len=40 ) :: varnam(MV)
         character (len=44 ) :: date_str
         character (len=46 ) :: Tname(0:NV)
@@ -728,21 +645,11 @@
         character (len=256), dimension(4) :: BIONAME
 #endif
 !
-<<<<<<< HEAD
 !  SVN revision and repository root URL.
 !
         character (len=40 ) :: svn_rev
         character (len=256) :: svn_url
 !
-=======
-!  GIT and SVN revision and repository root URL.
-!
-        character (len=80 ) :: git_rev, svn_rev
-        character (len=256) :: git_url, svn_url
-!
-        integer             :: git_status = 0
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CONTAINS
 !
       SUBROUTINE allocate_ncparam
@@ -1097,13 +1004,8 @@
       END IF
 
       IF (.not.allocated(Finfo)) THEN
-<<<<<<< HEAD
         allocate ( Finfo(10,NV,Ngrids) )
         Dmem(1)=Dmem(1)+10.0_r8*REAL(NV*Ngrids,r8)
-=======
-        allocate ( Finfo(11,NV,Ngrids) )
-        Dmem(1)=Dmem(1)+11.0_r8*REAL(NV*Ngrids,r8)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       END IF
       IF (.not.allocated(Fpoint)) THEN
         allocate ( Fpoint(2,NV,Ngrids) )
@@ -1315,10 +1217,6 @@
       isSig22=ic+11
       ic=ic+11
 #endif
-<<<<<<< HEAD
-=======
-      isWvel=ic+1
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Set generic lateral boundary indices for LBC structure.  Use the same
 !  values of the state variables at the same C-grid location.  Generic
@@ -1372,10 +1270,6 @@
           Finfo(6,i,ng)=0.0_r8
           Finfo(7,i,ng)=0.0_r8
           Finfo(10,i,ng)=1.0_r8
-<<<<<<< HEAD
-=======
-          Finfo(11,i,ng)=0.0_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Fscale(i,ng)=1.0_r8
           Fpoint(1,i,ng)=0.0_r8
           Fpoint(2,i,ng)=0.0_r8
@@ -1386,43 +1280,9 @@
           ncBRYid(i,ng)=-1
           ncCLMid(i,ng)=-1
           ncFRCid(i,ng)=-1
-<<<<<<< HEAD
         END DO
       END DO
 !
-=======
-!         ncSSFid(i,ng)=-1
-        END DO
-      END DO
-!
-!  Set GIT and SVN Repository Root URL and revision.  Their values are
-!  assigned in the 'makefile' to the CPPFLAGS macro.
-!
-#ifdef GIT_URL
-      git_url=GIT_URL
-#else
-      git_url='https://www.myroms.org/git/src'
-#endif
-#ifdef GIT_REV
-      git_rev=GIT_REV
-#else
-      git_rev=' '
-#endif
-#ifdef GIT_STATUS
-      git_status=GIT_STATUS
-#endif
-!
-#ifdef SVN_URL
-      svn_url=SVN_URL
-#else
-! Maybe I should put the COAWST URL here...
-      svn_url='https://myroms.org/svn'
-#endif
-#ifdef SVN_REV
-      svn_rev=SVN_REV
-#endif
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !-----------------------------------------------------------------------
 !  Define names of variables for Input/Output NetCDF files.
 !-----------------------------------------------------------------------
@@ -1436,20 +1296,14 @@
       STOP
   20  CONTINUE
 !
-<<<<<<< HEAD
 !  Read in variable information.  Ignore blank and comment [char(33)=!]
 !  input lines.
-=======
-!  Read in variable information.  Ignore blank, comment [char(33)=!]
-!  input lines, and URL line [char(36)=$].
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       varid=0
       DO WHILE (.TRUE.)
         READ (inp,*,ERR=30,END=40) Vinfo(1)
         Lvar=LEN_TRIM(Vinfo(1))
 !
-<<<<<<< HEAD
 !  Extract SVN Repository Root URL.
 !
         IF ((Lvar.gt.0).and.(Vinfo(1)(1:1).eq.CHAR(36))) THEN
@@ -1467,13 +1321,6 @@
 !  Read in other variable information.
 !
         ELSE IF ((Lvar.gt.0).and.(Vinfo(1)(1:1).ne.CHAR(33))) THEN
-=======
-!  Read in other variable information.
-!
-        IF ((Lvar.gt.0).and.                                            &
-     &      (Vinfo(1)(1:1).ne.CHAR(33)).and.                            &
-     &      (Vinfo(1)(1:1).ne.CHAR(36))) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           READ (inp,*,ERR=30) Vinfo(2)
           READ (inp,*,ERR=30) Vinfo(3)
           READ (inp,*,ERR=30) Vinfo(4)
@@ -1505,15 +1352,6 @@
               gtype=w3dvar
             CASE ('b3dvar')
               gtype=b3dvar
-<<<<<<< HEAD
-=======
-#if defined ECOSIM && defined DIAGNOSTICS_BIO
-            CASE ('l3dvar')
-              gtype=l3dvar
-            CASE ('l4dvar')
-              gtype=l4dvar
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef SPECTRAL_LIGHT
             CASE ('s3dvar')
               gtype=s3dvar
@@ -1866,11 +1704,6 @@
             CASE ('idHbbl')
               idHbbl=varid
 #ifdef INWAVE_MODEL
-<<<<<<< HEAD
-=======
-              CASE ('idACkc')
-                idACkc=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               CASE ('idACtp')
                 idACtp=varid
               CASE ('idACag')
@@ -1893,11 +1726,6 @@
                 idACbc(isouth)=varid
               CASE ('idACbc(inorth)')
                 idACbc(inorth)=varid
-<<<<<<< HEAD
-=======
-              CASE ('idACbz')
-               idACbz=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #ifdef ICE_MODEL
             CASE ('idAibc(iwest)')
@@ -2438,13 +2266,6 @@
               idBgEr=varid
             CASE ('idBgTh')
               idBgTh=varid
-<<<<<<< HEAD
-=======
-            CASE ('idIncr')
-              idIncr=varid
-            CASE ('idInno')
-              idInno=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             CASE ('idNLmi')
               idNLmi=varid
             CASE ('idNLmo')
@@ -2479,13 +2300,8 @@
               idOtyp=varid
             CASE ('idOval')
               idOval=varid
-<<<<<<< HEAD
             CASE ('idOvar')
               idOvar=varid
-=======
-            CASE ('idResi')
-              idResi=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             CASE ('idKhor')
               idKhor=varid
             CASE ('idKver')
@@ -2544,11 +2360,6 @@
                 idTice=varid
               CASE ('idTimid')
                 idTimid=varid
-<<<<<<< HEAD
-=======
-              CASE ('idT2ice')
-                idT2ice=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               CASE ('idTauiw')
                 idTauiw=varid
               CASE ('idChuiw')
@@ -2587,57 +2398,10 @@
                 idAIclm=varid
               CASE ('idHIclm')
                 idHIclm=varid
-<<<<<<< HEAD
-=======
-              CASE ('idHSNclm')
-                idHSNclm=varid
-              CASE ('idS11clm')
-                idS11clm=varid
-              CASE ('idS12clm')
-                idS12clm=varid
-              CASE ('idS22clm')
-                idS22clm=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               CASE ('idUIclm')
                 idUIclm=varid
               CASE ('idVIclm')
                 idVIclm=varid
-<<<<<<< HEAD
-=======
-! Ice diagnostics
-              CASE ('idAlbI')
-                idAlbI=varid
-              CASE ('idLWdn')
-                idLWdn=varid
-              CASE ('idSWdn')
-                idSWdn=varid
-              CASE ('idLatI')
-                idLatI=varid
-              CASE ('idSenI')
-                idSenI=varid
-              CASE ('idLWupI')
-                idLWupI=varid
-              CASE ('idSWupI')
-                idSWupI=varid
-              CASE ('idSWinI')
-                idSWinI=varid
-              CASE ('idSWthruI')
-                idSWthruI=varid
-              CASE ('idSaltI')
-                idSaltI=varid
-              CASE ('idSaltL')
-                idSaltL=varid
-              CASE ('idQao')
-                idQao=varid
-              CASE ('idQai')
-                idQai=varid
-              CASE ('idQio')
-                idQio=varid
-              CASE ('idQi2')
-                idQi2=varid
-              CASE ('idSnoI')
-                idSnoI=varid
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 
 #ifdef BIOLOGY

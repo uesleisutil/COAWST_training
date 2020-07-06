@@ -20,7 +20,6 @@ all:
 
 clean:
 #	-@if [ -d MAP_plot ]; then $(CD) MAP_plot ; $(MAKE) clean ; fi
-<<<<<<< HEAD
 	$(RM) core .tmpfile compiler_macros
 	$(RM) *.exe
 	$(RM) *.out
@@ -29,14 +28,4 @@ clean:
 	$(RM) HEIGHT.txt PRES.txt TEMP.txt RH.txt WIND.txt
 	$(RM) obs_ssmi*.3dvar obs_gts*.3dvar
 	($(CD) src ; $(RM) *.o *.f core *.kmo ctmi* *.mod *.lst *_out_* output *.out obsproc.exe )
-=======
-	@$(RM) core .tmpfile compiler_macros
-	@$(RM) *.exe
-	@$(RM) *.out
-	@$(RM) fort.*
-	@$(RM) obs_gts.ascii.* *.diag
-	@$(RM) HEIGHT.txt PRES.txt TEMP.txt RH.txt WIND.txt
-	@$(RM) obs_ssmi*.3dvar obs_gts*.3dvar
-	@($(CD) src ; $(RM) *.o *.f core *.kmo ctmi* *.mod *.lst *_out_* output *.out obsproc.exe )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 

@@ -34,15 +34,8 @@ subroutine da_check_max_iv_polaramv(iv,it,num_qcstat_conv)
                        num_qcstat_conv(1,polaramv,1,ipr) = num_qcstat_conv(1,polaramv,1,ipr) + 1
                        if(failed) then
                           num_qcstat_conv(2,polaramv,1,ipr) = num_qcstat_conv(2,polaramv,1,ipr) + 1
-<<<<<<< HEAD
                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                           'polaramv',ob_vars(1),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-=======
-                          if ( write_rej_obs_conv ) then
-                          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                          'polaramv',ob_vars(1),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-                          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                        end if
                    end if
                 end if
@@ -54,15 +47,8 @@ subroutine da_check_max_iv_polaramv(iv,it,num_qcstat_conv)
                         num_qcstat_conv(1,polaramv,2,ipr) = num_qcstat_conv(1,polaramv,2,ipr) + 1
                         if(failed)then
                            num_qcstat_conv(2,polaramv,2,ipr) = num_qcstat_conv(2,polaramv,2,ipr) + 1
-<<<<<<< HEAD
                            write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                            'polaramv',ob_vars(2),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-=======
-                           if ( write_rej_obs_conv ) then
-                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                           'polaramv',ob_vars(2),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-                           end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                         end if
                     end if
                 end if
@@ -76,15 +62,8 @@ subroutine da_check_max_iv_polaramv(iv,it,num_qcstat_conv)
                         num_qcstat_conv(1,polaramv,1,ipr) = num_qcstat_conv(1,polaramv,1,ipr) + 1
                         if(failed) then
                            num_qcstat_conv(2,polaramv,1,ipr) = num_qcstat_conv(2,polaramv,1,ipr) + 1
-<<<<<<< HEAD
                            write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                            'polaramv',ob_vars(1),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-=======
-                           if ( write_rej_obs_conv ) then
-                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                           'polaramv',ob_vars(1),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-                           end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                         end if
                     end if
                 end if
@@ -96,15 +75,8 @@ subroutine da_check_max_iv_polaramv(iv,it,num_qcstat_conv)
                         num_qcstat_conv(1,polaramv,2,ipr) = num_qcstat_conv(1,polaramv,2,ipr) + 1
                         if(failed)then
                            num_qcstat_conv(2,polaramv,2,ipr) = num_qcstat_conv(2,polaramv,2,ipr) + 1
-<<<<<<< HEAD
                            write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                            'polaramv',ob_vars(2),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-=======
-                           if ( write_rej_obs_conv ) then
-                           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                           'polaramv',ob_vars(2),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-                           end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                         end if
                     end if
                  end if
@@ -142,23 +114,11 @@ subroutine da_check_max_iv_polaramv(iv,it,num_qcstat_conv)
 
                  if(failed1 .or. failed2) then
                     num_qcstat_conv(2,polaramv,1,ipr) = num_qcstat_conv(2,polaramv,1,ipr) + 1
-<<<<<<< HEAD
                     write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                           'polaramv',ob_vars(1),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
                     num_qcstat_conv(2,polaramv,2,ipr) = num_qcstat_conv(2,polaramv,2,ipr) + 1
                     write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
                           'polaramv',ob_vars(2),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-=======
-                    if ( write_rej_obs_conv ) then
-                    write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                          'polaramv',ob_vars(1),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-                    end if
-                    num_qcstat_conv(2,polaramv,2,ipr) = num_qcstat_conv(2,polaramv,2,ipr) + 1
-                    if ( write_rej_obs_conv ) then
-                    write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-                          'polaramv',ob_vars(2),iv%info(polaramv)%lat(k,n),iv%info(polaramv)%lon(k,n),0.01*iv%polaramv(n)%p(k)
-                    end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                  end if
              end if
           end if

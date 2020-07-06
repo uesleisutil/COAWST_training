@@ -14,10 +14,6 @@ subroutine da_write_obs(it,ob, iv, re)
    integer                     :: n, k, num_obs, ios
    integer                     :: ounit     ! Output unit           
    character(len=filename_len) :: filename
-<<<<<<< HEAD
-=======
-   integer :: itime, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    if (trace_use) call da_trace_entry("da_write_obs")
 
@@ -48,22 +44,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'synop', num_obs  
       num_obs = 0
       do n = 1, iv%info(synop)%nlocal  
-<<<<<<< HEAD
          if (iv%info(synop)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)') 1                                 
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(synop)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(synop)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(synop)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                num_obs , 1, iv%info(synop)%id(n), &  ! Station
                iv%info(synop)%lat(1,n), &       ! Latitude
@@ -96,22 +79,9 @@ subroutine da_write_obs(it,ob, iv, re)
      write(ounit,'(a20,i8)')'metar', num_obs  
      num_obs = 0
      do n = 1, iv%info(metar)%nlocal  
-<<<<<<< HEAD
         if (iv%info(metar)%proc_domain(1,n)) then
            num_obs = num_obs + 1
            write(ounit,'(i8)') 1                                 
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(metar)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(metar)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-        if (iv%info(metar)%proc_domain(1,n)) then
-           num_obs = num_obs + 1
-           write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
               num_obs  , 1, iv%info(metar)%id(n), &  ! Station
               iv%info(metar)%lat(1,n), &       ! Latitude
@@ -144,20 +114,8 @@ subroutine da_write_obs(it,ob, iv, re)
      write(ounit,'(a20,i8)')'ships', num_obs    
      num_obs = 0
      do n = 1, iv%info(ships)%nlocal  
-<<<<<<< HEAD
         if (iv%info(ships)%proc_domain(1,n)) then
            write(ounit,'(i8)') 1                                 
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(ships)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(ships)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-        if (iv%info(ships)%proc_domain(1,n)) then
-           write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            num_obs = num_obs + 1
            write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
               num_obs,1, iv%info(ships)%id(n), &  ! Station
@@ -191,22 +149,9 @@ subroutine da_write_obs(it,ob, iv, re)
      write(ounit,'(a20,i8)')'geoamv', num_obs    
      num_obs = 0
      do n = 1, iv%info(geoamv)%nlocal
-<<<<<<< HEAD
         if (iv%info(geoamv)%proc_domain(1,n)) then                  
            num_obs = num_obs + 1
            write(ounit,'(i8)')iv%info(geoamv)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(geoamv)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(geoamv)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-        if (iv%info(geoamv)%proc_domain(1,n)) then                  
-           num_obs = num_obs + 1
-           write(ounit,'(2i8)')iv%info(geoamv)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            do k = 1, iv%info(geoamv)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                   num_obs, 1, iv%info(geoamv)%id(n), &  ! Station
@@ -232,22 +177,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'polaramv', num_obs      
       num_obs = 0
       do n = 1, iv%info(polaramv)%nlocal
-<<<<<<< HEAD
          if (iv%info(polaramv)%proc_domain(1,n)) then                    
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(polaramv)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(polaramv)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(polaramv)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(polaramv)%proc_domain(1,n)) then                    
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(polaramv)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(polaramv)%levels(n)
                 write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                    num_obs, 1, iv%info(polaramv)%id(n), &  ! Station
@@ -273,22 +205,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'gpspw', num_obs    
       num_obs = 0
       do n = 1, iv%info(gpspw)%nlocal
-<<<<<<< HEAD
          if (iv%info(gpspw)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)') 1                                 
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(gpspw)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(gpspw)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(gpspw)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                num_obs, 1, iv%info(gpspw)%id(n), &  ! Station
                iv%info(gpspw)%lat(1,n), &       ! Latitude
@@ -309,22 +228,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'sound', num_obs    
       num_obs = 0
       do n = 1, iv%info(sound)%nlocal
-<<<<<<< HEAD
          if (iv%info(sound)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(sound)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(sound)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(sound)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(sound)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(sound)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(sound)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                   num_obs,k, iv%info(sound)%id(n), &  ! Station
@@ -352,22 +258,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'sonde_sfc', num_obs    
       num_obs = 0
       do n = 1, iv%info(sonde_sfc)%nlocal
-<<<<<<< HEAD
          if (iv%info(sound)%proc_domain(1,n)) then 
             num_obs = num_obs + 1
             write(ounit,'(i8)') 1
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(sonde_sfc)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(sonde_sfc)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(sound)%proc_domain(1,n)) then 
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                num_obs , 1, iv%info(sonde_sfc)%id(n), &  ! Station
                iv%info(sonde_sfc)%lat(1,n), &       ! Latitude
@@ -400,22 +293,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'airep', num_obs  
       num_obs = 0
       do n = 1, iv%info(airep)%nlocal
-<<<<<<< HEAD
          if (iv%info(airep)%proc_domain(1,n)) then                  
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(airep)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(airep)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(airep)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(airep)%proc_domain(1,n)) then                  
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(airep)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(airep)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,4(2f17.7,i8,2f17.7),f12.2)')&
                   num_obs, k, iv%info(airep)%id(n), &  ! Station
@@ -447,22 +327,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'pilot', num_obs   
       num_obs = 0
       do n = 1, iv%info(pilot)%nlocal
-<<<<<<< HEAD
          if (iv%info(pilot)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(pilot)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(pilot)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(pilot)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(pilot)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(pilot)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(pilot)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                   num_obs, k, iv%info(pilot)%id(n), &  ! Station
@@ -637,22 +504,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'qscat', num_obs   
       num_obs = 0
       do n = 1, iv%info(qscat)%nlocal  
-<<<<<<< HEAD
          if (iv%info(qscat)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)') 1
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(qscat)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(qscat)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(qscat)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                 num_obs, 1, iv%info(qscat)%id(n), &  ! Station
                 iv%info(qscat)%lat(1,n), &       ! Latitude
@@ -676,22 +530,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'profiler',  num_obs
       num_obs = 0
       do n = 1, iv%info(profiler)%nlocal
-<<<<<<< HEAD
          if (iv%info(profiler)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(profiler)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(profiler)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(profiler)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(profiler)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(profiler)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(profiler)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                   num_obs, k, iv%info(profiler)%id(n), &  ! Station
@@ -717,22 +558,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'buoy', num_obs
       num_obs = 0
       do n = 1, iv%info(buoy)%nlocal  
-<<<<<<< HEAD
          if (iv%info(buoy)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)') 1
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(buoy)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(buoy)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(buoy)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                num_obs,1, iv%info(buoy)%id(n), &  ! Station
                iv%info(buoy)%lat(1,n), &       ! Latitude
@@ -808,22 +636,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'airsr', num_obs    
       num_obs = 0
       do n = 1, iv%info(airsr)%nlocal
-<<<<<<< HEAD
          if (iv%info(airsr)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(airsr)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(airsr)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(airsr)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(airsr)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(airsr)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(airsr)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                   num_obs,k, iv%info(airsr)%id(n), &  ! Station
@@ -849,22 +664,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'gpsref', num_obs
        num_obs = 0
       do n = 1, iv%info(gpsref)%nlocal
-<<<<<<< HEAD
          if (iv%info(gpsref)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(gpsref)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(gpsref)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(gpsref)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(gpsref)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(gpsref)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(gpsref)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                   num_obs,k, iv%info(gpsref)%id(n), &  ! Station
@@ -887,24 +689,10 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'gpseph', num_obs
       num_obs = 0
       do n = 1, iv%info(gpseph)%nlocal
-<<<<<<< HEAD
          if (iv%info(gpseph)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             !write(ounit,'(i8)')iv%info(gpseph)%levels(n)
             write(ounit,'(i8)') iv%gpseph(n)%level2 - iv%gpseph(n)%level1 + 1
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(gpseph)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(gpseph)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(gpseph)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            !write(ounit,'(i8)')iv%info(gpseph)%levels(n)
-            write(ounit,'(2i8)') iv%gpseph(n)%level2 - iv%gpseph(n)%level1 + 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             !do k = 1, iv%info(gpseph)%levels(n)
             do k = iv%gpseph(n)%level1, iv%gpseph(n)%level2
                write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
@@ -928,22 +716,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'tamdar', num_obs
       num_obs = 0
       do n = 1, iv%info(tamdar)%nlocal
-<<<<<<< HEAD
          if (iv%info(tamdar)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)')iv%info(tamdar)%levels(n)
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(tamdar)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(tamdar)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(tamdar)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)')iv%info(tamdar)%levels(n), ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             do k = 1, iv%info(tamdar)%levels(n)
                write(ounit,'(2i8,a5,2f9.2,f17.7,4(2f17.7,i8,2f17.7),f12.2)')&
                   num_obs,k, iv%info(tamdar)%id(n), &  ! Station
@@ -977,22 +752,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'tamdar_sfc', num_obs  
       num_obs = 0
       do n = 1, iv%info(tamdar_sfc)%nlocal  
-<<<<<<< HEAD
          if (iv%info(tamdar_sfc)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)') 1                                 
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(tamdar_sfc)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(tamdar_sfc)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(tamdar_sfc)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7),f12.2)')&
                num_obs , 1, iv%info(tamdar_sfc)%id(n), &  ! Station
                iv%info(tamdar_sfc)%lat(1,n), &       ! Latitude
@@ -1025,22 +787,9 @@ subroutine da_write_obs(it,ob, iv, re)
       write(ounit,'(a20,i8)')'rain', num_obs
       num_obs = 0
       do n = 1, iv%info(rain)%nlocal  
-<<<<<<< HEAD
          if (iv%info(rain)%proc_domain(1,n)) then
             num_obs = num_obs + 1
             write(ounit,'(i8)') 1
-=======
-         do itime = 1, num_fgat_time
-            if ( n >= iv%info(rain)%plocal(itime-1)+1 .and. &
-                 n <= iv%info(rain)%plocal(itime) ) then
-               ifgat = itime
-               exit
-            end if
-         end do
-         if (iv%info(rain)%proc_domain(1,n)) then
-            num_obs = num_obs + 1
-            write(ounit,'(2i8)') 1, ifgat
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             write(ounit,'(2i8,a5,2f9.2,f17.7,5(2f17.7,i8,2f17.7))')&
                num_obs,1, iv%info(rain)%id(n), &  ! Station  
                iv%info(rain)%lat(1,n), &          ! Latitude

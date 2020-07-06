@@ -39,10 +39,6 @@ subroutine da_rttov_init(iv,ob,nsensor,nchan)
    ! local variables
    !----------------
    integer               :: mxchn
-<<<<<<< HEAD
-=======
-   integer(jpim)         :: id_sensor
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
  
    if (trace_use) call da_trace_entry("da_rttov_init")
 
@@ -59,13 +55,6 @@ subroutine da_rttov_init(iv,ob,nsensor,nchan)
    allocate (opts_rt_ir(nsensor))      
    allocate (sensor(3,nsensor))
    allocate (coefs_channels(mxchn,nsensor))
-<<<<<<< HEAD
-=======
-   if ( rttov_emis_atlas_ir > 0 .or. rttov_emis_atlas_mw > 0 ) then
-      allocate (atlas_type(nsensor))
-      allocate (atlas_id(nsensor))
-   end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    sensor (1,1:nsensor)  = rtminit_platform (1:nsensor) 
    sensor (2,1:nsensor)  = rtminit_satid    (1:nsensor)
@@ -140,22 +129,6 @@ subroutine da_rttov_init(iv,ob,nsensor,nchan)
 
       iv%instid(n)%nlevels = coefs(n)%coef%nlevels
 
-<<<<<<< HEAD
-=======
-      if ( rttov_emis_atlas_ir > 0 .or. rttov_emis_atlas_mw > 0 ) then
-         id_sensor = coefs(n)%coef%id_sensor
-         atlas_type(n) = 0
-         if( id_sensor == sensor_id_ir .OR. id_sensor == sensor_id_hi ) then
-            atlas_type(n) = atlas_type_ir
-!            atlas_id(n) = uwiremis_atlas_id    !(Previous WRFDA default)
-            atlas_id(n) = rttov_emis_atlas_ir !(namelist variable, can either be 1=uwiremis or 2=camel)
-         end if
-         if( id_sensor == sensor_id_mw .OR. id_sensor == sensor_id_po ) then
-            atlas_type(n) = atlas_type_mw
-            atlas_id(n) = rttov_emis_atlas_mw !(namelist variable, can either be 1=TELSEM2 or 2=CNRW)
-         end if
-      end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    end do
 
    deallocate (sensor)

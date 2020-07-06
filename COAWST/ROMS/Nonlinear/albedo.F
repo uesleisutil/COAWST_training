@@ -4,11 +4,7 @@
 !
 !svn $Id$
 !================================================== Hernan G. Arango ===
-<<<<<<< HEAD
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group                         !
-=======
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -45,11 +41,7 @@ contains
 # include "tile.h"
 !
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_on (ng, iNLM, 17)
-=======
-      CALL wclock_on (ng, iNLM, 17, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       CALL albedo_tile (ng, tile,                                       &
      &                  LBi, UBi, LBj, UBj,                             &
@@ -68,23 +60,16 @@ contains
 #  ifdef ICE_THERMO
      &                  ICE(ng) % hsn,                                  &
      &                  ICE(ng) % tis,                                  &
-<<<<<<< HEAD
 #   ifdef MELT_PONDS
      &                  ICE(ng) % apond,                                &
      &                  ICE(ng) % hpond,                                &
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 # endif
      &                  FORCES(ng) % albedo                             &
      &                  )
 # ifdef PROFILE
-<<<<<<< HEAD
       CALL wclock_off (ng, iNLM, 17)
-=======
-      CALL wclock_off (ng, iNLM, 17, __LINE__, __FILE__)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # endif
       RETURN
       END SUBROUTINE albedo_eval
@@ -103,12 +88,9 @@ contains
      &                        ai, hi, albedo_ice,                       &
 #  ifdef ICE_THERMO
      &                        hsn, tis,                                 &
-<<<<<<< HEAD
 #   ifdef MELT_PONDS
      &                        apond, hpond,                             &
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 # endif
      &                        albedo                                    &
@@ -151,13 +133,10 @@ contains
 #   ifdef ICE_THERMO
       real(r8), intent(in) :: hsn(LBi:,LBj:,:)
       real(r8), intent(in) :: tis(LBi:,LBj:)
-<<<<<<< HEAD
 #    ifdef MELT_PONDS
       real(r8), intent(in) :: apond(LBi:,LBj:,:)
       real(r8), intent(in) :: hpond(LBi:,LBj:,:)
 #    endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   endif
 #  endif
       real(r8), intent(out) :: albedo(LBi:,LBj:)
@@ -173,13 +152,10 @@ contains
 #   ifdef ICE_THERMO
       real(r8), intent(in) :: hsn(LBi:UBi,LBj:UBj,2)
       real(r8), intent(in) :: tis(LBi:UBi,LBj:UBj)
-<<<<<<< HEAD
 #    ifdef MELT_PONDS
       real(r8), intent(in) :: apond(LBi:UBi,LBj:UBj,2)
       real(r8), intent(in) :: hpond(LBi:UBi,LBj:UBj,2)
 #    endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   endif
 #  endif
       real(r8), intent(out) :: albedo(LBi:UBi,LBj:UBj)
@@ -193,28 +169,11 @@ contains
       real(r8) :: cff
 # ifdef ICE_BULK_FLUXES
 #  ifdef ALBEDO_CSIM
-<<<<<<< HEAD
       real(r8), parameter :: alb_i_thick=0.54_r8
       real(r8) :: alb_i_dry
       real(r8) :: alb_ice, alb_snow, fh, fsn
       real(r8), parameter :: alb_s_dry=0.83_r8
       real(r8), parameter :: alb_s_wet=0.70_r8
-=======
-      real(r8) :: alb_i_dry
-      real(r8) :: alb_ice, alb_snow, fh, fsn
-! Was these values
-!     real(r8), parameter :: alb_i_thick=0.54_r8
-!     real(r8), parameter :: alb_s_dry=0.83_r8
-!     real(r8), parameter :: alb_s_wet=0.70_r8
-! Values from Ungermann et al, 2017
-!     real(r8), parameter :: alb_i_thick=0.71_r8
-!     real(r8), parameter :: alb_s_dry=0.86_r8
-!     real(r8), parameter :: alb_s_wet=0.79_r8
-! Try something intermediate
-      real(r8), parameter :: alb_i_thick=0.65_r8
-      real(r8), parameter :: alb_s_dry=0.86_r8
-      real(r8), parameter :: alb_s_wet=0.72_r8
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  else
 #ifdef ICE_BOX
       real(r8), parameter :: alb_i_dry=0.75_r8
@@ -266,15 +225,9 @@ contains
 !
 #  ifdef ICE_ALB_EC92
 ! Ice and snow albedo is calculated from Ebert and Curry,1992b
-<<<<<<< HEAD
           albi=0._r8
           albsn=0._r8
           IF (ai(i,j,listp) .gt. min_a(ng)) THEN
-=======
-          albi=0.06_r8
-          albsn=0.06_r8
-          IF (ai(i,j,listp) .ge. min_a(ng)) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             thki_n = ice_thick(i,j)
             thki_n = MAX(thki_n,0.00001_r8)
             thksn_n = snow_thick(i,j)
@@ -283,7 +236,6 @@ contains
             IF (thki_n.GE.2._r8) albi=0.561632_r8
 !approximated values for albsn(depends on COSZ, but small variation)
             albsn=0.83_r8
-<<<<<<< HEAD
 #   ifdef MELT_PONDS
             IF (apond(i,j,listp).GT.0._r8) THEN
               IF (thksn_n.GE.0.1_r8) THEN
@@ -293,8 +245,6 @@ contains
               ENDIF
             ENDIF
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             albedo_ice(i,j)=albi
             IF (hsn(i,j,listp).GT.0._r8) albedo_ice(i,j)=albsn
 !            IF (sfwat(i,j,listp).GT.0._r8) albs=0.10737_r8              &
@@ -310,13 +260,7 @@ contains
           fsn = snow_thick(i,j) / (snow_thick(i,j) + 0.02)
           alb_i_dry = alb_w*(1-fh) + alb_i_thick*fh
           cff1 = alb_s_wet - alb_s_dry
-<<<<<<< HEAD
           cff2 = -0.075      ! alb_i_wet - alb_i_dry
-=======
-!         cff2 = -0.075      ! alb_i_wet - alb_i_dry
-!  From Ungermann et al., 2017
-          cff2 = 0.0019
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (ai(i,j,listp) .gt. min_a(ng)) THEN
             IF (tis(i,j) .gt. -1.0_r8) THEN
               alb_snow = cff1*(tis(i,j)+1.0_r8)+alb_s_dry

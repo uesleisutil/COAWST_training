@@ -2,15 +2,9 @@
 
       MODULE v2dbc_mod
 !
-<<<<<<< HEAD
 !svn $Id: v2dbc_im.F 925 2018-10-09 17:08:26Z arango $
 !=======================================================================
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: v2dbc_im.F 995 2020-01-10 04:01:28Z arango $
-!=======================================================================
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                           Hernan G. Arango   !
 !========================================== Alexander F. Shchepetkin ===
@@ -109,12 +103,6 @@
       real(r8) :: bry_pgr, bry_cor, bry_str, bry_val
       real(r8) :: cff, cff1, cff2, cff3, dt2d, dVde, dVdt, dVdx
       real(r8) :: obc_in, obc_out, phi, tau
-<<<<<<< HEAD
-=======
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-      real(r8) :: OneAtm, fac
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real(r8), dimension(IminS:ImaxS,JminS:JmaxS) :: grad
 
@@ -134,13 +122,6 @@
         know=kstp
         dt2d=dtfast(ng)
       END IF
-<<<<<<< HEAD
-=======
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-      OneAtm=1013.25_r8                  ! 1 atm = 1013.25 mb
-      fac=100.0_r8/(g*rho0)
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Lateral boundary conditions at the southern edge.
@@ -305,27 +286,10 @@
      &                            zeta(i,Jstr  ,know)))
 #endif
               Ce=SQRT(g*cff)
-<<<<<<< HEAD
-=======
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-              vbar(i,Jstr,kout)=bry_val-                                &
-     &                          Ce*(0.5_r8*                             &
-     &                              (zeta(i,Jstr-1,know)+               &
-     &                               zeta(i,Jstr  ,know)+               &
-     &                               fac*(FORCES(ng)%Pair(i,Jstr-1)+    &
-     &                                    FORCES(ng)%Pair(i,Jstr  )-    &
-     &                                    2.0_r8*OneAtm))-              &
-     &                              BOUNDARY(ng)%zeta_south(i))
-#else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               vbar(i,Jstr,kout)=bry_val-                                &
      &                          Ce*(0.5_r8*(zeta(i,Jstr-1,know)+        &
      &                                      zeta(i,Jstr  ,know))-       &
      &                              BOUNDARY(ng)%zeta_south(i))
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef MASKING
               vbar(i,Jstr,kout)=vbar(i,Jstr,kout)*                      &
      &                          GRID(ng)%vmask(i,Jstr)
@@ -699,27 +663,10 @@
      &                            zeta(i,Jend+1,know)))
 #endif
               Ce=SQRT(g*cff)
-<<<<<<< HEAD
-=======
-#if defined ATM_PRESS && defined PRESS_COMPENSATE
-            vbar(i,Jend+1,kout)=bry_val+                                &
-     &                          Ce*(0.5_r8*                             &
-     &                              (zeta(i,Jend  ,know)+               &
-     &                               zeta(i,Jend+1,know)+               &
-     &                               fac*(FORCES(ng)%Pair(i,Jend  )+    &
-     &                                    FORCES(ng)%Pair(i,Jend+1)-    &
-     &                                    2.0_r8*OneAtm))-              &
-     &                              BOUNDARY(ng)%zeta_north(i))
-#else
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               vbar(i,Jend+1,kout)=bry_val+                              &
      &                            Ce*(0.5_r8*(zeta(i,Jend  ,know)+      &
      &                                        zeta(i,Jend+1,know))-     &
      &                                BOUNDARY(ng)%zeta_north(i))
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef MASKING
               vbar(i,Jend+1,kout)=vbar(i,Jend+1,kout)*                  &
      &                            GRID(ng)%vmask(i,Jend+1)

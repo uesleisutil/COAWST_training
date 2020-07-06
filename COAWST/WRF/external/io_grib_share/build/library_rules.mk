@@ -148,10 +148,7 @@ thisdir_clean: thisdir_clean_lib
 	@/bin/rm -f *.o *.obj *.mod *.f90 core so_locations Makefile.bak *~ #*#
 	@/bin/rm -fr ii_files
 	@if [ -d utest ] ; then \
-<<<<<<< HEAD
 		echo "        Doing make clean on utest subdirectory"; \
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 		cd utest; \
 		make clean; \
 		cd ..; \

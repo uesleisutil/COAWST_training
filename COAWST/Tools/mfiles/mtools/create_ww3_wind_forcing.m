@@ -7,11 +7,7 @@
 % a file that directly reads NCEP data and writes out a
 % WW3 wind forcing ascii file.
 %
-<<<<<<< HEAD
 netcdf_load('romsforc_NARR_Sandy2012.nc')
-=======
-netcdf_load('../romsforc_NARR_Sandy2012.nc')
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 [LP, MP, ntimes]=size(Uwind);
 %
 fid = fopen('ww3_sandy_wind_forc.dat','w');

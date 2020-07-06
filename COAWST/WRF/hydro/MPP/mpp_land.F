@@ -59,10 +59,6 @@ MODULE MODULE_MPP_LAND
      module procedure mpp_land_bcast_real_1d
      module procedure mpp_land_bcast_real8_1d
      module procedure mpp_land_bcast_real1
-<<<<<<< HEAD
-=======
-     module procedure mpp_land_bcast_real1_double
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      module procedure mpp_land_bcast_char1d 
      module procedure mpp_land_bcast_char1
      module procedure mpp_land_bcast_int1 
@@ -155,19 +151,12 @@ MODULE MODULE_MPP_LAND
       CALL mpi_initialized( mpi_inited, ierr )
       if ( .NOT. mpi_inited ) then
            call MPI_INIT( ierr )  ! stand alone land model.
-<<<<<<< HEAD
            HYDRO_COMM_WORLD = MPI_COMM_WORLD
       else 
            call MPI_COMM_RANK( HYDRO_COMM_WORLD, my_id, ierr )
            call MPI_COMM_SIZE( HYDRO_COMM_WORLD, numprocs, ierr )
            return
       endif
-=======
-      endif
-           HYDRO_COMM_WORLD = MPI_COMM_WORLD
-           call MPI_COMM_RANK( HYDRO_COMM_WORLD, my_id, ierr )
-           call MPI_COMM_SIZE( HYDRO_COMM_WORLD, numprocs, ierr )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !     create 2d logical mapping of the CPU.
       call log_map2d()
       return
@@ -383,17 +372,10 @@ MODULE MODULE_MPP_LAND
     integer s_r(2)
 
 !   if(my_id .eq. IO_id) then 
-<<<<<<< HEAD
        allocate(local_nx_size(numprocs),stat = status) 
        allocate(local_ny_size(numprocs),stat = status) 
        allocate(local_rt_nx_size(numprocs),stat = status) 
        allocate(local_rt_ny_size(numprocs),stat = status) 
-=======
-       if(.not. allocated(local_nx_size) ) allocate(local_nx_size(numprocs),stat = status) 
-       if(.not. allocated(local_ny_size) ) allocate(local_ny_size(numprocs),stat = status) 
-       if(.not. allocated(local_rt_nx_size) ) allocate(local_rt_nx_size(numprocs),stat = status) 
-       if(.not. allocated(local_rt_ny_size) ) allocate(local_rt_ny_size(numprocs),stat = status) 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !   end if
 
        call mpp_land_sync()
@@ -591,13 +573,8 @@ MODULE MODULE_MPP_LAND
     integer :: r_s(2)
     integer ::  t_nx, t_ny
 
-<<<<<<< HEAD
     allocate(starty(numprocs),stat = ierr) 
     allocate(startx(numprocs),stat = ierr)
-=======
-    if(.not. allocated(starty) ) allocate(starty(numprocs),stat = ierr) 
-    if(.not. allocated(startx) ) allocate(startx(numprocs),stat = ierr)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     local_startx = int(global_nx/left_right_np) * left_right_p+1 
     local_starty = int(global_ny/up_down_np) * up_down_p+1 
@@ -999,18 +976,6 @@ MODULE MODULE_MPP_LAND
     return 
   end subroutine mpp_land_bcast_real1
 
-<<<<<<< HEAD
-=======
-  subroutine mpp_land_bcast_real1_double(inout)
-      real*8 inout
-      integer ierr
-      call mpi_bcast(inout,1,MPI_REAL8, &
-                     IO_id,HYDRO_COMM_WORLD,ierr)
-      call mpp_land_sync()
-      return
-  end subroutine mpp_land_bcast_real1_double
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   subroutine mpp_land_bcast_real_1d(inout)
       integer len
       real inout(:)
@@ -1545,74 +1510,6 @@ MODULE MODULE_MPP_LAND
       enddo
   end subroutine MPP_CHANNEL_COM_REAL
 
-<<<<<<< HEAD
-=======
-
-  subroutine MPP_CHANNEL_COM_REAL8(Link_location,ix,jy,Link_V,size,flag)
-  ! communicate the data for channel routine.
-      implicit none
-      integer ix,jy,size
-      integer Link_location(ix,jy)
-      integer i,j, flag
-      real*8 ::  Link_V(size), tmp_inout(ix,jy)
-
-      tmp_inout = -999
-
-      if(size .eq. 0) then  
-            tmp_inout = -999
-      else
-
-         !     map the Link_V data to tmp_inout(ix,jy)
-         do i = 1,ix 
-            if(Link_location(i,1) .gt. 0) &
-               tmp_inout(i,1) = Link_V(Link_location(i,1))
-            if(Link_location(i,2) .gt. 0) &
-               tmp_inout(i,2) = Link_V(Link_location(i,2))
-            if(Link_location(i,jy-1) .gt. 0) &
-               tmp_inout(i,jy-1) = Link_V(Link_location(i,jy-1))
-            if(Link_location(i,jy) .gt. 0) &
-               tmp_inout(i,jy) = Link_V(Link_location(i,jy))
-          enddo
-         do j = 1,jy 
-            if(Link_location(1,j) .gt. 0) &
-               tmp_inout(1,j) = Link_V(Link_location(1,j))
-            if(Link_location(2,j) .gt. 0) &
-               tmp_inout(2,j) = Link_V(Link_location(2,j))
-            if(Link_location(ix-1,j) .gt. 0) &
-               tmp_inout(ix-1,j) = Link_V(Link_location(ix-1,j))
-            if(Link_location(ix,j) .gt. 0) &
-               tmp_inout(ix,j) = Link_V(Link_location(ix,j))
-         enddo
-    endif
-
-!   commu nicate tmp_inout
-    call MPP_LAND_COM_REAL8(tmp_inout, ix,jy,flag)
-
-!map the data back to Link_V
-    if(size .eq. 0) return
-      do j = 1,jy 
-            if( (Link_location(1,j) .gt. 0) .and. (tmp_inout(1,j) .ne. -999) ) &
-               Link_V(Link_location(1,j)) = tmp_inout(1,j)
-            if((Link_location(2,j) .gt. 0) .and. (tmp_inout(2,j) .ne. -999) ) &
-               Link_V(Link_location(2,j)) = tmp_inout(2,j)
-            if((Link_location(ix-1,j) .gt. 0) .and. (tmp_inout(ix-1,j) .ne. -999)) &
-               Link_V(Link_location(ix-1,j)) = tmp_inout(ix-1,j)
-            if((Link_location(ix,j) .gt. 0) .and. (tmp_inout(ix,j) .ne. -999) )&
-               Link_V(Link_location(ix,j)) = tmp_inout(ix,j)
-      enddo
-      do i = 1,ix 
-            if((Link_location(i,1) .gt. 0) .and. (tmp_inout(i,1) .ne. -999) )&
-               Link_V(Link_location(i,1)) = tmp_inout(i,1)
-            if( (Link_location(i,2) .gt. 0) .and. (tmp_inout(i,2) .ne. -999) )&
-               Link_V(Link_location(i,2)) = tmp_inout(i,2)
-            if((Link_location(i,jy-1) .gt. 0) .and. (tmp_inout(i,jy-1) .ne. -999) ) &
-               Link_V(Link_location(i,jy-1)) = tmp_inout(i,jy-1)
-            if((Link_location(i,jy) .gt. 0) .and. (tmp_inout(i,jy) .ne. -999) ) &
-               Link_V(Link_location(i,jy)) = tmp_inout(i,jy)
-      enddo
-  end subroutine MPP_CHANNEL_COM_REAL8
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   subroutine MPP_CHANNEL_COM_INT(Link_location,ix,jy,Link_V,size,flag)
   ! communicate the data for channel routine.
       implicit none
@@ -1942,12 +1839,8 @@ MODULE MODULE_MPP_LAND
                        v(node) = recv(node)
                     endif
                  enddo
-<<<<<<< HEAD
               end if
             
-=======
-              end if            
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            end do
         else
            tag =  129
@@ -2033,18 +1926,6 @@ MODULE MODULE_MPP_LAND
     end subroutine combine_int1d
 
 
-<<<<<<< HEAD
-=======
-    subroutine sum_real1d(vin,nsize)
-       implicit none
-       integer  :: nsize
-       real,dimension(nsize) :: vin
-       real*8,dimension(nsize) :: vin8
-       vin8=vin
-       call sum_real8(vin8,nsize) 
-       vin=vin8
-    end subroutine sum_real1d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
     subroutine sum_real8(vin,nsize)
        implicit none
@@ -2379,45 +2260,6 @@ MODULE MODULE_MPP_LAND
      
      end subroutine updateLake_seq
 
-<<<<<<< HEAD
-=======
-     subroutine updateLake_grid(in,nsize,lake_index)
-       implicit none
-       integer :: nsize
-       real, dimension(nsize) :: in
-       integer, dimension(nsize) :: lake_index
-       real, dimension(nsize) :: tmp
-       integer tag, i, status, ierr, k
-       if(nsize .le. 0) return
-
-       if(my_id .ne. IO_id) then
-          tag = 29
-          call mpi_send(in,nsize,MPI_REAL, IO_id,     &
-                tag,HYDRO_COMM_WORLD,ierr)
-          tag = 30
-          call mpi_send(lake_index,nsize,MPI_INTEGER, IO_id,     &
-                tag,HYDRO_COMM_WORLD,ierr)
-       else
-          do i = 0, numprocs - 1
-            if(i .ne. IO_id) then
-               tag = 29
-               call mpi_recv(tmp,nsize,&
-                   MPI_REAL,i,tag,HYDRO_COMM_WORLD,mpp_status,ierr)
-               tag = 30
-               call mpi_recv(lake_index,nsize,&
-                   MPI_INTEGER,i,tag,HYDRO_COMM_WORLD,mpp_status,ierr)
-               do k = 1, nsize 
-                  if(lake_index(k) .gt. 0) in(k) = tmp(k)
-               end do
-            end if
-          end do
-       end if
-       call mpp_land_bcast_real_1d(in)
-     
-     end subroutine updateLake_grid
-
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !subroutine match1dLake:
 !global lake. Find the same lake and mark as flag
 ! default of win is 0
@@ -2497,49 +2339,6 @@ MODULE MODULE_MPP_LAND
     end subroutine mpp_comm_scalar_char
 
     
-<<<<<<< HEAD
-=======
-    subroutine mpp_comm_1d_real(vector, fromImage, toImage)
-    implicit none
-    real,    dimension(:), intent(inout) :: vector
-    integer,               intent(in)    :: fromImage, toImage
-    integer:: ierr, tag
-    integer:: my_id,numprocs
-    tag=2   
-    call MPI_COMM_RANK(MPI_COMM_WORLD,my_id,ierr)
-    call MPI_COMM_SIZE(MPI_COMM_WORLD,numprocs,ierr)
-    if(numprocs > 1) then
-       if(my_id .eq. fromImage) &
-          call mpi_send(vector, size(vector), MPI_REAL, &
-                        toImage, tag, MPI_COMM_WORLD, ierr)
-       if(my_id .eq. toImage) &
-          call mpi_recv(vector, size(vector), MPI_REAL, &
-                        fromImage, tag, MPI_COMM_WORLD, mpp_status, ierr)
-    endif
-    end subroutine mpp_comm_1d_real
-
-
-    subroutine mpp_comm_1d_char(vector, fromImage, toImage)
-    implicit none
-    character(len=*), dimension(:), intent(inout) :: vector
-    integer,                        intent(in)    :: fromImage, toImage
-    integer:: ierr, tag, totalLength
-    integer:: my_id,numprocs
-    tag=2
-    call MPI_COMM_RANK(MPI_COMM_WORLD,my_id,ierr)
-    call MPI_COMM_SIZE(MPI_COMM_WORLD,numprocs,ierr)
-    totalLength=len(vector(1))*size(vector,1)
-    if(numprocs > 1) then
-       if(my_id .eq. fromImage) &
-         call mpi_send(vector, totalLength, MPI_CHARACTER, &
-                       toImage, tag, HYDRO_COMM_WORLD, ierr)
-       if(my_id .eq. toImage) &
-         call mpi_recv(vector, totalLength, MPI_CHARACTER, &
-                       fromImage, tag, HYDRO_COMM_WORLD, mpp_status, ierr)
-    endif
-    end subroutine mpp_comm_1d_char
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     
 END MODULE MODULE_MPP_LAND
 

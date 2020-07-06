@@ -16,15 +16,9 @@ function add_mask(ncfile, spherical, mask)
 %    mask         Land/Sea mask (array)
 %
 
-<<<<<<< HEAD
 % svn $Id: add_mask.m 913 2018-07-02 22:16:58Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: add_mask.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%

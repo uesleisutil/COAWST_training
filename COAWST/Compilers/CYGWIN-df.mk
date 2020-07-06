@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 # svn $Id: CYGWIN-df.mk 889 2018-02-10 03:32:52Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
-=======
-# svn $Id: CYGWIN-df.mk 995 2020-01-10 04:01:28Z arango $
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -24,10 +18,6 @@
 # CXX            Name of the C++ compiler
 # CXXFLAGS       Flags to the C++ compiler
 # CLEAN          Name of cleaning executable after C-preprocessing
-<<<<<<< HEAD
-=======
-# LIBS           Required libraries during linking
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # NETCDF_INCDIR  NetCDF include directory
 # NETCDF_LIBDIR  NetCDF libary directory
 # LD             Program to load the objects into an executable
@@ -48,13 +38,6 @@
               CXX := g++
            CFLAGS :=
          CXXFLAGS :=
-<<<<<<< HEAD
-=======
-             LIBS :=
-ifdef USE_ROMS
-             LIBS += $(SCRATCH_DIR)/libNLM.a         # cyclic dependencies
-endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           LDFLAGS := /link /nodefaultlib:libcmt /nodefaultlib:libifcore /stack:67108864
                AR := ar
           ARFLAGS := r
@@ -77,19 +60,11 @@ endif
 ifdef USE_NETCDF4
         NF_CONFIG ?= nf-config
     NETCDF_INCDIR ?= $(shell $(NF_CONFIG) --prefix)/include
-<<<<<<< HEAD
              LIBS := $(shell $(NF_CONFIG) --flibs)
 else
     NETCDF_INCDIR ?= /usr/local/include
     NETCDF_LIBDIR ?= /usr/local/lib
              LIBS := -L$(NETCDF_LIBDIR) -lnetcdf
-=======
-             LIBS += $(shell $(NF_CONFIG) --flibs)
-else
-    NETCDF_INCDIR ?= /usr/local/include
-    NETCDF_LIBDIR ?= /usr/local/lib
-             LIBS += -L$(NETCDF_LIBDIR) -lnetcdf
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
 
 ifdef USE_ARPACK
@@ -118,12 +93,6 @@ ifdef USE_ESMF
        LIBS_WIN32 += $(ESMF_F90LINKPATHS) $(ESMF_F90ESMFLINKLIBS)
 endif
 
-<<<<<<< HEAD
-=======
-ifndef USE_SCRIP
-             LIBS += $(MCT_PARAMS_DIR)/mct_coupler_params.o
-endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ifdef USE_MCT
        MCT_LIBDIR ?= c:\\work\\models\\MCT_v2.2\\mct
       MPEU_LIBDIR ?= c:\\work\\models\\MCT_v2.2\\mpeu
@@ -150,13 +119,8 @@ ifdef USE_WRF
 endif
 
 ifdef USE_WW3
-<<<<<<< HEAD
              FFLAGS += -I${COAWST_WW3_DIR}/mod_DIST/
              LIBS += WW3/obj/libWW3.a
-=======
-             FFLAGS += -I${COAWST_WW3_DIR}/mod_MPI
-             LIBS += WW3/model/obj_MPI/libWW3.a
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
 
 #

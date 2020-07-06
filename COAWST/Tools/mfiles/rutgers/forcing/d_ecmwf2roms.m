@@ -24,15 +24,9 @@
 % Select step:   0  3  6  9  12
 %
 
-<<<<<<< HEAD
 % svn $Id: d_ecmwf2roms.m 895 2018-02-11 23:15:37Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group      Hernan G. Arango      %
-=======
-% svn $Id: d_ecmwf2roms.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group      Hernan G. Arango      %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license           John Wilkin           %
 %    See License_ROMS.txt                                                 %
 %=========================================================================%
@@ -64,11 +58,7 @@
 % @  strd    W m-2 s        surface thermal radiation downwards
 % @  ewss    N m-2 s        east-west surface stress
 % @  nsss    N m-2 s        north-south surface stress
-<<<<<<< HEAD
 % @  e       m              evaporation (downward flux is positive)
-=======
-% @  e       m              evaporation
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 % @  ro      m              runoff
 % @  tcc     nondimensional total cloud cover [0:1]
 % @  tp      m              total precipitation
@@ -93,11 +83,7 @@
 %   sensible    (W m-2)         sshf / (3*3600):   3-hour step
 %   rain        (kg m-2 s-1)    tp * Rho_w / (3*3600)
 %   evaporation (kg m-2 s-1)    e  * Rho_w / (3*3600)
-<<<<<<< HEAD
 %   swflux      (cm day-1)      (-e - tp) * 100 / (3/24);  0.125 day step
-=======
-%   swflux      (cm day-1)      (e - tp) * 100 / (3/24);  0.125 day step
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %   cloud       (nondimesional) tcc
 %   Pair        (mb)            msl / 100;   (1 mb = 100 Pa)
 %   Tair        (Celsius)       t2m - 273.15;   (1 C = 273.15 K)
@@ -225,13 +211,8 @@ F(15).input  = 'ecmwf_era_temp_';
 F(15).output = 'gom_Tair_era.nc';
 F(15).scale  = 1.0;
 
-<<<<<<< HEAD
 F(16).Vname  = {'Qair', 'v2d'};         % Use temperature (v2t) and
 F(16).Tname  = {'qair_time',  'time'};  % dewpoint temperature (v2d)
-=======
-F(16).Vname  = {'Qair', 'v2d'};         % Use temperature (t2m) and
-F(16).Tname  = {'qair_time',  'time'};  % dewpoint temperature (d2m)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 F(16).input  = 'ecmwf_era_temp_';       % to compute relative humidity
 F(16).output = 'gom_Qair_era.nc';
 F(16).scale  = 1.0;
@@ -484,11 +465,7 @@ for n = doFields,
         case 'swflux'     
           evap  = nc_read(InpFile, 'e' , Rec);      % evaporation
           prec  = nc_read(InpFile, 'tp', Rec);      % precipitation
-<<<<<<< HEAD
           field = (-evap - prec) .* scale;          
-=======
-          field = (evap - prec) .* scale;          
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         case 'shflux'   
           sensbl = nc_read(InpFile, 'sshf' , Rec);  % sensible
           latent = nc_read(InpFile, 'slhf', Rec);   % latent
@@ -504,11 +481,7 @@ for n = doFields,
 
 % If the scale F(n).scale is set to negative, the input ECMWF data is a
 % cummulative integral in forecast cycle from hour zero.
-<<<<<<< HEAD
 % For steps at 6, 9 and 12 hours we must separate last 3 hours of 
-=======
- % For steps at 6, 9 and 12 hours we must separate last 3 hours of 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 % integration from previous accumulation.
 % At 3 hour step don't change anything
 
@@ -550,8 +523,4 @@ for n = doFields,
     year = year + 1;
 
   end
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

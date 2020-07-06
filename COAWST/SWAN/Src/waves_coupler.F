@@ -162,10 +162,6 @@
 !
       USE OCPCOMM4
       USE SWCOMM3
-<<<<<<< HEAD
-=======
-      USE SWCOMM4
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE M_GENARR
       USE M_PARALL
       USE swan_iounits
@@ -183,11 +179,7 @@
       integer :: gsmsize, nprocs
       integer :: i, j, io, ia, Isize, Jsize, Asize
       integer :: nRows, nCols, num_sparse_elems
-<<<<<<< HEAD
       integer :: cid, cad
-=======
-      integer :: cid, cad, MXCGLc
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       character (len=70)  :: nc_name
       character (len=20)  :: to_add
       character (len=120) :: wostring
@@ -233,7 +225,6 @@
 !  processor.
 !
       IF (nprocs.eq.1) THEN
-<<<<<<< HEAD
         Isize=MXCGL
         Jsize=MYCGL
       ELSE
@@ -242,28 +233,6 @@
           Jsize=MYC
         ELSE
           Isize=MXC
-=======
-        IF (KREPTX.eq.1) THEN
-          Isize=MXCGL+1
-        ELSE
-          Isize=MXCGL
-        END IF
-        Jsize=MYCGL
-      ELSE
-        IF (MXCGL.gt.MYCGL) THEN
-          IF (KREPTX.eq.1) THEN
-            Isize=MXC-IHALOX*IBLKAD(1)+1
-          ELSE
-            Isize=MXC-IHALOX*IBLKAD(1)
-          END IF
-          Jsize=MYC
-        ELSE
-          IF (KREPTX.eq.1) THEN
-            Isize=MXC+1
-          ELSE
-            Isize=MXC
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Jsize=MYC-IHALOY*IBLKAD(1)
         END IF
       END IF
@@ -271,21 +240,10 @@
       allocate ( start(Jsize) )
       allocate ( length(Jsize) )
 !
-<<<<<<< HEAD
-=======
-!  Add offset of 1 for repeating x-dir grids.
-!
-      IF (KREPTX.eq.1) THEN
-        MXCGLc=MXCGL+1
-      ELSE
-        MXCGLc=MXCGL
-      END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       DO j=1,Jsize
         length(j)=Isize
         IF (MXCGL.gt.MYCGL) THEN
           IF (MyRank.eq.0) THEN
-<<<<<<< HEAD
             start(j)=MXF+(j-1)*MXCGL
           ELSE
             start(j)=MXF+(j-1)*MXCGL+IHALOX
@@ -295,17 +253,6 @@
             start(j)=MYF+(j-1)*MXCGL
           ELSE
             start(j)=(MYF+IHALOY-1)*MXCGL+1+(j-1)*MXCGL
-=======
-            start(j)=MXF+(j-1)*MXCGLc
-          ELSE
-            start(j)=MXF+(j-1)*MXCGLc+IHALOX
-          END IF
-        ELSE
-          IF (MyRank.eq.0) THEN
-            start(j)=MYF+(j-1)*MXCGLc
-          ELSE
-            start(j)=(MYF+IHALOY-1)*MXCGLc+1+(j-1)*MXCGLc
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           END IF
         END IF
       END DO
@@ -784,11 +731,7 @@
 !  Imported variable declarations.
 !
       integer :: MIP, IRQ, nvoqp, Numcouple, ng, io
-<<<<<<< HEAD
       integer :: VOQR(NMOVAR), IVTYPE, IP, IX, IY
-=======
-      integer :: VOQR(NMOVAR), IVTYPE, IP, IPI, IX, IY
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       real :: COMPDA(MCGRD,MCMVAR)
       real :: VOQ(MIP,NVOQP)
@@ -797,11 +740,7 @@
 !
       integer :: MyStatus, MyError, MySize, MyRank
       integer :: i, id, j, gsmsize, ierr, indx, Tag
-<<<<<<< HEAD
       integer :: Istr, Iend, Jstr, Jend
-=======
-      integer :: Istr, Iend, Jstr, Jend, MXCGLc, start
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer :: Isize, Jsize, INDXG, NPROCS, OFFSET
       integer, pointer :: points(:)
 
@@ -847,65 +786,9 @@
 !  according to the IVTYPE flag.  The data is exported using ROMS
 !  definition for real kind m8.
 !
-<<<<<<< HEAD
       DO IP=1,gsmsize
         avdata(IP)=REAL( VOQ(points(IP),VOQR(IVTYPE)),m8 )
       END DO
-=======
-      IF (KREPTX.eq.1) THEN
-        IF (nprocs.eq.1) THEN
-          Isize=MXCGL+1
-          Jsize=MYCGL
-        ELSE
-          IF (MXCGL.gt.MYCGL) THEN
-            Isize=MXC-IHALOX*IBLKAD(1)+1
-            Jsize=MYC
-          ELSE
-            Isize=MXC+1
-            Jsize=MYC-IHALOY*IBLKAD(1)
-          END IF
-        END IF
-        MXCGLc=MXCGL
-        IF (MXCGL.gt.MYCGL) THEN
-          IF (MyRank.eq.0) THEN
-            start=MXF+(j-1)*MXCGLc
-          ELSE
-            start=MXF+(j-1)*MXCGLc+IHALOX
-          END IF
-        ELSE
-          IF (MyRank.eq.0) THEN
-            start=MYF
-          ELSE
-            start=(MYF+IHALOY-1)*MXCGLc+1
-          END IF
-        END IF
-!
-        IP=start-1
-        IPI=0
-        DO j=1,Jsize
-          DO i=1,Isize-1
-            IP=IP+1
-            IPI=IPI+1
-            avdata(IPI)=REAL( VOQ(IP,VOQR(IVTYPE)),m8 )
-          END DO
-          IPI=IPI+1
-        END DO
-!
-! now fill the far right
-!
-        IP=start-1
-        IPI=0
-        DO j=1,Jsize
-          IP=IP+Isize-1
-          IPI=IPI+Isize
-          avdata(IPI)=REAL( VOQ(IP,VOQR(IVTYPE)),m8 )
-        END DO
-      ELSE
-        DO IP=1,gsmsize
-          avdata(IP)=REAL( VOQ(points(IP),VOQR(IVTYPE)),m8 )
-        END DO
-      END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       IF (IVTYPE.eq.54) THEN
         CALL AttrVect_importRAttr (AttrVect_G(ng)%wav2ocn_AV,           &
@@ -1382,12 +1265,6 @@
             range(1)=MIN(range(1),REAL(avdata(IP)))
             range(2)=MAX(range(2),REAL(avdata(IP)))
           END DO
-<<<<<<< HEAD
-=======
-          IF (KREPTX.EQ.1) THEN
-            IP=IP+1
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
         CALL SWREDUCE(range(1),1,SWREAL,SWMIN)
         CALL SWREDUCE(range(2),1,SWREAL,SWMAX)
@@ -1411,12 +1288,6 @@
             range(1)=MIN(range(1),REAL(avdata(IP)))
             range(2)=MAX(range(2),REAL(avdata(IP)))
           END DO
-<<<<<<< HEAD
-=======
-          IF (KREPTX.EQ.1) THEN
-            IP=IP+1
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
         CALL SWREDUCE(range(1),1,SWREAL,SWMIN)
         CALL SWREDUCE(range(2),1,SWREAL,SWMAX)
@@ -1440,12 +1311,6 @@
             range(1)=MIN(range(1),REAL(avdata(IP)))
             range(2)=MAX(range(2),REAL(avdata(IP)))
           END DO
-<<<<<<< HEAD
-=======
-          IF (KREPTX.EQ.1) THEN
-            IP=IP+1
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
         CALL SWREDUCE(range(1),1,SWREAL,SWMIN)
         CALL SWREDUCE(range(2),1,SWREAL,SWMAX)
@@ -1469,12 +1334,6 @@
             range(1)=MIN(range(1),REAL(avdata(IP)))
             range(2)=MAX(range(2),REAL(avdata(IP)))
           END DO
-<<<<<<< HEAD
-=======
-          IF (KREPTX.EQ.1) THEN
-            IP=IP+1
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
         CALL SWREDUCE(range(1),1,SWREAL,SWMIN)
         CALL SWREDUCE(range(2),1,SWREAL,SWMAX)
@@ -1498,12 +1357,6 @@
             range(1)=MIN(range(1),REAL(avdata(IP)))
             range(2)=MAX(range(2),REAL(avdata(IP)))
           END DO
-<<<<<<< HEAD
-=======
-          IF (KREPTX.EQ.1) THEN
-            IP=IP+1
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
         CALL SWREDUCE(range(1),1,SWREAL,SWMIN)
         CALL SWREDUCE(range(2),1,SWREAL,SWMAX)
@@ -1528,12 +1381,6 @@
             range(1)=MIN(range(1),REAL(avdata(IP)))
             range(2)=MAX(range(2),REAL(avdata(IP)))
           END DO
-<<<<<<< HEAD
-=======
-          IF (KREPTX.EQ.1) THEN
-            IP=IP+1
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
         CALL SWREDUCE(range(1),1,SWREAL,SWMIN)
         CALL SWREDUCE(range(2),1,SWREAL,SWMAX)
@@ -1559,12 +1406,6 @@
             range(1)=MIN(range(1),REAL(avdata(IP)))
             range(2)=MAX(range(2),REAL(avdata(IP)))
           END DO
-<<<<<<< HEAD
-=======
-          IF (KREPTX.EQ.1) THEN
-            IP=IP+1
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         END DO
         CALL SWREDUCE(range(1),1,SWREAL,SWMIN)
         CALL SWREDUCE(range(2),1,SWREAL,SWMAX)

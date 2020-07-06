@@ -1,15 +1,9 @@
 #undef NEUMANN
       SUBROUTINE prsgrd (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: prsgrd42.h 889 2018-02-10 03:32:52Z arango $
 !***********************************************************************
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: prsgrd42.h 995 2020-01-10 04:01:28Z arango $
-!***********************************************************************
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                           Hernan G. Arango   !
 !****************************************** Alexander F. Shchepetkin ***
@@ -187,11 +181,7 @@
       real(r8), parameter :: eps = 1.0E-8_r8
 
       real(r8) :: cff, cff1, cff2, cffL, cffR
-<<<<<<< HEAD
       real(r8) :: deltaL, deltaR, dh, dP, rr
-=======
-      real(r8) :: deltaL, deltaR, dh, delP, rr
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef ATM_PRESS
       real(r8) :: OneAtm, fac
 #endif
@@ -324,17 +314,10 @@
           END DO
           DO k=N(ng),1,-1
             DO i=IstrU-1,Iend+1
-<<<<<<< HEAD
               dP=P(i-1,j,k-1)-P(i,j,k-1)
               dh=z_w(i,j,k-1)-z_w(i-1,j,k-1)
               deltaR=dh*r(i,j,k-1)-dP
               deltaL=dP-dh*r(i-1,j,k-1)
-=======
-              delP=P(i-1,j,k-1)-P(i,j,k-1)
-              dh=z_w(i,j,k-1)-z_w(i-1,j,k-1)
-              deltaR=dh*r(i,j,k-1)-delP
-              deltaL=delP-dh*r(i-1,j,k-1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF ((deltaR*deltaL).lt.0.0_r8) THEN
                 rr=0.0_r8
               ELSE IF (ABS(deltaR).gt.(2.0_r8*ABS(deltaL))) THEN
@@ -367,17 +350,10 @@
           END DO
           DO k=N(ng),1,-1
             DO i=Istr,Iend
-<<<<<<< HEAD
               dP=P(i,j-1,k-1)-P(i,j,k-1)
               dh=z_w(i,j,k-1)-z_w(i,j-1,k-1)
               deltaR=dh*r(i,j,k-1)-dP
               deltaL=dP-dh*r(i,j-1,k-1)
-=======
-              delP=P(i,j-1,k-1)-P(i,j,k-1)
-              dh=z_w(i,j,k-1)-z_w(i,j-1,k-1)
-              deltaR=dh*r(i,j,k-1)-delP
-              deltaL=delP-dh*r(i,j-1,k-1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               IF ((deltaR*deltaL).lt.0.0_r8) THEN
                 rr=0.0_r8
               ELSE IF (ABS(deltaR).gt.(2.0_r8*ABS(deltaL))) THEN

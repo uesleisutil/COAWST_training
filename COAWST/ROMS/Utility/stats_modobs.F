@@ -2,15 +2,9 @@
 #if (defined FOUR_DVAR || defined VERIFICATION) && defined OBSERVATIONS
       SUBROUTINE stats_modobs (ng)
 !
-<<<<<<< HEAD
 !svn $Id: stats_modobs.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: stats_modobs.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -257,11 +251,7 @@
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
 !
-<<<<<<< HEAD
 !  Read in and write out observations total error
-=======
-!  Read in and write out observations total error covariance
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  (instrument + sampling + representation).
 !
       CALL netcdf_get_fvar (ng, iNLM, OBS(ng)%name, Vname(1,idOerr),    &
@@ -345,11 +335,7 @@
 !
 !-----------------------------------------------------------------------
 !  If appropriate, convert depth in vertical fractional coordinates to
-<<<<<<< HEAD
 !  actual depths in meted (negative: downwards).
-=======
-!  actual depths in meters (negative: downwards).
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !-----------------------------------------------------------------------
 !
       obs_work(1:Ndatum(ng))=IniVal

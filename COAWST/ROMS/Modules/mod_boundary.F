@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE mod_boundary
 !
-<<<<<<< HEAD
 !svn $Id: mod_boundary.F 921 2018-09-06 18:27:34Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: mod_boundary.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -674,7 +668,6 @@
           real(r8), pointer :: tiG_north(:,:)
 # endif
 
-<<<<<<< HEAD
 # ifdef MELT_PONDS
           real(r8), pointer :: apond_west(:)
           real(r8), pointer :: apond_east(:)
@@ -697,8 +690,6 @@
 #  endif
 # endif
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           real(r8), pointer :: sig11_west(:)
           real(r8), pointer :: sig11_east(:)
           real(r8), pointer :: sig11_south(:)
@@ -2077,7 +2068,6 @@
       END IF
 # endif
 
-<<<<<<< HEAD
 # ifdef MELT_PONDS
       allocate ( BOUNDARY(ng) % apond_west(LBj:UBj) )
       Dmem(ng)=Dmem(ng)+Ysize
@@ -2131,8 +2121,6 @@
       END IF
 #  endif
 # endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       allocate ( BOUNDARY(ng) % sig11_west(LBj:UBj) )
       Dmem(ng)=Dmem(ng)+Ysize
@@ -2688,7 +2676,6 @@
           BOUNDARY(ng) % tiG_west = IniVal
         END IF
 #  endif
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
         IF (DOMAIN(ng)%NorthWest_Test(tile).and.                        &
      &      LBC(iwest,isApond,ng)%acquire) THEN
@@ -2709,8 +2696,6 @@
         END IF
 #   endif
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (DOMAIN(ng)%NorthWest_Test(tile).and.                        &
      &      LBC(iwest,isSig11,ng)%acquire) THEN
           BOUNDARY(ng) % sig11_west = IniVal
@@ -2802,7 +2787,6 @@
           BOUNDARY(ng) % tiG_east = IniVal
         END IF
 #  endif
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
         IF (DOMAIN(ng)%SouthEast_Test(tile).and.                        &
      &      LBC(ieast,isApond,ng)%acquire) THEN
@@ -2823,8 +2807,6 @@
         END IF
 #   endif
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (DOMAIN(ng)%SouthEast_Test(tile).and.                        &
      &      LBC(ieast,isSig11,ng)%acquire) THEN
           BOUNDARY(ng) % sig11_east = IniVal
@@ -2915,7 +2897,6 @@
           BOUNDARY(ng) % tiG_south = IniVal
         END IF
 #  endif
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
         IF (DOMAIN(ng)%SouthWest_Test(tile).and.                        &
      &      LBC(isouth,isApond,ng)%acquire) THEN
@@ -2936,8 +2917,6 @@
         END IF
 #   endif
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (DOMAIN(ng)%SouthWest_Test(tile).and.                        &
      &      LBC(isouth,isSig11,ng)%acquire) THEN
           BOUNDARY(ng) % sig11_south = IniVal
@@ -3028,7 +3007,6 @@
           BOUNDARY(ng) % tiG_north = IniVal
         END IF
 #  endif
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
         IF (DOMAIN(ng)%NorthEast_Test(tile).and.                        &
      &      LBC(inorth,isApond,ng)%acquire) THEN
@@ -3049,8 +3027,6 @@
         END IF
 #   endif
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         IF (DOMAIN(ng)%NorthEast_Test(tile).and.                        &
      &      LBC(inorth,isSig11,ng)%acquire) THEN
           BOUNDARY(ng) % sig11_north = IniVal

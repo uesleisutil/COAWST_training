@@ -1,18 +1,7 @@
 !=================================================================================================================
-<<<<<<< HEAD
 !module_bl_ysu.F was modified to integrate MPAS-specific code 
 !integration took place between WRF Master Repository (from 28Feb2018) and MPAS HWT Repository (from 27Feb2018)
 !WRF version is >V3.9.1.1 and MPAS module_bl_ysu.F was originally modified from WRFV3.8.1
-=======
-!module_bl_ysu.F was originally copied from ./phys/module_bl_ysu.F from WRF version 3.8.1.
-!Laura D. Fowler (laura@ucar.edu) / 2016-10-26.
-
-!modifications to sourcecode for MPAS:
-!   * calculated the dry hydrostatic pressure using the dry air density.
-!   * added outputs of the vertical diffusivity coefficients.
-!     Laura D. Fowler (laura@ucar.edu) / 2016-10-26.
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !=================================================================================================================
 !WRF:model_layer:physics
 !
@@ -33,18 +22,11 @@ contains
                   rqvblten,rqcblten,rqiblten,flag_qi,                          &
                   cp,g,rovcp,rd,rovg,ep1,ep2,karman,xlv,rv,                    &
                   dz8w,psfc,                                                   &
-<<<<<<< HEAD
                   znu,znw,p_top,                                               &
                   znt,ust,hpbl,psim,psih,                                      &
                   xland,hfx,qfx,wspd,br,                                       &
                   dt,kpbl2d,                                                   &
                   exch_h,                                                      &
-=======
-                  znt,ust,hpbl,psim,psih,                                      &
-                  xland,hfx,qfx,wspd,br,                                       &
-                  dt,kpbl2d,                                                   &
-                  exch_h,exch_m,                                               &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                   wstar,delta,                                                 &
                   u10,v10,                                                     &
                   uoce,voce,                                                   &
@@ -55,10 +37,7 @@ contains
                   its,ite, jts,jte, kts,kte,                                   &
                 !optional
                   regime                                                       &
-<<<<<<< HEAD
                   ,rho,kzhout,kzmout,kzqout                                    &
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                  )
 !-------------------------------------------------------------------------------
    implicit none
@@ -169,12 +148,7 @@ contains
                                                                      rqcblten
 !
    real,     dimension( ims:ime, kms:kme, jms:jme )                          , &
-<<<<<<< HEAD
              intent(inout)   ::                                        exch_h
-=======
-             intent(inout)   ::                                        exch_h, &
-                                                                       exch_m
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    real,     dimension( ims:ime, jms:jme )                                   , &
              intent(inout)   ::                                         wstar
    real,     dimension( ims:ime, jms:jme )                                   , &
@@ -220,7 +194,6 @@ contains
              optional                                                        , &
              intent(inout)   ::                                       rqiblten
 !
-<<<<<<< HEAD
    real,     dimension( kms:kme )                                            , &
              optional                                                        , &
              intent(in   )   ::                                           znu, &
@@ -229,8 +202,6 @@ contains
 !
    real,     optional, intent(in   )   ::                               p_top
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    real,     dimension( ims:ime, jms:jme )                                   , &
              optional                                                        , &
              intent(in   )   ::                                         ctopo, &
@@ -246,7 +217,6 @@ contains
                                                                         dvsfc, &
                                                                         dtsfc, &
                                                                         dqsfc
-<<<<<<< HEAD
    real,intent(in),dimension(ims:ime,kms:kme,jms:jme),optional:: rho
    real:: rho_d
    real,intent(out),dimension(ims:ime,kms:kme,jms:jme),optional:: kzhout,kzmout,kzqout
@@ -261,9 +231,6 @@ contains
       enddo
       enddo
    endif
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
    qv2d(its:ite,:) = 0.0
 !
@@ -274,7 +241,6 @@ contains
           pdhi(i,k) = p3di(i,k,j)
         enddo
       enddo
-<<<<<<< HEAD
 !For MPAS, we replace the hydrostatic pressures defined at theta and w points by
 !the dry hydrostatic pressures (Laura D. Fowler):
       if(present(rho)) then
@@ -296,18 +262,12 @@ contains
         enddo
       endif
 !MPAS specific end.
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       do k = kts,kte
         do i = its,ite
           qv2d(i,k) = qv3d(i,k,j)
           qv2d(i,k+kte) = qc3d(i,k,j)
-<<<<<<< HEAD
           if(present(rqiblten)) qv2d(i,k+kte+kte) = qi3d(i,k,j)
-=======
-          if(flag_qi) qv2d(i,k+kte+kte) = qi3d(i,k,j)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         enddo
       enddo
 !
@@ -331,10 +291,6 @@ contains
               ,dusfc=dusfc,dvsfc=dvsfc,dtsfc=dtsfc,dqsfc=dqsfc                 &
               ,dt=dt,rcl=1.0,kpbl1d=kpbl2d(ims,j)                              &
               ,exch_hx=exch_h(ims,kms,j)                                       &
-<<<<<<< HEAD
-=======
-              ,exch_mx=exch_m(ims,kms,j)                                       &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               ,wstar=wstar(ims,j)                                              &
               ,delta=delta(ims,j)                                              &
               ,u10=u10(ims,j),v10=v10(ims,j)                                   &
@@ -342,14 +298,11 @@ contains
               ,rthraten=rthraten(ims,kms,j),p2diORG=p3di(ims,kms,j)            &
               ,ysu_topdown_pblmix=ysu_topdown_pblmix                           &
               ,ctopo=ctopo(ims,j),ctopo2=ctopo2(ims,j)                         &
-<<<<<<< HEAD
 #if defined(mpas)
               ,kzh=kzhout(ims,kms,j)                                           &
               ,kzm=kzmout(ims,kms,j)                                           &
               ,kzq=kzqout(ims,kms,j)                                           &
 #endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               ,ids=ids,ide=ide, jds=jds,jde=jde, kds=kds,kde=kde               &
               ,ims=ims,ime=ime, jms=jms,jme=jme, kms=kms,kme=kme               &
               ,its=its,ite=ite, jts=jts,jte=jte, kts=kts,kte=kte   )
@@ -359,11 +312,7 @@ contains
          rthblten(i,k,j) = rthblten(i,k,j)/pi3d(i,k,j)
          rqvblten(i,k,j) = rqvbl2dt(i,k)
          rqcblten(i,k,j) = rqvbl2dt(i,k+kte)
-<<<<<<< HEAD
          if(present(rqiblten)) rqiblten(i,k,j) = rqvbl2dt(i,k+kte+kte)
-=======
-         if(flag_qi) rqiblten(i,k,j) = rqvbl2dt(i,k+kte+kte)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
        enddo
      enddo
 !
@@ -381,11 +330,7 @@ contains
                   xland,hfx,qfx,wspd,br,                                       &
                   dusfc,dvsfc,dtsfc,dqsfc,                                     &
                   dt,rcl,kpbl1d,                                               &
-<<<<<<< HEAD
                   exch_hx,                                                     &
-=======
-                  exch_hx,exch_mx,                                             &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                   wstar,delta,                                                 &
                   u10,v10,                                                     &
                   uox,vox,                                                     &
@@ -397,10 +342,7 @@ contains
                   its,ite, jts,jte, kts,kte,                                   &
                 !optional
                   regime                                                       &
-<<<<<<< HEAD
                  ,kzh,kzm,kzq                                                  &
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                    )
 !-------------------------------------------------------------------------------
    implicit none
@@ -470,11 +412,7 @@ contains
    real,parameter    ::  afac = 6.8,bfac = 6.8,pfac = 2.0,pfac_q = 2.0
    real,parameter    ::  phifac = 8.,sfcfrac = 0.1
    real,parameter    ::  d1 = 0.02, d2 = 0.05, d3 = 0.001
-<<<<<<< HEAD
    real,parameter    ::  h1 = 0.33333335, h2 = 0.6666667
-=======
-   real,parameter    ::  h1 = 0.33333333, h2 = 0.6666667
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    real,parameter    ::  zfmin = 1.e-8,aphi5 = 5.,aphi16 = 16.
    real,parameter    ::  tmin=1.e-2
    real,parameter    ::  gamcrt = 3.,gamcrq = 2.e-3
@@ -586,12 +524,7 @@ contains
 !jdf added exch_hx
 !
    real,    dimension( ims:ime, kms:kme )                                    , &
-<<<<<<< HEAD
             intent(inout)   ::                                        exch_hx
-=======
-            intent(inout)   ::                                        exch_hx, &
-                                                                      exch_mx
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
    real,    dimension( ims:ime )                                             , &
             intent(inout)    ::                                           u10, &
@@ -654,11 +587,8 @@ contains
    real,    dimension( ims:ime )             ::                       pblh_ysu,&
                                                                       vconvfx
 !
-<<<<<<< HEAD
    real,intent(out),dimension(ims:ime,kms:kme),optional::kzh,kzm,kzq
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !-------------------------------------------------------------------------------
 !
    klpbl = kte
@@ -761,7 +691,6 @@ contains
      wstar3_2(i) =  0.0
    enddo
 !
-<<<<<<< HEAD
    if(present(kzh) .and. present(kzm) .and. present(kzq)) then
       do k = kts,kte
       do i = its,ite
@@ -773,8 +702,6 @@ contains
       enddo
    endif
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    do k = kts,klpbl
      do i = its,ite
        wscalek(i,k) = 0.0
@@ -1522,10 +1449,6 @@ contains
        al(i,k)   = -dtodsu*dsdz2
        ad(i,k)   = ad(i,k)-au(i,k)
        ad(i,k+1) = 1.-al(i,k)
-<<<<<<< HEAD
-=======
-       exch_mx(i,k+1) = xkzm(i,k)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      enddo
    enddo
 !
@@ -1571,7 +1494,6 @@ contains
      kpbl1d(i) = kpbl(i)
    enddo
 !
-<<<<<<< HEAD
    if(present(kzh) .and. present(kzm) .and. present(kzq)) then
       do i = its,ite
       do k = kts,kte
@@ -1582,8 +1504,6 @@ contains
       enddo
    endif
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    end subroutine ysu2d
 !-------------------------------------------------------------------------------
 !

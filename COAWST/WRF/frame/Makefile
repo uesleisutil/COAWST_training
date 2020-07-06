@@ -5,14 +5,10 @@ MAKE    =       make -i -r
 RM      =       rm -f
 
 
-<<<<<<< HEAD
 MODULES =       mct_wrf_coupler_params.o   \
                 mod_wrf_coupler_kinds.o    \
                 module_parallel.o          \
                 module_driver_constants.o  \
-=======
-MODULES =       module_driver_constants.o  \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                 module_domain_type.o       \
                 atm_coupler.o              \
                 module_streams.o           \
@@ -42,10 +38,6 @@ MODULES =       module_driver_constants.o  \
 		module_cpl.o               \
 		module_cpl_oasis3.o        \
 		module_clear_halos.o
-<<<<<<< HEAD
-=======
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ALOBJS =\
                 module_alloc_space_0.o       \
                 module_alloc_space_1.o       \
@@ -94,11 +86,7 @@ include ../configure.wrf
 LIBTARGET    =  framework
 TARGETDIR    =  ./
 $(LIBTARGET) :  $(MODULES) $(OBJS) $(SPECIAL) $(NLOBJS) $(ALOBJS)
-<<<<<<< HEAD
 		$(AR) $(ARFLAGS) ../main/$(LIBWRFLIB) $(MODULES) $(OBJS) $(NLOBJS) $(ALOBJS)
-=======
-		$(AR) $(ARFLAGS) ../main/$(LIBWRFLIB) $(MODULES) $(OBJS) $(NLOBJS) $(ALOBJS) $(MCT_PARAMS_DIR)/mct_coupler_params.o
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 		$(RANLIB) ../main/$(LIBWRFLIB)
 
 nl_set_0_routines.o : nl_access_routines.F module_configure.o

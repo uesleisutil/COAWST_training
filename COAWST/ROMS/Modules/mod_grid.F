@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       MODULE mod_grid
 !
-<<<<<<< HEAD
 !svn $Id: mod_grid.F 921 2018-09-06 18:27:34Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: mod_grid.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -52,10 +46,6 @@
 !  lonr       Longitude (degrees_east) at RHO-points.                  !
 !  lonu       Longitude (degrees_east) at U-points.                    !
 !  lonv       Longitude (degrees_east) at V-points.                    !
-<<<<<<< HEAD
-=======
-!  MyLon      Longitude work array for regridding.                     !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  omm        RHO-grid area (meters2).                                 !
 !  om_p       PSI-grid spacing (meters) in the XI-direction.           !
 !  om_r       RHO-grid spacing (meters) in the XI-direction.           !
@@ -191,10 +181,6 @@
           real(r8), pointer :: lonr(:,:)
           real(r8), pointer :: lonu(:,:)
           real(r8), pointer :: lonv(:,:)
-<<<<<<< HEAD
-=======
-          real(r8), pointer :: MyLon(:,:)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           real(r8), pointer :: omn(:,:)
           real(r8), pointer :: om_p(:,:)
           real(r8), pointer :: om_r(:,:)
@@ -370,11 +356,7 @@
 !
 !  Set horizontal array size.
 !
-<<<<<<< HEAD
       size2d=REAL((UBi-LBi)*(UBj-LBj),r8)
-=======
-      size2d=REAL((UBi-LBi+1)*(UBj-LBj+1),r8)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Nonlinear model state.
 !
@@ -442,12 +424,6 @@
       allocate ( GRID(ng) % lonv(LBi:UBi,LBj:UBj))
       Dmem(ng)=Dmem(ng)+size2d
 
-<<<<<<< HEAD
-=======
-      allocate ( GRID(ng) % Mylon(LBi:UBi,LBj:UBj))
-      Dmem(ng)=Dmem(ng)+size2d
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       allocate ( GRID(ng) % omn(LBi:UBi,LBj:UBj) )
       Dmem(ng)=Dmem(ng)+size2d
 
@@ -858,10 +834,6 @@
             GRID(ng) % lonr(i,j) = IniMetricVal
             GRID(ng) % lonu(i,j) = IniMetricVal
             GRID(ng) % lonv(i,j) = IniMetricVal
-<<<<<<< HEAD
-=======
-            GRID(ng) % MyLon(i,j) = IniMetricVal
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
             GRID(ng) % omn(i,j) = IniVal
             GRID(ng) % om_p(i,j) = IniVal

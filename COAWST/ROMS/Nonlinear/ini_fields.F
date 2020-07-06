@@ -2,15 +2,9 @@
       MODULE ini_fields_mod
 #ifdef NONLINEAR
 !
-<<<<<<< HEAD
 !svn $Id: ini_fields.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: ini_fields.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -104,13 +98,10 @@
      &                      ICE(ng) % hi,                               &
      &                      ICE(ng) % hsn,                              &
      &                      ICE(ng) % ti,                               &
-<<<<<<< HEAD
 #   ifdef MELT_PONDS
      &                      ICE(ng) % apond,                            &
      &                      ICE(ng) % hpond,                            &
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                      ICE(ng) % ageice,                           &
 #  endif
 # endif
@@ -155,12 +146,9 @@
 #  ifdef ICE_MODEL
      &                            ui, vi, ai, hi, hsn,                  &
      &                            ti, ageice,                           &
-<<<<<<< HEAD
 #   ifdef MELT_PONDS
      &                            apond, hpond,                         &
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 # endif
      &                            ubar, vbar, zeta)
@@ -257,13 +245,10 @@
       real(r8), intent(inout) :: hsn(LBi:,LBj:,:)
       real(r8), intent(inout) :: ti(LBi:,LBj:,:)
       real(r8), intent(inout) :: ageice(LBi:,LBj:,:)
-<<<<<<< HEAD
 #    ifdef MELT_PONDS
       real(r8), intent(inout) :: apond(LBi:,LBj:,:)
       real(r8), intent(inout) :: hpond(LBi:,LBj:,:)
 #    endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   endif
 #  endif
       real(r8), intent(inout) :: ubar(LBi:,LBj:,:)
@@ -316,13 +301,10 @@
       real(r8), intent(inout) :: hsn(LBi:UBi,LBj:UBj,2)
       real(r8), intent(inout) :: ti(LBi:UBi,LBj:UBj,2)
       real(r8), intent(inout) :: ageice(LBi:UBi,LBj:UBj,2)
-<<<<<<< HEAD
 #    ifdef MELT_PONDS
       real(r8), intent(inout) :: apond(LBi:UBi,LBj:UBj,2)
       real(r8), intent(inout) :: hpond(LBi:UBi,LBj:UBj,2)
 #    endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   endif
 #  endif
       real(r8), intent(inout) :: ubar(LBi:UBi,LBj:UBj,3)
@@ -702,10 +684,6 @@
 !!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !#  ifdef T_PASSIVE
 !         ELSE
-<<<<<<< HEAD
-=======
-!        IF (itrc .ge. inert(1) .and. itrc .le. inert(NPT)) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !!         else condition added by Weifeng Zhang for passive tracer
 !!         boundary condition
 !          CALL pt3dbc_tile (ng, tile, itrc,                             &
@@ -846,26 +824,20 @@
             cff2=hi(i,j,nstp)
             cff3=hsn(i,j,nstp)
             cff4=ti(i,j,nstp)
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
             cff5=apond(i,j,nstp)
             cff6=hpond(i,j,nstp)
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             cff7=ageice(i,j,nstp)
 #  ifdef MASKING
             cff1=cff1*rmask(i,j)
             cff2=cff2*rmask(i,j)
             cff3=cff3*rmask(i,j)
             cff4=cff4*rmask(i,j)
-<<<<<<< HEAD
 #   ifdef MELT_PONDS
             cff5=cff5*rmask(i,j)
             cff6=cff6*rmask(i,j)
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             cff7=cff7*rmask(i,j)
 #  endif
             ai(i,j,nstp)=cff1
@@ -876,15 +848,12 @@
             hsn(i,j,nnew)=cff3
             ti(i,j,nstp)=cff4
             ti(i,j,nnew)=cff4
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
             apond(i,j,nstp)=cff5
             apond(i,j,nnew)=cff5
             hpond(i,j,nstp)=cff6
             hpond(i,j,nnew)=cff6
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             ageice(i,j,nstp)=cff7
             ageice(i,j,nnew)=cff7
           END DO
@@ -910,7 +879,6 @@
           CALL exchange_r2d_tile (ng, tile,                             &
      &                            LBi, UBi, LBj, UBj,                   &
      &                            ti(:,:,i))
-<<<<<<< HEAD
 #  ifdef MELT_PONDS
           CALL exchange_r2d_tile (ng, tile,                             &
      &                            LBi, UBi, LBj, UBj,                   &
@@ -919,8 +887,6 @@
      &                            LBi, UBi, LBj, UBj,                   &
      &                            hpond(:,:,i))
 #  endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           CALL exchange_r2d_tile (ng, tile,                             &
      &                            LBi, UBi, LBj, UBj,                   &
      &                            ageice(:,:,i))
@@ -937,7 +903,6 @@
      &                      NghostPoints,                               &
      &                      EWperiodic(ng), NSperiodic(ng),             &
      &                      hsn, ti, ageice)
-<<<<<<< HEAD
 #   ifdef MELT_PONDS
         CALL mp_exchange3d (ng, tile, model, 2,                         &
      &                      LBi, UBi, LBj, UBj, 1, 2,                   &
@@ -945,8 +910,6 @@
      &                      EWperiodic(ng), NSperiodic(ng),             &
      &                      apond, hpond)
 #   endif
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 # endif
 

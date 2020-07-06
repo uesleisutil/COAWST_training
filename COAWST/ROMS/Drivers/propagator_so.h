@@ -1,14 +1,8 @@
       SUBROUTINE propagator (RunInterval, Iter, state, ad_state)
 !
-<<<<<<< HEAD
 !svn $Id: propagator_so.h 937 2019-01-28 06:13:04Z arango $
 !************************************************** Hernan G. Arango ***
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: propagator_so.h 995 2020-01-10 04:01:28Z arango $
-!************************************************** Hernan G. Arango ***
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !***********************************************************************
@@ -154,17 +148,10 @@
               LdefADJ(ng)=.FALSE.
               LdefTLM(ng)=.FALSE.
             END IF
-<<<<<<< HEAD
             Fcount=ADM(ng)%Fcount
             ADM(ng)%Nrec(Fcount)=0
             ADM(ng)%Rindex=0
             Fcount=TLM(ng)%Fcount
-=======
-            Fcount=ADM(ng)%load
-            ADM(ng)%Nrec(Fcount)=0
-            ADM(ng)%Rindex=0
-            Fcount=TLM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             TLM(ng)%Nrec(Fcount)=0
             TLM(ng)%Rindex=0
           ELSE                               ! Computing eigenvectors
@@ -175,30 +162,18 @@
             END IF
 #ifdef STOCH_OPT_WHITE
             IF (Interval.le.Nintervals) THEN
-<<<<<<< HEAD
               Fcount=ADM(ng)%Fcount
-=======
-              Fcount=ADM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               ADM(ng)%Nrec(Fcount)=0
               ADM(ng)%Rindex=0
             END IF
 #else
-<<<<<<< HEAD
             Fcount=ADM(ng)%Fcount
-=======
-            Fcount=ADM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             ADM(ng)%Nrec(Fcount)=0
             ADM(ng)%Rindex=0
 #endif
             IF ((LmultiGST.or.(ABS(Iter).eq.1)).and.                    &
      &          (Interval.eq.1)) THEN
-<<<<<<< HEAD
               Fcount=TLM(ng)%Fcount
-=======
-              Fcount=TLM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
               TLM(ng)%Nrec(Fcount)=0
               TLM(ng)%Rindex=0
             END IF

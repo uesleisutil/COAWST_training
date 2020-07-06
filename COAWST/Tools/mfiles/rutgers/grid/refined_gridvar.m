@@ -70,15 +70,9 @@ function [Fvalues,S] = refined_gridvar(Cinp, Finp, field, varargin)
 %  pcolor(S.xavg, S.yavg, S.sum); shading facetted; colorbar;
 %
   
-<<<<<<< HEAD
 % svn $Id: refined_gridvar.m 913 2018-07-02 22:16:58Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2015 The ROMS/TOMS Group                            %
-=======
-% svn $Id: refined_gridvar.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%

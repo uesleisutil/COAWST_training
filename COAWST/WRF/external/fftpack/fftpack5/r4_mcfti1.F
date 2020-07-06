@@ -4,13 +4,9 @@ subroutine r4_mcfti1 ( n, wa, fnf, fac )
 !
 !! R4_MCFTI1 sets up factors and tables, real single precision arithmetic.
 !
-<<<<<<< HEAD
 !  License:
 !
 !    Licensed under the GNU General Public License (GPL).
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Copyright (C) 1995-2004, Scientific Computing Division,
 !    University Corporation for Atmospheric Research
 !

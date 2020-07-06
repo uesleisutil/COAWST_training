@@ -265,15 +265,9 @@ function [S,G] = contact(Gnames, Cname, varargin)
 %          receiver_value(Irg,Jrg) = donor_value(Idg,Jdg)
 %
 
-<<<<<<< HEAD
 % svn $Id: contact.m 913 2018-07-02 22:16:58Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: contact.m 1004 2020-01-16 04:13:45Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%
@@ -724,15 +718,9 @@ if (spherical)
 
   elseif (~isempty(G(dg).lon_rho) && ~isempty(G(dg).lat_rho))
 
-<<<<<<< HEAD
     FSr.Values = G(dg).angle(:);    R.angle = FCr(XrF, YrF); 
     FSr.Values = G(dg).f(:);        R.f     = FCr(XrF, YrF); 
     FSr.Values = G(dg).h(:);        R.h     = FCr(XrF, YrF); 
-=======
-    FSr.Values = G(dg).angle(:);    R.angle = FSr(XrF, YrF); 
-    FSr.Values = G(dg).f(:);        R.f     = FSr(XrF, YrF); 
-    FSr.Values = G(dg).h(:);        R.h     = FSr(XrF, YrF); 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   
   end
 
@@ -3306,8 +3294,4 @@ if (~isempty(ind1))
   W(ind1) = 1;
 end
 
-<<<<<<< HEAD
 return
-=======
-return
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

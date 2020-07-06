@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 # svn $Id: my_build_paths.sh 943 2019-01-31 23:21:29Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
-=======
-# svn $Id: my_build_paths.sh 995 2020-01-10 04:01:28Z arango $
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -184,10 +178,6 @@ switch ($FORT)
       setenv NETCDF             /opt/intelsoft/serial/netcdf3
       setenv NETCDF_INCDIR      ${NETCDF}/include
       setenv NETCDF_LIBDIR      ${NETCDF}/lib
-<<<<<<< HEAD
-=======
-      setenv NETCDF_classic     1
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     endif
 
     if ($?USE_HDF5) then

@@ -27,15 +27,9 @@ function [x,y,dhdx,dhde,slope,r]=hslope(fname,iprint,iplot);
 %    r           R-value (2D array)
 %
 
-<<<<<<< HEAD
 % svn $Id: hslope.m 895 2018-02-11 23:15:37Z arango $
 %===========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                              %
-=======
-% svn $Id: hslope.m 996 2020-01-10 04:28:56Z arango $
-%===========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                              %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                   %
 %    See License_ROMS.txt                           Hernan G. Arango        %
 %===========================================================================%
@@ -63,11 +57,7 @@ for n=1:nvars,
   name=char(S.Variables(n).Name);
   switch name
     case 'h'
-<<<<<<< HEAD
       h=nc_read(fname,'h',0);
-=======
-      h=nc_read(fname,'h',1);
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     case 'bath'
       h=nc_read(fname,'bath',1);
     case 'angle'
@@ -95,13 +85,8 @@ M=Mp-1;
 %  Read in curvilinear grid metrics.
 %----------------------------------------------------------------------------
 
-<<<<<<< HEAD
 pm=nc_read(fname,'pm',0);
 pn=nc_read(fname,'pn',0);
-=======
-pm=nc_read(fname,'pm');
-pn=nc_read(fname,'pn');
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 dx=1./pm; dx=dx./1000;
 dy=1./pn; dy=dy./1000;
@@ -159,7 +144,6 @@ if (ischar(spherical)),
 end
 
 if (spherical),
-<<<<<<< HEAD
   xr=nc_read(fname,'lon_rho',0);
   yr=nc_read(fname,'lat_rho',0);
   x(1:L,1:M)=0.25.*(xr(1:L,1:M)+xr(2:Lp,1:M)+xr(1:L,2:Mp)+xr(2:Lp,2:Mp));
@@ -167,15 +151,6 @@ if (spherical),
 else
   xr=nc_read(fname,'x_rho',0);
   yr=nc_read(fname,'y_rho',0);
-=======
-  xr=nc_read(fname,'lon_rho');
-  yr=nc_read(fname,'lat_rho');
-  x(1:L,1:M)=0.25.*(xr(1:L,1:M)+xr(2:Lp,1:M)+xr(1:L,2:Mp)+xr(2:Lp,2:Mp));
-  y(1:L,1:M)=0.25.*(yr(1:L,1:M)+yr(2:Lp,1:M)+yr(1:L,2:Mp)+yr(2:Lp,2:Mp));
-else
-  xr=nc_read(fname,'x_rho');
-  yr=nc_read(fname,'y_rho');
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
   x(1:L,1:M)=0.25.*(xr(1:L,1:M)+xr(2:Lp,1:M)+xr(1:L,2:Mp)+xr(2:Lp,2:Mp));
   y(1:L,1:M)=0.25.*(yr(1:L,1:M)+yr(2:Lp,1:M)+yr(1:L,2:Mp)+yr(2:Lp,2:Mp));
 end

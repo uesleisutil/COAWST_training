@@ -1,11 +1,7 @@
 subroutine da_allocate_y_radar (iv, y)
 
    !---------------------------------------------------------------------------
-<<<<<<< HEAD
    ! Purpose: Allocate arrays used in y and residual obs structures.
-=======
-   ! Purpose: this subroutine is only used for allocating ob%radar arrays
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    !---------------------------------------------------------------------------
 
    implicit none
@@ -35,7 +31,6 @@ subroutine da_allocate_y_radar (iv, y)
          nlevels = iv%info(radar)%levels(n)
          allocate (y % radar(n)%rv(1:nlevels))
          allocate (y % radar(n)%rf(1:nlevels))
-<<<<<<< HEAD
          allocate (y % radar(n)%rrn(1:nlevels))
          allocate (y % radar(n)%rsn(1:nlevels))
          allocate (y % radar(n)%rgr(1:nlevels))
@@ -47,23 +42,6 @@ subroutine da_allocate_y_radar (iv, y)
          y % radar(n) % rsn(1:nlevels) = 0.0
          y % radar(n) % rgr(1:nlevels) = 0.0
          y % radar(n) % rqv(1:nlevels) = 0.0
-=======
-         !This subroutine is only used for allocating ob%radar arrays.
-         !Retrieved observations are currently stored in
-         !iv%radar(:)%rrno, iv%radar(:)%rsno, iv%radar(:)%rgro, iv%radar(:)%rqvo,
-         !so the following allocation is not needed.
-         !allocate (y % radar(n)%rrn(1:nlevels))
-         !allocate (y % radar(n)%rsn(1:nlevels))
-         !allocate (y % radar(n)%rgr(1:nlevels))
-         !allocate (y % radar(n)%rqv(1:nlevels))
-
-         y % radar(n) % rv(1:nlevels)  = 0.0
-         y % radar(n) % rf(1:nlevels)  = 0.0
-         !y % radar(n) % rrn(1:nlevels) = 0.0
-         !y % radar(n) % rsn(1:nlevels) = 0.0
-         !y % radar(n) % rgr(1:nlevels) = 0.0
-         !y % radar(n) % rqv(1:nlevels) = 0.0
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       end do
    end if
 

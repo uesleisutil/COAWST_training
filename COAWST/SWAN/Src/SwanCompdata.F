@@ -11,11 +11,7 @@ module SwanCompdata
 !
 !
 !     SWAN (Simulating WAves Nearshore); a third generation wave model
-<<<<<<< HEAD
 !     Copyright (C) 1993-2017  Delft University of Technology
-=======
-!     Copyright (C) 1993-2019  Delft University of Technology
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !     This program is free software; you can redistribute it and/or
 !     modify it under the terms of the GNU General Public License as
@@ -71,11 +67,7 @@ module SwanCompdata
 !$omp threadprivate(vs)
 !
     integer, dimension(:,:), save, allocatable :: blist  ! list of boundary vertices in ascending order for each boundary polygon
-<<<<<<< HEAD
     integer, dimension(:)  , save, allocatable :: vlist  ! vertex list
-=======
-    integer, dimension(:,:), save, allocatable :: vlist  ! vertex list
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !   Source text
 !

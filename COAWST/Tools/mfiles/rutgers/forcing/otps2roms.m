@@ -62,15 +62,9 @@ function Tide = otps2roms(gfile,base_date,pred_date,ofile,model_file)
 % Revised by Hernan Arango 08/02/2012
 %
   
-<<<<<<< HEAD
 % svn $Id: otps2roms.m 895 2018-02-11 23:15:37Z arango $
 %=========================================================================%
 %  Copyright (c) 2002-2018 The ROMS/TOMS Group                            %
-=======
-% svn $Id: otps2roms.m 996 2020-01-10 04:28:56Z arango $
-%=========================================================================%
-%  Copyright (c) 2002-2020 The ROMS/TOMS Group                            %
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 %    Licensed under a MIT/X style license                                 %
 %    See License_ROMS.txt                           Hernan G. Arango      %
 %=========================================================================%
@@ -250,8 +244,4 @@ Tide.Cphase = zero_out_land ( phase, land );
 
 write_tides(Tide, gfile, ofile, base_date, model_file);
 
-<<<<<<< HEAD
 return
-=======
-return
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

@@ -23,11 +23,7 @@ subroutine da_radiance_init(iv,ob)
 !
 !  local arguments
 !------------------- 
-<<<<<<< HEAD
  integer   :: n, j, ichan
-=======
- integer   :: n, j, ichan, iret
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
  integer :: nsensor, unit_factor_rad
  integer     :: error
  integer, allocatable   ::  nscan(:), nchanl(:)
@@ -135,23 +131,6 @@ subroutine da_radiance_init(iv,ob)
    else if ( trim( crtm_sensor_name(rtminit_sensor(n))) == 'amsr2' ) then
       nchanl(n)  = 14
       nscan(n)   = 486
-<<<<<<< HEAD
-=======
-   else if ( trim( crtm_sensor_name(rtminit_sensor(n))) == 'ahi' ) then
-     !open the ahi info file 
-      open(unit=1990,file='ahi_info',status='old',iostat=iret)
-      if(iret /= 0)then
-         call da_error(__FILE__,__LINE__,(/"Read ahi_info error: no such file"/))
-      end if	  
-     !read ahi information
-      read(1990,*)  
-      read(1990,*) 
-      read(1990,*) 
-      read(1990,*) nscan(n) 
-      close(1990)     
-      write(*,*) nscan(n)   
-      nchanl(n)  = 10
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    else if ( trim( crtm_sensor_name(rtminit_sensor(n))) == 'imgr' ) then
       nchanl(n)  = 4
       nscan(n)   = 60

@@ -2,11 +2,7 @@
 #ifdef TANGENT
       SUBROUTINE tl_step2d (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: tl_step2d_LF_AM3.h 889 2018-02-10 03:32:52Z arango $
-=======
-!svn $Id: tl_step2d_LF_AM3.h 995 2020-01-10 04:01:28Z arango $
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !=======================================================================
 !                                                                      !
 !  Tangent linear model shallow-water primitive equations predictor    !

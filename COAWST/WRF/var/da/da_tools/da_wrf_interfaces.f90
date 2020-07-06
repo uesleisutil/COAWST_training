@@ -8,11 +8,7 @@ module da_wrf_interfaces
    interface
       subroutine wrf_dm_bcast_real (buf, n1)
          integer, intent(in) :: n1
-<<<<<<< HEAD
          real, intent(inout) :: buf(:)
-=======
-         real, intent(inout) :: buf(*)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       end subroutine wrf_dm_bcast_real
    end interface 
 
@@ -30,42 +26,12 @@ module da_wrf_interfaces
    end interface
 
    interface
-<<<<<<< HEAD
-=======
-      subroutine wrf_dm_bcast_integer(buf, n1)
-         implicit none
-         integer, intent(in)    ::  n1
-         integer, intent(inout) :: buf(*)
-      end subroutine wrf_dm_bcast_integer
-   end interface
-
-   interface
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       integer function wrf_dm_sum_integer (inval)
          integer, intent(in) :: inval
       end function wrf_dm_sum_integer
    end interface
 
    interface
-<<<<<<< HEAD
-=======
-      subroutine wrf_dm_bcast_string(buf, n1)
-         implicit none
-         integer, intent(in)          ::  n1
-         character*(*), intent(inout) :: buf(*)
-      end subroutine wrf_dm_bcast_string
-   end interface
-
-   interface
-      subroutine wrf_dm_bcast_bytes(buf, size)
-         implicit none
-         integer, intent(in)    :: size
-         integer, intent(inout) :: buf(*)
-      end subroutine wrf_dm_bcast_bytes
-   end interface
-
-   interface
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       subroutine wrf_patch_to_global_real (buf,globbuf,domdesc,stagger, &
          ordering,&
          ds1,de1,ds2,de2,ds3,de3,&
@@ -162,7 +128,6 @@ module da_wrf_interfaces
       end subroutine wrf_debug
    end interface
 
-<<<<<<< HEAD
    interface
       subroutine wrf_dm_bcast_integer(buf, n1)
          implicit none
@@ -171,8 +136,6 @@ module da_wrf_interfaces
       end subroutine wrf_dm_bcast_integer
    end interface
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    interface 
       subroutine setup_timekeeping(grid)
         use module_domain, only : domain

@@ -131,41 +131,19 @@ end if
    !  [5.0] Write observation data (O, O-B, O-A, y=hx'):
    !------------------------------------------------------------------------------
 
-<<<<<<< HEAD
    call da_write_obs(it, ob, iv, re)
-=======
-   if ( write_gts_omb_oma ) then
-      call da_write_obs(it, ob, iv, re)
-   end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
    ! Write ETKF observation files if required (note - 1PE only at present):
    if (anal_type_verify) then
       call da_write_obs_etkf(ob, iv, re)
    end if
 
-<<<<<<< HEAD
    call da_final_write_obs(it, iv)
 
 if (.not. anal_type_verify) then
    call da_write_y(iv, y)
 
    call da_final_write_y(iv)
-=======
-   if ( write_gts_omb_oma ) then
-      call da_final_write_obs(it, iv)
-   end if
-
-if (.not. anal_type_verify) then
-   if ( write_unpert_obs ) then
-      call da_write_y(iv, y)
-   end if
-
-   if ( write_unpert_obs ) then
-      call da_final_write_y(iv)
-   end if
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
    call da_print_qcstat(it, iv, num_qcstat_conv)
 end if
 

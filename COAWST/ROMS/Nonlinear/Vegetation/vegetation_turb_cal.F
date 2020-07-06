@@ -5,7 +5,6 @@
 #if defined NONLINEAR && defined VEGETATION && defined VEG_TURB
 !
 !svn $Id: vegetation_turb_cal.F 429 2015-06-10 12:30:26Z arango $
-<<<<<<< HEAD
 !=======================================================================
 !  Copyright (c) 2002-2017 The ROMS/TOMS Group                         !
 !    Licensed under a MIT/X style license           Hernan G. Arango   !
@@ -14,16 +13,6 @@
 !==================================================== Neil K. Ganju  ===
 !==================================================== Alexis Beudin  ===
 !==================================================Tarandeep S. Kalra===
-=======
-!======================================================================!
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-!    Licensed under a MIT/X style license           Hernan G. Arango   !
-!    See License_ROMS.txt                                              !
-!==================================================== John C. Warner ==!
-!==================================================== Neil K. Ganju  ==!
-!==================================================== Alexis Beudin  ==!
-!==================================================Tarandeep S. Kalra==!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !                                                                      !
 !  This routine computes the turbulent kinetic energy and length scale !
 !  modifications due to vegetation for gls_corstep.F                   !
@@ -39,13 +28,8 @@
 !   Performance of four turbulence closure models implemented using a  !
 !   generic length scale method, Ocean Modelling 8: 81-113.            !
 !                                                                      !
-<<<<<<< HEAD
 !=======================================================================
 !
-=======
-!======================================================================!
-!                                                                      !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       implicit none
 
       PRIVATE
@@ -116,10 +100,7 @@
       USE mod_vegarr
       USE vegetation_drag_mod
 !
-<<<<<<< HEAD
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Imported variable declarations.
 !
       integer, intent(in) :: ng, tile

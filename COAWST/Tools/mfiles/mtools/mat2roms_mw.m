@@ -92,16 +92,8 @@ v34 = netcdf.inqVarID(nc,'angle');
 disp(' ## Filling Variables...')
 
 projection = s.projection;
-<<<<<<< HEAD
 m_proj(s.projection);
 switch lower(projection)
-=======
-%m_proj(s.projection);
-%switch lower(projection)
-m_proj(s.projection.name);
-switch lower(projection.name)
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 case 'mercator'
 	theProjection = 'ME';
 case 'stereographic'

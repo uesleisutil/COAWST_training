@@ -6,11 +6,7 @@
 !   SET  [level]  [nor]  [depmin]  [maxmes]                                 &
 !        [maxerr]  [grav]  [rho] [cdcap] [uscap] [inrhog]                   &
 !        [hsrerr]  CARTesian|NAUTical  [pwtail]                             &
-<<<<<<< HEAD
 !        [froudmax]  [sort]  CURV  [printf]  [prtest]
-=======
-!        [froudmax]  [icewind]  [sort]  [nsweep]  CURV  [printf]  [prtest]
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !   MODE  / STATIONARY \  / TWODimensional
 !         \ DYNAMIC    /  \ ONEDimensional
@@ -27,10 +23,6 @@
 !
 !   INPgrid                                                                 &
 !      BOT | WLEV | CUR | VX | VY | FR | WI | WX | WY | NPLA | TURB | MUDL  &
-<<<<<<< HEAD
-=======
-!      AICE | HICE                                                          &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !      | REG [xpinp] [ypinp] [alpinp]  [mxinp] [myinp]  [dxinp] [dyinp] |
 !      |                                                                |
@@ -46,18 +38,9 @@
 !   READgrid UNSTRUCtured <  TRIAngle \
 !                          | EASYmesh / 'fname'
 !
-<<<<<<< HEAD
 !   READinp    BOTtom|WLevel|CURrent|FRiction|WInd|COOR|NPLAnts|TURB|MUDL   &
 !        [fac]  / 'fname1'        \
 !               \ SERIES 'fname2' /  [idla] [nhedf] ([nhedt]) (nhedvec])    &
-=======
-!   READinp    BOTtom | WLevel | CURrent | FRiction | WInd | COOR | NPLAnts &
-!              TURB | MUDL | AICE | HICE                                    &
-!
-!        [fac]  / 'fname1'        \
-!               \ SERIES 'fname2' /  [idla] [nhedf] ([nhedt]) (nhedvec])    &
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !        FREE | FORMAT 'form' | [idfm] | UNFORMATTED
 !
 !                              | WU
@@ -181,11 +164,6 @@
 !
 !   MUD  [layer]  [rhom]  [viscm]  [rhow]  [viscw]
 !
-<<<<<<< HEAD
-=======
-!   IC4M2 [aice] [c0] [c1] [c2] [c3] [c4] [c5] [c6]
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !   LIMiter [ursell] [qb]
 !
 !               | -> TRANSm [trcoef]                        |
@@ -200,13 +178,7 @@
 !        ( REFLec [reflc] <                   > )                           &
 !                          |    RDIFF [pown] |
 !
-<<<<<<< HEAD
 !               LINe < [xp] [yp] >
-=======
-!        ( FREEboard [hgt] [gammat] [gammar] Quay )                         &
-!
-!        LINe < [xp] [yp] >
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !   SETUP  [supcor]
 !
@@ -275,11 +247,7 @@
 !             DHSIGN|DRTM01|LEAK|TSEC|XP|YP|DIST|SETUP|TMM10|RTMM10|DEPTH|  &
 !             TMBOT|QP|BFI|NPLANT|WATLEV|BOTLEV|TPS|DISBOT|DISSURF|DISWCAP| &
 !             GENE|GENW|REDI|REDQ|REDT|PROPA|PROPX|PROPT|PROPS|RADS|LWAVP|  &
-<<<<<<< HEAD
 !             DISTUR|TURB|DISMUD|DISSWELL|                                  &
-=======
-!             DISTUR|TURB|DISMUD|DISSWELL|AICE|DISICE|                      &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !             PTHSIGN|PTRTP|PTWLEN|PTDIR|PTDSPR|PTWFRAC|PTSTEEP|PARTIT >    &
 !             ([unit]) (OUTPUT [tbegblk] [deltblk] SEC|MIN|HR|DAY)
 !
@@ -289,11 +257,7 @@
 !             DHSIGN|DRTM01|LEAK|TIME|TSEC|XP|YP|DIST|SETUP|TMM10|RTMM10|   &
 !             DEPTH|TMBOT|QP|BFI|WATLEV|BOTLEV|TPS|DISBOT|DISSURF|DISWCAP|  &
 !             GENE|GENW|REDI|REDQ|REDT|PROPA|PROPX|PROPT|PROPS|RADS|LWAVP|  &
-<<<<<<< HEAD
 !             DISTUR|TURB|DISMUD|DISSWELL|                                  &
-=======
-!             DISTUR|TURB|DISMUD|DISSWELL|AICE|DISICE|                      &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !             PTHSIGN|PTRTP|PTWLEN|PTDIR|PTDSPR|PTWFRAC|PTSTEEP >           &
 !             ([unit]) (OUTPUT [tbegtbl] [delttbl] SEC|MIN|HR|DAY)
 !

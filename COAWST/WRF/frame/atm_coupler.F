@@ -81,12 +81,8 @@
       USE m_MatAttrVectMul, ONLY : MCT_MatVecMul => sMatAvMult
 # endif
 !
-<<<<<<< HEAD
       USE mct_wrf_coupler_params
       USE module_parallel
-=======
-      USE mct_coupler_params
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       implicit none
 !
@@ -208,22 +204,12 @@
       TYPE (T_AV2_R), ALLOCATABLE :: AV2_RO(:,:)
       TYPE (T_AV2_R), ALLOCATABLE :: AV2_RW(:,:)
 
-<<<<<<< HEAD
       TYPE(SparseMatrix) :: sMatF             ! Sparse matrix elements
       TYPE(SparseMatrix) :: sMatC             ! Sparse matrix elements
-=======
-!      TYPE(SparseMatrix) :: sMatF             ! Sparse matrix elements
-!      TYPE(SparseMatrix) :: sMatC             ! Sparse matrix elements
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       TYPE T_SMPlus_R
         TYPE(SparseMatrixPlus) :: C2FMatPlus  ! Sparse matrix plus elements
         TYPE(SparseMatrixPlus) :: F2CMatPlus  ! Sparse matrix plus elements
-<<<<<<< HEAD
-=======
-        TYPE(SparseMatrix) :: sMatF             ! Sparse matrix elements
-        TYPE(SparseMatrix) :: sMatC             ! Sparse matrix elements
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       END TYPE T_SMPlus_R
       TYPE (T_SMPlus_R), ALLOCATABLE :: SMPlus_R(:)
 !
@@ -261,10 +247,6 @@
       integer :: j, jc, Isize, Jsize, count, Asize
       integer :: i, is, ie, js, je, cid, cad, io, iw 
       integer :: nRows, nCols, num_sparse_elems
-<<<<<<< HEAD
-=======
-      integer :: par_grid_nomove, par_scale, offset
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       integer, pointer :: start(:), length(:)
       character (len=120)  :: to_add, avstring
@@ -356,20 +338,6 @@
       full_Jsize(ia)=grid%e_sn-1
       parent_id(ia)=grid%parent_id
 !
-<<<<<<< HEAD
-=======
-!  here we need to figure out the largest parent grid that is not moving.
-!
-      par_grid_nomove=1
-      DO i=2,Natm_grids
-        IF (moving_nest(i).eq.0) par_grid_nomove=i
-      END DO
-      par_scale=1
-      DO i=par_grid_nomove+1,ia
-        par_scale=par_scale*par_grid_ratio(ia)
-      END DO
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       IF ((Myrank.eq.0).and.(moving_nest(ia).eq.1)) THEN
 !  For staitc grids, that interpolation occurs in the mct_roms_wrf.h.
 !  For moving WRF nests,for now, this will take effect here and
@@ -384,24 +352,14 @@
 !!!!!!!!!!!!!!!!!!!!!!
 !
 
-<<<<<<< HEAD
           src_grid_dims(1)=full_Isize(ia)
           src_grid_dims(2)=full_Jsize(ia)
           dst_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
           dst_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
-=======
-        src_grid_dims(1)=full_Isize(ia)
-        src_grid_dims(2)=full_Jsize(ia)
-!       dst_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
-!       dst_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
-        dst_grid_dims(1)=full_Isize(par_grid_nomove)*par_scale
-        dst_grid_dims(2)=full_Jsize(par_grid_nomove)*par_scale
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! Init the sparse matrix. Rows = dst grid cell indices (these change).
 !                         Cols = src grid cell indices.
 !
-<<<<<<< HEAD
           num_sparse_elems=src_grid_dims(1)*src_grid_dims(2)
           nRows=dst_grid_dims(1)*dst_grid_dims(2)
           nCols=src_grid_dims(1)*src_grid_dims(2)
@@ -451,91 +409,19 @@
           deallocate ( sparse_rows )
           deallocate ( sparse_cols )
           deallocate ( sparse_weights )
-=======
-        num_sparse_elems=src_grid_dims(1)*src_grid_dims(2)
-        nRows=dst_grid_dims(1)*dst_grid_dims(2)
-        nCols=src_grid_dims(1)*src_grid_dims(2)
-!
-        allocate ( sparse_rows(num_sparse_elems) )
-        allocate ( sparse_cols(num_sparse_elems) )
-        allocate ( sparse_weights(num_sparse_elems) )
-!
-! Create sparse matrix.
-!
-        DO i=1,num_sparse_elems
-          sparse_cols(i)=i
-!         sparse_weights(i)=1.0
-          sparse_weights(i)=0.0
-        END DO
-
-!  Do not use first 3 (or 5) rows around child perimeter.
-
-        jc=0
-        DO j=par_grid_ratio(ia)+1,src_grid_dims(2)-par_grid_ratio(ia)
-         DO i=par_grid_ratio(ia)+1,src_grid_dims(1)-par_grid_ratio(ia)
-            jc=(j-1)*(src_grid_dims(1))+i
-            sparse_weights(jc)=1.0
-          END DO
-        END DO
-        is=(grid%i_parent_start-1)*par_grid_ratio(ia)+1
-        js=(grid%j_parent_start-1)*par_grid_ratio(ia)+1
-        moving_nest_istart(ia)=grid%i_parent_start-1
-        moving_nest_jstart(ia)=grid%j_parent_start-1
-        IF (moving_nest(ia-1).eq.1) THEN
-          is=is+moving_nest_istart(ia-1)*par_scale
-          js=js+moving_nest_jstart(ia-1)*par_scale
-        END IF
-!
-        jc=0
-        DO j=1,src_grid_dims(2)
-          count=(js-1+j-1)*(dst_grid_dims(1))+is-1
-          DO i=1,src_grid_dims(1)
-            jc=jc+1
-            sparse_rows(jc)=count+i
-          END DO
-        END DO
-
-        call SparseMatrix_init(SMPlus_R(ia)%sMatF,nRows,nCols,          &
-     &                         num_sparse_elems)
-        call SparseMatrix_importGRowInd(SMPlus_R(ia)%sMatF,             &
-     &                                  sparse_rows,                    &
-     &                                  num_sparse_elems)
-        call SparseMatrix_importGColInd(SMPlus_R(ia)%sMatF,             &
-     &                                  sparse_cols,                    &
-     &                                  num_sparse_elems)
-        call SparseMatrix_importMatrixElts(SMPlus_R(ia)%sMatF,          &
-     &                                     sparse_weights,              &
-     &                                     num_sparse_elems)
-!
-! Deallocate arrays.
-!
-        deallocate ( sparse_rows )
-        deallocate ( sparse_cols )
-        deallocate ( sparse_weights )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !!!!!!!!!!!!!!!!!!!!!!
 ! Second work on full static grid to moving nest.
 !!!!!!!!!!!!!!!!!!!!!!
 !
-<<<<<<< HEAD
           dst_grid_dims(1)=full_Isize(ia)
           dst_grid_dims(2)=full_Jsize(ia)
           src_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
           src_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
-=======
-        dst_grid_dims(1)=full_Isize(ia)
-        dst_grid_dims(2)=full_Jsize(ia)
-        src_grid_dims(1)=full_Isize(par_grid_nomove)*par_scale
-        src_grid_dims(2)=full_Jsize(par_grid_nomove)*par_scale
-!       src_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
-!       src_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! Init the sparse matrix. Rows = dst grid cell indices.
 !                         Cols = src grid cell indices (these change).
 !
-<<<<<<< HEAD
           num_sparse_elems=dst_grid_dims(1)*dst_grid_dims(2)
           nRows=dst_grid_dims(1)*dst_grid_dims(2)
           nCols=src_grid_dims(1)*src_grid_dims(2)
@@ -569,49 +455,6 @@
      &                                    num_sparse_elems)
           call SparseMatrix_importMatrixElts(sMatC, sparse_weights,     &
      &                                    num_sparse_elems)
-=======
-        num_sparse_elems=dst_grid_dims(1)*dst_grid_dims(2)
-        nRows=dst_grid_dims(1)*dst_grid_dims(2)
-        nCols=src_grid_dims(1)*src_grid_dims(2)
-!
-        allocate ( sparse_rows(num_sparse_elems) )
-        allocate ( sparse_cols(num_sparse_elems) )
-        allocate ( sparse_weights(num_sparse_elems) )
-!
-! Create sparse matrix.
-!
-        DO i=1,num_sparse_elems
-          sparse_rows(i)=i
-          sparse_weights(i)=1.0
-        END DO
-        is=(grid%i_parent_start-1)*par_scale+1
-        js=(grid%j_parent_start-1)*par_scale+1
-        IF (moving_nest(ia-1).eq.1) THEN
-          is=is+moving_nest_istart(ia-1)*par_scale
-          js=js+moving_nest_jstart(ia-1)*par_scale
-        END IF
-        jc=0
-        DO j=1,dst_grid_dims(2)
-          count=(js-1+j-1)*(src_grid_dims(1))+is-1
-          DO i=1,dst_grid_dims(1)
-!            count=(js-1)*(src_grid_dims(1))+is+1
-            jc=jc+1
-            sparse_cols(jc)=count+i
-          END DO
-        END DO
-!
-          call SparseMatrix_init(SMPlus_R(ia)%sMatC,nRows,nCols,        &
-     &                           num_sparse_elems)
-          call SparseMatrix_importGRowInd(SMPlus_R(ia)%sMatC,           &
-     &                                    sparse_rows,                  &
-     &                                    num_sparse_elems)
-          call SparseMatrix_importGColInd(SMPlus_R(ia)%sMatC,           &
-     &                                    sparse_cols,                  &
-     &                                    num_sparse_elems)
-          call SparseMatrix_importMatrixElts(SMPlus_R(ia)%sMatC,        &
-     &                                       sparse_weights,            &
-     &                                       num_sparse_elems)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 ! Deallocate arrays.
 !
@@ -624,15 +467,8 @@
 !  Create Global Seg Map for the static larger grid.
 !  Determine start and lengths for domain decomposition.
 !
-<<<<<<< HEAD
           dst_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
           dst_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
-=======
-          dst_grid_dims(1)=full_Isize(par_grid_nomove)*par_scale
-          dst_grid_dims(2)=full_Jsize(par_grid_nomove)*par_scale
-!         dst_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
-!         dst_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Isize=INT(dst_grid_dims(1)/nprocs)
           IF (MyRank.eq.nprocs-1) THEN
             Isize=dst_grid_dims(1)-Isize*(nprocs-1)
@@ -650,12 +486,7 @@
 ! Create ATM sparse matrix plus for interpolation.
 ! Specify matrix decomposition to be by row.
 !
-<<<<<<< HEAD
           call SparseMatrixPlus_init(SMPlus_R(ia)%F2CMatPlus, sMatF,    &
-=======
-          call SparseMatrixPlus_init(SMPlus_R(ia)%F2CMatPlus,           &
-     &                               SMPlus_R(ia)%sMatF,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                               GlobalSegMap_G(ia)%GSMapWRF,       &
      &                               GSMapInterp_R(ia)%GSMapStatic,     &
      &                               Xonly, 0, ATM_COMM_WORLD, ATMid)
@@ -664,12 +495,7 @@
 ! Create Ocean sparse matrix plus for interpolation.
 ! Specify matrix decomposition to be by row.
 !
-<<<<<<< HEAD
           call SparseMatrixPlus_init(SMPlus_R(ia)%C2FMatPlus, sMatC,    &
-=======
-          call SparseMatrixPlus_init(SMPlus_R(ia)%C2FMatPlus,           &
-     &                               SMPlus_R(ia)%sMatC,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                               GSMapInterp_R(ia)%GSMapStatic,     &
      &                               GlobalSegMap_G(ia)%GSMapWRF,       &
      &                               Xonly, 0, ATM_COMM_WORLD, ATMid)
@@ -1103,10 +929,6 @@
       integer :: Isize, Jsize, nprocs, offset
 #  ifdef MOVE_NESTS
       integer :: count, jc, num_sparse_elems
-<<<<<<< HEAD
-=======
-      integer :: par_grid_nomove, par_scale
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 
       real, parameter :: eps=1.0e-10
@@ -1159,16 +981,11 @@
       END DO
 !  Get Istr and Jstr of moving child in parent grid.
 !  Allow parent to provide one more row around child perimeter.
-<<<<<<< HEAD
 
-=======
-!  because we set sMatF src wghts to have bounding rows cols of zero.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 !  want to know:
 !  1 - do you have a child that is moving?
 !  2  - if so, then where is it now?
-<<<<<<< HEAD
 
         IF (ia.eq.parent_id(Natm_grids)) THEN
           CALL find_grid_by_id(Natm_grids, grid, grid_ptr)
@@ -1178,21 +995,6 @@
           ij=full_Isize(Natm_grids)/par_grid_ratio(Natm_grids)
           Iend=grid_ptr%i_parent_start+ij-1-offset
           ij=full_Jsize(Natm_grids)/par_grid_ratio(Natm_grids)
-=======
-!  make a hole in your grid (mov_mask=0) where the child is.
-
-!       IF (ia.eq.parent_id(Natm_grids)) THEN
-        IF ((ia.lt.Natm_grids).and.                                     &
-     &      (moving_nest(ia+1).eq.1)) THEN
-!         CALL find_grid_by_id(Natm_grids, grid, grid_ptr)
-          CALL find_grid_by_id(ia+1, grid, grid_ptr)
-          offset=1
-          Istr=grid_ptr%i_parent_start+offset
-          Jstr=grid_ptr%j_parent_start+offset
-          ij=full_Isize(ia+1)/par_grid_ratio(ia+1)
-          Iend=grid_ptr%i_parent_start+ij-1-offset
-          ij=full_Jsize(ia+1)/par_grid_ratio(ia+1)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Jend=grid_ptr%j_parent_start+ij-1-offset
 !
           IF ((Istr.ge.is).or.(Istr.le.ie)) THEN
@@ -1210,7 +1012,6 @@
 !
 !       IF (ia.eq.Natm_grids) THEN
         IF ((Myrank.eq.0).and.(moving_nest(ia).eq.1)) THEN
-<<<<<<< HEAD
 
 !  First the fine to coarse
           src_grid_dims(1)=full_Isize(ia)
@@ -1222,46 +1023,6 @@
 !
           Istr=(grid%i_parent_start-1)*par_grid_ratio(ia)+1
           Jstr=(grid%j_parent_start-1)*par_grid_ratio(ia)+1
-=======
-!
-!  here we need to figure out the largest parent grid that is not moving.
-!
-          par_grid_nomove=1
-          DO i=2,Natm_grids
-            IF (moving_nest(i).eq.0) par_grid_nomove=i
-          END DO
-          par_scale=1
-          DO i=par_grid_nomove+1,ia
-            par_scale=par_scale*par_grid_ratio(ia)
-          END DO
-!
-!  Here we find where the child data sits in the scaled parent grid.
-!  Then we activate the sparse_rows for that part of the scaled par grid.
-!  The scaled parent grid is the spatial extent of parent
-!  but it had ref_ratio times the number of cells.
-!  First the fine to coarse
-          src_grid_dims(1)=full_Isize(ia)
-          src_grid_dims(2)=full_Jsize(ia)
-!         dst_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
-!         dst_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
-          dst_grid_dims(1)=full_Isize(par_grid_nomove)*par_scale
-          dst_grid_dims(2)=full_Jsize(par_grid_nomove)*par_scale
-          num_sparse_elems=src_grid_dims(1)*src_grid_dims(2)
-          allocate ( sparse_rows(num_sparse_elems) )
-!
-! If the moving grid had a moving parent, we need to find moving parent
-! i j starts, then this grid i j starts. save the info
-! 
-          Istr=(grid%i_parent_start-1)*par_grid_ratio(ia)+1
-          Jstr=(grid%j_parent_start-1)*par_grid_ratio(ia)+1
-          moving_nest_istart(ia)=grid%i_parent_start-1
-          moving_nest_jstart(ia)=grid%j_parent_start-1
-          IF (moving_nest(ia-1).eq.1) THEN
-            Istr=Istr+moving_nest_istart(ia-1)*par_scale
-            Jstr=Jstr+moving_nest_jstart(ia-1)*par_scale
-          END IF
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           jc=0
           DO j=1,src_grid_dims(2)
             count=(Jstr-1+j-1)*(dst_grid_dims(1))+Istr-1
@@ -1270,12 +1031,7 @@
               sparse_rows(jc)=count+i
             END DO
           END DO
-<<<<<<< HEAD
           call SparseMatrix_importGRowInd(sMatF, sparse_rows,           &
-=======
-          call SparseMatrix_importGRowInd(SMPlus_R(ia)%sMatF,           &
-     &                                    sparse_rows,                  &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                                    num_sparse_elems)
           deallocate ( sparse_rows )
 !
@@ -1283,26 +1039,12 @@
 !
           dst_grid_dims(1)=full_Isize(ia)
           dst_grid_dims(2)=full_Jsize(ia)
-<<<<<<< HEAD
           src_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
           src_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
-=======
-          src_grid_dims(1)=full_Isize(par_grid_nomove)*par_scale
-          src_grid_dims(2)=full_Jsize(par_grid_nomove)*par_scale
-!         src_grid_dims(1)=full_Isize(parent_id(ia))*par_grid_ratio(ia)
-!         src_grid_dims(2)=full_Jsize(parent_id(ia))*par_grid_ratio(ia)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           num_sparse_elems=dst_grid_dims(1)*dst_grid_dims(2)
           allocate ( sparse_cols(num_sparse_elems) )
           Istr=(grid%i_parent_start-1)*par_grid_ratio(ia)+1
           Jstr=(grid%j_parent_start-1)*par_grid_ratio(ia)+1
-<<<<<<< HEAD
-=======
-          IF (moving_nest(ia-1).eq.1) THEN
-            Istr=Istr+moving_nest_istart(ia-1)*par_scale
-            Jstr=Jstr+moving_nest_jstart(ia-1)*par_scale
-          END IF
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           jc=0
           DO j=1,dst_grid_dims(2)
             count=(Jstr-1+j-1)*(src_grid_dims(1))+Istr-1
@@ -1311,35 +1053,20 @@
               sparse_cols(jc)=count+i
             END DO
           END DO
-<<<<<<< HEAD
           call SparseMatrix_importGColInd(sMatC, sparse_cols,           &
-=======
-          call SparseMatrix_importGColInd(SMPlus_R(ia)%sMatC,           &
-     &                                    sparse_cols,                  &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                                    num_sparse_elems)
           deallocate ( sparse_cols )
         END IF
         IF (moving_nest(ia).eq.1) THEN
 !  reinit the matrices
           call SparseMatrixPlus_clean(SMPlus_R(ia)%F2CMatPlus)
-<<<<<<< HEAD
           call SparseMatrixPlus_init(SMPlus_R(ia)%F2CMatPlus, sMatF,    &
-=======
-          call SparseMatrixPlus_init(SMPlus_R(ia)%F2CMatPlus,           &
-     &                               SMPlus_R(ia)%sMatF,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                               GlobalSegMap_G(ia)%GSMapWRF,       &
      &                               GSMapInterp_R(ia)%GSMapStatic,     &
      &                               Xonly, 0, ATM_COMM_WORLD, ATMid)
 !
           call SparseMatrixPlus_clean(SMPlus_R(ia)%C2FMatPlus)
-<<<<<<< HEAD
           call SparseMatrixPlus_init(SMPlus_R(ia)%C2FMatPlus, sMatC,    &
-=======
-          call SparseMatrixPlus_init(SMPlus_R(ia)%C2FMatPlus,           &
-     &                               SMPlus_R(ia)%sMatC,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                               GSMapInterp_R(ia)%GSMapStatic,     &
      &                               GlobalSegMap_G(ia)%GSMapWRF,       &
      &                               Xonly, 0, ATM_COMM_WORLD, ATMid)
@@ -1825,12 +1552,7 @@
               sparse_rows(jc)=count+i
             END DO
           END DO
-<<<<<<< HEAD
           call SparseMatrix_importGRowInd(sMatF, sparse_rows,           &
-=======
-          call SparseMatrix_importGRowInd(SMPlus_R(ia)%sMatF,           &
-     &                                    sparse_rows,                  &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                                    num_sparse_elems)
           deallocate ( sparse_rows )
 !
@@ -1852,35 +1574,20 @@
               sparse_cols(jc)=count+i
             END DO
           END DO
-<<<<<<< HEAD
           call SparseMatrix_importGColInd(sMatC, sparse_cols,           &
-=======
-          call SparseMatrix_importGColInd(SMPlus_R(ia)%sMatC,           &
-     &                                    sparse_cols,                  &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                                    num_sparse_elems)
           deallocate ( sparse_cols )
         END IF
         IF (moving_nest(ia).eq.1) THEN
 !  reinit the matrices
           call SparseMatrixPlus_clean(SMPlus_R(ia)%F2CMatPlus)
-<<<<<<< HEAD
           call SparseMatrixPlus_init(SMPlus_R(ia)%F2CMatPlus, sMatF,    &
-=======
-          call SparseMatrixPlus_init(SMPlus_R(ia)%F2CMatPlus,           &
-     &                               SMPlus_R(ia)%sMatF,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                               GlobalSegMap_G(ia)%GSMapWRF,       &
      &                               GSMapInterp_R(ia)%GSMapStatic,     &
      &                               Xonly, 0, ATM_COMM_WORLD, ATMid)
 !
           call SparseMatrixPlus_clean(SMPlus_R(ia)%C2FMatPlus)
-<<<<<<< HEAD
           call SparseMatrixPlus_init(SMPlus_R(ia)%C2FMatPlus, sMatC,    &
-=======
-          call SparseMatrixPlus_init(SMPlus_R(ia)%C2FMatPlus,           &
-     &                               SMPlus_R(ia)%sMatC,                &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      &                               GSMapInterp_R(ia)%GSMapStatic,     &
      &                               GlobalSegMap_G(ia)%GSMapWRF,       &
      &                               Xonly, 0, ATM_COMM_WORLD, ATMid)

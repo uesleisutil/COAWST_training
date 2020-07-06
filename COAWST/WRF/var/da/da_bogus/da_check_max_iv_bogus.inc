@@ -35,15 +35,8 @@ subroutine da_check_max_iv_bogus(iv,ob, it, num_qcstat_conv)
            num_qcstat_conv(1,bogus,1,ipr) = num_qcstat_conv(1,bogus,1,ipr) + 1
          if(failed)then
           num_qcstat_conv(2,bogus,1,ipr) = num_qcstat_conv(2,bogus,1,ipr) + 1
-<<<<<<< HEAD
           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
           'bogus',ob_vars(1),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-=======
-          if ( write_rej_obs_conv ) then
-          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-          'bogus',ob_vars(1),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          end if
         end if
         end if
@@ -55,15 +48,8 @@ subroutine da_check_max_iv_bogus(iv,ob, it, num_qcstat_conv)
           num_qcstat_conv(1,bogus,2,ipr) = num_qcstat_conv(1,bogus,2,ipr) + 1
          if(failed)then
           num_qcstat_conv(2,bogus,2,ipr) = num_qcstat_conv(2,bogus,2,ipr) + 1
-<<<<<<< HEAD
           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
           'bogus',ob_vars(2),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-=======
-          if ( write_rej_obs_conv ) then
-          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-          'bogus',ob_vars(2),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          end if
         end if
         end if
@@ -75,15 +61,8 @@ subroutine da_check_max_iv_bogus(iv,ob, it, num_qcstat_conv)
            num_qcstat_conv(1,bogus,3,ipr) = num_qcstat_conv(1,bogus,3,ipr) + 1
          if(failed)then
           num_qcstat_conv(2,bogus,3,ipr) = num_qcstat_conv(2,bogus,3,ipr) + 1
-<<<<<<< HEAD
           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
           'bogus',ob_vars(3),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-=======
-          if ( write_rej_obs_conv ) then
-          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-          'bogus',ob_vars(3),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          end if
         end if
         end if
@@ -95,15 +74,8 @@ subroutine da_check_max_iv_bogus(iv,ob, it, num_qcstat_conv)
            num_qcstat_conv(1,bogus,4,ipr) = num_qcstat_conv(1,bogus,4,ipr) + 1
          if(failed)then
           num_qcstat_conv(2,bogus,4,ipr) = num_qcstat_conv(2,bogus,4,ipr) + 1
-<<<<<<< HEAD
           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
           'bogus',ob_vars(4),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-=======
-          if ( write_rej_obs_conv ) then
-          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-          'bogus',ob_vars(4),iv%info(bogus)%lat(k,n),iv%info(bogus)%lon(k,n),0.01*iv%bogus(n)%p(k)
-          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
          end if
         end if
         end if
@@ -118,15 +90,8 @@ subroutine da_check_max_iv_bogus(iv,ob, it, num_qcstat_conv)
            num_qcstat_conv(1,bogus,5,1) = num_qcstat_conv(1,bogus,5,1) + 1
          if(failed) then
           num_qcstat_conv(2,bogus,5,1) = num_qcstat_conv(2,bogus,5,1) + 1
-<<<<<<< HEAD
           write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
           'bogus',ob_vars(5),iv%info(bogus)%lat(1,n),iv%info(bogus)%lon(1,n),ob%bogus(n)%slp
-=======
-          if ( write_rej_obs_conv ) then
-          write(qcstat_conv_unit,'(2x,a10,2x,a4,3f12.2)')&
-          'bogus',ob_vars(5),iv%info(bogus)%lat(1,n),iv%info(bogus)%lon(1,n),ob%bogus(n)%slp
-          end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         endif
       endif
       endif

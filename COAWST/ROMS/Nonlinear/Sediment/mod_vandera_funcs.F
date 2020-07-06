@@ -147,11 +147,7 @@
         mu_calc=6.0_r8
       ELSEIF(d50_mm.gt.0.15_r8.and.d50_mm.lt.0.20_r8) THEN
         mu_calc=6.0_r8-5.0_r8*((d50_mm-0.15_r8)/(0.2_r8-0.15_r8))
-<<<<<<< HEAD
       ELSEIF(d50_mm.gt.0.20_r8) THEN
-=======
-      ELSEIF(d50_mm.ge.0.20_r8) THEN
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         mu_calc=1.0_r8
       ENDIF
 !
@@ -224,26 +220,16 @@
 ! This function is not getting used at the time because
 ! we compute current frction factor from bottom current stress 
 ! 
-<<<<<<< HEAD
      REAL(r8) FUNCTION fd_calc_old(umag_curr, delta, ksd)
 
      USE mod_kinds
      USE mod_scalars
 
      implicit none
-=======
-      REAL(r8) FUNCTION fd_calc_santoss(udelta, delta, ksd)
-
-      USE mod_kinds
-      USE mod_scalars
-
-      implicit none
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 ! Calculate current related friction factor VA2013 Eqn. 20
 ! Assuming logarithmic velocity profile.
  
-<<<<<<< HEAD
      real(r8) :: umag_curr, delta, ksd
      real(r8), parameter :: von_k=0.41_r8
  
@@ -257,22 +243,6 @@
      END FUNCTION fd_calc_old
 !
       REAL(r8) FUNCTION fd_calc_new(udelta, mag_bstrc)
-=======
-      real(r8) :: udelta, delta, ksd
-      real(r8), parameter :: min_udelta=1.0E-4_r8
-      real(r8), parameter :: von_k=0.41_r8
- 
-      IF(udelta.lt.min_udelta) THEN
-        fd_calc_santoss=0.0_r8
-      ELSE
-        fd_calc_santoss=2.0_r8*(von_k/LOG(30.0_r8*delta/ksd))**2.0_r8
-      ENDIF
-     
-      RETURN
-      END FUNCTION fd_calc_santoss
-!
-      REAL(r8) FUNCTION fd_calc_madsen(udelta, mag_bstrc)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       USE mod_kinds
       USE mod_scalars
@@ -287,7 +257,6 @@
       real(r8) :: udelta, mag_bstrc
 ! 
       IF(udelta.lt.min_udelta) THEN
-<<<<<<< HEAD
         fd_calc_new=0.0_r8
       ELSE
         !fd_calc_new=MAX((mag_bstrc/(0.5_r8*udelta*udelta*rho0)),eps)
@@ -297,18 +266,6 @@
 !     
       RETURN
       END FUNCTION fd_calc_new
-=======
-        fd_calc_madsen=0.0_r8
-      ELSE
-        !fd_calc_new=MAX((mag_bstrc/(0.5_r8*udelta*udelta*rho0)),eps)
-        fd_calc_madsen=MAX((mag_bstrc/(0.5_r8*udelta*udelta)),eps)
-!        fd_calc_new=MIN(fd_calc_new,2.0_r8) 
-        fd_calc_madsen=fd_calc_madsen
-      ENDIF
-!     
-      RETURN
-      END FUNCTION fd_calc_madsen
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
       REAL(r8) FUNCTION fwi_calc(T_iu, T_i, ahat, ksw)
 !

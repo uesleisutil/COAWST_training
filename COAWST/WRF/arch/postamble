@@ -17,10 +17,6 @@ ARCHFLAGS       =    $(COREDEFS) -DIWORDSIZE=$(IWORDSIZE) -DDWORDSIZE=$(DWORDSIZ
                       CONFIGURE_HDF5_FLAG \
                       CONFIGURE_CLOUDCV_FLAG \
                       CONFIGURE_4DVAR_FLAG \
-<<<<<<< HEAD
-=======
-                      CONFIGURE_TERRAIN_AND_LANDUSE \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                       CONFIGURE_WAVELET_FLAG \
                       CONFIGURE_NESTOPT \
                       -DUSE_ALLOCATABLES \
@@ -30,19 +26,11 @@ ARCHFLAGS       =    $(COREDEFS) -DIWORDSIZE=$(IWORDSIZE) -DDWORDSIZE=$(DWORDSIZ
                       -DKEEP_INT_AROUND \
                       -DLIMIT_ARGS \
                       -DBUILD_RRTMG_FAST=1 \
-<<<<<<< HEAD
-=======
-                      -DSHOW_ALL_VARS_USED=0 \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                       -DCONFIG_BUF_LEN=$(CONFIG_BUF_LEN) \
                       -DMAX_DOMAINS_F=$(MAX_DOMAINS) \
                       -DMAX_HISTORY=$(MAX_HISTORY) \
 		      -DNMM_NEST=$(WRF_NMM_NEST)
 CFLAGS          =    $(CFLAGS_LOCAL) CONFIGURE_DMPARALLEL CONFIGURE_STUBMPI \
-<<<<<<< HEAD
-=======
-                     CONFIGURE_TERRAIN_AND_LANDUSE \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                       -DMAX_HISTORY=$(MAX_HISTORY) CONFIGURE_NMM_CORE
 FCFLAGS         =    $(FCOPTIM) $(FCBASEOPTS)
 ESMF_LIB_FLAGS  =    ESMFLIBFLAG
@@ -60,11 +48,7 @@ INCLUDE_MODULES =    $(MODULE_SRCH_FLAG) \
                       -I$(WRF_SRC_ROOT_DIR)/wrftladj \
                       -I$(WRF_SRC_ROOT_DIR)/chem -I$(WRF_SRC_ROOT_DIR)/inc \
                       -I$(NETCDFPATH)/include \
-<<<<<<< HEAD
                       -I$(SCRATCH_DIR) \
-=======
-                      -I$(MCT_PARAMS_DIR) \
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                       CONFIGURE_RTTOV_INC
 REGISTRY        =    Registry
 CC_TOOLS_CFLAGS = CONFIGURE_NMM_CORE

@@ -402,12 +402,8 @@ until ( $validresponse ) {
   $opt -- ;
 
   printf "\nEnter selection [%d-%d] : ",1,$opt ;
-<<<<<<< HEAD
       $response = <STDIN> ;
  #LPP $response = 46 ;
-=======
-  $response = <STDIN> ;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
   if ( $response == -1 ) { exit ; }
 
@@ -424,15 +420,7 @@ $optchoice = $response ;
 if ( $response == 2 || $response == 3 ) {
   if ( $ENV{'TERRAIN_AND_LANDUSE'} eq "1" && index($sw_wrf_core, "EM_CORE") > -1 ) { 
     $sw_terrain_and_landuse =" -DTERRAIN_AND_LANDUSE" ;
-<<<<<<< HEAD
   }
-=======
-  } else {
-    $sw_terrain_and_landuse =" -DLANDREAD_STUB=1" ;
-  }
-} else {
-  $sw_terrain_and_landuse =" -DLANDREAD_STUB=1" ;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 } 
 open CONFIGURE_DEFAULTS, "cat ./arch/configure.defaults |"  ;
 $latchon = 0 ;
@@ -562,11 +550,7 @@ while ( <CONFIGURE_DEFAULTS> )
      }
    else
      {
-<<<<<<< HEAD
        $_  =~ s:CONFIGURE_TERRAIN_AND_LANDUSE::g;
-=======
-       $_  =~ s:CONFIGURE_TERRAIN_AND_LANDUSE:-DLANDREAD_STUB=1:g;
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
      }
 
     # ESMF substitutions in configure.defaults
@@ -679,10 +663,7 @@ while ( <CONFIGURE_DEFAULTS> )
                printf "Compile for nesting? (1=basic, 2=preset moves, 3=vortex following) [default 1]: " ;
              }
              $response = <STDIN> ;
-<<<<<<< HEAD
 #             $response = 0 ;
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           } 
           printf "\n" ;
           lc $response ;

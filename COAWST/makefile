@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 # svn $Id: makefile 889 2018-02-10 03:32:52Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
 # Copyright (c) 2002-2019 The ROMS/TOMS Group             Kate Hedstrom :::
-=======
-# svn $Id: makefile 995 2020-01-10 04:01:28Z arango $
-#::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group             Kate Hedstrom :::
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -151,11 +145,7 @@ MY_CPP_FLAGS ?=
 #  NetCDF and so on.
 #--------------------------------------------------------------------------
 
-<<<<<<< HEAD
         FORT ?= gfortran
-=======
-        FORT ?= pgi
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #--------------------------------------------------------------------------
 #  Set directory for executable.
@@ -186,22 +176,14 @@ endif
 
 ifdef USE_ROMS
 #--------------------------------------------------------------------------
-<<<<<<< HEAD
 #  Notice that the token "libraries" is initialize with the ROMS/Utility
-=======
-#  Notice that the token "libraries" is initialized with the ROMS/Utility
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  library to account for calls to objects in other ROMS libraries or
 #  cycling dependencies. These type of dependencies are problematic in
 #  some compilers during linking. This library appears twice at linking
 #  step (begining and almost the end of ROMS library list).
 #--------------------------------------------------------------------------
 
-<<<<<<< HEAD
   libraries  := $(SCRATCH_DIR)/libUTIL.a
-=======
-   libraries := $(SCRATCH_DIR)/libNLM.a $(SCRATCH_DIR)/libUTIL.a
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
 
 #--------------------------------------------------------------------------
@@ -217,11 +199,7 @@ endif
 	$(CPP) $(CPPFLAGS) $(MY_CPP_FLAGS) $< > $*.f90
 	$(CLEAN) $*.f90
 
-<<<<<<< HEAD
 CLEAN := ./ROMS/Bin/cpp_clean
-=======
-CLEAN := ROMS/Bin/cpp_clean
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #--------------------------------------------------------------------------
 #  Set C-preprocessing flags associated with ROMS application. They are
@@ -384,12 +362,7 @@ OS := $(patsubst sn%,UNICOS-sn,$(OS))
 
 CPU := $(shell uname -m | sed 's/[\/ ]/-/g')
 
-<<<<<<< HEAD
 SVNREV ?= $(shell svnversion -n .)
-=======
-SVNURL := $(shell svn info | grep '^URL:' | sed 's/URL: //')
-SVNREV := $(shell svn info | grep '^Revision:' | sed 's/Revision: //')
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 ROOTDIR := $(shell pwd)
 
@@ -437,17 +410,12 @@ ifdef MY_ANALYTICAL
   CPPFLAGS += -D'MY_ANALYTICAL="$(MY_ANALYTICAL)"'
 endif
 
-<<<<<<< HEAD
 ifdef SVNREV
   CPPFLAGS += -D'SVN_REV="$(SVNREV)"'
 else
   SVNREV := $(shell grep Revision ./ROMS/Version | sed 's/.* \([0-9]*\) .*/\1/')
   CPPFLAGS += -D'SVN_REV="$(SVNREV)"'
 endif
-=======
-CPPFLAGS += -D'SVN_URL="$(SVNURL)"'
-CPPFLAGS += -D'SVN_REV="$(SVNREV)"'
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #--------------------------------------------------------------------------
 #  Build target directories.
@@ -471,7 +439,6 @@ endif
 
  modules  :=
 ifdef USE_ADJOINT
-<<<<<<< HEAD
  modules  +=	$(ROOTDIR)/ROMS/Adjoint \
 		$(ROOTDIR)/ROMS/Adjoint/Biology
 endif
@@ -495,47 +462,17 @@ ifdef USE_ROMS
 		$(ROOTDIR)/ROMS/Functionals \
 		$(ROOTDIR)/ROMS/Utility \
 		$(ROOTDIR)/ROMS/Modules
-=======
- modules  +=	ROMS/Adjoint \
-		ROMS/Adjoint/Biology
-endif
-ifdef USE_REPRESENTER
- modules  +=	ROMS/Representer \
-		ROMS/Representer/Biology
-endif
-ifdef USE_SEAICE
- modules  +=	ROMS/Nonlinear/SeaIce
-endif
-ifdef USE_TANGENT
- modules  +=	ROMS/Tangent \
-		ROMS/Tangent/Biology
-endif
-ifdef USE_ROMS
- modules  +=	ROMS/Nonlinear \
-		ROMS/Nonlinear/Biology \
-		ROMS/Nonlinear/Sediment \
-		ROMS/Nonlinear/Wec \
-		ROMS/Nonlinear/Vegetation \
-		ROMS/Functionals \
-		ROMS/Utility \
-		ROMS/Modules
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
 ifdef USE_CICE
  modules  +=	SeaIce/Extra
     LIBS  +=    $(SCRATCH_DIR)/libCICE.a
 endif
 
-<<<<<<< HEAD
  includes :=	$(ROOTDIR)/ROMS/Include
-=======
- includes :=	ROMS/Include
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ifdef MY_ANALYTICAL
  includes +=	$(MY_ANALYTICAL_DIR)
 endif
 ifdef USE_ADJOINT
-<<<<<<< HEAD
  includes +=	$(ROOTDIR)/ROMS/Adjoint \
 		$(ROOTDIR)/ROMS/Adjoint/Biology
 endif
@@ -559,31 +496,6 @@ ifdef USE_ROMS
 		$(ROOTDIR)/ROMS/Utility \
 		$(ROOTDIR)/ROMS/Drivers \
 		$(ROOTDIR)/ROMS/Functionals
-=======
- includes +=	ROMS/Adjoint \
-		ROMS/Adjoint/Biology
-endif
-ifdef USE_REPRESENTER
- includes +=	ROMS/Representer \
-		ROMS/Representer/Biology
-endif
-ifdef USE_SEAICE
- includes +=	ROMS/Nonlinear/SeaIce
-endif
-ifdef USE_TANGENT
- includes +=	ROMS/Tangent \
-		ROMS/Tangent/Biology
-endif
-ifdef USE_ROMS
- includes +=	ROMS/Nonlinear \
-		ROMS/Nonlinear/Biology \
-		ROMS/Nonlinear/Sediment \
-		ROMS/Nonlinear/Wec \
-		ROMS/Nonlinear/Vegetation \
-		ROMS/Utility \
-		ROMS/Drivers \
-		ROMS/Functionals
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
 ifdef MY_HEADER_DIR
  includes +=	$(MY_HEADER_DIR)
@@ -594,13 +506,8 @@ ifdef USE_COAMPS
 endif
 
 ifdef USE_SWAN
-<<<<<<< HEAD
  modules  +=	$(ROOTDIR)/SWAN/Src
  includes +=	$(ROOTDIR)/SWAN/Src
-=======
- modules  +=	SWAN/Src
- includes +=	SWAN/Src
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 endif
 
 ifdef USE_REFDIF
@@ -698,25 +605,6 @@ MYLIB := libocean.a
 libraries: $(libraries)
 
 #--------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
-#  Build MCT coupler param files.
-#--------------------------------------------------------------------------
-
-.PHONY: mct_params
-
-mct_params:
-	$(shell $(TEST) -d $(SCRATCH_DIR) || $(MKDIR) $(SCRATCH_DIR) )                               \
-	cd $(SCRATCH_DIR);                                                                           \
-	cpp -P $(ROMS_CPPFLAGS) -I$(MY_ROMS_SRC)/ROMS/Include $(MY_ROMS_SRC)/Master/MCT_coupler/mod_coupler_kinds.F > mod_coupler_kinds.f90; \
-	$(MY_ROMS_SRC)/$(CLEAN) mod_coupler_kinds.f90;                                                              \
-	$(FC) -c $(FFLAGS) mod_coupler_kinds.f90;                                                  \
-	cpp -P $(ROMS_CPPFLAGS) -I$(MY_ROMS_SRC)/ROMS/Include $(MY_ROMS_SRC)/Master/MCT_coupler/mct_coupler_params.F > mct_coupler_params.f90; \
-	$(MY_ROMS_SRC)/$(CLEAN) mct_coupler_params.f90;                                                             \
-	$(FC) -c $(FFLAGS) mct_coupler_params.f90;
-
-#--------------------------------------------------------------------------
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  Build WW3.
 #--------------------------------------------------------------------------
 
@@ -782,55 +670,6 @@ ifdef USE_WRF
 endif
 
 #--------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
-#  Build WRF_hydro.
-#--------------------------------------------------------------------------
-
-.PHONY: wrfhydroclean
-
-wrfhydroclean:
-ifdef USE_WRFHYDRO
-	cd $(WRFHYDRO_DIR); ls;                                   \
-	./configure;                                              \
-	 make clean;                                              \
-	echo " "; echo " ";                                       \
-	echo "cleaned wrf";
-endif
-
-.PHONY: wrfhydro
-
-wrfhydro:
-ifdef USE_WRFHYDRO
-	export "WRF_HYDRO=1";                                     \
-	export FC=$(FC);                                          \
-	export "FFLAGS=$(FFLAGS)";                                \
-	export "HEADER=$(HEADER)";                                \
-	export MY_ROMS_SRC=$(MY_ROMS_SRC);                        \
-	export "USE_MCT=$(USE_MCT)";                              \
-	cp -p $(BIN) $(BIN).backup;                               \
-	$(RM) -r $(BIN);                                          \
-	cd $(WRFHYDRO_DIR); ls;                                   \
-	echo " "; echo " ";                                       \
-	ls;                                                       \
-	echo "Compiling wrfhydro";                                \
-	cp -p compile_offline_NoahMP.sh compile;                  \
-	./compile;                                                \
-	echo "";                                                  \
-	rm -rf compile;                                           \
-	echo "-------- Finished compiling WRFhydro ------------"
- ifndef USE_ROMS
-  ifndef USE_SWAN
-   ifndef USE_WW3
-	ln -sf WRF/hydro_v5.0/Run/wrf_hydro.exe coawstM;
-   endif
-  endif
- endif
-	echo "";
-endif
-
-#--------------------------------------------------------------------------
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  Target to create ROMS/TOMS dependecies.
 #--------------------------------------------------------------------------
 ifneq "$(MAKECMDGOALS)" "tarfile"
@@ -840,19 +679,12 @@ $(SCRATCH_DIR)/$(NETCDF_MODFILE): | $(SCRATCH_DIR)
 $(SCRATCH_DIR)/$(TYPESIZES_MODFILE): | $(SCRATCH_DIR)
 	cp -f $(NETCDF_INCDIR)/$(TYPESIZES_MODFILE) $(SCRATCH_DIR)
 
-<<<<<<< HEAD
-=======
-ifdef USE_CICE
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 $(SCRATCH_DIR)/libCICE.a: $(MY_CICE_DIR)/libCICE.a
 	cp -f $(MY_CICE_DIR)/libCICE.a $(MY_CICE_DIR)/*.mod $(SCRATCH_DIR)
 
 $(MY_CICE_DIR)/libCICE.a:
 	SeaIce/comp_ice
-<<<<<<< HEAD
 ifdef USE_CICE
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 $(SCRATCH_DIR)/initial.o: $(MY_CICE_DIR)/CICE_InitMod.o
 $(SCRATCH_DIR)/ice_fakecpl.o: $(MY_CICE_DIR)/CICE_RunMod.o
 $(SCRATCH_DIR)/ice_fakecpl.o: $(MY_CICE_DIR)/ice_blocks.o
@@ -884,11 +716,7 @@ $(SCRATCH_DIR)/MakeDepend: makefile \
 
 .PHONY: depend
 
-<<<<<<< HEAD
 SFMAKEDEPEND := $(ROOTDIR)/ROMS/Bin/sfmakedepend
-=======
-SFMAKEDEPEND := ./ROMS/Bin/sfmakedepend
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 depend: $(SCRATCH_DIR)
 	$(SFMAKEDEPEND) $(MDEPFLAGS) $(sources) > $(SCRATCH_DIR)/MakeDepend
@@ -905,11 +733,7 @@ endif
 .PHONY: tarfile
 
 tarfile:
-<<<<<<< HEAD
 		tar --exclude=".svn" --exclude Output -cvf coawst_v3.4.tar *
-=======
-		tar --exclude=".svn" --exclude Output -cvf coawst_v3.6.tar *
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 .PHONY: zipfile
 

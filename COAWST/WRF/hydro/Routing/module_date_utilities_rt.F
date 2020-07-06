@@ -464,10 +464,7 @@ contains
   end subroutine geth_newdate
 
   subroutine geth_idts (newdate, olddate, idt)
-<<<<<<< HEAD
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
     implicit none
 
     !  From 2 input mdates ('YYYY-MM-DD HH:MM:SS.ffff'), 

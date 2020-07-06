@@ -38,11 +38,7 @@ CONTAINS
       USE module_state_description, ONLY: num_moist, num_chem, num_tracer, num_scalar, &
                                           SKIP_PRESS_DIAGS, SKIP_Z_DIAGS,              &
                                           DO_TRAD_FIELDS,                              &
-<<<<<<< HEAD
                                           P_QG, P_QH, P_QV,                            &
-=======
-                                          P_QG, P_QH, P_QV, P_QC,                      &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                                           P_QNG, P_QH, P_QNH, P_QR, P_QNR,             &
                      KESSLERSCHEME, LINSCHEME, SBU_YLINSCHEME, WSM3SCHEME, WSM5SCHEME, &
                      WSM6SCHEME, ETAMPNEW, THOMPSON, THOMPSONAERO,                     &
@@ -55,11 +51,7 @@ CONTAINS
 
       !  From where we preferably are pulling g, Cp, etc.
 
-<<<<<<< HEAD
       USE module_model_constants, ONLY: g
-=======
-      USE module_model_constants, ONLY: g, R_v, R_d, Cp, T0, RCP
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       !  This gives us the type definition for grid (domain) and some clock information.
 
@@ -194,17 +186,7 @@ CONTAINS
       k_start = kps
       k_end   = kpe-1
 
-<<<<<<< HEAD
 
-=======
-      !  There are some fields that were defined in the first RK loop for
-      !  physics and are now a time-step old.
-
-      CALL update_phys_fields ( grid, config_flags, moist,           &
-                                ids,  ide,  jds,  jde,  kds,  kde,   &
-                                ims,  ime,  jms,  jme,  kms,  kme,   &
-                                ips,  ipe,  jps,  jpe,  kps,  kpe    )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       !  Lightning flash rate diagnostic production.
 
@@ -310,18 +292,6 @@ CONTAINS
                ,e=grid%e                                            &
                ,sina=grid%sina                                      &
                ,cosa=grid%cosa                                      &
-<<<<<<< HEAD
-=======
-               !  Input model diagnostic vraiables 
-               ,rho=grid%rho                                        &
-               ,dz8w=dz8w                                           &
-               ,qc=moist(:,:,:,P_QC)                                &
-               ,rainc=grid%rainc                                    &
-               ,rainnc=grid%rainnc                                  &
-               ,snownc=grid%snownc                                  &
-               ,graupelnc=grid%graupelnc                            &
-               ,hailnc=grid%hailnc                                  & 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                !  Terrestrial data                
                ,ht=grid%ht                                          &
                !  Namelist info
@@ -335,15 +305,6 @@ CONTAINS
                ,vmet=grid%vmet                                      &
                ,speed=grid%speed                                    &
                ,dir=grid%dir                                        &
-<<<<<<< HEAD
-=======
-               ,psfc=grid%psfc                                      &
-               ,rain=grid%rain                                      &
-               ,liqrain=grid%liqrain                                &
-               ,tpw=grid%tpw                                        &
-               ,potential_t=grid%potential_t                        &
-               ,rh=grid%rh                                          &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                !  Various indexes for declarations, loop bounds
                ,IDS=ids,IDE=ide, JDS=jds,JDE=jde, KDS=kds,KDE=kde   &
                ,IMS=ims,IME=ime, JMS=jms,JME=jme, KMS=kms,KME=kme   &
@@ -940,11 +901,7 @@ CONTAINS
                        U=grid%u_2                                           &
                       ,V=grid%v_2                                           &
                       ,W=grid%w_2                                           &
-<<<<<<< HEAD
                       ,t=grid%t_2                                           &
-=======
-                      ,t=grid%th_phy_m_t0                                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                       ,qv=moist(:,:,:,P_QV)                                 &
                       ,zp=grid%ph_2                                         &
                       ,zb=grid%phb                                          &
@@ -1015,11 +972,7 @@ CONTAINS
                        U=grid%u_2                                           &
                       ,V=grid%v_2                                           &
                       ,W=grid%w_2                                           &
-<<<<<<< HEAD
                       ,t=grid%t_2                                           &
-=======
-                      ,t=grid%th_phy_m_t0                                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                       ,qv=moist(:,:,:,P_QV)                                 &
                       ,zp=grid%ph_2                                         &
                       ,zb=grid%phb                                          &
@@ -1130,11 +1083,7 @@ CONTAINS
                        ,TSK=grid%tsk, TSK_MEAN=grid%tsk_mean                  &
                        ,PMSL_MEAN=grid%pmsl_mean                              &
                        ,T2=grid%t2, T2_MEAN=grid%t2_mean                      &
-<<<<<<< HEAD
                        ,T=grid%t_2, P=grid%p, PB=grid%pb                      &
-=======
-                       ,T=grid%th_phy_m_t0, P=grid%p, PB=grid%pb              &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                        ,MOIST=grid%moist(:,:,:,P_QV), HT=grid%ht              &
                        ,TH2=grid%th2, TH2_MEAN=grid%th2_mean                  &
                        ,Q2=grid%q2, Q2_MEAN=grid%q2_mean                      &
@@ -1187,12 +1136,7 @@ CONTAINS
            ,PSFC=grid%psfc, PSFC_DTMP=grid%psfc_dtmp                          &
            ,TSK=grid%tsk, TSK_DTMP=grid%tsk_dtmp                              &
            ,T2=grid%t2, T2_DTMP=grid%t2_dtmp                                  &
-<<<<<<< HEAD
            ,T=grid%t_2, P=grid%p, PB=grid%pb, MOIST=grid%moist(:,:,:,P_QV)    &
-=======
-           ,T=grid%th_phy_m_t0, P=grid%p, PB=grid%pb                          &
-           ,MOIST=grid%moist(:,:,:,P_QV)                                     &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
            ,TH2=grid%th2, TH2_DTMP=grid%th2_dtmp                              &
            ,Q2=grid%q2, Q2_DTMP=grid%q2_dtmp                                  &
            ,U10=grid%u10, U10_DTMP=grid%u10_dtmp                              &
@@ -1235,62 +1179,5 @@ CONTAINS
 
    END SUBROUTINE diagnostics_driver
 
-<<<<<<< HEAD
-=======
-
-
-   SUBROUTINE update_phys_fields ( grid, config_flags, moist,           &
-                                   ids,  ide,  jds,  jde,  kds,  kde,   &
-                                   ims,  ime,  jms,  jme,  kms,  kme,   &
-                                   ips,  ipe,  jps,  jpe,  kps,  kpe    ) 
-
-      USE module_domain, ONLY : domain
-      USE module_configure, ONLY : grid_config_rec_type
-      USE module_state_description, ONLY: num_moist, P_Qv
-      USE module_model_constants, ONLY: g, R_v, R_d, Cp, T0, RCP
-
-      TYPE ( domain ), INTENT(INOUT) :: grid
-
-      !  We are not changing any of the namelist settings.
-
-      TYPE ( grid_config_rec_type ), INTENT(IN) :: config_flags
-
-      !  The 4d arrays are input only, no mods to them.
-
-      REAL , DIMENSION(ims:ime,kms:kme,jms:jme,num_moist ) , INTENT(IN) :: moist
-
-      !  Domain indices - no change to these puppies.
-
-      INTEGER , INTENT(IN) :: ids, ide, jds, jde, kds, kde,     &
-                              ims, ime, jms, jme, kms, kme,     &
-                              ips, ipe, jps, jpe, kps, kpe
-
-      !  Local variables
-
-      INTEGER :: i, j, k 
-
-      !  Moist or dry theta
-
-      IF ( config_flags%use_theta_m .EQ. 1 ) THEN
-         DO j = jps, MIN(jde-1, jpe)
-            DO k = kps, kde-1
-               DO i = ips, MIN(ide-1, ipe)
-                  grid%th_phy_m_t0(i,k,j) = (grid%t_2(i,k,j)+T0) / &
-                                            (1.+(R_v/R_d)*moist(i,k,j,P_Qv)) - T0
-               END  DO
-            END  DO
-         END  DO
-      ELSE
-         DO j = jps, MIN(jde-1, jpe)
-            DO k = kps, kde-1
-               DO i = ips, MIN(ide-1, ipe)
-                  grid%th_phy_m_t0(i,k,j) =  grid%t_2(i,k,j)
-               END  DO
-            END  DO
-         END  DO
-      END IF
-   END SUBROUTINE update_phys_fields
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 END MODULE module_diagnostics_driver
 #endif

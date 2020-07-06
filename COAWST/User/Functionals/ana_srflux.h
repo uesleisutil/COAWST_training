@@ -1,14 +1,8 @@
       SUBROUTINE ana_srflux (ng, tile, model)
 !
-<<<<<<< HEAD
 !! svn $Id: ana_srflux.h 927 2018-10-16 03:51:56Z arango $
 !!======================================================================
 !! Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!! svn $Id: ana_srflux.h 995 2020-01-10 04:01:28Z arango $
-!!======================================================================
-!! Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !!   Licensed under a MIT/X style license                              !
 !!   See License_ROMS.txt                                              !
 !=======================================================================
@@ -107,11 +101,7 @@
 !
       integer :: i, j
 #if defined ALBEDO_CLOUD || defined DIURNAL_SRFLUX
-<<<<<<< HEAD
       integer :: iday, month, year
-=======
-      real(dp) :: hour, yday
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       real(r8) :: Dangle, Hangle, LatRad
       real(r8) :: cff1, cff2, hour, yday
 # ifdef ALBEDO_CLOUD
@@ -120,11 +110,6 @@
 #endif
       real(r8) :: cff
 
-<<<<<<< HEAD
-=======
-      real(r8), parameter :: alb_w=0.06_r8
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #include "set_bounds.h"
 
 #if defined ALBEDO_CLOUD || defined DIURNAL_SRFLUX
@@ -160,11 +145,7 @@
 !
 !  Estimate solar declination angle (radians).
 !
-<<<<<<< HEAD
       Dangle=23.44_dp*COS((172.0_dp-yday)*2.0_dp*pi/365.25_dp)
-=======
-      Dangle=23.44_dp*COS((172.0_dp-yday)*2.0_dp*pi/365.2425_dp)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       Dangle=Dangle*deg2rad
 !
 !  Compute hour angle (radians).
@@ -177,15 +158,9 @@
       DO j=JstrT,JendT
         DO i=IstrT,IendT
 !
-<<<<<<< HEAD
 !  Local daylight is a function of the declination (Dangle) and hour
 !  angle adjusted for the local meridian (Hangle-lonr(i,j)/15.0).
 !  The 15.0 factor is because the sun moves 15 degrees every hour.
-=======
-!  Local daylight, GMT time zone, is a function of the declination
-!  (Dangle) and hour angle adjusted for the local meridian
-!  (Hangle-lonr(i,j)*deg2rad).
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
           LatRad=latr(i,j)*deg2rad
           cff1=SIN(LatRad)*SIN(Dangle)
@@ -194,17 +169,12 @@
 !
 !  Estimate variation in optical thickness of the atmosphere over
 !  the course of a day under cloudless skies (Zillman, 1972). To
-<<<<<<< HEAD
 !  obtain net incoming shortwave radiation multiply by (1.0-0.6*c**3),
-=======
-!  obtain incoming shortwave radiation multiply by (1.0-0.6*c**3),
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  where c is the fractional cloud cover.
 !
 !  The equation for saturation vapor pressure is from Gill (Atmosphere-
 !  Ocean Dynamics, pp 606).
 !!
-<<<<<<< HEAD
 !! If relative humidity in kg/kg.
 !!
 !!          vap_p=Pair(i,j)*Hair(i,j)/(0.62197_r8+0.378_r8*Hair(i,j))
@@ -212,15 +182,6 @@
 !
           srflx(i,j)=0.0_r8
           zenith=cff1+cff2*COS(Hangle-lonr(i,j)*deg2rad/15.0_r8)
-=======
-!! If specific humidity in kg/kg.
-!!
-!!        vap_p=Pair(i,j)*Hair(i,j)/(0.62197_r8+0.378_r8*Hair(i,j))
-!!
-!
-          srflx(i,j)=0.0_r8
-          zenith=cff1+cff2*COS(Hangle-lonr(i,j)*deg2rad)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           IF (zenith.gt.0.0_r8) THEN
             cff=(0.7859_r8+0.03477_r8*Tair(i,j))/                       &
      &          (1.0_r8+0.00412_r8*Tair(i,j))
@@ -231,16 +192,6 @@
      &                 ((zenith+2.7_r8)*vap_p*1.0E-3_r8+                &
      &                  1.085_r8*zenith+0.1_r8)
           END IF
-<<<<<<< HEAD
-=======
-!
-!  Add correction for ocean albedo. Notice that the correction is not
-!  needed below because it is assumed that the input (>=24h-average)
-!  and 'srflx' is NET downward shortwave radiation.
-!
-          srflx(i,j)=(1.0_r8-alb_w)*srflx(i,j)
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # elif defined DIURNAL_SRFLUX
 !
 !  SRFLX is reset on each time step in subroutine SET_DATA which

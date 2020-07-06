@@ -25,10 +25,5 @@ wgrib.exe: $(obj)
 	( cd .. ; \rm -f wgrib.exe ; \ln -sf WGRIB/wgrib.exe wgrib.exe ; cd WGRIB )
 
 clean:	
-<<<<<<< HEAD
 	\rm -f $(obj) *.obj wgrib.exe
 	( cd .. ; \rm -f wgrib.exe ; cd WGRIB )
-=======
-	@\rm -f $(obj) *.obj wgrib.exe
-	@( cd .. ; \rm -f wgrib.exe ; cd WGRIB )
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

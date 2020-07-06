@@ -49,11 +49,7 @@
           Vinfo( 2)=Vname(2,idWdvg)
           Vinfo( 3)=Vname(3,idWdvg)
           Vinfo(14)=Vname(4,idWdvg)
-<<<<<<< HEAD
           Vinfo(16)=Vname(1,idWdvg)
-=======
-          Vinfo(16)=Vname(1,idtime)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 # endif
@@ -63,44 +59,24 @@
      &                   NF_FOUT, nvd3, t2dgrd, Aval, Vinfo, ncname)
           IF (exit_flag.ne.NoError) RETURN
 #endif 
-<<<<<<< HEAD
 #ifdef MARSH_WAVE_THRUST
 !
 !  Store initial masking marsh 
-=======
-!
-#ifdef MARSH_DYNAMICS
-!
-!  Store marsh masking marsh from marsh cells. 
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
           Vinfo( 1)=Vname(1,idTims)
           Vinfo( 2)=Vname(2,idTims)
           Vinfo( 3)=Vname(3,idTims)
           Vinfo(14)=Vname(4,idTims)
-<<<<<<< HEAD
           Vinfo(16)=Vname(1,idTims)
 # if defined WRITE_WATER && defined MASKING
           Vinfo(20)='mask_rho'
 # endif
-=======
-          Vinfo(16)=Vname(1,idtime)
-#  if defined WRITE_WATER && defined MASKING
-#    if defined PERFECT_RESTART
-        Vinfo(24)='_FillValue'
-        Aval(6)=spval
-#    else
-          Vinfo(20)='mask_rho'
-#    endif
-#  endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           Vinfo(22)='coordinates'
           Aval(5)=REAL(Iinfo(1,idTims,ng),r8)
           status=def_var(ng, iNLM, RST(ng)%ncid, RST(ng)%Vid(idTims),   &
      &                   NF_FRST, nvd3, t2dgrd, Aval, Vinfo, ncname)
           IF (exit_flag.ne.NoError) RETURN
 !
-<<<<<<< HEAD
           Vinfo( 1)=Vname(1,idTmsk)
           Vinfo( 2)=Vname(2,idTmsk)
           Vinfo( 3)=Vname(3,idTmsk)
@@ -147,80 +123,3 @@
      &                   NF_FRST, nvd3, t2dgrd, Aval, Vinfo, ncname)
           IF (exit_flag.ne.NoError) RETURN
 #endif 
-=======
-# ifdef MARSH_WAVE_THRUST
-!
-!  Total thrust from all directions due to waves.
-!
-          Vinfo( 1)=Vname(1,idTtot)
-          Vinfo( 2)=Vname(2,idTtot)
-          Vinfo( 3)=Vname(3,idTtot)
-          Vinfo(14)=Vname(4,idTtot)
-          Vinfo(16)=Vname(1,idtime)
-#  if defined WRITE_WATER && defined MASKING
-#    if defined PERFECT_RESTART
-        Vinfo(24)='_FillValue'
-        Aval(6)=spval
-#    else
-          Vinfo(20)='mask_rho'
-#    endif
-#  endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idTtot,ng),r8)
-          status=def_var(ng, iNLM, RST(ng)%ncid, RST(ng)%Vid(idTtot),   &
-     &                   NF_FRST, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (exit_flag.ne.NoError) RETURN
-!
-#  ifdef MARSH_SED_EROSION
-!
-!  Marsh sediment flux out from marsh cells from each sedclass.
-!
-        DO i=1,NST
-          Vinfo( 1)=Vname(1,idTmfo(i))
-          Vinfo( 2)=Vname(2,idTmfo(i))
-          Vinfo( 3)=Vname(3,idTmfo(i))
-          Vinfo(14)=Vname(4,idTmfo(i))
-          Vinfo(16)=Vname(1,idtime)
-#   if defined WRITE_WATER && defined MASKING
-#    if defined PERFECT_RESTART
-          Vinfo(24)='_FillValue'
-          Aval(6)=spval
-#    else
-          Vinfo(20)='mask_rho'
-#    endif
-#   endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idTmfo(i),ng),r8)
-          status=def_var(ng, iNLM, RST(ng)%ncid,                        &
-     &                   RST(ng)%Vid(idTmfo(i)), NF_FRST,               &
-     &                   nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (exit_flag.ne.NoError) RETURN
-        END DO
-!
-#   ifdef MARSH_RETREAT
-!
-!  Amount of marsh retreat from all four directions.
-!
-          Vinfo( 1)=Vname(1,idTmmr)
-          Vinfo( 2)=Vname(2,idTmmr)
-          Vinfo( 3)=Vname(3,idTmmr)
-          Vinfo(14)=Vname(4,idTmmr)
-          Vinfo(16)=Vname(1,idtime)
-#    if defined WRITE_WATER && defined MASKING
-#     if defined PERFECT_RESTART
-        Vinfo(24)='_FillValue'
-        Aval(6)=spval
-#     else
-          Vinfo(20)='mask_rho'
-#     endif
-#    endif
-          Vinfo(22)='coordinates'
-          Aval(5)=REAL(Iinfo(1,idTmmr,ng),r8)
-          status=def_var(ng, iNLM, RST(ng)%ncid, RST(ng)%Vid(idTmmr),   &
-     &                   NF_FRST, nvd3, t2dgrd, Aval, Vinfo, ncname)
-          IF (exit_flag.ne.NoError) RETURN
-#   endif 
-#  endif  
-# endif   
-#endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

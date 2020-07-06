@@ -51,14 +51,7 @@ f_xpose.o:	        f_xpose.F90 f_pack.o
 			$(FC) -o $@ $(FFLAGS) -c f_xpose.f
 
 clean : 
-<<<<<<< HEAD
 			/bin/rm -f *.f *.o *.mod *.obj *.i
 
 superclean : clean
 			/bin/rm -f *.a
-=======
-			@/bin/rm -f *.f *.o *.mod *.obj *.i
-
-superclean : clean
-			@/bin/rm -f *.a
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834

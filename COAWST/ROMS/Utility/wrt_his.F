@@ -1,15 +1,9 @@
 #include "cppdefs.h"
       SUBROUTINE wrt_his (ng, tile)
 !
-<<<<<<< HEAD
 !svn $Id: wrt_his.F 889 2018-02-10 03:32:52Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: wrt_his.F 1007 2020-02-25 22:29:41Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -139,11 +133,7 @@
 !  Set time record index.
 !
       HIS(ng)%Rindex=HIS(ng)%Rindex+1
-<<<<<<< HEAD
       Fcount=HIS(ng)%Fcount
-=======
-      Fcount=HIS(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       HIS(ng)%Nrec(Fcount)=HIS(ng)%Nrec(Fcount)+1
 !
 !  Write out model time (s).
@@ -2193,34 +2183,6 @@
         END IF
       END IF
 !
-<<<<<<< HEAD
-=======
-!  Write out ice top temperature
-!
-      IF (Hout(idT2ice,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid,                      &
-     &                     HIS(ng)%Vid(idT2ice),                        &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
-#  ifdef MASKING
-     &                     GRID(ng) % rmask_full,                       &
-#  endif
-     &                     ICE(ng) % t2)
-        IF (FoundError(status, nf90_noerr, __LINE__,                    &
-     &                 __FILE__)) THEN
-          IF (Master) THEN
-            WRITE (stdout,10) TRIM(Vname(1,idT2ice)),                   &
-     &                        HIS(ng)%Rindex
-          END IF
-          exit_flag=3
-          ioerror=status
-          RETURN
-        END IF
-      END IF
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Write out internal ice stress component 11
 !
       IF (Hout(idSig11,ng)) THEN
@@ -2598,34 +2560,6 @@
         END IF
       END IF
 # endif
-<<<<<<< HEAD
-=======
-# if defined BULK_FLUXES
-!
-!  Write out surface air temperature.
-!
-      IF (Hout(idTair,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idTair), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
-#  ifdef MASKING
-     &                     GRID(ng) % rmask,                            &
-#  endif
-     &                     FORCES(ng) % Tair)
-        IF (FoundError(status, nf90_noerr, __LINE__,                    &
-     &                 __FILE__)) THEN
-          IF (Master) THEN
-            WRITE (stdout,10) TRIM(Vname(1,idTair)), HIS(ng)%Rindex
-          END IF
-          exit_flag=3
-          ioerror=status
-          RETURN
-        END IF
-      END IF
-# endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # if defined BULK_FLUXES || defined AIR_OCEAN || defined ECOSIM
 !
 !  Write out surface winds.
@@ -2940,10 +2874,6 @@
 #endif
 !
 #if defined ESTUARYBGC && defined SPECTRAL_LIGHT 
-<<<<<<< HEAD
-=======
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Write out Photosynthetically Available Radiation (PAR)
 !
       IF (Hout(idPARo,ng)) THEN
@@ -3085,17 +3015,10 @@
 !
       IF (Hout(iddowc,ng)) THEN 
         scale=1.0_r8
-<<<<<<< HEAD
         gtype=gfactor*r3dvar
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(iddowc), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(iddowc), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3119,17 +3042,10 @@
 !
       IF (Hout(idwsvl,ng)) THEN 
         scale=1.0_r8
-<<<<<<< HEAD
         gtype=gfactor*r3dvar
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idwsvl), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idwsvl), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3203,51 +3119,14 @@
         END IF
       END IF
 !
-<<<<<<< HEAD
-=======
-!  Write out epiphyte biomass.
-!
-      IF (Hout(idsepb,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsepb), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
-# ifdef MASKING
-#  ifdef WET_DRY
-     &                     GRID(ng) % rmask_full,                       &
-#  else
-     &                     GRID(ng) % rmask,                            &
-#  endif
-# endif
-     &                     OCEAN(ng) % EPB)
-        IF (FoundError(status, nf90_noerr, __LINE__,                    &
-     &                 __FILE__)) THEN
-          IF (Master) THEN
-            WRITE (stdout,10) TRIM(Vname(1,idsepb)), HIS(ng)%Rindex
-          END IF
-          exit_flag=3
-          ioerror=status
-          RETURN
-        END IF
-      END IF
-!
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 ! PP.
 !
       IF (Hout(idsvpp,ng)) THEN
         scale=1.0_r8
-<<<<<<< HEAD
         gtype=gfactor*r3dvar
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvpp), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvpp), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING 
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3271,17 +3150,10 @@
 !
       IF (Hout(idsvam,ng)) THEN
         scale=1.0_r8
-<<<<<<< HEAD
         gtype=gfactor*r3dvar
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvam), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvam), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3305,17 +3177,10 @@
 !
       IF (Hout(idsgar,ng)) THEN
         scale=1.0_r8
-<<<<<<< HEAD
         gtype=gfactor*r3dvar
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsgar), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsgar), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3339,17 +3204,10 @@
 !
       IF (Hout(idsvbr,ng)) THEN
         scale=1.0_r8
-<<<<<<< HEAD
         gtype=gfactor*r3dvar
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvbr), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvbr), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3369,7 +3227,6 @@
         END IF
       END IF
 !
-<<<<<<< HEAD
 ! .
 !
       IF (Hout(idsvrs,ng)) THEN
@@ -3378,16 +3235,6 @@
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvrs), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-! SEARS.
-!
-      IF (Hout(idsvrs,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvrs), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3407,7 +3254,6 @@
         END IF
       END IF
 !
-<<<<<<< HEAD
 ! .
 !
       IF (Hout(idsvbg,ng)) THEN
@@ -3416,16 +3262,6 @@
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvbg), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-! AGBG.
-!
-      IF (Hout(idsvbg,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvbg), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3445,7 +3281,6 @@
         END IF
       END IF
 !
-<<<<<<< HEAD
 ! .
 !
       IF (Hout(idsvag,ng)) THEN
@@ -3454,16 +3289,6 @@
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvag), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-! BGAG.
-!
-      IF (Hout(idsvag,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsvag), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3483,23 +3308,12 @@
         END IF
       END IF
 !
-<<<<<<< HEAD
       IF (Hout(idsbgr,ng)) THEN
         scale=1.0_r8
         gtype=gfactor*r3dvar
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsbgr), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-! BGR.
-!
-      IF (Hout(idsbgr,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsbgr), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -3519,7 +3333,6 @@
         END IF
       END IF
 !
-<<<<<<< HEAD
 ! .
 !
       IF (Hout(idsbgm,ng)) THEN
@@ -3528,16 +3341,6 @@
         status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsbgm), &
      &                     HIS(ng)%Rindex, gtype,                       &
      &                     LBi, UBi, LBj, UBj, 1, N(ng), scale,         &
-=======
-! BGM.
-!
-      IF (Hout(idsbgm,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idsbgm), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, scale,                   &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 # ifdef MASKING
 #  ifdef WET_DRY
      &                     GRID(ng) % rmask_full,                       &
@@ -4546,67 +4349,6 @@
           RETURN
         END IF
       END IF
-<<<<<<< HEAD
-=======
-
-!
-!  Write out energy peak period.
-!
-!      IF (Hout(idACkc,ng)) THEN
-      IF (Hout(idACtp,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r3dvar
-        status=nf_fwrite3d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idACkc), &
-     &                     HIS(ng)%Rindex, gtype,                       &
-     &                     LBi, UBi, LBj, UBj, 1, ND, scale,            &
-# ifdef MASKING
-#  ifdef WET_DRY
-     &                     GRID(ng) % rmask_full,                       &
-#  else
-     &                     GRID(ng) % rmask,                            &
-#  endif
-# endif
-     &                     WAVEP(ng) % kwc)
-        IF (FoundError(status, nf90_noerr, __LINE__,                    &
-     &                 __FILE__)) THEN
-          IF (Master) THEN
-            WRITE (stdout,10) TRIM(Vname(1,idACkc)), HIS(ng)%Rindex
-          END IF
-          exit_flag=3
-          ioerror=status
-          RETURN
-        END IF
-      END IF
-!
-!  Write out bound wave.  jcw
-!
-      IF (Hout(idACbz,ng)) THEN
-        scale=1.0_r8
-        gtype=gfactor*r2dvar
-!        status=nf_fwrite2d(ng, iNLM, HIS(ng)%ncid, HIS(ng)%Vid(idACbz), &
-!     &                     HIS(ng)%Rindex, gtype,                       &
-!     &                     LBi, UBi, LBj, UBj, scale,                   &
-!# ifdef MASKING
-!#  ifdef WET_DRY
-!     &                     GRID(ng) % rmask_full,                       &
-!#  else
-!     &                     GRID(ng) % rmask,                            &
-!#  endif
-!# endif
-!     &                     WAVES(ng)%bndwave_z)
-        IF (FoundError(status, nf90_noerr, __LINE__,                    &
-     &                 __FILE__)) THEN
-          IF (Master) THEN
-            WRITE (stdout,10) TRIM(Vname(1,idACbz)), HIS(ng)%Rindex
-          END IF
-          exit_flag=3
-          ioerror=status
-          RETURN
-        END IF
-      END IF
-
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #endif
 #ifdef VEGETATION
 #include "vegetation_wrt_his.h"

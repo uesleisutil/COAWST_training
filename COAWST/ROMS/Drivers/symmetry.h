@@ -1,14 +1,8 @@
       MODULE ocean_control_mod
 !
-<<<<<<< HEAD
 !svn $Id: symmetry.h 937 2019-01-28 06:13:04Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group                         !
-=======
-!svn $Id: symmetry.h 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                         !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -307,48 +301,20 @@
       IF (FoundError(exit_flag, NoError, __LINE__,                      &
      &               __FILE__)) RETURN
 !
-<<<<<<< HEAD
 !  Set forward file trajectory.
 !
       DO ng=1,Ngrids
         FWD(ng)%name=HIS(ng)%name
         FWD(ng)%ncid=HIS(ng)%ncid
-=======
-!  Set structure for the nonlinear forward trajectory to be processed
-!  by the tangent linear and adjoint models. Also, set switches to
-!  process the FWD structure in routine "check_multifile". Notice that
-!  it is possible to split solution into multiple NetCDF files to reduce
-!  their size.
-!
-      CALL edit_multifile ('HIS2FWD')
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-      DO ng=1,Ngrids
-        LreadFWD(ng)=.TRUE.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       END DO
 
 #if defined BULK_FLUXES && defined NL_BULK_FLUXES
 !
-<<<<<<< HEAD
 !  Set file name containing the nonlinear model bulk fluxes to be read
 !  and processed by other algorithms.
 !
       DO ng=1,Ngrids
         BLK(ng)%name=HIS(ng)%name
-=======
-!  Set structure for the nonlinear surface fluxes to be processed by
-!  by the tangent linear and adjoint models. Also, set switches to
-!  process the BLK structure in routine "check_multifile".  Notice that
-!  it is possible to split solution into multiple NetCDF files to reduce
-!  their size.
-!
-      CALL edit_multifile ('HIS2BLK')
-      IF (FoundError(exit_flag, NoError, __LINE__,                      &
-     &               __FILE__)) RETURN
-      DO ng=1,Ngrids
-        LreadBLK(ng)=.TRUE.
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       END DO
 #endif
 !
@@ -493,11 +459,7 @@
 !$OMP END PARALLEL
           IF (FoundError(exit_flag, NoError, __LINE__,                  &
      &                   __FILE__)) RETURN
-<<<<<<< HEAD
           Fcount=ADM(ng)%Fcount
-=======
-          Fcount=ADM(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
           ADM(ng)%Nrec(Fcount)=0
           ADM(ng)%Rindex=0
         END DO
@@ -701,11 +663,7 @@
             IF (Master) WRITE (stdout,10)
  10         FORMAT (/,' Blowing-up: Saving latest model state into ',   &
      &                ' RESTART file',/)
-<<<<<<< HEAD
             Fcount=RST(ng)%Fcount
-=======
-            Fcount=RST(ng)%load
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             IF (LcycleRST(ng).and.(RST(ng)%Nrec(Fcount).ge.2)) THEN
               RST(ng)%Rindex=2
               LcycleRST(ng)=.FALSE.
@@ -745,12 +703,6 @@
 !
 !  Close IO files.
 !
-<<<<<<< HEAD
-=======
-      DO ng=1,Ngrids
-        CALL close_inp (ng, iNLM)
-      END DO
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       CALL close_out
 
       RETURN

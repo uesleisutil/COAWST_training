@@ -9,11 +9,8 @@
 !/    1.4     | 11-apr-2014 | bug fixes
 !/                          | reduced memory consumption
 !/
-<<<<<<< HEAD
 !/    copyright 2009-2014 bmtargoss
 !/       no unauthorized use without permission.
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !/
 !  1. purpose :
 !
@@ -52,23 +49,14 @@
 !         %points        int        1:npoints
 !         %longitude     r.a        x coordinates points
 !         %latitude      r.a        y coordinates points
-<<<<<<< HEAD
 !         %lunit      char       likely unit (meter, degrees)
-=======
-!         %lunit         char       likely unit (meter, degrees)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !         %npoints
 !
 !       spcgrid                     spectral grid
 !         %frequency     r.a        frequency axe
 !         %direction     r.a.       directional axe
-<<<<<<< HEAD
 !         %nfreq      int        number of frequencies
 !         %ndir       int        number of directions
-=======
-!         %nfreq         int        number of frequencies
-!         %ndir          int        number of directions
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !       nctable          ncttype    struct array from nctablemd.f90
 !         %standard_name char       see remarks a
@@ -150,11 +138,7 @@
         use netcdf
         use nctablemd
         implicit none
-<<<<<<< HEAD
         real, parameter                              :: AGIONCMD_VERSION = 1.4
-=======
-        real, parameter                              :: AGIONCMD_VERSION = 1.5
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         real, parameter                              :: AGNC_DUMMY = NF90_FILL_FLOAT
         integer(kind=1), parameter                   :: AGNC_FILL_BYTE = -2**7
         integer(kind=2), parameter                   :: AGNC_FILL_SHORT= -2**15

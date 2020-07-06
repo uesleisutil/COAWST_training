@@ -1,19 +1,10 @@
 #include "cppdefs.h"
       MODULE interp_floats_diapW_mod
-<<<<<<< HEAD
 #if defined NONLINEAR && defined FLOATS && defined SOLVE3D
 !
 !svn $Id$
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2016 The ROMS/TOMS Group         Mark Hadfield   !
-=======
-#if defined NONLINEAR && defined FLOATS && defined SOLVE3D && \
-    defined DIAPAUSE
-!
-!svn $Id$
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2019 The ROMS/TOMS Group         Mark Hadfield   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license             John M. Klinck   !
 !    See License_ROMS.txt                                              !
 !=======================================================================

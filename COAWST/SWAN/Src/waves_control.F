@@ -26,10 +26,7 @@
 
       implicit none
 
-<<<<<<< HEAD
 
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       PRIVATE
       PUBLIC  :: SWAN_driver_init
       PUBLIC  :: SWAN_driver_run
@@ -63,10 +60,7 @@
 !  Imported variable declarations.
 !
       integer, intent(in) :: MyCOMM
-<<<<<<< HEAD
 !     real(m4), intent(in)  :: CouplingTime             ! single precision
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !  Local variable declarations.
 !
@@ -203,11 +197,7 @@
 !=======================================================================
 !
       USE swan_iounits
-<<<<<<< HEAD
       USE mod_coupler_kinds
-=======
-      USE mct_coupler_params
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
       USE M_PARALL
       USE M_PARALL2
       USE SWCOMM3
@@ -216,11 +206,8 @@
 !
 !  Imported variable declarations.
 !
-<<<<<<< HEAD
 !     real(m4), intent(in)  :: CouplingTime             ! single precision
 !
-=======
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !  Local variable declarations.
 !
       integer :: i, iw, ng, MyRank, MyError

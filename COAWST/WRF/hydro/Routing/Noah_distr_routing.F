@@ -165,12 +165,7 @@
 
         INTEGER :: SO8RT_D(IXRT,JXRT,3)
         REAL :: SO8RT(IXRT,JXRT,8)
-<<<<<<< HEAD
         integer ::  rt_option, index
-=======
-        INTEGER, INTENT(IN)  ::  rt_option
-        integer  ::  index
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
         INTEGER :: DT_STEPS             !-- number of timestep in routing
         REAL :: SUBDT                !-- subsurface routing timestep
@@ -272,7 +267,6 @@
      print *, "calling subsurface routing subroutine...Opt. ",rt_option
 #endif
 
-<<<<<<< HEAD
 
      if(rt_option .eq. 1) then
         CALL ROUTE_SUBSURFACE1(dist,ZWATTABLRT,QSUBRT,SOXRT,SOYRT,  &   
@@ -283,21 +277,6 @@
                LATKSATRT,SOLDEPRT,IXRT,JXRT,QSUBBDRYRT,QSUBBDRYTRT,     &
                CWATAVAIL,SUBDT)
      end if
-=======
-! ADCHANGE: IMPORTANT!
-! 2D subsurface option currently has bug so forcing to option 1 in this routine to
-! allow users to still have option to use 2d overland (both are controlled by same 
-! rt_option flag). Remove this hard-coded option when rt_option=2 is fixed for subsurface.
-!     if(rt_option .eq. 1) then
-        CALL ROUTE_SUBSURFACE1(dist,ZWATTABLRT,QSUBRT,SOXRT,SOYRT,  &   
-               LATKSATRT,SOLDEPRT,IXRT,JXRT,QSUBBDRYRT,QSUBBDRYTRT, &   
-               SO8RT,SO8RT_D,CWATAVAIL,SUBDT)
-!     else 
-!        CALL ROUTE_SUBSURFACE2(dist,ZWATTABLRT,QSUBRT,SOXRT,SOYRT,      &
-!               LATKSATRT,SOLDEPRT,IXRT,JXRT,QSUBBDRYRT,QSUBBDRYTRT,     &
-!               CWATAVAIL,SUBDT)
-!     end if
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 #ifdef HYDRO_D
      write(6,*) "finish calling ROUTE_SUBSURFACE ", rt_option
@@ -815,11 +794,7 @@
 	REAL, INTENT(IN), DIMENSION(IXRT,JXRT)	:: SOXRT
 	REAL, INTENT(IN), DIMENSION(IXRT,JXRT)	:: SOYRT
 	REAL, INTENT(IN), DIMENSION(IXRT,JXRT,9):: dist 
-<<<<<<< HEAD
 	REAL, INTENT(IN), DIMENSION(IXRT,JXRT)	:: RETDEPRT
-=======
-	REAL, INTENT(INOUT), DIMENSION(IXRT,JXRT)	:: RETDEPRT
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 	REAL, INTENT(IN), DIMENSION(IXRT,JXRT)	:: OVROUGHRT
 
 	REAL, INTENT(OUT), DIMENSION(IXRT,JXRT)	:: SFCHEADSUBRT
@@ -915,12 +890,6 @@
 !	     RETDEPRT(I,J) = RETDEPRT(I,J) * 100.0    !DJG TEMP HARDWIRE!!!!
 !	     RETDEPRT(I,J) = 10.0    !DJG TEMP HARDWIRE!!!!
 
-<<<<<<< HEAD
-=======
-! AD hardwire to force channel retention depth to be 5mm.
-             RETDEPRT(I,J) = 5.0
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
              IF (SFCHEADSUBRT(I,J).GT.RETDEPRT(I,J)) THEN
 !!               QINFLO(CH_NET(I,J)=QINFLO(CH_NET(I,J)+SFCHEAD(I,J) - RETDEPRT(I,J)
                QSTRMVOLTRT = QSTRMVOLTRT + (SFCHEADSUBRT(I,J) - RETDEPRT(I,J))
@@ -2430,14 +2399,8 @@
              RT_DOMAIN(did)%INFXSUBRT,RT_DOMAIN(did)%SMCMAXRT, RT_DOMAIN(did)%SMCWLTRT,    &
              RT_DOMAIN(did)%SMCRT, &
              RT_DOMAIN(did)%OVROUGHRT, RT_DOMAIN(did)%LAKE_MSKRT, &
-<<<<<<< HEAD
              RT_DOMAIN(did)%LKSATRT, RT_DOMAIN(did)%OV_ROUGH,RT_DOMAIN(did)%SLDPTH, &
 	     RT_DOMAIN(did)%soiltypRT, RT_DOMAIN(did)%soiltyp)
-=======
-             RT_DOMAIN(did)%LKSATRT, RT_DOMAIN(did)%OV_ROUGH2d, RT_DOMAIN(did)%SLDPTH, &
-	     RT_DOMAIN(did)%soiltypRT, RT_DOMAIN(did)%soiltyp, rt_domain(did)%ELRT, &
-             RT_DOMAIN(did)%iswater)
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
       end subroutine disaggregateDomain_drv
 
@@ -2445,13 +2408,8 @@
                      SICE, SMC,SH2OX, INFXSRT, area_lsm, SMCMAX1,SMCREF1, &
                SMCWLT1, VEGTYP, LKSAT, dist,INFXSWGT,OVROUGHRTFAC, &
                LKSATFAC, CH_NETRT,SH2OWGT,SMCREFRT, INFXSUBRT,SMCMAXRT, &
-<<<<<<< HEAD
                SMCWLTRT,SMCRT, OVROUGHRT, LAKE_MSKRT, LKSATRT,OV_ROUGH,  &
                SLDPTH, soiltypRT, soiltyp                               &
-=======
-               SMCWLTRT,SMCRT, OVROUGHRT, LAKE_MSKRT, LKSATRT, OV_ROUGH2d,  &
-               SLDPTH, soiltypRT, soiltyp, elrt, iswater                        &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             )
 #ifdef MPP_LAND
         use module_mpp_land, only: left_id,down_id,right_id, &
@@ -2460,11 +2418,7 @@
              sum_real1
 #endif
      implicit none
-<<<<<<< HEAD
         integer,INTENT(IN) :: IX,JX,NSOIL,IXRT,JXRT,AGGFACTRT
-=======
-        integer,INTENT(IN) :: IX,JX,NSOIL,IXRT,JXRT,AGGFACTRT, iswater
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         real, INTENT(OUT), DIMENSION(IX,JX,NSOIL) :: SICE
         real, INTENT(IN),  DIMENSION(IX,JX,NSOIL) :: SMC,SH2OX
         real, INTENT(IN),  DIMENSION(IX,JX) :: INFXSRT, area_lsm, SMCMAX1,SMCREF1, &
@@ -2473,11 +2427,7 @@
 
         real,INTENT(IN),DIMENSION(IXRT,JXRT,9)::dist
         real,INTENT(IN),DIMENSION(IXRT,JXRT)::INFXSWGT,OVROUGHRTFAC, &
-<<<<<<< HEAD
                LKSATFAC
-=======
-               LKSATFAC, elrt
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
         integer,INTENT(INOUT), DIMENSION(IXRT,JXRT)     ::CH_NETRT, soiltypRT
         real,INTENT(IN),DIMENSION(IXRT,JXRT,NSOIL)::SH2OWGT
         real,INTENT(OUT),DIMENSION(IXRT,JXRT,NSOIL)::SMCREFRT, SMCMAXRT, &
@@ -2488,22 +2438,13 @@
                   
 
         real,INTENT(IN), DIMENSION(NSOIL)      :: SLDPTH
-<<<<<<< HEAD
         REAL    OV_ROUGH(*)
 
-=======
-        REAL,dimension(ix,jx) ::    OV_ROUGH2d
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 
 
         integer :: i, j, AGGFACYRT, AGGFACXRT, IXXRT, JYYRT,KRT, KF
         REAL  ::  LSMVOL,SMCEXCS, WATHOLDCAP
 
-<<<<<<< HEAD
-=======
-        REAL, DIMENSION(IXRT,JXRT) :: OCEAN_INFXSUBRT
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef HYDRO_D
 ! ADCHANGE: Water balance variables
        integer :: kk
@@ -2555,13 +2496,6 @@
 ! END Initial water balance variables
 #endif
 
-<<<<<<< HEAD
-=======
-! ADCHANGE: Initialize ocean infxsubrt var to 0. Currently just a dump
-! variable but could be used for future ocean model coupling
-     OCEAN_INFXSUBRT = 0.0 
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !DJG Weighting alg. alteration...(prescribe wghts if time = 1)
 
 
@@ -2686,11 +2620,7 @@
             IF (VEGTYP(I,J).LE.0) then
               OVROUGHRT(IXXRT,JYYRT) = 0.1     !COWS mask test
             ELSE
-<<<<<<< HEAD
                OVROUGHRT(IXXRT,JYYRT)=OV_ROUGH(VEGTYP(I,J))*OVROUGHRTFAC(IXXRT,JYYRT)  ! Distributed calibration...1/17/2012
-=======
-               OVROUGHRT(IXXRT,JYYRT) = OV_ROUGH2d(i,j)*OVROUGHRTFAC(IXXRT,JYYRT)  ! Distributed calibration...1/17/2012
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
             END IF
 
 
@@ -2714,11 +2644,7 @@
 !DJG set up lake mask...
 !--- modify to make lake mask large here, but not one of the routed lakes!!!
 !--            IF (VEGTYP(I,J).eq.16) then
-<<<<<<< HEAD
                IF (VEGTYP(I,J).eq.16 .and. &
-=======
-               IF (VEGTYP(I,J) .eq. iswater .and. &
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
                         CH_NETRT(IXXRT,JYYRT).le.0) then
                  !--LAKE_MSKRT(IXXRT,JYYRT) = 1
 !yw                 LAKE_MSKRT(IXXRT,JYYRT) = 9999
@@ -2735,16 +2661,6 @@
           end do
         end do
 
-<<<<<<< HEAD
-=======
-! ADCHANGE: Add new zeroing out of -9999 elevation cells which are ocean
-     where (ELRT .lt. -9998)
-        OCEAN_INFXSUBRT = INFXSUBRT 
-        INFXSUBRT = 0.0
-     endwhere
-! END ADCHANGE
-
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #ifdef HYDRO_D
 ! ADCHANGE: START Final water balance variables
 ! ALL VARS in MM

@@ -2,15 +2,9 @@
 #if defined ADJOINT && defined SOLVE3D
       SUBROUTINE ad_main3d (RunInterval)
 !
-<<<<<<< HEAD
 !svn $Id: ad_main3d.F 927 2018-10-16 03:51:56Z arango $
 !================================================== Hernan G. Arango ===
 !  Copyright (c) 2002-2019 The ROMS/TOMS Group       Andrew M. Moore   !
-=======
-!svn $Id: ad_main3d.F 995 2020-01-10 04:01:28Z arango $
-!================================================== Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group       Andrew M. Moore   !
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !    Licensed under a MIT/X style license                              !
 !    See License_ROMS.txt                                              !
 !=======================================================================
@@ -447,15 +441,7 @@
 !
         DO ng=1,Ngrids
 #  ifdef SENSITIVITY_4DVAR
-<<<<<<< HEAD
           IF (.not.LsenPSAS(ng)) THEN
-=======
-#    ifdef W4DPSAS_FCT_SENSITIVITY
-          IF (.not.LsenPSAS(ng).and.LsenFCT(ng)) THEN
-#    else
-          IF (.not.LsenPSAS(ng)) THEN
-#    endif
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 #  endif
 !$OMP MASTER
             HalfDT=0.5_r8*dt(ng)
@@ -856,14 +842,8 @@
         END DO
 # endif
 
-<<<<<<< HEAD
 # if defined AD_SENSITIVITY   || defined IS4DVAR_SENSITIVITY || \
      defined OPT_OBSERVATIONS || defined SENSITIVITY_4DVAR
-=======
-# if (defined AD_SENSITIVITY   || defined IS4DVAR_SENSITIVITY || \
-      defined OPT_OBSERVATIONS || defined SENSITIVITY_4DVAR)  && \
-     !defined OBS_SPACE
->>>>>>> b1b191b5bc4e1e579b5a1fc399451b14a647f834
 !
 !-----------------------------------------------------------------------
 !  Add appropriate forcing terms to the adjoint model. The form of the
