@@ -1,0 +1,171 @@
+>export DIR=/media/dados1/dados_comp/biblios_compilacoes/coawst
+>unset HDF5_INCDIR HDF5_LIBDIR PHDF5 NETCDF NETCDF_LIBDIR  NETCDF_INCDIR MYLIBS MCT_LIBDIR MCT_INCDIR LD_LIBRARY_PATH JASPERINC JASPERLIB INCLUDE
+
+>export F77=gfortran FC=gfortran CC=gcc CXX=g++ FFLAGS="-m64" FCFLAGS="-m64" CFLAGS=-m64 CXXFLAGS=-m64
+
+#COAWST#
+>git clone https://github.com/uesleisutil/COAWST_training.git
+
+#OPENMPI#
+>wget https://download.open-mpi.org/release/open-mpi/v4.0/>openmpi-4.0.4.tar.gz
+>tar -xvzf openmpi-4.0.4.tar.gz
+>cd openmpi-4.0.4
+>./configure --prefix=$DIR
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+>make check > make_check.out 2>&1 &
+#######
+
+
+>cd
+>gedit .bashrc
+adic linha:export PATH=$DIR/bin:$PATH
+adic linha:export LD_LIBRARY_PATH=$DIR/lib
+adic linha:export INCLUDE=$DIR/include
+>source .bashrc
+
+#szip#
+>wget https://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/>szip-2.1.1.tar.gz
+>tar -xvzf szip-2.1.1.tar.gz
+>cd szip-2.1.1
+>./configure --prefix=$DIR
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+#######
+
+
+#zlib#
+>wget https://zlib.net/zlib-1.2.11.tar.gz
+>tar -xvzf zlib-1.2.11.tar.gz
+>cd zlib-1.2.11/
+>./configure --prefix=$DIR
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+#######
+
+
+>export LDFLAGS=-L$DIR/lib CPPFLAGS=-I$DIR/include
+
+#HDF5#
+>wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
+>tar -xvzf hdf5-1.12.0.tar.gz
+>cd hdf5-1.12.0
+>./configure --enable-fortran=yes --with-zlib --with-szlib --enable-fortran2003=yes --enable-cxx=yes --with-szlib=$DIR --with-zlib=$DIR --enable-hl --enable-shared --prefix=$DIR
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+>make check > make_check.out 2>&1 &
+#######
+
+
+#NetCDF-C#
+>wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-c-4.7.4.tar.gz
+>tar -xvzf netcdf-c-4.7.4.tar.gz
+>cd netcdf-c-4.7.4
+>./configure --prefix=$DIR --with-zlib --with-szlib --enable-parallel --enable-netcdf4 --with-hdf5=$DIR --enable-shared --enable-dap
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+>make check > make_check.out 2>&1 &
+#######
+
+>export LIBS='-lnetcdf -lhdf5 -lhdf5_hl -lz'
+
+#NetCDF-Fortran#
+>wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.5.3.tar.gz
+>tar -xvzf netcdf-fortran-4.5.3.tar.gz
+>cd netcdf-fortran-4.5.3
+>./configure --prefix=$DIR --enable-netcdf4 --with-hdf5=$DIR --enable-shared --enable-dap
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+>make check > make_check.out 2>&1 &
+#######
+
+>export LIBS='-lz'
+
+#LIBPNG#
+>wget https://downloads.sourceforge.net/project/libpng/libpng16/1.6.37/libpng-1.6.37.tar.xz
+>tar -xJf libpng-1.6.37.tar.xz
+>cd libpng-1.6.37
+>./configure --with-zlib-prefix=$DIR --prefix=$DIR
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+>make check > make_check.out 2>&1 &
+#######
+
+
+#JASPER#
+>wget http://www.ece.uvic.ca/~frodo/jasper/software/jasper-2.0.14.tar.gz
+>tar -xvzf jasper-2.0.14.tar.gz
+>cd jasper-2.0.14
+>cmake -DCMAKE_INSTALL_PREFIX=$DIR -DCMAKE_BUILD_TYPE=Release -DALLOW_IN_SOURCE_BUILD=True -DCMAKE_SKIP_INSTALL_RPATH=YES -DJAS_ENABLE_DOC=NO -DCMAKE_INSTALL_DOCDIR=$DIR/share/doc/jasper-2.0.14
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+#######
+
+>export MYLIBS=/media/dados1/dados_comp/biblios_compilacoes/coawst
+>export MCT_INCDIR=$MYLIBS/include
+>export MCT_LIBDIR=$MYLIBS/lib
+>export NETCDF=$MYLIBS
+>export NETCDF_INCDIR=$NETCDF/include
+>export NETCDF_LIBDIR=$NETCDF/lib
+>export PHDF5=$MYLIBS
+>export HDF5_INCDIR=$PHDF5/include
+>export HDF5_LIBDIR=$PHDF5/lib
+>export JASPERLIB=$MYLIBS/lib
+>export JASPERINC=$MYLIBS/include
+>export LD_LIBRARY_PATH=$MYLIBS/lib
+>export INCLUDE=$MYLIBS/include
+
+#confirmar que o mpif90 e mpicc esta pegando do local onde foram instaladas as biblios
+>which mpif90
+/media/dados1/dados_comp/biblios_compilacoes/coawst/bin/mpif90
+
+>which mpicc
+/media/dados1/dados_comp/biblios_compilacoes/coawst/bin/mpicc
+
+#MCT#
+>cd /home/gabrielbm/modelos/COAWST/COAWST_training/COAWST/Lib/MCT
+>./configure
+>make clean
+>./configure CC=mpicc FC=mpif90 F90=mpif90 FCFLAGS=-m64 INCPATH=-I$DIR MPILIBS=$DIR/lib FPPFLAGS="-P -C -N -tradicional -I$DIR/include" --prefix=$DIR
+>make > make.out 2>&1 &
+>make install > make_install.out 2>&1 &
+#######
+
+>unset F77 FC CC CXX FFLAGS FCFLAGS CFLAGS CXXFLAGS LIBS LDFLAGS CPPFLAGS
+
+#COAWST#
+>cd /home/gabrielbm/modelos/COAWST/COAWST_training/COAWST
+>gedit Compilers/Linux-gfortran.mk
+editar:
+            INCDIR := /media/dados1/dados_comp/biblios_compilacoes/coawst/include /usr/local/include /usr/local/bin /usr/include /usr/bin 
+            SLIBS := -L/media/dados1/dados_comp/biblios_compilacoes/coawst/lib -L/usr/local/lib -L/usr/lib
+ifdef USE_MPI
+             FFLAGS += -I/media/dados1/dados_comp/biblios_compilacoes/coawst/include
+
+>gedit coawst.bash
+editar:
+	linha 132 export   MY_ROOT_DIR=/home/gabrielbm/modelos/COAWST/COAWST_training/COAWST
+	linha 164 export   NETCDF_CONFIG=/media/dados1/dados_comp/biblios_compilacoes/coawst/bin/nc-config
+	linha 259 export   PATH=$PATH
+
+>./coawst.bash
+opcao 34 (dmpa) e 1 
+
+#RODANDO COAWST#
+>cd Work/Sandy/
+>ln -s ../../*.TBL .
+>ln -s ../../coawstM ./
+>ln -s ../../coawstM ./
+>ln -s ../../Projects/Sandy/* ./
+>ln -s ../../WRF/run/ozone* ./
+>ln -s ../../WRF/run/RRTM* ./
+>rm coupling_sandy.in ocean_sandy.in
+>cp ../../Projects/Sandy/coupling_sandy.in .
+>cp ../../Projects/Sandy/ocean_sandy.in .
+>sed -i 's/ueslei\/Documents\/INPE/gabrielbm\/modelos\/COAWST/g' ocean_sandy.in
+>mpirun -np 2 ./coawstM ./coupling_sandy.in &> log.out &
+
+
+
+
+
